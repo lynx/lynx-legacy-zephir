@@ -7,7 +7,8 @@ php:
 
 before_install:
  - ./tests/ci/install_prereqs.sh
- - mysql -uroot -e 'create database phalcon_orm_test charset=utf8 collate=utf8_unicode_ci;' && mysql -u root phalcon_orm_test < /tests/schemas/mysql/phalcon_test.sql"
+ - mysql -uroot -e 'create database phalcon_orm_test charset=utf8 collate=utf8_unicode_ci;'
+ - mysql -uroot phalcon_orm_test < ./tests/schemas/mysql/phalcon_test.sql
 
 before_script:
  - git submodule --quiet update --init --recursive
