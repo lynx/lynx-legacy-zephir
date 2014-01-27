@@ -1,9 +1,0 @@
-#! /bin/sh
-#
-# Created by configure
-
-CFLAGS='-O2 -fvisibility=hidden -Wparentheses' \
-CC='gcc' \
-'./configure' \
-'--enable-Phalcon' \
-"$@"
