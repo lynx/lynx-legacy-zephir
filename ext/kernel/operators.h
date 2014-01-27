@@ -57,6 +57,8 @@
 #define ZEPHIR_GT_LONG(op1, op2)  ((Z_TYPE_P(op1) == IS_LONG && Z_LVAL_P(op1) > op2) || zephir_greater_long(op1, op2 TSRMLS_CC))
 #define ZEPHIR_GT_DOUBLE(op1, op2)  ((Z_TYPE_P(op1) == IS_DOUBLE && Z_DVAL_P(op1) > op2) || zephir_greater_double(op1, op2 TSRMLS_CC))
 
+#define ZEPHIR_STRING_OFFSET(op1, index) ((index >= 0 && index < Z_STRLEN_P(op1)) ? Z_STRVAL_P(op1)[index] : '\0')
+
 #if PHP_VERSION_ID < 50400
 #define zephir_increment(var) increment_function(var)
 #else
@@ -74,6 +76,13 @@ void zephir_make_printable_zval(zval *expr, zval *expr_copy, int *use_copy);
 /** Operator functions */
 int zephir_add_function(zval *result, zval *op1, zval *op2 TSRMLS_DC);
 int zephir_and_function(zval *result, zval *left, zval *right);
+
+/** Bitwise functions */
+int zephir_bitwise_and_function(zval *result, zval *op1, zval *op2 TSRMLS_DC);
+int zephir_bitwise_or_function(zval *result, zval *op1, zval *op2 TSRMLS_DC);
+int zephir_bitwise_xor_function(zval *result, zval *op1, zval *op2 TSRMLS_DC);
+int zephir_shift_left_function(zval *result, zval *op1, zval *op2 TSRMLS_DC);
+int zephir_shift_right_function(zval *result, zval *op1, zval *op2 TSRMLS_DC);
 
 void zephir_concat_self(zval **left, zval *right TSRMLS_DC);
 void zephir_concat_self_str(zval **left, const char *right, int right_length TSRMLS_DC);

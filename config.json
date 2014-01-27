@@ -30,7 +30,7 @@
         "static-constant-class-folding": true,
         "private-internal-methods": true
     },
-    "namespace": "Phalcon",
+    "namespace": "phalcon",
     "name": "phalconorm",
     "description": "",
     "author": "",

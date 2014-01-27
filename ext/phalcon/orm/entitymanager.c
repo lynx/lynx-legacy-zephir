@@ -21,7 +21,7 @@
  */
 ZEPHIR_INIT_CLASS(Phalcon_ORM_EntityManager) {
 
-	ZEPHIR_REGISTER_CLASS(Phalcon\\ORM, EntityManager, Phalcon, phalcon_orm_entitymanager, phalcon_orm_entitymanager_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS(Phalcon\\ORM, EntityManager, phalcon, orm_entitymanager, phalcon_orm_entitymanager_method_entry, 0);
 
 	zend_declare_property_null(phalcon_orm_entitymanager_ce, SL("connection"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
