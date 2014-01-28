@@ -6,17 +6,23 @@ namespace Phalcon\ORM;
 
 class EntityManager
 {
-	protected connection {
-		get
-	};
+    protected unitOfWork;
 
-	public function __construct($connection)
+	protected connection {get};
+
+	public function __construct(var connection)
 	{
 		let this->connection = connection;
+		let this->unitOfWork = new Phalcon\ORM\UnitOfWork(this);
 	}
 
-	public function flush($entity)
+	public function flush(var entity)
 	{
 		
+	}
+
+	public function createQueryBuilder()
+	{
+	    return new Phalcon\ORM\QueryBuilder();
 	}
 }

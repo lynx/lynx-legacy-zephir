@@ -8,11 +8,24 @@
 
 namespace Phalcon\Tests\ORM;
 
+use Phalcon\ORM;
+
 class EntityManagerTest
 	extends \PHPUnit_Framework_TestCase
 {
-	public function testCreateQuery()
+	protected $_em;
+
+	function setUp()
 	{
-		$this->assertTrue(true);
+		parent::setUp();
+
+		$connection = true;
+		$this->_em = new \Phalcon\ORM\EntityManager($connection);
+	}
+
+	public function testCreateQueryBuilder()
+	{
+		$queryBuilder = $this->_em->createQueryBuilder();
+		$this->assertTrue($queryBuilder instanceof \Phalcon\ORM\QueryBuilder);
 	}
 } 

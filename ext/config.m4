@@ -2,7 +2,7 @@ PHP_ARG_ENABLE(phalcon, whether to enable phalcon, [ --enable-phalcon   Enable P
 
 if test "$PHP_PHALCON" = "yes"; then
 	AC_DEFINE(HAVE_PHALCON, 1, [Whether you have Phalcon])
-	phalcon_sources="phalcon.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/alternative/fcall.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c phalcon/orm/entitymanager.c "
+	phalcon_sources="phalcon.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/alternative/fcall.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c phalcon/orm/entitymanager.c phalcon/orm/querybuilder.c phalcon/orm/unitofwork.c "
 	PHP_NEW_EXTENSION(phalcon, $phalcon_sources, $ext_shared)
 
 	old_CPPFLAGS=$CPPFLAGS
