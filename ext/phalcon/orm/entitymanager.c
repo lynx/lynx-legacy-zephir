@@ -50,7 +50,9 @@ PHP_METHOD(Phalcon_ORM_EntityManager, __construct) {
 	zephir_update_property_this(this_ptr, SL("connection"), connection TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_0);
 	object_init_ex(_0, phalcon_orm_unitofwork_ce);
-	zephir_call_method_p1_noret(_0, "__construct", this_ptr);
+	if (zephir_has_constructor(_0 TSRMLS_CC)) {
+		zephir_call_method_p1_noret(_0, "__construct", this_ptr);
+	}
 	zephir_update_property_this(this_ptr, SL("unitOfWork"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 

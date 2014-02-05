@@ -13,7 +13,7 @@ class EntityManager
 	public function __construct(var connection)
 	{
 		let this->connection = connection;
-		let this->unitOfWork = new Phalcon\ORM\UnitOfWork(this);
+		let this->unitOfWork = new UnitOfWork(this);
 	}
 
 	public function flush(var entity)
