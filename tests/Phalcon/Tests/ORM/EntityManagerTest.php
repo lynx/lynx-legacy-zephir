@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: zaets28rus
- * Date: 27.01.14
- * Time: 15:58
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
  */
 
 namespace Phalcon\Tests\ORM;

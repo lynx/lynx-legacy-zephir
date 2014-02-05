@@ -44,6 +44,7 @@
 #define ISS(str) (zephir_interned_##str), (sizeof(#str))
 
 #include "Zend/zend_constants.h"
+#include "kernel/exception.h"
 
 /* Startup functions */
 zend_class_entry *zephir_register_internal_interface_ex(zend_class_entry *orig_ce, zend_class_entry *parent_ce TSRMLS_DC);
@@ -57,6 +58,9 @@ int zephir_function_exists(const zval *function_name TSRMLS_DC);
 int zephir_function_exists_ex(const char *func_name, unsigned int func_len TSRMLS_DC);
 int zephir_function_quick_exists_ex(const char *func_name, unsigned int func_len, unsigned long key TSRMLS_DC);
 
+/* types */
+void zephir_gettype(zval *return_value, zval *arg TSRMLS_DC);
+
 /* Count */
 void zephir_fast_count(zval *result, zval *array TSRMLS_DC);
 int zephir_fast_count_ev(zval *array TSRMLS_DC);
@@ -65,7 +69,6 @@ int zephir_fast_count_int(zval *value TSRMLS_DC);
 /* Utils functions */
 int zephir_is_iterable_ex(zval *arr, HashTable **arr_hash, HashPosition *hash_position, int duplicate, int reverse);
 void zephir_safe_zval_ptr_dtor(zval *pzval);
-
 
 /* Fetch Parameters */
 int zephir_fetch_parameters(int num_args TSRMLS_DC, int required_args, int optional_args, ...);
@@ -305,8 +308,8 @@ int zephir_fetch_parameters(int num_args TSRMLS_DC, int required_args, int optio
 
 /** Check if an array is iterable or not */
 #define zephir_is_iterable(var, array_hash, hash_pointer, duplicate, reverse) \
-	if (!zephir_is_iterable_ex(var, array_hash, hash_pointer, duplicate, reverse)) { \
-		zend_error(E_ERROR, "The argument is not iterable()"); \
+	if (!var || !zephir_is_iterable_ex(var, array_hash, hash_pointer, duplicate, reverse)) { \
+		ZEPHIR_THROW_EXCEPTION_STRW(zend_exception_get_default(TSRMLS_C), "The argument is not init or iterable()"); \
 		ZEPHIR_MM_RESTORE(); \
 		return; \
 	}
