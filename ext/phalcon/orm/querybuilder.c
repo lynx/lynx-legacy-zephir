@@ -31,6 +31,13 @@ ZEPHIR_INIT_CLASS(Phalcon_ORM_QueryBuilder) {
 
 }
 
+PHP_METHOD(Phalcon_ORM_QueryBuilder, getLimit) {
+
+
+	RETURN_MEMBER(this_ptr, "limit");
+
+}
+
 PHP_METHOD(Phalcon_ORM_QueryBuilder, select) {
 
 

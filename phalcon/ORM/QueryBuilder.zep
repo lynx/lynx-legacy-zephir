@@ -6,7 +6,7 @@ namespace Phalcon\ORM;
 
 class QueryBuilder
 {
-	protected limit = null;
+	protected limit = null {get};
 
 	protected offset = 0;
 

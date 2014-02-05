@@ -3,6 +3,7 @@ extern zend_class_entry *phalcon_orm_querybuilder_ce;
 
 ZEPHIR_INIT_CLASS(Phalcon_ORM_QueryBuilder);
 
+PHP_METHOD(Phalcon_ORM_QueryBuilder, getLimit);
 PHP_METHOD(Phalcon_ORM_QueryBuilder, select);
 PHP_METHOD(Phalcon_ORM_QueryBuilder, delete);
 PHP_METHOD(Phalcon_ORM_QueryBuilder, update);
@@ -21,6 +22,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_orm_querybuilder_offset, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalcon_orm_querybuilder_method_entry) {
+	PHP_ME(Phalcon_ORM_QueryBuilder, getLimit, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_ORM_QueryBuilder, select, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_ORM_QueryBuilder, delete, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_ORM_QueryBuilder, update, NULL, ZEND_ACC_PUBLIC)
