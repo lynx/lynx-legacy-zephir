@@ -15,4 +15,12 @@ class EntityManagerTest
 		$queryBuilder = $this->_em->createQueryBuilder();
 		$this->assertTrue($queryBuilder instanceof \Phalcon\ORM\QueryBuilder);
 	}
+
+	public function testCreateQuery()
+	{
+		$sql = "SELECT * FROM `table`";
+
+		$queryBuilder = $this->_em->createQuery($sql);
+		$this->assertTrue($queryBuilder instanceof \Phalcon\ORM\Query);
+	}
 }
