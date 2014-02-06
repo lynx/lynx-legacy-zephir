@@ -83,7 +83,6 @@ PHP_METHOD(Phalcon_ORM_EntityManager, createQueryBuilder) {
 
 PHP_METHOD(Phalcon_ORM_EntityManager, createQuery) {
 
-	zend_class_entry *_0;
 	zval *sql;
 
 	ZEPHIR_MM_GROW();
@@ -91,8 +90,7 @@ PHP_METHOD(Phalcon_ORM_EntityManager, createQuery) {
 
 
 
-	_0 = zend_fetch_class(SL("Query"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
-	object_init_ex(return_value, _0);
+	object_init_ex(return_value, phalcon_orm_query_ce);
 	if (zephir_has_constructor(return_value TSRMLS_CC)) {
 		zephir_call_method_p2_noret(return_value, "__construct", sql, this_ptr);
 	}

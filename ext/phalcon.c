@@ -18,6 +18,7 @@
 
 zend_class_entry *phalcon_orm_entitymanager_ce;
 zend_class_entry *phalcon_orm_exception_ce;
+zend_class_entry *phalcon_orm_query_ce;
 zend_class_entry *phalcon_orm_querybuilder_ce;
 zend_class_entry *phalcon_orm_unitofwork_ce;
 
@@ -27,6 +28,7 @@ PHP_MINIT_FUNCTION(phalcon){
 
 	ZEPHIR_INIT(Phalcon_ORM_EntityManager);
 	ZEPHIR_INIT(Phalcon_ORM_Exception);
+	ZEPHIR_INIT(Phalcon_ORM_Query);
 	ZEPHIR_INIT(Phalcon_ORM_QueryBuilder);
 	ZEPHIR_INIT(Phalcon_ORM_UnitOfWork);
 	return SUCCESS;

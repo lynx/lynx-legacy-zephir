@@ -6,6 +6,12 @@ namespace Phalcon\ORM;
 
 class QueryBuilder
 {
+	const SELECT = 1;
+	const UPDATE = 2;
+	const DELETE = 3;
+
+	protected type;
+
 	protected limit = null {get};
 
 	protected offset = 0;
@@ -19,17 +25,17 @@ class QueryBuilder
 
 	public function select()
 	{
-
+		let this->type = self::SELECT;
 	}
 
 	public function delete()
 	{
-
+		let this->type = self::DELETE;
 	}
 
 	public function update()
 	{
-
+		let this->type = self::UPDATE;
 	}
 
 	public function from()

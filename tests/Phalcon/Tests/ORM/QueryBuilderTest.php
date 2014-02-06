@@ -20,4 +20,13 @@ class QueryBuilderTest
 		$queryBuilder->limit(100);
 		$this->assertTrue($queryBuilder->getLimit() === 100);
 	}
+
+	public function testGetSQl()
+	{
+		$queryBuilder = $this->_em->createQueryBuilder();
+		$this->assertTrue($queryBuilder instanceof \Phalcon\ORM\QueryBuilder);
+
+		$sql = $queryBuilder->getSQL();
+		$this->assertTrue(is_string($sql));
+	}
 } 

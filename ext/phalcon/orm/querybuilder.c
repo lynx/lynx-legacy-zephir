@@ -25,9 +25,13 @@ ZEPHIR_INIT_CLASS(Phalcon_ORM_QueryBuilder) {
 
 	ZEPHIR_REGISTER_CLASS(Phalcon\\ORM, QueryBuilder, phalcon, orm_querybuilder, phalcon_orm_querybuilder_method_entry, 0);
 
+	zend_declare_property_null(phalcon_orm_querybuilder_ce, SL("type"), ZEND_ACC_PROTECTED TSRMLS_CC);
 	zend_declare_property_null(phalcon_orm_querybuilder_ce, SL("limit"), ZEND_ACC_PROTECTED TSRMLS_CC);
 	zend_declare_property_long(phalcon_orm_querybuilder_ce, SL("offset"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
 	zend_declare_property_null(phalcon_orm_querybuilder_ce, SL("em"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_class_constant_long(phalcon_orm_querybuilder_ce, SL("SELECT"), 1 TSRMLS_CC);
+	zend_declare_class_constant_long(phalcon_orm_querybuilder_ce, SL("UPDATE"), 2 TSRMLS_CC);
+	zend_declare_class_constant_long(phalcon_orm_querybuilder_ce, SL("DELETE"), 3 TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -54,19 +58,34 @@ PHP_METHOD(Phalcon_ORM_QueryBuilder, __construct) {
 
 PHP_METHOD(Phalcon_ORM_QueryBuilder, select) {
 
+	zval *_0;
 
+
+	ZEPHIR_INIT_ZVAL_NREF(_0);
+	ZVAL_LONG(_0, 1);
+	zephir_update_property_this(this_ptr, SL("type"), _0 TSRMLS_CC);
 
 }
 
 PHP_METHOD(Phalcon_ORM_QueryBuilder, delete) {
 
+	zval *_0;
 
+
+	ZEPHIR_INIT_ZVAL_NREF(_0);
+	ZVAL_LONG(_0, 3);
+	zephir_update_property_this(this_ptr, SL("type"), _0 TSRMLS_CC);
 
 }
 
 PHP_METHOD(Phalcon_ORM_QueryBuilder, update) {
 
+	zval *_0;
 
+
+	ZEPHIR_INIT_ZVAL_NREF(_0);
+	ZVAL_LONG(_0, 2);
+	zephir_update_property_this(this_ptr, SL("type"), _0 TSRMLS_CC);
 
 }
 
