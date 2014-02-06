@@ -15,6 +15,7 @@
 #include "kernel/object.h"
 #include "kernel/memory.h"
 #include "kernel/operators.h"
+#include "kernel/fcall.h"
 
 
 /**
@@ -113,9 +114,30 @@ PHP_METHOD(Phalcon_ORM_QueryBuilder, offset) {
 
 }
 
+PHP_METHOD(Phalcon_ORM_QueryBuilder, getSQL) {
+
+	zval *sql;
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_INIT_VAR(sql);
+	ZVAL_STRING(sql, "", 1);
+	RETURN_CCTOR(sql);
+
+}
+
 PHP_METHOD(Phalcon_ORM_QueryBuilder, getQuery) {
 
+	zval *query, *_0, *_1;
 
+	ZEPHIR_MM_GROW();
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_1);
+	zephir_call_method(_1, this_ptr, "getsql");
+	ZEPHIR_INIT_VAR(query);
+	zephir_call_method_p1(query, _0, "createquery", _1);
+	RETURN_CCTOR(query);
 
 }
 

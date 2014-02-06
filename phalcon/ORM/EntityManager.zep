@@ -25,4 +25,9 @@ class EntityManager
 	{
 	    return new Phalcon\ORM\QueryBuilder(this);
 	}
+
+	public function createQuery(var sql)
+	{
+		return new Phalcon\ORM\Query(sql);
+	}
 }

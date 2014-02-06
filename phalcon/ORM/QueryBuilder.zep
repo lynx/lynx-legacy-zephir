@@ -52,8 +52,21 @@ class QueryBuilder
 		let this->offset = offset;
 	}
 
+	public function getSQL()
+	{
+		var sql;
+
+		let sql = "";
+
+		return sql;
+	}
+
 	public function getQuery()
 	{
+		var query;
+		let query = this->em->createQuery(this->getSQL());
 
+
+		return query;
 	}
 }
