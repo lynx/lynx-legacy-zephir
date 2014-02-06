@@ -10,6 +10,13 @@ class QueryBuilder
 
 	protected offset = 0;
 
+	protected em;
+
+	public function __construct(<EntityManager> em)
+	{
+		let this->em = em;
+	}
+
 	public function select()
 	{
 

@@ -23,6 +23,6 @@ class EntityManager
 
 	public function createQueryBuilder()
 	{
-	    return new Phalcon\ORM\QueryBuilder();
+	    return new Phalcon\ORM\QueryBuilder(this);
 	}
 }

@@ -13,8 +13,8 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/operators.h"
 #include "kernel/memory.h"
+#include "kernel/operators.h"
 
 
 /**
@@ -26,6 +26,7 @@ ZEPHIR_INIT_CLASS(Phalcon_ORM_QueryBuilder) {
 
 	zend_declare_property_null(phalcon_orm_querybuilder_ce, SL("limit"), ZEND_ACC_PROTECTED TSRMLS_CC);
 	zend_declare_property_long(phalcon_orm_querybuilder_ce, SL("offset"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalcon_orm_querybuilder_ce, SL("em"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -35,6 +36,18 @@ PHP_METHOD(Phalcon_ORM_QueryBuilder, getLimit) {
 
 
 	RETURN_MEMBER(this_ptr, "limit");
+
+}
+
+PHP_METHOD(Phalcon_ORM_QueryBuilder, __construct) {
+
+	zval *em;
+
+	zephir_fetch_params(0, 1, 0, &em);
+
+
+
+	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
 
 }
 

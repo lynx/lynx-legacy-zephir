@@ -74,9 +74,7 @@ PHP_METHOD(Phalcon_ORM_EntityManager, createQueryBuilder) {
 	ZEPHIR_MM_GROW();
 
 	object_init_ex(return_value, phalcon_orm_querybuilder_ce);
-	if (zephir_has_constructor(return_value TSRMLS_CC)) {
-		zephir_call_method_noret(return_value, "__construct");
-	}
+	zephir_call_method_p1_noret(return_value, "__construct", this_ptr);
 	RETURN_MM();
 
 }
