@@ -4,7 +4,7 @@
 
 namespace Phalcon\ORM;
 
-class QueryBuilder
+class SqlBuilder
 {
 	const SELECT = 1;
 	const UPDATE = 2;
@@ -58,21 +58,16 @@ class QueryBuilder
 		let this->offset = offset;
 	}
 
-	public function getSQL() -> string
+	public function getSQL()
 	{
 		var sql;
 
 		switch(this->type) {
 			case self::SELECT:
-				let sql = "SELECT ";
-				break;
-			case self::UPDATE:
-				let sql = "UPDATE ";
-				break;
-			case self::DELETE:
-				let sql = "DELETE ";
 				break;
 		}
+
+		let sql = "";
 
 		return sql;
 	}

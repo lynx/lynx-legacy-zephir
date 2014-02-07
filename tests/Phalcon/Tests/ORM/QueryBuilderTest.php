@@ -29,4 +29,13 @@ class QueryBuilderTest
 		$sql = $queryBuilder->getSQL();
 		$this->assertTrue(is_string($sql));
 	}
+
+	public function testGetQuery()
+	{
+		$queryBuilder = $this->_em->createQueryBuilder();
+		$this->assertTrue($queryBuilder instanceof \Phalcon\ORM\QueryBuilder);
+
+		$query = $queryBuilder->getQuery();
+		$this->assertTrue($query instanceof \Phalcon\ORM\Query);
+	}
 } 

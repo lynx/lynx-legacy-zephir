@@ -21,30 +21,30 @@
 /**
  * @author Patsura Dmitry <zaets28rus@gmail.com>
  */
-ZEPHIR_INIT_CLASS(Phalcon_ORM_QueryBuilder) {
+ZEPHIR_INIT_CLASS(Phalcon_ORM_SqlBuilder) {
 
-	ZEPHIR_REGISTER_CLASS(Phalcon\\ORM, QueryBuilder, phalcon, orm_querybuilder, phalcon_orm_querybuilder_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS(Phalcon\\ORM, SqlBuilder, phalcon, orm_sqlbuilder, phalcon_orm_sqlbuilder_method_entry, 0);
 
-	zend_declare_property_long(phalcon_orm_querybuilder_ce, SL("type"), 1, ZEND_ACC_PROTECTED TSRMLS_CC);
-	zend_declare_property_null(phalcon_orm_querybuilder_ce, SL("limit"), ZEND_ACC_PROTECTED TSRMLS_CC);
-	zend_declare_property_long(phalcon_orm_querybuilder_ce, SL("offset"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
-	zend_declare_property_null(phalcon_orm_querybuilder_ce, SL("em"), ZEND_ACC_PROTECTED TSRMLS_CC);
-	zend_declare_class_constant_long(phalcon_orm_querybuilder_ce, SL("SELECT"), 1 TSRMLS_CC);
-	zend_declare_class_constant_long(phalcon_orm_querybuilder_ce, SL("UPDATE"), 2 TSRMLS_CC);
-	zend_declare_class_constant_long(phalcon_orm_querybuilder_ce, SL("DELETE"), 3 TSRMLS_CC);
+	zend_declare_property_long(phalcon_orm_sqlbuilder_ce, SL("type"), 1, ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalcon_orm_sqlbuilder_ce, SL("limit"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_long(phalcon_orm_sqlbuilder_ce, SL("offset"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalcon_orm_sqlbuilder_ce, SL("em"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_class_constant_long(phalcon_orm_sqlbuilder_ce, SL("SELECT"), 1 TSRMLS_CC);
+	zend_declare_class_constant_long(phalcon_orm_sqlbuilder_ce, SL("UPDATE"), 2 TSRMLS_CC);
+	zend_declare_class_constant_long(phalcon_orm_sqlbuilder_ce, SL("DELETE"), 3 TSRMLS_CC);
 
 	return SUCCESS;
 
 }
 
-PHP_METHOD(Phalcon_ORM_QueryBuilder, getLimit) {
+PHP_METHOD(Phalcon_ORM_SqlBuilder, getLimit) {
 
 
 	RETURN_MEMBER(this_ptr, "limit");
 
 }
 
-PHP_METHOD(Phalcon_ORM_QueryBuilder, __construct) {
+PHP_METHOD(Phalcon_ORM_SqlBuilder, __construct) {
 
 	zval *em;
 
@@ -56,7 +56,7 @@ PHP_METHOD(Phalcon_ORM_QueryBuilder, __construct) {
 
 }
 
-PHP_METHOD(Phalcon_ORM_QueryBuilder, select) {
+PHP_METHOD(Phalcon_ORM_SqlBuilder, select) {
 
 	zval *_0;
 
@@ -67,7 +67,7 @@ PHP_METHOD(Phalcon_ORM_QueryBuilder, select) {
 
 }
 
-PHP_METHOD(Phalcon_ORM_QueryBuilder, delete) {
+PHP_METHOD(Phalcon_ORM_SqlBuilder, delete) {
 
 	zval *_0;
 
@@ -78,7 +78,7 @@ PHP_METHOD(Phalcon_ORM_QueryBuilder, delete) {
 
 }
 
-PHP_METHOD(Phalcon_ORM_QueryBuilder, update) {
+PHP_METHOD(Phalcon_ORM_SqlBuilder, update) {
 
 	zval *_0;
 
@@ -89,19 +89,19 @@ PHP_METHOD(Phalcon_ORM_QueryBuilder, update) {
 
 }
 
-PHP_METHOD(Phalcon_ORM_QueryBuilder, from) {
+PHP_METHOD(Phalcon_ORM_SqlBuilder, from) {
 
 
 
 }
 
-PHP_METHOD(Phalcon_ORM_QueryBuilder, leftJoin) {
+PHP_METHOD(Phalcon_ORM_SqlBuilder, leftJoin) {
 
 
 
 }
 
-PHP_METHOD(Phalcon_ORM_QueryBuilder, limit) {
+PHP_METHOD(Phalcon_ORM_SqlBuilder, limit) {
 
 	zval *limit_param = NULL, *_0;
 	int limit;
@@ -117,7 +117,7 @@ PHP_METHOD(Phalcon_ORM_QueryBuilder, limit) {
 
 }
 
-PHP_METHOD(Phalcon_ORM_QueryBuilder, offset) {
+PHP_METHOD(Phalcon_ORM_SqlBuilder, offset) {
 
 	zval *offset_param = NULL, *_0;
 	int offset;
@@ -133,9 +133,9 @@ PHP_METHOD(Phalcon_ORM_QueryBuilder, offset) {
 
 }
 
-PHP_METHOD(Phalcon_ORM_QueryBuilder, getSQL) {
+PHP_METHOD(Phalcon_ORM_SqlBuilder, getSQL) {
 
-	zval *sql = NULL, *_0;
+	zval *sql, *_0;
 
 	ZEPHIR_MM_GROW();
 
@@ -143,27 +143,17 @@ PHP_METHOD(Phalcon_ORM_QueryBuilder, getSQL) {
 	zephir_read_property_this(&_0, this_ptr, SL("type"), PH_NOISY_CC);
 	do {
 		if (ZEPHIR_IS_LONG(_0, 1)) {
-			ZEPHIR_INIT_VAR(sql);
-			ZVAL_STRING(sql, "SELECT ", 1);
-			break;
-		}
-		if (ZEPHIR_IS_LONG(_0, 2)) {
-			ZEPHIR_INIT_NVAR(sql);
-			ZVAL_STRING(sql, "UPDATE ", 1);
-			break;
-		}
-		if (ZEPHIR_IS_LONG(_0, 3)) {
-			ZEPHIR_INIT_NVAR(sql);
-			ZVAL_STRING(sql, "DELETE ", 1);
 			break;
 		}
 	} while(0);
 
+	ZEPHIR_INIT_VAR(sql);
+	ZVAL_STRING(sql, "", 1);
 	RETURN_CCTOR(sql);
 
 }
 
-PHP_METHOD(Phalcon_ORM_QueryBuilder, getQuery) {
+PHP_METHOD(Phalcon_ORM_SqlBuilder, getQuery) {
 
 	zval *query, *_0, *_1;
 
