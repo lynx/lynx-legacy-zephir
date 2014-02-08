@@ -1,4 +1,6 @@
 
+/* This file was generated automatically by Zephir do not modify it! */
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -25,7 +27,12 @@ zend_class_entry *phalcon_orm_unitofwork_ce;
 
 ZEND_DECLARE_MODULE_GLOBALS(phalcon)
 
-PHP_MINIT_FUNCTION(phalcon){
+static PHP_MINIT_FUNCTION(phalcon)
+{
+#if PHP_VERSION_ID < 50500
+	const char* old_lc_all = setlocale(LC_ALL, NULL);
+	setlocale(LC_ALL, "C");
+#endif
 
 	ZEPHIR_INIT(Phalcon_ORM_EntityManager);
 	ZEPHIR_INIT(Phalcon_ORM_Exception);
@@ -33,15 +40,18 @@ PHP_MINIT_FUNCTION(phalcon){
 	ZEPHIR_INIT(Phalcon_ORM_QueryBuilder);
 	ZEPHIR_INIT(Phalcon_ORM_SqlBuilder);
 	ZEPHIR_INIT(Phalcon_ORM_UnitOfWork);
+
+#if PHP_VERSION_ID < 50500
+	setlocale(LC_ALL, old_lc_all);
+#endif
 	return SUCCESS;
 }
 
 #ifndef ZEPHIR_RELEASE
-static PHP_MSHUTDOWN_FUNCTION(phalcon){
+static PHP_MSHUTDOWN_FUNCTION(phalcon)
+{
 
 	assert(ZEPHIR_GLOBAL(function_cache) == NULL);
-	//assert(ZEPHIR_GLOBAL(orm).parser_cache == NULL);
-	//assert(ZEPHIR_GLOBAL(orm).ast_cache == NULL);
 
 	return SUCCESS;
 }
@@ -50,7 +60,8 @@ static PHP_MSHUTDOWN_FUNCTION(phalcon){
 /**
  * Initialize globals on each request or each thread started
  */
-static void php_zephir_init_globals(zend_zephir_globals *zephir_globals TSRMLS_DC) {
+static void php_zephir_init_globals(zend_zephir_globals *zephir_globals TSRMLS_DC)
+{
 
 	/* Memory options */
 	zephir_globals->active_memory = NULL;
@@ -64,9 +75,11 @@ static void php_zephir_init_globals(zend_zephir_globals *zephir_globals TSRMLS_D
 	/* Recursive Lock */
 	zephir_globals->recursive_lock = 0;
 
+
 }
 
-static PHP_RINIT_FUNCTION(phalcon){
+static PHP_RINIT_FUNCTION(phalcon)
+{
 
 	php_zephir_init_globals(ZEPHIR_VGLOBAL TSRMLS_CC);
 	//phalcon_init_interned_strings(TSRMLS_C);
@@ -74,7 +87,8 @@ static PHP_RINIT_FUNCTION(phalcon){
 	return SUCCESS;
 }
 
-static PHP_RSHUTDOWN_FUNCTION(phalcon){
+static PHP_RSHUTDOWN_FUNCTION(phalcon)
+{
 
 	if (ZEPHIR_GLOBAL(start_memory) != NULL) {
 		zephir_clean_restore_stack(TSRMLS_C);
@@ -95,6 +109,8 @@ static PHP_MINFO_FUNCTION(phalcon)
 	php_info_print_table_header(2, PHP_PHALCON_NAME, "enabled");
 	php_info_print_table_row(2, "Version", PHP_PHALCON_VERSION);
 	php_info_print_table_end();
+
+
 }
 
 static PHP_GINIT_FUNCTION(phalcon)
