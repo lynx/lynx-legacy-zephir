@@ -6,10 +6,14 @@
 
 namespace Phalcon\Tests;
 
+use Phalcon\ORM;
 
 class TestCase
 	extends \PHPUnit_Framework_TestCase
 {
+	/**
+	 * @var ORM\EntityManager
+	 */
 	protected $_em;
 
 	function setUp()
@@ -17,6 +21,6 @@ class TestCase
 		parent::setUp();
 
 		$connection = true;
-		$this->_em = new \Phalcon\ORM\EntityManager($connection);
+		$this->_em = new ORM\EntityManager($connection);
 	}
 } 

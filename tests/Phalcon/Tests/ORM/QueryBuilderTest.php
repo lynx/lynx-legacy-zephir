@@ -13,7 +13,7 @@ class QueryBuilderTest
 	public function testLimit()
 	{
 		$queryBuilder = $this->_em->createQueryBuilder();
-		$this->assertTrue($queryBuilder instanceof \Phalcon\ORM\QueryBuilder);
+		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
 
 		$queryBuilder->limit(1);
 		$this->assertTrue($queryBuilder->getLimit() === 1);
@@ -24,7 +24,7 @@ class QueryBuilderTest
 	public function testGetSQl()
 	{
 		$queryBuilder = $this->_em->createQueryBuilder();
-		$this->assertTrue($queryBuilder instanceof \Phalcon\ORM\QueryBuilder);
+		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
 
 		$sql = $queryBuilder->getSQL();
 		$this->assertTrue(is_string($sql));
@@ -33,9 +33,9 @@ class QueryBuilderTest
 	public function testGetQuery()
 	{
 		$queryBuilder = $this->_em->createQueryBuilder();
-		$this->assertTrue($queryBuilder instanceof \Phalcon\ORM\QueryBuilder);
+		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
 
 		$query = $queryBuilder->getQuery();
-		$this->assertTrue($query instanceof \Phalcon\ORM\Query);
+		$this->assertTrue($query instanceof ORM\Query);
 	}
 } 
