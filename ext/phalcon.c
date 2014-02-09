@@ -6,6 +6,11 @@
 #endif
 
 #include <php.h>
+
+#if PHP_VERSION_ID < 50500
+#include <locale.h>
+#endif
+
 #include "php_ext.h"
 #include "phalcon.h"
 
@@ -18,6 +23,8 @@
 #include "kernel/main.h"
 #include "kernel/memory.h"
 
+zend_class_entry *phalcon_dbal_connection_ce;
+zend_class_entry *phalcon_dbal_driver_pdo_ce;
 zend_class_entry *phalcon_orm_entitymanager_ce;
 zend_class_entry *phalcon_orm_exception_ce;
 zend_class_entry *phalcon_orm_query_ce;
@@ -31,9 +38,17 @@ static PHP_MINIT_FUNCTION(phalcon)
 {
 #if PHP_VERSION_ID < 50500
 	const char* old_lc_all = setlocale(LC_ALL, NULL);
+	if (old_lc_all) {
+		char *tmp = calloc(strlen(old_lc_all)+1, 1);
+		memcpy(tmp, old_lc_all, strlen(old_lc_all));
+		old_lc_all = tmp;
+	}
+
 	setlocale(LC_ALL, "C");
 #endif
 
+	ZEPHIR_INIT(Phalcon_DBAL_Connection);
+	ZEPHIR_INIT(Phalcon_DBAL_Driver_Pdo);
 	ZEPHIR_INIT(Phalcon_ORM_EntityManager);
 	ZEPHIR_INIT(Phalcon_ORM_Exception);
 	ZEPHIR_INIT(Phalcon_ORM_Query);
@@ -43,6 +58,7 @@ static PHP_MINIT_FUNCTION(phalcon)
 
 #if PHP_VERSION_ID < 50500
 	setlocale(LC_ALL, old_lc_all);
+	free(old_lc_all);
 #endif
 	return SUCCESS;
 }

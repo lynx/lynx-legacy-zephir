@@ -6,7 +6,8 @@
 
 namespace Phalcon\Tests;
 
-use Phalcon\ORM;
+use Phalcon\ORM,
+	Phalcon\DBAl;
 
 class TestCase
 	extends \PHPUnit_Framework_TestCase
@@ -20,7 +21,9 @@ class TestCase
 	{
 		parent::setUp();
 
-		$connection = true;
+		$driver = new DBAl\Driver\Pdo('dsn', 'root', 'root', array());
+		$connection = new DBAL\Connection($driver, null);
+
 		$this->_em = new ORM\EntityManager($connection);
 	}
 } 

@@ -10,7 +10,7 @@ class EntityManager
 
 	protected connection {get};
 
-	public function __construct(var connection)
+	public function __construct(<DBAL\Connection> connection)
 	{
 		let this->connection = connection;
 		let this->unitOfWork = new UnitOfWork(this);
