@@ -7,7 +7,7 @@
 		 processIsolation="false"
 		 stopOnFailure="true"
 		 syntaxCheck="false"
-		 bootstrap="./tests/Phalcon/Tests/Bootstrap.php"
+		 bootstrap="../Phalcon/Tests/Bootstrap.php"
 		>
 
 	<php>
@@ -21,10 +21,10 @@
 
 	<testsuites>
 		<testsuite name="Phalcon DBAL Test Suite">
-			<directory>./tests/Phalcon/Tests/DBAL</directory>
+			<directory>../Phalcon/Tests/DBAL</directory>
 		</testsuite>
 		<testsuite name="Phalcon ORM Test Suite">
-			<directory>./tests/Phalcon/Tests/ORM</directory>
+			<directory>../Phalcon/Tests/ORM</directory>
 		</testsuite>
 	</testsuites>
 </phpunit>
