@@ -3,7 +3,11 @@ language:
   - c
 
 php:
+  - 5.4
   - 5.5
+
+env:
+  - DB=mysql ENABLE_SECOND_LEVEL_CACHE=1
 
 before_install:
  - ./tests/ci/install_prereqs.sh
@@ -16,7 +20,7 @@ before_script:
  - ulimit -c unlimited || true
 
 script:
- - phpunit
+ - phpunit -v --configuration tests/travis/$DB.travis.xml
 
 after_failure:
  - sudo apt-get -qq install gdb

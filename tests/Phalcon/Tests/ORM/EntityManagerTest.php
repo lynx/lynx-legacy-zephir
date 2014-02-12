@@ -9,12 +9,17 @@ use Phalcon\ORM,
 	Phalcon\DBAL;
 
 class EntityManagerTest
-	extends \Phalcon\Tests\TestCase
+	extends TestCase
 {
 	public function testCreateQueryBuilder()
 	{
 		$queryBuilder = $this->_em->createQueryBuilder();
 		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
+	}
+
+	public function testFlush()
+	{
+		$this->_em->flush(array());
 	}
 
 	public function testGetConnection()

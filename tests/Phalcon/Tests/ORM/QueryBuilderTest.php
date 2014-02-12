@@ -8,7 +8,7 @@ namespace Phalcon\Tests\ORM;
 use Phalcon\ORM;
 
 class QueryBuilderTest
-	extends \Phalcon\Tests\TestCase
+	extends TestCase
 {
 	public function testLimit()
 	{

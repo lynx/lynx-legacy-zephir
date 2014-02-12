@@ -18,7 +18,7 @@ class EntityManager
 
 	public function flush(var entity)
 	{
-		
+
 	}
 
 	public function createQueryBuilder()

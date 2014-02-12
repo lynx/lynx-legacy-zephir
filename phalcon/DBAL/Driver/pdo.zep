@@ -10,7 +10,7 @@ class Pdo
 
 	public function __construct(string! dsn, var username = null, var password = null, array options = null)
 	{
-		//let this->_pdo = new \PDO(dsn, username, password, options);
+		let this->_pdo = new \PDO(dsn, username, password, options);
 	}
 
 	public function connect()

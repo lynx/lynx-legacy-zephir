@@ -10,15 +10,15 @@ PHP_METHOD(Phalcon_ORM_EntityManager, createQueryBuilder);
 PHP_METHOD(Phalcon_ORM_EntityManager, createQuery);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_orm_entitymanager___construct, 0, 0, 1)
-	ZEND_ARG_INFO(0, connection)
+  ZEND_ARG_INFO(0, connection)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_orm_entitymanager_flush, 0, 0, 1)
-	ZEND_ARG_INFO(0, entity)
+  ZEND_ARG_INFO(0, entity)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_orm_entitymanager_createquery, 0, 0, 1)
-	ZEND_ARG_INFO(0, sql)
+  ZEND_ARG_INFO(0, sql)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalcon_orm_entitymanager_method_entry) {
@@ -27,5 +27,5 @@ ZEPHIR_INIT_FUNCS(phalcon_orm_entitymanager_method_entry) {
 	PHP_ME(Phalcon_ORM_EntityManager, flush, arginfo_phalcon_orm_entitymanager_flush, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_ORM_EntityManager, createQueryBuilder, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_ORM_EntityManager, createQuery, arginfo_phalcon_orm_entitymanager_createquery, ZEND_ACC_PUBLIC)
-	PHP_FE_END
+  PHP_FE_END
 };

@@ -12,9 +12,11 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
+#include "kernel/memory.h"
+#include "kernel/fcall.h"
+#include "kernel/object.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
-#include "kernel/memory.h"
 #include "kernel/operators.h"
 
 
@@ -33,8 +35,9 @@ ZEPHIR_INIT_CLASS(Phalcon_DBAL_Driver_Pdo) {
 
 PHP_METHOD(Phalcon_DBAL_Driver_Pdo, __construct) {
 
+	zend_class_entry *_1;
 	zval *options = NULL;
-	zval *dsn_param = NULL, *username = NULL, *password = NULL, *options_param = NULL;
+	zval *dsn_param = NULL, *username = NULL, *password = NULL, *options_param = NULL, *_0;
 	zval *dsn = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -65,6 +68,12 @@ PHP_METHOD(Phalcon_DBAL_Driver_Pdo, __construct) {
 	}
 
 
+	ZEPHIR_INIT_VAR(_0);
+	_1 = zend_fetch_class(SL("PDO"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
+	object_init_ex(_0, _1);
+	zephir_call_method_p4_noret(_0, "__construct", dsn, username, password, options);
+	zephir_update_property_this(this_ptr, SL("_pdo"), _0 TSRMLS_CC);
+	ZEPHIR_MM_RESTORE();
 
 }
 
