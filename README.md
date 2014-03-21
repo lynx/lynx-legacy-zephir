@@ -1,4 +1,4 @@
-# Phalcon ORM [![Build Status](https://travis-ci.org/zaets28rus/phalcon-orm.png?branch=master)](https://travis-ci.org/zaets28rus/phalcon-orm)
+# Lynx ORM|DBAL [![Build Status](https://travis-ci.org/ovr/phalcon-orm.png?branch=master)](https://travis-ci.org/ovr/lynx)
 
 ### Current development status
 
@@ -6,7 +6,7 @@ Starting of development
 
 ### Why it would be need?
 
-I dislike current Phalcon ORM and create this project for incubate new ORM for Phalcon 3.
+I dislike current Phalcon ORM and create this project for incubate new ORM.
 
 ### Idea
 

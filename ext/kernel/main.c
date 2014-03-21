@@ -308,9 +308,17 @@ int zephir_is_iterable_ex(zval *arr, HashTable **arr_hash, HashPosition *hash_po
 	}
 
 	if (reverse) {
-		zend_hash_internal_pointer_end_ex(*arr_hash, hash_position);
-	} else {
-		zend_hash_internal_pointer_reset_ex(*arr_hash, hash_position);
+		if (hash_position) {
+			*hash_position = (*arr_hash)->pListTail;		
+		} else {
+			(*arr_hash)->pInternalPointer = (*arr_hash)->pListTail;
+		}		
+	} else {		
+		if (hash_position) {
+			*hash_position = (*arr_hash)->pListHead;
+		} else {
+			(*arr_hash)->pInternalPointer = (*arr_hash)->pListHead;
+		}
 	}
 
 	return 1;
@@ -366,47 +374,8 @@ int zephir_fetch_parameters(int num_args TSRMLS_DC, int required_args, int optio
 }
 
 /**
- * Parses method parameters with minimum overhead
+ * Returns the type of a variable as a string
  */
-int zephir_fetch_internal_parameters(int num_args TSRMLS_DC, int required_args, int optional_args, ...)
-{
-	/*va_list va;
-	int arg_count = (int) (zend_uintptr_t) *(zend_vm_stack_top(TSRMLS_C) - 1);
-	zval **arg, **p;
-	int i;
-
-	if (num_args < required_args || (num_args > (required_args + optional_args))) {
-		zephir_throw_exception_string(spl_ce_BadMethodCallException, SL("Wrong number of parameters") TSRMLS_CC);
-		return FAILURE;
-	}
-
-	if (num_args > arg_count) {
-		zephir_throw_exception_string(spl_ce_BadMethodCallException, SL("Could not obtain parameters for parsing") TSRMLS_CC);
-		return FAILURE;
-	}
-
-	if (!num_args) {
-		return SUCCESS;
-	}
-
-	va_start(va, optional_args);
-
-	i = 0;
-	while (num_args-- > 0) {
-
-		arg = (zval **) (zend_vm_stack_top(TSRMLS_C) - 1 - (arg_count - i));
-
-		p = va_arg(va, zval **);
-		*p = *arg;
-
-		i++;
-	}
-
-	va_end(va);*/
-
-	return SUCCESS;
-}
-
 void zephir_gettype(zval *return_value, zval *arg TSRMLS_DC) {
 
 	switch (Z_TYPE_P(arg)) {

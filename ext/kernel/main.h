@@ -264,14 +264,14 @@ int zephir_fetch_parameters(int num_args TSRMLS_DC, int required_args, int optio
  * Returns a zval in an object member (quick)
  */
 #define RETURN_MEMBER_QUICK(object, member_name, key) \
- 	zephir_return_property_quick(return_value, return_value_ptr, object, SL(member_name), key TSRMLS_CC); \
+ 	zephir_return_property_quick(return_value, NULL, object, SL(member_name), key TSRMLS_CC); \
 	return;
 
 /**
  * Returns a zval in an object member (quick)
  */
 #define RETURN_MM_MEMBER_QUICK(object, member_name, key) \
-  zephir_return_property_quick(return_value, return_value_ptr, object, SL(member_name), key TSRMLS_CC); \
+  zephir_return_property_quick(return_value, NULL, object, SL(member_name), key TSRMLS_CC); \
   RETURN_MM();
 
 /** Return without change return_value */
@@ -457,7 +457,7 @@ int zephir_fetch_parameters(int num_args TSRMLS_DC, int required_args, int optio
 #ifndef ZEPHIR_RELEASE
 #define ZEPHIR_DEBUG_PARAMS , const char *file, int line
 #else
-#define ZEPHIR_DEBUG_PARAMS
+#define ZEPHIR_DEBUG_PARAMS , const char *file, int line
 #endif
 
 #endif /* ZEPHIR_KERNEL_MAIN_H */

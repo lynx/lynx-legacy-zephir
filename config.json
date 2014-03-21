@@ -30,8 +30,8 @@
         "static-constant-class-folding": true,
         "private-internal-methods": true
     },
-    "namespace": "phalcon",
-    "name": "phalconorm",
+    "namespace": "lynx",
+    "name": "Lynx",
     "description": "",
     "author": "",
     "version": "0.0.1",

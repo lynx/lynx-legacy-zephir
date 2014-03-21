@@ -47,6 +47,7 @@ void zephir_throw_exception(zval *object TSRMLS_DC){
 void zephir_throw_exception_string(zend_class_entry *ce, const char *message, zend_uint message_len TSRMLS_DC){
 
 	zval *object, *msg;
+	int ZEPHIR_LAST_CALL_STATUS = 0;
 
 	ALLOC_INIT_ZVAL(object);
 	object_init_ex(object, ce);
@@ -54,7 +55,8 @@ void zephir_throw_exception_string(zend_class_entry *ce, const char *message, ze
 	ALLOC_INIT_ZVAL(msg);
 	ZVAL_STRINGL(msg, message, message_len, 1);
 
-	zephir_call_method_p1_noret(object, "__construct", msg);
+	ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, msg);
+	zephir_check_call_status();
 
 	zend_throw_exception_object(object TSRMLS_CC);
 
@@ -67,46 +69,14 @@ void zephir_throw_exception_string(zend_class_entry *ce, const char *message, ze
 void zephir_throw_exception_zval(zend_class_entry *ce, zval *message TSRMLS_DC){
 
 	zval *object;
+	int ZEPHIR_LAST_CALL_STATUS = 0;
 
 	ALLOC_INIT_ZVAL(object);
 	object_init_ex(object, ce);
 
-	zephir_call_method_p1_noret(object, "__construct", message);
+	ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, message);
+	zephir_check_call_status();
 
 	zend_throw_exception_object(object TSRMLS_CC);
 }
 
-/**
- * Latest version of zend_throw_exception_internal
- */
-void zephir_throw_exception_internal(zval *exception TSRMLS_DC) {
-
-	if (exception != NULL) {
-		zval *previous = EG(exception);
-		zend_exception_set_previous(exception, EG(exception) TSRMLS_CC);
-		EG(exception) = exception;
-		if (previous) {
-			return;
-		}
-	}
-
-	if (!EG(current_execute_data)) {
-		if (EG(exception)) {
-			zend_exception_error(EG(exception), E_ERROR TSRMLS_CC);
-		}
-		zend_error(E_ERROR, "Exception thrown without a stack frame");
-	}
-
-	if (zend_throw_exception_hook) {
-    	zend_throw_exception_hook(exception TSRMLS_CC);
-	}
-
-	if (EG(current_execute_data)->opline == NULL ||
-    	(EG(current_execute_data)->opline + 1)->opcode == ZEND_HANDLE_EXCEPTION) {
-		/* no need to rethrow the exception */
-		return;
-	}
-	EG(opline_before_exception) = EG(current_execute_data)->opline;
-	EG(current_execute_data)->opline = EG(exception_op);
-
-}

@@ -7,7 +7,7 @@
 		 processIsolation="false"
 		 stopOnFailure="true"
 		 syntaxCheck="false"
-		 bootstrap="../Phalcon/Tests/Bootstrap.php"
+		 bootstrap="../Lynx/Tests/Bootstrap.php"
 		>
 
 	<php>
@@ -15,16 +15,16 @@
 		<var name="db_host" value="localhost" />
 		<var name="db_username" value="travis" />
 		<var name="db_password" value="" />
-		<var name="db_name" value="phalcon_orm_test" />
+		<var name="db_name" value="lynx_test" />
 		<var name="db_port" value="3306"/>
 	</php>
 
 	<testsuites>
-		<testsuite name="Phalcon DBAL Test Suite">
-			<directory>../Phalcon/Tests/DBAL</directory>
+		<testsuite name="Lynx DBAL Test Suite">
+			<directory>../Lynx/Tests/DBAL</directory>
 		</testsuite>
-		<testsuite name="Phalcon ORM Test Suite">
-			<directory>../Phalcon/Tests/ORM</directory>
+		<testsuite name="Lynx ORM Test Suite">
+			<directory>../Lynx/Tests/ORM</directory>
 		</testsuite>
 	</testsuites>
 </phpunit>

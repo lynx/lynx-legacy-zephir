@@ -722,7 +722,7 @@ ac_user_opts='
 enable_option_checking
 with_libdir
 with_php_config
-enable_phalcon
+enable_lynx
 enable_shared
 enable_static
 with_pic
@@ -1356,7 +1356,7 @@ Optional Features and Packages:
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-libdir=NAME      Look for libraries in .../NAME rather than .../lib
   --with-php-config=PATH  Path to php-config php-config
- --enable-phalcon   Enable Phalcon
+ --enable-lynx   Enable Lynx
   --enable-shared@<:@=PKGS@:>@  build shared libraries @<:@default=yes@:>@
   --enable-static@<:@=PKGS@:>@  build static libraries @<:@default=yes@:>@
   --with-pic@<:@=PKGS@:>@       try to use only PIC/non-PIC objects @<:@default=use
@@ -3887,17 +3887,17 @@ $as_echo "no" >&6; }
 
 
 
-php_enable_phalcon=no
+php_enable_lynx=no
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to enable phalcon" >&5
-$as_echo_n "checking whether to enable phalcon... " >&6; }
-@%:@ Check whether --enable-phalcon was given.
-if test "${enable_phalcon+set}" = set; then :
-  enableval=$enable_phalcon; PHP_PHALCON=$enableval
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to enable lynx" >&5
+$as_echo_n "checking whether to enable lynx... " >&6; }
+@%:@ Check whether --enable-lynx was given.
+if test "${enable_lynx+set}" = set; then :
+  enableval=$enable_lynx; PHP_LYNX=$enableval
 else
   
-  PHP_PHALCON=no
-  test "$PHP_ENABLE_ALL" && PHP_PHALCON=$PHP_ENABLE_ALL
+  PHP_LYNX=no
+  test "$PHP_ENABLE_ALL" && PHP_LYNX=$PHP_ENABLE_ALL
 
 fi
 
@@ -3905,12 +3905,12 @@ fi
 
 ext_output="yes, shared"
 ext_shared=yes
-case $PHP_PHALCON in
+case $PHP_LYNX in
 shared,*)
-  PHP_PHALCON=`echo "$PHP_PHALCON"|$SED 's/^shared,//'`
+  PHP_LYNX=`echo "$PHP_LYNX"|$SED 's/^shared,//'`
   ;;
 shared)
-  PHP_PHALCON=yes
+  PHP_LYNX=yes
   ;;
 no)
   ext_output=no
@@ -3925,7 +3925,7 @@ esac
 
   ext_output="yes, shared"
   ext_shared=yes
-  test "$PHP_PHALCON" = "no" && PHP_PHALCON=yes
+  test "$PHP_LYNX" = "no" && PHP_LYNX=yes
 
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ext_output" >&5
@@ -3934,11 +3934,11 @@ $as_echo "$ext_output" >&6; }
 
 
 
-if test "$PHP_PHALCON" = "yes"; then
+if test "$PHP_LYNX" = "yes"; then
 	
-$as_echo "@%:@define HAVE_PHALCON 1" >>confdefs.h
+$as_echo "@%:@define HAVE_LYNX 1" >>confdefs.h
 
-	phalcon_sources="phalcon.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/alternative/fcall.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c phalcon/dbal/connection.c phalcon/dbal/driver/pdo.c phalcon/orm/entitymanager.c phalcon/orm/exception.c phalcon/orm/query.c phalcon/orm/querybuilder.c phalcon/orm/sqlbuilder.c phalcon/orm/unitofwork.c "
+	lynx_sources="lynx.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c lynx/dbal/connection.c lynx/dbal/driver/pdo.c lynx/orm/entitymanager.c lynx/orm/exception.c lynx/orm/query.c lynx/orm/querybuilder.c lynx/orm/sqlbuilder.c lynx/orm/unitofwork.c "
 	
   ext_builddir=.
   ext_srcdir=$abs_srcdir
@@ -3946,7 +3946,7 @@ $as_echo "@%:@define HAVE_PHALCON 1" >>confdefs.h
   ac_extra=
 
   if test "$ext_shared" != "shared" && test "$ext_shared" != "yes" && test "" != "cli"; then
-    PHP_PHALCON_SHARED=no
+    PHP_LYNX_SHARED=no
     
   
   case "" in
@@ -3967,7 +3967,7 @@ $as_echo "@%:@define HAVE_PHALCON 1" >>confdefs.h
 
 
   old_IFS=$IFS
-  for ac_src in $phalcon_sources; do
+  for ac_src in $lynx_sources; do
   
       IFS=.
       set $ac_src
@@ -3990,13 +3990,13 @@ EOF
   done
 
 
-    EXT_STATIC="$EXT_STATIC phalcon"
+    EXT_STATIC="$EXT_STATIC lynx"
     if test "$ext_shared" != "nocli"; then
-      EXT_CLI_STATIC="$EXT_CLI_STATIC phalcon"
+      EXT_CLI_STATIC="$EXT_CLI_STATIC lynx"
     fi
   else
     if test "$ext_shared" = "shared" || test "$ext_shared" = "yes"; then
-      PHP_PHALCON_SHARED=yes
+      PHP_LYNX_SHARED=yes
       
   case "" in
   "") ac_srcdir="$abs_srcdir/"; unset ac_bdir; ac_inc="-I. -I$abs_srcdir" ;;
@@ -4016,14 +4016,14 @@ EOF
 
 
   old_IFS=$IFS
-  for ac_src in $phalcon_sources; do
+  for ac_src in $lynx_sources; do
   
       IFS=.
       set $ac_src
       ac_obj=$1
       IFS=$old_IFS
       
-      shared_objects_phalcon="$shared_objects_phalcon $ac_bdir$ac_obj.lo"
+      shared_objects_lynx="$shared_objects_lynx $ac_bdir$ac_obj.lo"
 
       case $ac_src in
         *.c) ac_comp="$b_c_pre $ac_extra $ac_inc $b_c_meta -c $ac_srcdir$ac_src -o $ac_bdir$ac_obj.$b_lo $b_c_post" ;;
@@ -4046,31 +4046,31 @@ EOF
   case $host_alias in
     *aix*)
       suffix=so
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -Wl,-G -o '$ext_builddir'/phpphalcon.la -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_phalcon) $(PHPPHALCON_SHARED_LIBADD) && mv -f '$ext_builddir'/.libs/phpphalcon.so '$ext_builddir'/phpphalcon.so'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -Wl,-G -o '$ext_builddir'/phplynx.la -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_lynx) $(PHPLYNX_SHARED_LIBADD) && mv -f '$ext_builddir'/.libs/phplynx.so '$ext_builddir'/phplynx.so'
       ;;
     *netware*)
       suffix=nlm
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -shared -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_phalcon) -L$(top_builddir)/netware -lphp5lib $(PHALCON_SHARED_LIBADD)'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -shared -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_lynx) -L$(top_builddir)/netware -lphp5lib $(LYNX_SHARED_LIBADD)'
       ;;
     *)
       suffix=la
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_phalcon) $(PHPPHALCON_SHARED_LIBADD)'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_lynx) $(PHPLYNX_SHARED_LIBADD)'
       ;;
   esac
 
   if test "x" = "xyes"; then
-    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/phpphalcon.$suffix"
+    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/phplynx.$suffix"
   else
-    PHP_MODULES="$PHP_MODULES \$(phplibdir)/phpphalcon.$suffix"
+    PHP_MODULES="$PHP_MODULES \$(phplibdir)/phplynx.$suffix"
   fi
   
-  PHP_VAR_SUBST="$PHP_VAR_SUBST shared_objects_phalcon"
+  PHP_VAR_SUBST="$PHP_VAR_SUBST shared_objects_lynx"
 
   cat >>Makefile.objects<<EOF
-\$(phplibdir)/phpphalcon.$suffix: $ext_builddir/phpphalcon.$suffix
-	\$(LIBTOOL) --mode=install cp $ext_builddir/phpphalcon.$suffix \$(phplibdir)
+\$(phplibdir)/phplynx.$suffix: $ext_builddir/phplynx.$suffix
+	\$(LIBTOOL) --mode=install cp $ext_builddir/phplynx.$suffix \$(phplibdir)
 
-$ext_builddir/phpphalcon.$suffix: \$(shared_objects_phalcon) \$(PHPPHALCON_SHARED_DEPENDENCIES)
+$ext_builddir/phplynx.$suffix: \$(shared_objects_lynx) \$(PHPLYNX_SHARED_DEPENDENCIES)
 	$link_cmd
 
 EOF
@@ -4083,31 +4083,31 @@ EOF
   case $host_alias in
     *aix*)
       suffix=so
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -Wl,-G -o '$ext_builddir'/phalcon.la -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_phalcon) $(PHALCON_SHARED_LIBADD) && mv -f '$ext_builddir'/.libs/phalcon.so '$ext_builddir'/phalcon.so'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -Wl,-G -o '$ext_builddir'/lynx.la -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_lynx) $(LYNX_SHARED_LIBADD) && mv -f '$ext_builddir'/.libs/lynx.so '$ext_builddir'/lynx.so'
       ;;
     *netware*)
       suffix=nlm
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -shared -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_phalcon) -L$(top_builddir)/netware -lphp5lib $(LCON_SHARED_LIBADD)'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -shared -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_lynx) -L$(top_builddir)/netware -lphp5lib $(X_SHARED_LIBADD)'
       ;;
     *)
       suffix=la
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_phalcon) $(PHALCON_SHARED_LIBADD)'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_lynx) $(LYNX_SHARED_LIBADD)'
       ;;
   esac
 
   if test "x" = "xyes"; then
-    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/phalcon.$suffix"
+    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/lynx.$suffix"
   else
-    PHP_MODULES="$PHP_MODULES \$(phplibdir)/phalcon.$suffix"
+    PHP_MODULES="$PHP_MODULES \$(phplibdir)/lynx.$suffix"
   fi
   
-  PHP_VAR_SUBST="$PHP_VAR_SUBST shared_objects_phalcon"
+  PHP_VAR_SUBST="$PHP_VAR_SUBST shared_objects_lynx"
 
   cat >>Makefile.objects<<EOF
-\$(phplibdir)/phalcon.$suffix: $ext_builddir/phalcon.$suffix
-	\$(LIBTOOL) --mode=install cp $ext_builddir/phalcon.$suffix \$(phplibdir)
+\$(phplibdir)/lynx.$suffix: $ext_builddir/lynx.$suffix
+	\$(LIBTOOL) --mode=install cp $ext_builddir/lynx.$suffix \$(phplibdir)
 
-$ext_builddir/phalcon.$suffix: \$(shared_objects_phalcon) \$(PHALCON_SHARED_DEPENDENCIES)
+$ext_builddir/lynx.$suffix: \$(shared_objects_lynx) \$(LYNX_SHARED_DEPENDENCIES)
 	$link_cmd
 
 EOF
@@ -4116,14 +4116,14 @@ EOF
       esac
       
 cat >>confdefs.h <<_ACEOF
-@%:@define COMPILE_DL_PHALCON 1
+@%:@define COMPILE_DL_LYNX 1
 _ACEOF
 
     fi
   fi
 
   if test "$ext_shared" != "shared" && test "$ext_shared" != "yes" && test "" = "cli"; then
-    PHP_PHALCON_SHARED=no
+    PHP_LYNX_SHARED=no
     case "$PHP_SAPI" in
       cgi|embed)
         
@@ -4146,7 +4146,7 @@ _ACEOF
 
 
   old_IFS=$IFS
-  for ac_src in $phalcon_sources; do
+  for ac_src in $lynx_sources; do
   
       IFS=.
       set $ac_src
@@ -4169,7 +4169,7 @@ EOF
   done
 
 
-        EXT_STATIC="$EXT_STATIC phalcon"
+        EXT_STATIC="$EXT_STATIC lynx"
         ;;
       *)
         
@@ -4192,7 +4192,7 @@ EOF
 
 
   old_IFS=$IFS
-  for ac_src in $phalcon_sources; do
+  for ac_src in $lynx_sources; do
   
       IFS=.
       set $ac_src
@@ -4217,7 +4217,7 @@ EOF
 
         ;;
     esac
-    EXT_CLI_STATIC="$EXT_CLI_STATIC phalcon"
+    EXT_CLI_STATIC="$EXT_CLI_STATIC lynx"
   fi
   
   
@@ -4226,7 +4226,7 @@ EOF
 
 
   if test "$ext_builddir" = "."; then
-    PHP_PECL_EXTENSION=phalcon
+    PHP_PECL_EXTENSION=lynx
     
   PHP_VAR_SUBST="$PHP_VAR_SUBST PHP_PECL_EXTENSION"
 
@@ -4252,20 +4252,20 @@ if test "x$ac_cv_header_ext_pcre_php_pcre_h" = xyes; then :
 _ACEOF
  
 					
-  am_i_shared=$PHP_PHALCON_SHARED
+  am_i_shared=$PHP_LYNX_SHARED
   is_it_shared=$PHP_PCRE_SHARED
   is_it_enabled=$PHP_PCRE
   if test "$am_i_shared" = "no" && test "$is_it_shared" = "yes" ; then
     as_fn_error $? "
-You've configured extension phalcon to build statically, but it
+You've configured extension lynx to build statically, but it
 depends on extension pcre, which you've configured to build shared.
-You either need to build phalcon shared or build pcre statically for the
+You either need to build lynx shared or build pcre statically for the
 build to be successful.
 " "$LINENO" 5
   fi
   if test "x$is_it_enabled" = "xno" && test "x" != "xtrue"; then
     as_fn_error $? "
-You've configured extension phalcon, which depends on extension pcre,
+You've configured extension lynx, which depends on extension pcre,
 but you've either not enabled pcre, or have disabled it.
 " "$LINENO" 5
   fi
@@ -4298,20 +4298,20 @@ if test "x$ac_cv_header_ext_json_php_json_h" = xyes; then :
 _ACEOF
  
 					
-  am_i_shared=$PHP_PHALCON_SHARED
+  am_i_shared=$PHP_LYNX_SHARED
   is_it_shared=$PHP_JSON_SHARED
   is_it_enabled=$PHP_JSON
   if test "$am_i_shared" = "no" && test "$is_it_shared" = "yes" ; then
     as_fn_error $? "
-You've configured extension phalcon to build statically, but it
+You've configured extension lynx to build statically, but it
 depends on extension json, which you've configured to build shared.
-You either need to build phalcon shared or build json statically for the
+You either need to build lynx shared or build json statically for the
 build to be successful.
 " "$LINENO" 5
   fi
   if test "x$is_it_enabled" = "xno" && test "x" != "xtrue"; then
     as_fn_error $? "
-You've configured extension phalcon, which depends on extension json,
+You've configured extension lynx, which depends on extension json,
 but you've either not enabled json, or have disabled it.
 " "$LINENO" 5
   fi
@@ -6588,7 +6588,7 @@ ia64-*-hpux*)
   rm -rf conftest*
   ;;
 
-x86_64-*kfreebsd*-gnu|x86_64-*linux*|ppc*-*linux*|powerpc*-*linux*| \
+x86_64-*kfreebsd*-gnu|x86_64-*linux*|powerpc*-*linux*| \
 s390*-*linux*|s390*-*tpf*|sparc*-*linux*)
   # Find out which ABI we are using.
   echo 'int i;' > conftest.$ac_ext
@@ -6613,7 +6613,10 @@ s390*-*linux*|s390*-*tpf*|sparc*-*linux*)
 		;;
 	    esac
 	    ;;
-	  ppc64-*linux*|powerpc64-*linux*)
+	  powerpc64le-*)
+	    LD="${LD-ld} -m elf32lppclinux"
+	    ;;
+	  powerpc64-*)
 	    LD="${LD-ld} -m elf32ppclinux"
 	    ;;
 	  s390x-*linux*)
@@ -6632,7 +6635,10 @@ s390*-*linux*|s390*-*tpf*|sparc*-*linux*)
 	  x86_64-*linux*)
 	    LD="${LD-ld} -m elf_x86_64"
 	    ;;
-	  ppc*-*linux*|powerpc*-*linux*)
+	  powerpcle-*)
+	    LD="${LD-ld} -m elf64lppc"
+	    ;;
+	  powerpc-*)
 	    LD="${LD-ld} -m elf64ppc"
 	    ;;
 	  s390*-*linux*|s390*-*tpf*)
