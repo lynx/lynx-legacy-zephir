@@ -4,13 +4,15 @@
 
 namespace Lynx\ORM;
 
+use Lynx\DBAL\Connection;
+
 class EntityManager
 {
     protected unitOfWork;
 
 	protected connection {get};
 
-	public function __construct(<DBAL\Connection> connection)
+	public function __construct(<Connection> connection)
 	{
 		let this->connection = connection;
 		let this->unitOfWork = new UnitOfWork(this);
