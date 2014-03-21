@@ -1,4 +1,4 @@
-# Lynx ORM|DBAL [![Build Status](https://travis-ci.org/ovr/phalcon-orm.png?branch=master)](https://travis-ci.org/ovr/lynx)
+# Lynx ORM|DBAL [![Build Status](https://travis-ci.org/ovr/lynx.svg?branch=master)](https://travis-ci.org/ovr/lynx)
 
 ### Current development status
 
