@@ -4,5 +4,3 @@ done
 for i in `find . -name "*.lo"`; do
  rm -f $i
 done
-make clean
-phpize --clean

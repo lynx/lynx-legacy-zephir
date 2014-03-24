@@ -13,7 +13,6 @@
 
 #include "kernel/main.h"
 #include "kernel/memory.h"
-#include "ext/pdo/php_pdo_driver.h"
 #include "kernel/fcall.h"
 #include "kernel/object.h"
 #include "ext/spl/spl_exceptions.h"
@@ -36,7 +35,7 @@ ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Pdo) {
 
 PHP_METHOD(Lynx_DBAL_Driver_Pdo, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_class_entry *_1;
 	zval *options = NULL;
 	zval *dsn_param = NULL, *username = NULL, *password = NULL, *options_param = NULL, *_0;
 	zval *dsn = NULL;
@@ -70,9 +69,9 @@ PHP_METHOD(Lynx_DBAL_Driver_Pdo, __construct) {
 
 
 	ZEPHIR_INIT_VAR(_0);
-	object_init_ex(_0, php_pdo_get_dbh_ce());
-	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, dsn, username, password, options);
-	zephir_check_call_status();
+	_1 = zend_fetch_class(SL("PDO"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
+	object_init_ex(_0, _1);
+	zephir_call_method_p4_noret(_0, "__construct", dsn, username, password, options);
 	zephir_update_property_this(this_ptr, SL("_pdo"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 

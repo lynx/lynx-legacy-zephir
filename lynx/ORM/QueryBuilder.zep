@@ -48,6 +48,16 @@ class QueryBuilder
 
 	}
 
+	public function rightJoin()
+	{
+
+	}
+
+	public function join()
+	{
+	    
+	}
+
 	public function limit(int limit)
 	{
 		let this->limit = limit;

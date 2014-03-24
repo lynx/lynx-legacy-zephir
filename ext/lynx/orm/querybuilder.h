@@ -10,6 +10,8 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, delete);
 PHP_METHOD(Lynx_ORM_QueryBuilder, update);
 PHP_METHOD(Lynx_ORM_QueryBuilder, from);
 PHP_METHOD(Lynx_ORM_QueryBuilder, leftJoin);
+PHP_METHOD(Lynx_ORM_QueryBuilder, rightJoin);
+PHP_METHOD(Lynx_ORM_QueryBuilder, join);
 PHP_METHOD(Lynx_ORM_QueryBuilder, limit);
 PHP_METHOD(Lynx_ORM_QueryBuilder, offset);
 PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL);
@@ -35,6 +37,8 @@ ZEPHIR_INIT_FUNCS(lynx_orm_querybuilder_method_entry) {
 	PHP_ME(Lynx_ORM_QueryBuilder, update, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, from, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, leftJoin, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_ORM_QueryBuilder, rightJoin, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_ORM_QueryBuilder, join, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, limit, arginfo_lynx_orm_querybuilder_limit, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, offset, arginfo_lynx_orm_querybuilder_offset, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, getSQL, NULL, ZEND_ACC_PUBLIC)
