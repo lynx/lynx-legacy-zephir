@@ -55,7 +55,7 @@ class QueryBuilder
 
 	public function join()
 	{
-	    
+
 	}
 
 	public function limit(int limit)
