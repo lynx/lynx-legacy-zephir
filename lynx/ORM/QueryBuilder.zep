@@ -38,7 +38,7 @@ class QueryBuilder
 		let this->type = self::UPDATE;
 	}
 
-	public function from()
+	public function from(string! model)
 	{
 
 	}

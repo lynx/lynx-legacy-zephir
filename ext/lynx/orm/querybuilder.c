@@ -15,6 +15,7 @@
 #include "kernel/object.h"
 #include "kernel/exception.h"
 #include "kernel/memory.h"
+#include "ext/spl/spl_exceptions.h"
 #include "kernel/operators.h"
 #include "kernel/fcall.h"
 
@@ -101,6 +102,24 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, update) {
 }
 
 PHP_METHOD(Lynx_ORM_QueryBuilder, from) {
+
+	zval *model_param = NULL;
+	zval *model = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &model_param);
+
+	if (Z_TYPE_P(model_param) != IS_STRING && Z_TYPE_P(model_param) != IS_NULL) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'model' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (Z_TYPE_P(model_param) == IS_STRING) {
+		model = model_param;
+	} else {
+		ZEPHIR_INIT_VAR(model);
+		ZVAL_EMPTY_STRING(model);
+	}
 
 
 

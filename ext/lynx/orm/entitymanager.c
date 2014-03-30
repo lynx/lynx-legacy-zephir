@@ -25,6 +25,9 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_EntityManager) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\ORM, EntityManager, lynx, orm_entitymanager, lynx_orm_entitymanager_method_entry, 0);
 
+	/**
+	 * @var UnitOfWork
+	 */
 	zend_declare_property_null(lynx_orm_entitymanager_ce, SL("unitOfWork"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(lynx_orm_entitymanager_ce, SL("connection"), ZEND_ACC_PROTECTED TSRMLS_CC);

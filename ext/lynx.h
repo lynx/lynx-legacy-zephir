@@ -4,6 +4,7 @@
 #ifndef ZEPHIR_CLASS_ENTRIES_H
 #define ZEPHIR_CLASS_ENTRIES_H
 
+#include "lynx/cache/cachedriver.h"
 #include "lynx/dbal/connection.h"
 #include "lynx/dbal/driver/pdo.h"
 #include "lynx/orm/entitymanager.h"

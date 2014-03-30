@@ -8,7 +8,8 @@ namespace Lynx\Tests;
 
 use Lynx\DBAL;
 
-class Utils {
+class Utils
+{
 	public static function getConnection()
 	{
 		$driver = new DBAl\Driver\Pdo('mysql:host=localhost;dbname='.$GLOBALS['db_name'], $GLOBALS['db_username'], $GLOBALS['db_password'], array());

@@ -8,6 +8,9 @@ use Lynx\DBAL\Connection;
 
 class EntityManager
 {
+    /**
+     * @var UnitOfWork
+     */
     protected unitOfWork;
 
 	protected connection {get};
@@ -23,12 +26,12 @@ class EntityManager
 
 	}
 
-	public function createQueryBuilder()
+	public function createQueryBuilder() -> <QueryBuilder>
 	{
 	    return new QueryBuilder(this);
 	}
 
-	public function createQuery(var sql)
+	public function createQuery(var sql) -> <Query>
 	{
 		return new Query(sql, this);
 	}

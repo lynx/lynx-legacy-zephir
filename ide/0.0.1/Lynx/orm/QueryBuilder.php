@@ -40,6 +40,17 @@ class QueryBuilder
     {
     }
 
+    public function rightJoin()
+    {
+    }
+
+    public function join()
+    {
+    }
+
+	/**
+	 * Set limit to the query
+	 */
     public function limit()
     {
     }
