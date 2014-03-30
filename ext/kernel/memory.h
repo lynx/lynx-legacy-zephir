@@ -22,11 +22,11 @@
 #define ZEPHIR_KERNEL_MEMORY_H
 
 /* Variable Tracking */
-extern void zephir_init_nvar(zval **var TSRMLS_DC);
-extern void zephir_cpy_wrt(zval **dest, zval *var TSRMLS_DC);
-extern void zephir_cpy_wrt_ctor(zval **dest, zval *var TSRMLS_DC);
+void zephir_init_nvar(zval **var TSRMLS_DC);
+void zephir_cpy_wrt(zval **dest, zval *var TSRMLS_DC);
+void zephir_cpy_wrt_ctor(zval **dest, zval *var TSRMLS_DC);
 
-extern void zephir_value_dtor(zval *zvalue ZEND_FILE_LINE_DC);
+void zephir_value_dtor(zval *zvalue ZEND_FILE_LINE_DC);
 
 /* Memory Frames */
 #ifndef ZEPHIR_RELEASE
@@ -45,23 +45,23 @@ int ZEPHIR_FASTCALL zephir_memory_restore_stack(TSRMLS_D);
 
 #endif
 
-extern void ZEPHIR_FASTCALL zephir_memory_observe(zval **var TSRMLS_DC);
-extern void ZEPHIR_FASTCALL zephir_memory_remove(zval **var TSRMLS_DC);
-extern void ZEPHIR_FASTCALL zephir_memory_alloc(zval **var TSRMLS_DC);
-extern void ZEPHIR_FASTCALL zephir_memory_alloc_pnull(zval **var TSRMLS_DC);
+void ZEPHIR_FASTCALL zephir_memory_observe(zval **var TSRMLS_DC);
+void ZEPHIR_FASTCALL zephir_memory_remove(zval **var TSRMLS_DC);
+void ZEPHIR_FASTCALL zephir_memory_alloc(zval **var TSRMLS_DC);
+void ZEPHIR_FASTCALL zephir_memory_alloc_pnull(zval **var TSRMLS_DC);
 
-extern int ZEPHIR_FASTCALL zephir_clean_restore_stack(TSRMLS_D);
+int ZEPHIR_FASTCALL zephir_clean_restore_stack(TSRMLS_D);
 
 /* Virtual symbol tables */
-extern void zephir_create_symbol_table(TSRMLS_D);
-/*extern void zephir_restore_symbol_table(TSRMLS_D);*/
-extern void zephir_clean_symbol_tables(TSRMLS_D);
+void zephir_create_symbol_table(TSRMLS_D);
+/*void zephir_restore_symbol_table(TSRMLS_D);*/
+void zephir_clean_symbol_tables(TSRMLS_D);
 
 /** Export symbols to active symbol table */
-extern int zephir_set_symbol(zval *key_name, zval *value TSRMLS_DC);
-extern int zephir_set_symbol_str(char *key_name, unsigned int key_length, zval *value TSRMLS_DC);
+int zephir_set_symbol(zval *key_name, zval *value TSRMLS_DC);
+int zephir_set_symbol_str(char *key_name, unsigned int key_length, zval *value TSRMLS_DC);
 
-extern void ZEPHIR_FASTCALL zephir_copy_ctor(zval *destiny, zval *origin);
+void ZEPHIR_FASTCALL zephir_copy_ctor(zval *destiny, zval *origin);
 
 /* Memory macros */
 #define ZEPHIR_ALLOC_ZVAL(z) \
@@ -71,7 +71,7 @@ extern void ZEPHIR_FASTCALL zephir_copy_ctor(zval *destiny, zval *origin);
 	INIT_PZVAL(&z); \
 	ZVAL_NULL(&z);
 
-#define ZEPHIR_SINIT_NVAR(z)
+#define ZEPHIR_SINIT_NVAR(z) Z_SET_REFCOUNT_P(&z, 1)
 
 #define ZEPHIR_INIT_ZVAL_NREF(z) \
 	ALLOC_ZVAL(z); \
@@ -185,6 +185,31 @@ extern void ZEPHIR_FASTCALL zephir_copy_ctor(zval *destiny, zval *origin);
 		zephir_memory_observe(&z TSRMLS_CC); \
 	}
 
+#define ZEPHIR_OBSERVE_OR_NULLIFY_PPZV(ppzv) \
+	do { \
+		zval **tmp_ = (ppzv); \
+		if (tmp_ != NULL) { \
+			if (*tmp_) { \
+				zval_ptr_dtor(tmp_); \
+				*tmp_ = NULL; \
+			} \
+			else { \
+				zephir_memory_observe((ppzv) TSRMLS_CC); \
+			} \
+		} \
+	} while (0)
+
+#define ZEPHIR_OBSERVE_OR_NULLIFY_VAR(z) \
+	do { \
+		if (z) { \
+			zval_ptr_dtor(&z); \
+			z = NULL; \
+		} \
+		else { \
+			zephir_memory_observe(&z TSRMLS_CC); \
+		} \
+	} while (0)
+
 #define ZEPHIR_SEPARATE_ARRAY(a) \
 	{ \
 		if (Z_REFCOUNT_P(a) > 1) { \
@@ -200,17 +225,15 @@ extern void ZEPHIR_FASTCALL zephir_copy_ctor(zval *destiny, zval *origin);
 #define ZEPHIR_SEPARATE(z) SEPARATE_ZVAL(&z)
 
 #define ZEPHIR_SEPARATE_PARAM(z) \
-	{\
+	do { \
 		zval *orig_ptr = z;\
-		if (Z_REFCOUNT_P(orig_ptr) > 1) {\
-			zephir_memory_observe(&z TSRMLS_CC);\
-			ALLOC_ZVAL(z);\
-			*z = *orig_ptr;\
-			zval_copy_ctor(z);\
-			Z_SET_REFCOUNT_P(z, 1);\
-			Z_UNSET_ISREF_P(z);\
-		}\
-	}
+		zephir_memory_observe(&z TSRMLS_CC);\
+		ALLOC_ZVAL(z);\
+		*z = *orig_ptr;\
+		zval_copy_ctor(z);\
+		Z_SET_REFCOUNT_P(z, 1);\
+		Z_UNSET_ISREF_P(z);\
+	} while (0)
 
 #define ZEPHIR_SEPARATE_PARAM_NMO(z) { \
 		zval *orig_ptr = z; \

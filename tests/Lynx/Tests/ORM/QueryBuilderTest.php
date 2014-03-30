@@ -21,7 +21,16 @@ class QueryBuilderTest
 		$this->assertTrue($queryBuilder->getLimit() === 100);
 	}
 
-	public function testGetSQl()
+    public function testLimitExceptionOnMinusLimit()
+    {
+        $queryBuilder = $this->_em->createQueryBuilder();
+        $this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
+
+        $this->setExpectedException('\Exception', '$limit must be >= 0');
+        $queryBuilder->limit(-1);
+    }
+
+    public function testGetSQl()
 	{
 		$queryBuilder = $this->_em->createQueryBuilder();
 		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);

@@ -42,6 +42,7 @@ PHP_METHOD(Lynx_ORM_EntityManager, getConnection) {
 
 PHP_METHOD(Lynx_ORM_EntityManager, __construct) {
 
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *connection, *_0;
 
 	ZEPHIR_MM_GROW();
@@ -49,14 +50,15 @@ PHP_METHOD(Lynx_ORM_EntityManager, __construct) {
 
 
 
-	if (!(zephir_is_instance_of(connection, SL("Lynx\\DBAL\\Connection") TSRMLS_CC))) {
+	if (!(zephir_instance_of_ev(connection, lynx_dbal_connection_ce TSRMLS_CC))) {
 		ZEPHIR_THROW_EXCEPTION_STR(spl_ce_InvalidArgumentException, "Parameter 'connection' must be an instance of 'Lynx\\DBAL\\Connection'");
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("connection"), connection TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_0);
 	object_init_ex(_0, lynx_orm_unitofwork_ce);
-	zephir_call_method_p1_noret(_0, "__construct", this_ptr);
+	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, this_ptr);
+	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("unitOfWork"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
@@ -75,16 +77,20 @@ PHP_METHOD(Lynx_ORM_EntityManager, flush) {
 
 PHP_METHOD(Lynx_ORM_EntityManager, createQueryBuilder) {
 
+	int ZEPHIR_LAST_CALL_STATUS;
+
 	ZEPHIR_MM_GROW();
 
 	object_init_ex(return_value, lynx_orm_querybuilder_ce);
-	zephir_call_method_p1_noret(return_value, "__construct", this_ptr);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, this_ptr);
+	zephir_check_call_status();
 	RETURN_MM();
 
 }
 
 PHP_METHOD(Lynx_ORM_EntityManager, createQuery) {
 
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *sql;
 
 	ZEPHIR_MM_GROW();
@@ -93,7 +99,8 @@ PHP_METHOD(Lynx_ORM_EntityManager, createQuery) {
 
 
 	object_init_ex(return_value, lynx_orm_query_ce);
-	zephir_call_method_p2_noret(return_value, "__construct", sql, this_ptr);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, sql, this_ptr);
+	zephir_check_call_status();
 	RETURN_MM();
 
 }

@@ -58,8 +58,15 @@ class QueryBuilder
 
 	}
 
+    /**
+     * Set limit to the query
+     */
 	public function limit(int limit)
 	{
+	    if (limit <= 0) {
+	        throw new \Exception("$limit must be >= 0");
+	    }
+
 		let this->limit = limit;
 	}
 

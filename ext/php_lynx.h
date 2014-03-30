@@ -4,25 +4,31 @@
 #ifndef PHP_LYNX_H
 #define PHP_LYNX_H 1
 
+#define ZEPHIR_RELEASE 1
+
 #include "kernel/globals.h"
 
-#define PHP_LYNX_NAME    "Lynx"
-#define PHP_LYNX_VERSION "0.0.1"
-#define PHP_LYNX_EXTNAME "lynx"
+#define PHP_LYNX_NAME        "Lynx"
+#define PHP_LYNX_VERSION     "0.0.1"
+#define PHP_LYNX_EXTNAME     "lynx"
+#define PHP_LYNX_AUTHOR      ""
+#define PHP_LYNX_ZEPVERSION  "0.4.0a"
+#define PHP_LYNX_DESCRIPTION ""
 
 
 
 ZEND_BEGIN_MODULE_GLOBALS(lynx)
 
 	/* Memory */
-	zephir_memory_entry *start_memory;
-	zephir_memory_entry *active_memory;
+	zephir_memory_entry *start_memory; /**< The first preallocated frame */
+	zephir_memory_entry *end_memory; /**< The last preallocate frame */
+	zephir_memory_entry *active_memory; /**< The current memory frame */
 
 	/* Virtual Symbol Tables */
 	zephir_symbol_table *active_symbol_table;
 
-	/* Function cache */
-	HashTable *function_cache;
+	/** Function cache */
+	HashTable *fcache;
 
 	/* Max recursion control */
 	unsigned int recursive_lock;

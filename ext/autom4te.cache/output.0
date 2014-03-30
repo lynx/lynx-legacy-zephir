@@ -3938,7 +3938,7 @@ if test "$PHP_LYNX" = "yes"; then
 	
 $as_echo "@%:@define HAVE_LYNX 1" >>confdefs.h
 
-	lynx_sources="lynx.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/alternative/fcall.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c lynx/dbal/connection.c lynx/dbal/driver/pdo.c lynx/orm/entitymanager.c lynx/orm/exception.c lynx/orm/query.c lynx/orm/querybuilder.c lynx/orm/sqlbuilder.c lynx/orm/unitofwork.c "
+	lynx_sources="lynx.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c lynx/dbal/connection.c lynx/dbal/driver/pdo.c lynx/orm/entitymanager.c lynx/orm/exception.c lynx/orm/query.c lynx/orm/querybuilder.c lynx/orm/sqlbuilder.c lynx/orm/unitofwork.c "
 	
   ext_builddir=.
   ext_srcdir=$abs_srcdir
