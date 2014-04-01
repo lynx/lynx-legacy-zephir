@@ -20,6 +20,9 @@
 	</php>
 
 	<testsuites>
+        <testsuite name="Lynx Cache Test Suite">
+            <directory>../Lynx/Tests/Cache</directory>
+        </testsuite>
 		<testsuite name="Lynx DBAL Test Suite">
 			<directory>../Lynx/Tests/DBAL</directory>
 		</testsuite>
