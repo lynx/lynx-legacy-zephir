@@ -1,4 +1,4 @@
-# Lynx ORM|DBAL [![Build Status](https://travis-ci.org/lynx/lynx.svg?branch=master)](https://travis-ci.org/lynx/lynx)
+# Lynx ORM|DBAL [![Build Status](https://travis-ci.org/lynx/lynx.svg)](https://travis-ci.org/lynx/lynx)
 
 ### Current development status
 
@@ -11,6 +11,10 @@ I dislike current Phalcon ORM and create this project for incubate new ORM.
 ### Idea
 
 * Every day push >= 1 commit
+
+### Why it would be great?
+
+* Speed (because build on c with zephir)
 
 ### On What ideas it would based
 
