@@ -21,7 +21,9 @@ I dislike current Phalcon ORM and create this project for incubate new ORM.
 * ORM (Object relation mapper)
     * EntityManager
     * UnitOfWork
+    * QueryBuilder
 * DBAL (Database abstraction layer)
+* Cache (Cache drivers for all database)
 
 ### SYSTEM REQUIREMENTS
 
