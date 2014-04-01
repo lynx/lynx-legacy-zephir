@@ -46,7 +46,7 @@ PHP_METHOD(Lynx_Cache_CacheDriver, save) {
 	}
 	if (!lifeTime) {
 		ZEPHIR_INIT_VAR(lifeTime);
-		ZVAL_LONG(lifeTime, 0);
+		ZVAL_LONG(lifeTime, 3600);
 	}
 
 

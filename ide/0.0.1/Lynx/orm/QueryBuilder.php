@@ -12,59 +12,46 @@ class QueryBuilder
 	protected $offset = 0;
 	protected $em;
 
-    public function getLimit()
-    {
+	public function getLimit()    {
     }
 
-    public function __construct()
-    {
+	public function __construct()    {
     }
 
-    public function select()
-    {
+	public function select()    {
     }
 
-    public function delete()
-    {
+	public function delete()    {
     }
 
-    public function update()
-    {
+	public function update()    {
     }
 
-    public function from()
-    {
+	public function from()    {
     }
 
-    public function leftJoin()
-    {
+	public function leftJoin()    {
     }
 
-    public function rightJoin()
-    {
+	public function rightJoin()    {
     }
 
-    public function join()
-    {
+	public function join()    {
     }
 
 	/**
 	 * Set limit to the query
 	 */
-    public function limit()
-    {
+	public function limit()    {
     }
 
-    public function offset()
-    {
+	public function offset()    {
     }
 
-    public function getSQL()
-    {
+	public function getSQL()    {
     }
 
-    public function getQuery()
-    {
+	public function getQuery()    {
     }
 
 }

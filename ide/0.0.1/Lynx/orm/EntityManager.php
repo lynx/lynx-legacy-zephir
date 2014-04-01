@@ -4,27 +4,25 @@ namespace Lynx\ORM;
 
 class EntityManager
 {
+	/**
+	 * @var UnitOfWork
+	 */
 	protected $unitOfWork;
 	protected $connection;
 
-    public function getConnection()
-    {
+	public function getConnection()    {
     }
 
-    public function __construct()
-    {
+	public function __construct()    {
     }
 
-    public function flush()
-    {
+	public function flush()    {
     }
 
-    public function createQueryBuilder()
-    {
+	public function createQueryBuilder()    {
     }
 
-    public function createQuery()
-    {
+	public function createQuery()    {
     }
 
 }

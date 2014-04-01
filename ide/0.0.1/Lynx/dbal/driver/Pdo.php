@@ -6,16 +6,13 @@ class Pdo
 {
 	protected $_pdo;
 
-    public function __construct()
-    {
+	public function __construct()    {
     }
 
-    public function connect()
-    {
+	public function connect()    {
     }
 
-    public function query()
-    {
+	public function query()    {
     }
 
 }

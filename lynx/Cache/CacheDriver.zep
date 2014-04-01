@@ -3,7 +3,7 @@ namespace Lynx\Cache;
 
 abstract class CacheDriver
 {
-    abstract public function save(string! id, data, lifeTime = 0) {}
+    abstract public function save(string! id, data, lifeTime = 3600) {}
 
     abstract public function delete(string! id) {}
 
