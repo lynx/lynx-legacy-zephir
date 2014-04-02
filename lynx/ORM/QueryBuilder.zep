@@ -38,22 +38,45 @@ class QueryBuilder
 		let this->type = self::UPDATE;
 	}
 
-	public function from(string! model)
+
+	public function from(var from, var alias)
 	{
 
 	}
 
-	public function leftJoin()
+	public function leftJoin(var join, var alias)
+	{
+		var parentAlias;
+		let parentAlias = substr(join, 0, strpos(join, '.'));
+	}
+
+	public function rightJoin(var join, var alias)
+	{
+		var parentAlias;
+		let parentAlias = substr(join, 0, strpos(join, '.'));
+	}
+
+	public function join(var join, var alias)
 	{
 
 	}
 
-	public function rightJoin()
+	public function where(var statement)
 	{
 
 	}
 
-	public function join()
+	public function andWhere(var statement)
+	{
+
+	}
+
+	public function orWhere(var statement)
+	{
+
+	}
+
+	public function orderBy(var sort)
 	{
 
 	}

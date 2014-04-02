@@ -15,9 +15,9 @@
 #include "kernel/object.h"
 #include "kernel/exception.h"
 #include "kernel/memory.h"
-#include "ext/spl/spl_exceptions.h"
-#include "kernel/operators.h"
+#include "kernel/string.h"
 #include "kernel/fcall.h"
+#include "kernel/operators.h"
 
 
 /**
@@ -103,23 +103,10 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, update) {
 
 PHP_METHOD(Lynx_ORM_QueryBuilder, from) {
 
-	zval *model_param = NULL;
-	zval *model = NULL;
+	zval *from, *alias;
 
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &model_param);
+	zephir_fetch_params(0, 2, 0, &from, &alias);
 
-	if (Z_TYPE_P(model_param) != IS_STRING && Z_TYPE_P(model_param) != IS_NULL) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'model' must be a string") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-	if (Z_TYPE_P(model_param) == IS_STRING) {
-		model = model_param;
-	} else {
-		ZEPHIR_INIT_VAR(model);
-		ZVAL_EMPTY_STRING(model);
-	}
 
 
 
@@ -127,17 +114,100 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, from) {
 
 PHP_METHOD(Lynx_ORM_QueryBuilder, leftJoin) {
 
+	int ZEPHIR_LAST_CALL_STATUS;
+	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL;
+	zval *join, *alias, *parentAlias = NULL, _0, *_1, _2;
 
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 0, &join, &alias);
+
+
+
+	ZEPHIR_SINIT_VAR(_0);
+	ZVAL_LONG(&_0, '.');
+	ZEPHIR_INIT_VAR(_1);
+	zephir_fast_strpos(_1, join, &_0, 0 );
+	ZEPHIR_SINIT_VAR(_2);
+	ZVAL_LONG(&_2, 0);
+	ZEPHIR_CALL_FUNCTION(&parentAlias, "substr", &_3, join, &_2, _1);
+	zephir_check_call_status();
+	ZEPHIR_MM_RESTORE();
 
 }
 
 PHP_METHOD(Lynx_ORM_QueryBuilder, rightJoin) {
 
+	int ZEPHIR_LAST_CALL_STATUS;
+	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL;
+	zval *join, *alias, *parentAlias = NULL, _0, *_1, _2;
 
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 0, &join, &alias);
+
+
+
+	ZEPHIR_SINIT_VAR(_0);
+	ZVAL_LONG(&_0, '.');
+	ZEPHIR_INIT_VAR(_1);
+	zephir_fast_strpos(_1, join, &_0, 0 );
+	ZEPHIR_SINIT_VAR(_2);
+	ZVAL_LONG(&_2, 0);
+	ZEPHIR_CALL_FUNCTION(&parentAlias, "substr", &_3, join, &_2, _1);
+	zephir_check_call_status();
+	ZEPHIR_MM_RESTORE();
 
 }
 
 PHP_METHOD(Lynx_ORM_QueryBuilder, join) {
+
+	zval *join, *alias;
+
+	zephir_fetch_params(0, 2, 0, &join, &alias);
+
+
+
+
+}
+
+PHP_METHOD(Lynx_ORM_QueryBuilder, where) {
+
+	zval *statement;
+
+	zephir_fetch_params(0, 1, 0, &statement);
+
+
+
+
+}
+
+PHP_METHOD(Lynx_ORM_QueryBuilder, andWhere) {
+
+	zval *statement;
+
+	zephir_fetch_params(0, 1, 0, &statement);
+
+
+
+
+}
+
+PHP_METHOD(Lynx_ORM_QueryBuilder, orWhere) {
+
+	zval *statement;
+
+	zephir_fetch_params(0, 1, 0, &statement);
+
+
+
+
+}
+
+PHP_METHOD(Lynx_ORM_QueryBuilder, orderBy) {
+
+	zval *sort;
+
+	zephir_fetch_params(0, 1, 0, &sort);
+
 
 
 
