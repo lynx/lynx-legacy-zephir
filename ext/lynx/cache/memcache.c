@@ -62,7 +62,7 @@ PHP_METHOD(Lynx_Cache_Memcache, setInstance) {
 
 
 	if (!(zephir_is_instance_of(instance, SL("Memcache") TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_STRW(spl_ce_InvalidArgumentException, "Parameter 'instance' must be an instance of 'Memcache'");
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'instance' must be an instance of 'Memcache'", "", 0);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("instance"), instance TSRMLS_CC);
@@ -110,12 +110,12 @@ PHP_METHOD(Lynx_Cache_Memcache, save) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &id_param, &data, &lifeTime);
 
-	if (Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL) {
+	if (unlikely(Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'id' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (Z_TYPE_P(id_param) == IS_STRING) {
+	if (unlikely(Z_TYPE_P(id_param) == IS_STRING)) {
 		id = id_param;
 	} else {
 		ZEPHIR_INIT_VAR(id);
@@ -146,12 +146,12 @@ PHP_METHOD(Lynx_Cache_Memcache, delete) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &id_param);
 
-	if (Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL) {
+	if (unlikely(Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'id' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (Z_TYPE_P(id_param) == IS_STRING) {
+	if (unlikely(Z_TYPE_P(id_param) == IS_STRING)) {
 		id = id_param;
 	} else {
 		ZEPHIR_INIT_VAR(id);
@@ -176,12 +176,12 @@ PHP_METHOD(Lynx_Cache_Memcache, get) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &id_param);
 
-	if (Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL) {
+	if (unlikely(Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'id' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (Z_TYPE_P(id_param) == IS_STRING) {
+	if (unlikely(Z_TYPE_P(id_param) == IS_STRING)) {
 		id = id_param;
 	} else {
 		ZEPHIR_INIT_VAR(id);
@@ -205,12 +205,12 @@ PHP_METHOD(Lynx_Cache_Memcache, exists) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &id_param);
 
-	if (Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL) {
+	if (unlikely(Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'id' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (Z_TYPE_P(id_param) == IS_STRING) {
+	if (unlikely(Z_TYPE_P(id_param) == IS_STRING)) {
 		id = id_param;
 	} else {
 		ZEPHIR_INIT_VAR(id);

@@ -44,12 +44,12 @@ PHP_METHOD(Lynx_DBAL_Driver_Pdo, __construct) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &dsn_param, &username, &password, &options_param);
 
-	if (Z_TYPE_P(dsn_param) != IS_STRING && Z_TYPE_P(dsn_param) != IS_NULL) {
+	if (unlikely(Z_TYPE_P(dsn_param) != IS_STRING && Z_TYPE_P(dsn_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'dsn' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (Z_TYPE_P(dsn_param) == IS_STRING) {
+	if (unlikely(Z_TYPE_P(dsn_param) == IS_STRING)) {
 		dsn = dsn_param;
 	} else {
 		ZEPHIR_INIT_VAR(dsn);
@@ -93,12 +93,12 @@ PHP_METHOD(Lynx_DBAL_Driver_Pdo, query) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &sqlStatement_param, &bindParams_param, &bindTypes_param);
 
-	if (Z_TYPE_P(sqlStatement_param) != IS_STRING && Z_TYPE_P(sqlStatement_param) != IS_NULL) {
+	if (unlikely(Z_TYPE_P(sqlStatement_param) != IS_STRING && Z_TYPE_P(sqlStatement_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'sqlStatement' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (Z_TYPE_P(sqlStatement_param) == IS_STRING) {
+	if (unlikely(Z_TYPE_P(sqlStatement_param) == IS_STRING)) {
 		sqlStatement = sqlStatement_param;
 	} else {
 		ZEPHIR_INIT_VAR(sqlStatement);

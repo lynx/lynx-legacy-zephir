@@ -33,12 +33,12 @@ PHP_METHOD(Lynx_Cache_CacheDriver, save) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &id_param, &data, &lifeTime);
 
-	if (Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL) {
+	if (unlikely(Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'id' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (Z_TYPE_P(id_param) == IS_STRING) {
+	if (unlikely(Z_TYPE_P(id_param) == IS_STRING)) {
 		id = id_param;
 	} else {
 		ZEPHIR_INIT_VAR(id);
@@ -61,12 +61,12 @@ PHP_METHOD(Lynx_Cache_CacheDriver, delete) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &id_param);
 
-	if (Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL) {
+	if (unlikely(Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'id' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (Z_TYPE_P(id_param) == IS_STRING) {
+	if (unlikely(Z_TYPE_P(id_param) == IS_STRING)) {
 		id = id_param;
 	} else {
 		ZEPHIR_INIT_VAR(id);
@@ -85,12 +85,12 @@ PHP_METHOD(Lynx_Cache_CacheDriver, get) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &id_param);
 
-	if (Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL) {
+	if (unlikely(Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'id' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (Z_TYPE_P(id_param) == IS_STRING) {
+	if (unlikely(Z_TYPE_P(id_param) == IS_STRING)) {
 		id = id_param;
 	} else {
 		ZEPHIR_INIT_VAR(id);
@@ -109,12 +109,12 @@ PHP_METHOD(Lynx_Cache_CacheDriver, exists) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &id_param);
 
-	if (Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL) {
+	if (unlikely(Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'id' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (Z_TYPE_P(id_param) == IS_STRING) {
+	if (unlikely(Z_TYPE_P(id_param) == IS_STRING)) {
 		id = id_param;
 	} else {
 		ZEPHIR_INIT_VAR(id);

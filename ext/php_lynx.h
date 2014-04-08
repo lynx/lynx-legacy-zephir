@@ -12,7 +12,7 @@
 #define PHP_LYNX_VERSION     "0.0.1"
 #define PHP_LYNX_EXTNAME     "lynx"
 #define PHP_LYNX_AUTHOR      ""
-#define PHP_LYNX_ZEPVERSION  "0.4.0a"
+#define PHP_LYNX_ZEPVERSION  "0.4.1a"
 #define PHP_LYNX_DESCRIPTION ""
 
 
@@ -58,8 +58,8 @@ ZEND_EXTERN_MODULE_GLOBALS(lynx)
 	#define ZEPHIR_VGLOBAL &(lynx_globals)
 #endif
 
-#define zephir_globals lynx_globals
-#define zend_zephir_globals zend_lynx_globals
+#define zephir_globals_def lynx_globals
+#define zend_zephir_globals_def zend_lynx_globals
 
 extern zend_module_entry lynx_module_entry;
 #define phpext_lynx_ptr &lynx_module_entry
