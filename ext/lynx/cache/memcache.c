@@ -199,7 +199,8 @@ PHP_METHOD(Lynx_Cache_Memcache, get) {
 
 PHP_METHOD(Lynx_Cache_Memcache, exists) {
 
-	zval *id_param = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *id_param = NULL, *_0 = NULL;
 	zval *id = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -218,6 +219,9 @@ PHP_METHOD(Lynx_Cache_Memcache, exists) {
 	}
 
 
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "get", NULL, id);
+	zephir_check_call_status();
+	RETURN_MM_BOOL(zephir_get_boolval(_0));
 
 }
 

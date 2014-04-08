@@ -3,6 +3,7 @@ extern zend_class_entry *lynx_cache_cachedriver_ce;
 
 ZEPHIR_INIT_CLASS(Lynx_Cache_CacheDriver);
 
+PHP_METHOD(Lynx_Cache_CacheDriver, getInstance);
 PHP_METHOD(Lynx_Cache_CacheDriver, save);
 PHP_METHOD(Lynx_Cache_CacheDriver, delete);
 PHP_METHOD(Lynx_Cache_CacheDriver, get);
@@ -27,6 +28,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_cache_cachedriver_exists, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(lynx_cache_cachedriver_method_entry) {
+	PHP_ME(Lynx_Cache_CacheDriver, getInstance, NULL, ZEND_ACC_ABSTRACT|ZEND_ACC_PROTECTED)
 	PHP_ME(Lynx_Cache_CacheDriver, save, arginfo_lynx_cache_cachedriver_save, ZEND_ACC_ABSTRACT|ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_CacheDriver, delete, arginfo_lynx_cache_cachedriver_delete, ZEND_ACC_ABSTRACT|ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_CacheDriver, get, arginfo_lynx_cache_cachedriver_get, ZEND_ACC_ABSTRACT|ZEND_ACC_PUBLIC)

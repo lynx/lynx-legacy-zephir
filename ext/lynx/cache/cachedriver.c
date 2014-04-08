@@ -17,6 +17,9 @@
 #include "kernel/memory.h"
 
 
+/**
+ * Abstract class for Cache Drivers
+ */
 ZEPHIR_INIT_CLASS(Lynx_Cache_CacheDriver) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\Cache, CacheDriver, lynx, cache_cachedriver, lynx_cache_cachedriver_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
@@ -25,6 +28,18 @@ ZEPHIR_INIT_CLASS(Lynx_Cache_CacheDriver) {
 
 }
 
+/**
+ * To initialize cache provider
+ */
+PHP_METHOD(Lynx_Cache_CacheDriver, getInstance) {
+
+
+
+}
+
+/**
+ * Save data
+ */
 PHP_METHOD(Lynx_Cache_CacheDriver, save) {
 
 	zval *id_param = NULL, *data, *lifeTime = NULL;
@@ -53,6 +68,9 @@ PHP_METHOD(Lynx_Cache_CacheDriver, save) {
 
 }
 
+/**
+ * Save data by id
+ */
 PHP_METHOD(Lynx_Cache_CacheDriver, delete) {
 
 	zval *id_param = NULL;
@@ -77,6 +95,9 @@ PHP_METHOD(Lynx_Cache_CacheDriver, delete) {
 
 }
 
+/**
+ * Fetch data by id
+ */
 PHP_METHOD(Lynx_Cache_CacheDriver, get) {
 
 	zval *id_param = NULL;
@@ -101,6 +122,9 @@ PHP_METHOD(Lynx_Cache_CacheDriver, get) {
 
 }
 
+/**
+ * Data with id exists?
+ */
 PHP_METHOD(Lynx_Cache_CacheDriver, exists) {
 
 	zval *id_param = NULL;

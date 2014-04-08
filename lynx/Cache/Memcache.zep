@@ -17,10 +17,10 @@ class Memcache extends CacheDriver
         let this->instance = instance;
     }
 
-    protected function getInstance()
+    protected function getInstance() -> <\Memcache>
     {
         if (is_null(this->instance)) {
-            let this->instance = new \Memcache();
+            let this->instance = new \Memcache;
             this->instance->connect("localhost", 11211);
 
             return this->instance;
@@ -46,6 +46,6 @@ class Memcache extends CacheDriver
 
     public function exists(string! id)
     {
-
+        return (boolean) this->get(id);
     }
 }
