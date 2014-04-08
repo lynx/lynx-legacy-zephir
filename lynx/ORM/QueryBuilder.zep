@@ -10,7 +10,7 @@ class QueryBuilder
 	const UPDATE = 2;
 	const DELETE = 3;
 
-	protected type = self::SELECT;
+	protected type = self::SELECT {get};
 
 	protected limit = null {get};
 

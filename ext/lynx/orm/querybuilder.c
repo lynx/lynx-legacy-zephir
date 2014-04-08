@@ -45,6 +45,13 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_QueryBuilder) {
 
 }
 
+PHP_METHOD(Lynx_ORM_QueryBuilder, getType) {
+
+
+	RETURN_MEMBER(this_ptr, "type");
+
+}
+
 PHP_METHOD(Lynx_ORM_QueryBuilder, getLimit) {
 
 
