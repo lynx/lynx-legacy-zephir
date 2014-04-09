@@ -165,14 +165,10 @@ class QueryBuilder
 		return sql;
 	}
 
-	public function getQuery()
+	public function getQuery() -> <Query>
 	{
 		var query;
 		let query = this->em->createQuery(this->getSQL());
-
-		if (!is_null(this->where)) {
-
-		}
 
 		return query;
 	}
