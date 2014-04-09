@@ -30,7 +30,7 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_SqlBuilder) {
 
 	zend_declare_property_null(lynx_orm_sqlbuilder_ce, SL("limit"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_long(lynx_orm_sqlbuilder_ce, SL("offset"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(lynx_orm_sqlbuilder_ce, SL("offset"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(lynx_orm_sqlbuilder_ce, SL("em"), ZEND_ACC_PROTECTED TSRMLS_CC);
 

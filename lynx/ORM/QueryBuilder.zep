@@ -22,7 +22,7 @@ class QueryBuilder
 
 	protected limit = null {get};
 
-	protected offset = 0;
+	protected offset = null {get};
 
 	protected em;
 
@@ -34,16 +34,22 @@ class QueryBuilder
 	public function select()
 	{
 		let this->type = self::SELECT;
+
+		return this;
 	}
 
 	public function delete()
 	{
 		let this->type = self::DELETE;
+
+		return this;
 	}
 
 	public function update()
 	{
 		let this->type = self::UPDATE;
+
+		return this;
 	}
 
 
@@ -51,6 +57,8 @@ class QueryBuilder
 	{
 		let this->from = from;
 		let this->alias = alias;
+
+		return this;
 	}
 
 	public function leftJoin(var join, var alias)
@@ -114,9 +122,13 @@ class QueryBuilder
 	{
 		var sql;
 
+		if (is_null(this->from)) {
+			throw new \Exception("From field must be set");
+		}
+
 		switch(this->type) {
 			case self::SELECT:
-				let sql = "SELECT ";
+				let sql = "SELECT *";
 				break;
 			case self::UPDATE:
 				let sql = "UPDATE ";
@@ -124,6 +136,16 @@ class QueryBuilder
 			case self::DELETE:
 				let sql = "DELETE ";
 				break;
+		}
+
+		let sql .= " FROM ".this->from;
+
+		if (!is_null(this->limit)) {
+			let sql .= " LIMIT ".this->limit;
+
+			if (!is_null(this->offset)) {
+				let sql .= ",".this->offset;
+			}
 		}
 
 		return sql;

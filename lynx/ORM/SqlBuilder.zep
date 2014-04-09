@@ -14,7 +14,7 @@ class SqlBuilder
 
 	protected limit = null {get};
 
-	protected offset = 0;
+	protected offset = null;
 
 	protected em;
 
