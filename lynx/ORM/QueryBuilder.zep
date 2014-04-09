@@ -65,27 +65,35 @@ class QueryBuilder
 	{
 		var parentAlias;
 		let parentAlias = substr(join, 0, strpos(join, '.'));
+
+		return this;
 	}
 
 	public function rightJoin(var join, var alias)
 	{
 		var parentAlias;
 		let parentAlias = substr(join, 0, strpos(join, '.'));
+
+		return this;
 	}
 
 	public function join(var join, var alias)
 	{
-
+		return this;
 	}
 
 	public function where(var statement)
 	{
 		let this->where[] = statement;
+
+		return this;
 	}
 
 	public function andWhere(var statement)
 	{
 		let this->where[] = statement;
+
+		return this;
 	}
 
 	public function orWhere(var statement)
@@ -94,11 +102,13 @@ class QueryBuilder
 		let index = this->parts["where"];
 
 		let this->where[index][] = statement;
+
+		return this;
 	}
 
 	public function orderBy(var sort)
 	{
-
+		return this;
 	}
 
     /**
@@ -111,11 +121,15 @@ class QueryBuilder
 	    }
 
 		let this->limit = limit;
+
+		return this;
 	}
 
 	public function offset(int offset)
 	{
 		let this->offset = offset;
+
+		return this;
 	}
 
 	public function getSQL() -> string

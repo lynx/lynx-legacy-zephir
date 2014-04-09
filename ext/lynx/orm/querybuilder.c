@@ -161,7 +161,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, leftJoin) {
 	ZVAL_LONG(&_2, 0);
 	ZEPHIR_CALL_FUNCTION(&parentAlias, "substr", &_3, join, &_2, _1);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -184,7 +184,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, rightJoin) {
 	ZVAL_LONG(&_2, 0);
 	ZEPHIR_CALL_FUNCTION(&parentAlias, "substr", &_3, join, &_2, _1);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -196,6 +196,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, join) {
 
 
 
+	RETURN_THISW();
 
 }
 
@@ -208,6 +209,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, where) {
 
 
 	zephir_update_property_array_append(this_ptr, SL("where"), statement TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -220,6 +222,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, andWhere) {
 
 
 	zephir_update_property_array_append(this_ptr, SL("where"), statement TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -234,6 +237,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, orWhere) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("parts"), PH_NOISY_CC);
 	zephir_array_fetch_string(&index, _0, SL("where"), PH_NOISY | PH_READONLY TSRMLS_CC);
 	zephir_update_property_array_multi(this_ptr, SL("where"), &statement TSRMLS_CC, SL("za"), 1, index);
+	RETURN_THISW();
 
 }
 
@@ -245,6 +249,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, orderBy) {
 
 
 
+	RETURN_THISW();
 
 }
 
@@ -262,12 +267,13 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, limit) {
 
 
 	if (limit <= 0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "$limit must be >= 0", "lynx/ORM/QueryBuilder.zep", 110);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "$limit must be >= 0", "lynx/ORM/QueryBuilder.zep", 120);
 		return;
 	}
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(_0, limit);
 	zephir_update_property_zval(this_ptr, SL("limit"), _0 TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -284,6 +290,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, offset) {
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(_0, offset);
 	zephir_update_property_zval(this_ptr, SL("offset"), _0 TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -295,7 +302,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
 	if (Z_TYPE_P(_0) == IS_NULL) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "From field must be set", "lynx/ORM/QueryBuilder.zep", 126);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "From field must be set", "lynx/ORM/QueryBuilder.zep", 140);
 		return;
 	}
 	ZEPHIR_OBS_VAR(_1);
