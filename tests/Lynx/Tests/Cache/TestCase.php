@@ -5,7 +5,7 @@
 
 namespace Lynx\Tests\Cache;
 
-class TestCase
+abstract class TestCase
     extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -13,9 +13,11 @@ class TestCase
      */
     protected $cacheDriver;
 
+    abstract protected function initCacheDriver();
+
     public function setUp()
     {
-        $this->cacheDriver = new \Lynx\Cache\Memcache();
+        $this->cacheDriver = $this->initCacheDriver();
     }
 
     public function testSuccessSetGet()
