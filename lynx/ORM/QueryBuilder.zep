@@ -10,6 +10,14 @@ class QueryBuilder
 	const UPDATE = 2;
 	const DELETE = 3;
 
+	protected alias;
+
+	protected from;
+
+	protected parts;
+
+	protected where = null;
+
 	protected type = self::SELECT {get};
 
 	protected limit = null {get};
@@ -41,7 +49,8 @@ class QueryBuilder
 
 	public function from(var from, var alias)
 	{
-
+		let this->from = from;
+		let this->alias = alias;
 	}
 
 	public function leftJoin(var join, var alias)
@@ -63,17 +72,20 @@ class QueryBuilder
 
 	public function where(var statement)
 	{
-
+		let this->where[] = statement;
 	}
 
 	public function andWhere(var statement)
 	{
-
+		let this->where[] = statement;
 	}
 
 	public function orWhere(var statement)
 	{
+		var index;
+		let index = this->parts["where"];
 
+		let this->where[index][] = statement;
 	}
 
 	public function orderBy(var sort)
@@ -122,6 +134,9 @@ class QueryBuilder
 		var query;
 		let query = this->em->createQuery(this->getSQL());
 
+		if (!is_null(this->where)) {
+
+		}
 
 		return query;
 	}

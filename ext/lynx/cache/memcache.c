@@ -225,3 +225,18 @@ PHP_METHOD(Lynx_Cache_Memcache, exists) {
 
 }
 
+PHP_METHOD(Lynx_Cache_Memcache, flush) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *_0 = NULL;
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getinstance",  NULL);
+	zephir_check_call_status();
+	ZEPHIR_RETURN_CALL_METHOD(_0, "flush", NULL);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+

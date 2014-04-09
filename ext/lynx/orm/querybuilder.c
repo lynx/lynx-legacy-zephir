@@ -17,6 +17,7 @@
 #include "kernel/memory.h"
 #include "kernel/string.h"
 #include "kernel/fcall.h"
+#include "kernel/array.h"
 #include "kernel/operators.h"
 
 
@@ -26,6 +27,14 @@
 ZEPHIR_INIT_CLASS(Lynx_ORM_QueryBuilder) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\ORM, QueryBuilder, lynx, orm_querybuilder, lynx_orm_querybuilder_method_entry, 0);
+
+	zend_declare_property_null(lynx_orm_querybuilder_ce, SL("alias"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
+	zend_declare_property_null(lynx_orm_querybuilder_ce, SL("from"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
+	zend_declare_property_null(lynx_orm_querybuilder_ce, SL("parts"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
+	zend_declare_property_null(lynx_orm_querybuilder_ce, SL("where"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_long(lynx_orm_querybuilder_ce, SL("type"), 1, ZEND_ACC_PROTECTED TSRMLS_CC);
 
@@ -116,6 +125,8 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, from) {
 
 
 
+	zephir_update_property_this(this_ptr, SL("from"), from TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("alias"), alias TSRMLS_CC);
 
 }
 
@@ -184,6 +195,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, where) {
 
 
 
+	zephir_update_property_array_append(this_ptr, SL("where"), statement TSRMLS_CC);
 
 }
 
@@ -195,17 +207,21 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, andWhere) {
 
 
 
+	zephir_update_property_array_append(this_ptr, SL("where"), statement TSRMLS_CC);
 
 }
 
 PHP_METHOD(Lynx_ORM_QueryBuilder, orWhere) {
 
-	zval *statement;
+	zval *statement, *index, *_0;
 
 	zephir_fetch_params(0, 1, 0, &statement);
 
 
 
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("parts"), PH_NOISY_CC);
+	zephir_array_fetch_string(&index, _0, SL("where"), PH_NOISY | PH_READONLY TSRMLS_CC);
+	zephir_update_property_array_multi(this_ptr, SL("where"), &statement TSRMLS_CC, SL("za"), 1, index);
 
 }
 
@@ -234,7 +250,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, limit) {
 
 
 	if (limit <= 0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "$limit must be >= 0", "lynx/ORM/QueryBuilder.zep", 90);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "$limit must be >= 0", "lynx/ORM/QueryBuilder.zep", 102);
 		return;
 	}
 	ZEPHIR_INIT_ZVAL_NREF(_0);
@@ -292,7 +308,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 PHP_METHOD(Lynx_ORM_QueryBuilder, getQuery) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *query = NULL, *_0, *_1 = NULL;
+	zval *query = NULL, *_0, *_1 = NULL, *_2;
 
 	ZEPHIR_MM_GROW();
 
@@ -301,6 +317,9 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getQuery) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&query, _0, "createquery", NULL, _1);
 	zephir_check_call_status();
+	_2 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
+	if (!Z_TYPE_P(_2) == IS_NULL) {
+	}
 	RETURN_CCTOR(query);
 
 }
