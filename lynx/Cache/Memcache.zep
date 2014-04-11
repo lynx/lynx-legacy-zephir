@@ -44,11 +44,6 @@ class Memcache extends CacheDriver
         return this->getInstance()->get(id);
     }
 
-    public function exists(string! id)
-    {
-        return (boolean) this->get(id);
-    }
-
     public function flush()
     {
         return this->getInstance()->flush();

@@ -32,6 +32,6 @@ ZEPHIR_INIT_FUNCS(lynx_cache_cachedriver_method_entry) {
 	PHP_ME(Lynx_Cache_CacheDriver, save, arginfo_lynx_cache_cachedriver_save, ZEND_ACC_ABSTRACT|ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_CacheDriver, delete, arginfo_lynx_cache_cachedriver_delete, ZEND_ACC_ABSTRACT|ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_CacheDriver, get, arginfo_lynx_cache_cachedriver_get, ZEND_ACC_ABSTRACT|ZEND_ACC_PUBLIC)
-	PHP_ME(Lynx_Cache_CacheDriver, exists, arginfo_lynx_cache_cachedriver_exists, ZEND_ACC_ABSTRACT|ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_Cache_CacheDriver, exists, arginfo_lynx_cache_cachedriver_exists, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };

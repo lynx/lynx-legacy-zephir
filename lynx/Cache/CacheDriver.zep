@@ -30,6 +30,14 @@ abstract class CacheDriver
 
     /**
      * Data with id exists?
+     *
+     * @param string $id
+     * @return boolean
      */
-    abstract public function exists(string! id);
+    public function exists(string! id)
+    {
+        var result;
+        let result = this->get(id);
+        return result !== false;
+    }
 }

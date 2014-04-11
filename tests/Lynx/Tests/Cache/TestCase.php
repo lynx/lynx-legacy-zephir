@@ -27,7 +27,7 @@ abstract class TestCase
         $this->cacheDriver->save($key, array());
         $this->assertEquals(array(), $this->cacheDriver->get($key));
 
-        $this->assertTrue($this->cacheDriver->exists($key));
+        $this->assertTrue(  $this->cacheDriver->exists($key));
         $this->cacheDriver->delete('testkey');
         $this->assertFalse($this->cacheDriver->exists($key));
     }

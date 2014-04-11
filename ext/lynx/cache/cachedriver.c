@@ -12,6 +12,11 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
+#include "kernel/fcall.h"
+#include "kernel/operators.h"
+#include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
+#include "kernel/memory.h"
 
 
 /**
@@ -55,8 +60,35 @@ PHP_METHOD(Lynx_Cache_CacheDriver, get) {
 
 /**
  * Data with id exists?
+ *
+ * @param string $id
+ * @return boolean
  */
 PHP_METHOD(Lynx_Cache_CacheDriver, exists) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *id_param = NULL, *result = NULL;
+	zval *id = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &id_param);
+
+	if (unlikely(Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'id' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(id_param) == IS_STRING)) {
+		id = id_param;
+	} else {
+		ZEPHIR_INIT_VAR(id);
+		ZVAL_EMPTY_STRING(id);
+	}
+
+
+	ZEPHIR_CALL_METHOD(&result, this_ptr, "get", NULL, id);
+	zephir_check_call_status();
+	RETURN_MM_BOOL(!ZEPHIR_IS_FALSE(result));
 
 }
 

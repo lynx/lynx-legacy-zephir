@@ -9,7 +9,6 @@ PHP_METHOD(Lynx_Cache_Memcache, getInstance);
 PHP_METHOD(Lynx_Cache_Memcache, save);
 PHP_METHOD(Lynx_Cache_Memcache, delete);
 PHP_METHOD(Lynx_Cache_Memcache, get);
-PHP_METHOD(Lynx_Cache_Memcache, exists);
 PHP_METHOD(Lynx_Cache_Memcache, flush);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_cache_memcache___construct, 0, 0, 0)
@@ -34,10 +33,6 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_cache_memcache_get, 0, 0, 1)
 	ZEND_ARG_INFO(0, id)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_cache_memcache_exists, 0, 0, 1)
-	ZEND_ARG_INFO(0, id)
-ZEND_END_ARG_INFO()
-
 ZEPHIR_INIT_FUNCS(lynx_cache_memcache_method_entry) {
 	PHP_ME(Lynx_Cache_Memcache, __construct, arginfo_lynx_cache_memcache___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Lynx_Cache_Memcache, setInstance, arginfo_lynx_cache_memcache_setinstance, ZEND_ACC_PUBLIC)
@@ -45,7 +40,6 @@ ZEPHIR_INIT_FUNCS(lynx_cache_memcache_method_entry) {
 	PHP_ME(Lynx_Cache_Memcache, save, arginfo_lynx_cache_memcache_save, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_Memcache, delete, arginfo_lynx_cache_memcache_delete, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_Memcache, get, arginfo_lynx_cache_memcache_get, ZEND_ACC_PUBLIC)
-	PHP_ME(Lynx_Cache_Memcache, exists, arginfo_lynx_cache_memcache_exists, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_Memcache, flush, NULL, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };
