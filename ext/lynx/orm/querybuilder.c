@@ -350,7 +350,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 PHP_METHOD(Lynx_ORM_QueryBuilder, getQuery) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *query = NULL, *_0, *_1 = NULL, *_2;
+	zval *query = NULL, *_0, *_1 = NULL;
 
 	ZEPHIR_MM_GROW();
 
@@ -359,9 +359,6 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getQuery) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&query, _0, "createquery", NULL, _1);
 	zephir_check_call_status();
-	_2 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
-	if (!Z_TYPE_P(_2) == IS_NULL) {
-	}
 	RETURN_CCTOR(query);
 
 }

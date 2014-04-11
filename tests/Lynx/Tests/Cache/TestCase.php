@@ -20,9 +20,15 @@ abstract class TestCase
         $this->cacheDriver = $this->initCacheDriver();
     }
 
-    public function testSuccessSetGet()
+    public function testSuccessAdapter()
     {
-        $this->cacheDriver->save('testkey', array());
-        $this->assertEquals(array(), $this->cacheDriver->get('testkey'));
+        $key = 'testkey';
+
+        $this->cacheDriver->save($key, array());
+        $this->assertEquals(array(), $this->cacheDriver->get($key));
+
+        $this->assertTrue($this->cacheDriver->exists($key));
+        $this->cacheDriver->delete('testkey');
+        $this->assertFalse($this->cacheDriver->exists($key));
     }
 } 
