@@ -54,7 +54,7 @@ PHP_METHOD(Lynx_ORM_EntityManager, __construct) {
 
 
 	if (!(zephir_instance_of_ev(connection, lynx_dbal_connection_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'connection' must be an instance of 'Lynx\\DBAL\\Connection'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'connection' must be an instance of 'Lynx\\\\\\\\DBAL\\\\\\\\Connection'", "", 0);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("connection"), connection TSRMLS_CC);
