@@ -7,19 +7,14 @@ class Query
 	protected $query;
 	protected $em;
 
-	public function __construct()    {
-    }
+	public function __construct($query, $em) {}
 
-	public function fetchArray()    {
-    }
+	public function fetchArray($parameters = null) {}
 
-	public function fetchAll()    {
-    }
+	public function fetchAll($parameters = null) {}
 
-	public function fetchObject()    {
-    }
+	public function fetchObject($parameters = null) {}
 
-	public function fetchOne()    {
-    }
+	public function fetchOne($parameters = null) {}
 
 }

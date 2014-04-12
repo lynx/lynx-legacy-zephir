@@ -7,51 +7,54 @@ class QueryBuilder
 	const SELECT = 1;
 	const UPDATE = 2;
 	const DELETE = 3;
+	protected $alias;
+	protected $from;
+	protected $parts;
+	protected $where;
 	protected $type;
 	protected $limit;
-	protected $offset = 0;
+	protected $offset;
 	protected $em;
 
-	public function getLimit()    {
-    }
+	public function getType() {}
 
-	public function __construct()    {
-    }
+	public function getLimit() {}
 
-	public function select()    {
-    }
+	public function getOffset() {}
 
-	public function delete()    {
-    }
+	public function __construct($em) {}
 
-	public function update()    {
-    }
+	public function select() {}
 
-	public function from()    {
-    }
+	public function delete() {}
 
-	public function leftJoin()    {
-    }
+	public function update() {}
 
-	public function rightJoin()    {
-    }
+	public function from($from, $alias) {}
 
-	public function join()    {
-    }
+	public function leftJoin($join, $alias) {}
+
+	public function rightJoin($join, $alias) {}
+
+	public function join($join, $alias) {}
+
+	public function where($statement) {}
+
+	public function andWhere($statement) {}
+
+	public function orWhere($statement) {}
+
+	public function orderBy($sort) {}
 
 	/**
 	 * Set limit to the query
 	 */
-	public function limit()    {
-    }
+	public function limit($limit) {}
 
-	public function offset()    {
-    }
+	public function offset($offset) {}
 
-	public function getSQL()    {
-    }
+	public function getSQL() {}
 
-	public function getQuery()    {
-    }
+	public function getQuery() {}
 
 }

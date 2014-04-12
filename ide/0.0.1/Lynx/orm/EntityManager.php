@@ -10,19 +10,14 @@ class EntityManager
 	protected $unitOfWork;
 	protected $connection;
 
-	public function getConnection()    {
-    }
+	public function getConnection() {}
 
-	public function __construct()    {
-    }
+	public function __construct($connection) {}
 
-	public function flush()    {
-    }
+	public function flush($entity) {}
 
-	public function createQueryBuilder()    {
-    }
+	public function createQueryBuilder() {}
 
-	public function createQuery()    {
-    }
+	public function createQuery($sql) {}
 
 }

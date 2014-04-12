@@ -5,12 +5,32 @@ namespace Lynx\Cache;
 abstract class CacheDriver
 {
 
-	abstract public function save();
+	/**
+	 * To initialize cache provider
+	 */
+	abstract protected function getInstance();
 
-	abstract public function delete();
+	/**
+	 * Save data
+	 */
+	abstract public function save($id, $data, $lifeTime = 3600);
 
-	abstract public function get();
+	/**
+	 * Save data by id
+	 */
+	abstract public function delete($id);
 
-	abstract public function exists();
+	/**
+	 * Fetch data by id
+	 */
+	abstract public function get($id);
+
+	/**
+	 * Data with id exists?
+	 *
+	 * @param string $id
+	 * @return boolean
+	 */
+	public function exists($id) {}
 
 }

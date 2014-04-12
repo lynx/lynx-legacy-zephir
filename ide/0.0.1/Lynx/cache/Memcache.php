@@ -7,25 +7,18 @@ class Memcache extends \Lynx\Cache\CacheDriver
 	protected $options;
 	protected $instance;
 
-	public function __construct()    {
-    }
+	public function __construct($options = null) {}
 
-	public function setInstance()    {
-    }
+	public function setInstance($instance) {}
 
-	protected function getInstance()    {
-    }
+	protected function getInstance() {}
 
-	public function save()    {
-    }
+	public function save($id, $data, $lifeTime = 3600) {}
 
-	public function delete()    {
-    }
+	public function delete($id) {}
 
-	public function get()    {
-    }
+	public function get($id) {}
 
-	public function exists()    {
-    }
+	public function flush() {}
 
 }
