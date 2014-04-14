@@ -85,7 +85,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, __construct) {
 
 
 	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\\\\\\\ORM\\\\\\\\EntityManager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
@@ -267,7 +267,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, limit) {
 
 
 	if (limit <= 0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "\$limit must be \>\= 0", "lynx/ORM/QueryBuilder.zep", 120);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "$limit must be >= 0", "lynx/ORM/QueryBuilder.zep", 120);
 		return;
 	}
 	ZEPHIR_INIT_ZVAL_NREF(_0);
@@ -310,7 +310,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 	do {
 		if (ZEPHIR_IS_LONG(_1, 1)) {
 			ZEPHIR_INIT_VAR(sql);
-			ZVAL_STRING(sql, "SELECT \*", 1);
+			ZVAL_STRING(sql, "SELECT *", 1);
 			break;
 		}
 		if (ZEPHIR_IS_LONG(_1, 2)) {

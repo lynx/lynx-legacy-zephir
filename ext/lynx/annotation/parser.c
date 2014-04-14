@@ -14,13 +14,12 @@
 #include "kernel/main.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/operators.h"
 
 
 ZEPHIR_INIT_CLASS(Lynx_Annotation_Parser) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\Annotation, Parser, lynx, annotation_parser, lynx_annotation_parser_method_entry, 0);
-
-	zend_declare_class_constant_string(lynx_annotation_parser_ce, SL("ANNOTATION_REGEX"), "/@\(\\w\+\)\(\?\:\\s\*\(\?\:\\\(\\s\*\)\?\(\.\*\?\)\(\?\:\\s\*\\\)\)\?\)\?\?\\s\*\(\?\:\\n\|\\\*\\/\)/" TSRMLS_CC);
 
 	return SUCCESS;
 
