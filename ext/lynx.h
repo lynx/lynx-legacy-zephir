@@ -8,6 +8,7 @@
 #include "lynx/cache/cachedriver.h"
 #include "lynx/cache/memcache.h"
 #include "lynx/cache/memcached.h"
+#include "lynx/cache/nativearray.h"
 #include "lynx/dbal/connection.h"
 #include "lynx/dbal/driver/pdo.h"
 #include "lynx/orm/entitymanager.h"
