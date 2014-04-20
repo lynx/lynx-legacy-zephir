@@ -71,3 +71,32 @@ PHP_METHOD(Lynx_ORM_EntityRepository, createQueryBuilder) {
 
 }
 
+PHP_METHOD(Lynx_ORM_EntityRepository, find) {
+
+	zval *id;
+
+	zephir_fetch_params(0, 1, 0, &id);
+
+
+
+
+}
+
+PHP_METHOD(Lynx_ORM_EntityRepository, findAll) {
+
+
+
+}
+
+PHP_METHOD(Lynx_ORM_EntityRepository, findBy) {
+
+
+
+}
+
+PHP_METHOD(Lynx_ORM_EntityRepository, findOneBy) {
+
+
+
+}
+
