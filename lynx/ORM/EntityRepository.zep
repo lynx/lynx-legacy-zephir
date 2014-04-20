@@ -26,4 +26,24 @@ class EntityRepository
     {
         return this->em->createQueryBuilder();
     }
+
+    public function find(var id)
+    {
+
+    }
+
+    public function findAll()
+    {
+
+    }
+
+    public function findBy()
+    {
+
+    }
+
+    public function findOneBy()
+    {
+
+    }
 }
