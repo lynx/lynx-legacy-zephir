@@ -12,6 +12,7 @@
 #include "lynx/dbal/connection.h"
 #include "lynx/dbal/driver/pdo.h"
 #include "lynx/orm/entitymanager.h"
+#include "lynx/orm/entityrepository.h"
 #include "lynx/orm/exception.h"
 #include "lynx/orm/query.h"
 #include "lynx/orm/querybuilder.h"

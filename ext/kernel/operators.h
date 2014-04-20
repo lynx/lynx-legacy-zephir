@@ -74,6 +74,12 @@
 
 void zephir_make_printable_zval(zval *expr, zval *expr_copy, int *use_copy);
 
+#if PHP_VERSION_ID < 50400
+#define zephir_sub_function(result, left, right) sub_function(result, left, right)
+#else
+#define zephir_sub_function(result, left, right) fast_sub_function(result, left, right)
+#endif
+
 /** Operator functions */
 int zephir_add_function(zval *result, zval *op1, zval *op2 TSRMLS_DC);
 int zephir_and_function(zval *result, zval *left, zval *right);
@@ -97,6 +103,7 @@ int zephir_compare_strict_long(zval *op1, long op2 TSRMLS_DC);
 int zephir_compare_strict_bool(zval *op1, zend_bool op2 TSRMLS_DC);
 
 void zephir_cast(zval *result, zval *var, zend_uint type);
+void zephir_convert_to_object(zval *op);
 long zephir_get_intval_ex(const zval *op);
 double zephir_get_doubleval_ex(const zval *op);
 zend_bool zephir_get_boolval_ex(const zval *op);
