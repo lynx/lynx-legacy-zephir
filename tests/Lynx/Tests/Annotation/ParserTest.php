@@ -13,7 +13,15 @@ class ParserTest extends \PHPUnit_Framework_TestCase
  */
 EOT;
 
+        $a = \Lynx\Annotation\Parser::parseAnnotations($comment);
+        var_dump($a);
 
-        $this->assertTrue(true);
+//        $hasAnnotations = preg_match_all(
+//            '/@(\w+)(?:\s*(?:\(\s*)?(.*?)(?:\s*\))?)??\s*(?:\n|\*\/)/',
+//            $comment,
+//            $matches,
+//            PREG_SET_ORDER
+//        );
+//        var_dump($matches);
     }
 } 
