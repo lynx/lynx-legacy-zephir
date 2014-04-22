@@ -33,16 +33,16 @@ final class Parser {
 				if (hasParams) {
 					let val = [];
 					for param in params {
-					    //let val[param[1]] = self::_parseValue($param[2]);
-					    let val[param[1]] = param[2];
+					    let val[param[1]] = self::parseValue($param[2]);
+					    //let val[param[1]] = param[2];
 					}
 				} else {
 					let val = trim(anno[2]);
 					if (val == "") {
 						let val = true;
 					} else {
-						//let val = self::_parseValue(val);
-						let val = val;
+						let val = self::parseValue(val);
+						//let val = val;
 					}
 				}
 			}
@@ -59,4 +59,59 @@ final class Parser {
 
 		return annotations;
     }
+
+    /**
+     * @return mixed
+     */
+	private static function parseValue(var value)
+	{
+	    var val, vals, v;
+
+		let val = trim(value);
+
+		if (substr(val, 0, 1) == "[" && substr(val, -1) == "]") {
+			// Array values
+			let vals = explode(',', substr($val, 1, -1));
+			let val = [];
+
+			for v in vals {
+			    let val[] = self::parseValue(v);
+			}
+
+			return val;
+		} else {
+            if (substr(val, 0, 1) == "{" && substr(val, -1) == "}") {
+                // If is json object that start with { } decode them
+                return json_decode($val);
+            } else {
+                if (substr($val, 0, 1) == '"' && substr($val, -1) == '"') {
+                    // Quoted value, remove the quotes then recursively parse and return
+                    let val = substr(val, 1, -1);
+                    return self::parseValue($val);
+                } else {
+                    if (strtolower(val) == "true") {
+                        // Boolean value = true
+                        return true;
+                    } else {
+                        if (strtolower(val) == "false") {
+                            // Boolean value = false
+                            return false;
+                        } else {
+                            if (is_numeric(val)) {
+                                // Numeric value, determine if int or float and then cast
+                                if ((float) val == (int) val) {
+                                    return (int) $val;
+                                } else {
+                                    return (float) $val;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Nothing special, just return as a string
+		return val;
+	}
 }

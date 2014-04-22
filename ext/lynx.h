@@ -5,6 +5,7 @@
 #define ZEPHIR_CLASS_ENTRIES_H
 
 #include "lynx/annotation/parser.h"
+#include "lynx/annotation/reflectionclassparser.h"
 #include "lynx/cache/cachedriver.h"
 #include "lynx/cache/memcache.h"
 #include "lynx/cache/memcached.h"

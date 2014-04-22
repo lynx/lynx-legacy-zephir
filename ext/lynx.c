@@ -26,6 +26,7 @@
 
 zend_class_entry *lynx_cache_cachedriver_ce;
 zend_class_entry *lynx_annotation_parser_ce;
+zend_class_entry *lynx_annotation_reflectionclassparser_ce;
 zend_class_entry *lynx_cache_memcache_ce;
 zend_class_entry *lynx_cache_memcached_ce;
 zend_class_entry *lynx_cache_nativearray_ce;
@@ -205,6 +206,7 @@ static PHP_MINIT_FUNCTION(lynx)
 
 	ZEPHIR_INIT(Lynx_Cache_CacheDriver);
 	ZEPHIR_INIT(Lynx_Annotation_Parser);
+	ZEPHIR_INIT(Lynx_Annotation_ReflectionClassParser);
 	ZEPHIR_INIT(Lynx_Cache_Memcache);
 	ZEPHIR_INIT(Lynx_Cache_Memcached);
 	ZEPHIR_INIT(Lynx_Cache_NativeArray);

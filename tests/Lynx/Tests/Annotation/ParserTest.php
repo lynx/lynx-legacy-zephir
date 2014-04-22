@@ -17,4 +17,13 @@ EOT;
         $this->assertInternalType('array', $returnValue);
         $this->assertCount(1, $returnValue);
     }
+
+    public function testReflectionClassParser()
+    {
+        $class = '\Model\User';
+        $annotationsReflector = new \Lynx\Annotation\ReflectionClassParser($class);
+        $returnValue = $annotationsReflector->getClassAnnotations();
+        $this->assertInternalType('array', $returnValue);
+        $this->assertCount(2, $returnValue);
+    }
 } 
