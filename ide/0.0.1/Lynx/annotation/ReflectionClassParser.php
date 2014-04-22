@@ -10,4 +10,6 @@ class ReflectionClassParser
 
 	public function getClassAnnotations() {}
 
+	public function getPropertiesAnnotations() {}
+
 }

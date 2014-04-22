@@ -15,6 +15,8 @@
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/object.h"
+#include "kernel/exception.h"
+#include "kernel/hash.h"
 
 
 ZEPHIR_INIT_CLASS(Lynx_Annotation_ReflectionClassParser) {
@@ -30,21 +32,29 @@ ZEPHIR_INIT_CLASS(Lynx_Annotation_ReflectionClassParser) {
 PHP_METHOD(Lynx_Annotation_ReflectionClassParser, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_class_entry *_1;
-	zval *parameter, *_0;
+	zend_class_entry *_2;
+	zend_bool _0;
+	zval *parameter, *_1;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &parameter);
 
 
 
-	if (Z_TYPE_P(parameter) == IS_STRING) {
-		ZEPHIR_INIT_VAR(_0);
-		_1 = zend_fetch_class(SL("ReflectionClass"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
-		object_init_ex(_0, _1);
-		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, parameter);
+	_0 = Z_TYPE_P(parameter) == IS_STRING;
+	if (!(_0)) {
+		_0 = Z_TYPE_P(parameter) == IS_OBJECT;
+	}
+	if (_0) {
+		ZEPHIR_INIT_VAR(_1);
+		_2 = zend_fetch_class(SL("ReflectionClass"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
+		object_init_ex(_1, _2);
+		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, parameter);
 		zephir_check_call_status();
-		zephir_update_property_this(this_ptr, SL("reflectionClass"), _0 TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("reflectionClass"), _1 TSRMLS_CC);
+	} else {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "$parameter must be class name (string) or object instance (object)", "lynx/Annotation/ReflectionClassParser.zep", 13);
+		return;
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -64,6 +74,29 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getClassAnnotations) {
 	ZEPHIR_CALL_CE_STATIC(&result, lynx_annotation_parser_ce, "parseannotations", &_1, docComment);
 	zephir_check_call_status();
 	RETURN_CCTOR(result);
+
+}
+
+PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getPropertiesAnnotations) {
+
+	HashTable *_2;
+	HashPosition _1;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *properties = NULL, *property = NULL, *_0, **_3;
+
+	ZEPHIR_MM_GROW();
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("reflectionClass"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&properties, _0, "getproperties",  NULL);
+	zephir_check_call_status();
+	zephir_is_iterable(properties, &_2, &_1, 0, 0);
+	for (
+	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_2, &_1)
+	) {
+		ZEPHIR_GET_HVALUE(property, _3);
+	}
+	ZEPHIR_MM_RESTORE();
 
 }
 

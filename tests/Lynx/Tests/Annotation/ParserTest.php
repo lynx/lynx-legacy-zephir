@@ -18,12 +18,29 @@ EOT;
         $this->assertCount(1, $returnValue);
     }
 
-    public function testReflectionClassParser()
+    protected function reflectionClassParserTest($class)
     {
-        $class = '\Model\User';
         $annotationsReflector = new \Lynx\Annotation\ReflectionClassParser($class);
         $returnValue = $annotationsReflector->getClassAnnotations();
         $this->assertInternalType('array', $returnValue);
         $this->assertCount(2, $returnValue);
+    }
+
+    public function testReflectionClassParserFromSttingClassName()
+    {
+        $class = '\Model\User';
+        $this->reflectionClassParserTest($class);
+    }
+
+    public function testReflectionClassParserFromSttingClassInstance()
+    {
+        $class = new Model\User();
+        $this->reflectionClassParserTest($class);
+    }
+
+    public function testReflectionClassParseContructWrontParameterException()
+    {
+        $this->setExpectedException('\Exception', '$parameter must be class name (string) or object instance (object)');
+        $this->reflectionClassParserTest(12345);
     }
 } 
