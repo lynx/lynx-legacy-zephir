@@ -1,4 +1,8 @@
 {
+    "stubs": {
+        "path": "ide\/%version%\/%namespace%\/",
+        "stubs-run-after-generate": true
+    },
     "warnings": {
         "unused-variable": true,
         "unused-variable-external": false,
@@ -13,14 +17,18 @@
         "invalid-array-index": true,
         "non-array-append": true,
         "invalid-return-type": true,
-        "unrecheable-code": true,
+        "unreachable-code": true,
         "nonexistant-constant": true,
         "not-supported-magic-constant": true,
         "non-valid-decrement": true,
         "non-valid-increment": true,
         "non-valid-clone": true,
+        "non-valid-new": true,
         "non-array-access": true,
-        "invalid-reference": true
+        "invalid-reference": true,
+        "invalid-typeof-comparison": true,
+        "conditional-initialization": true,
+        "unrecheable-code": true
     },
     "optimizations": {
         "static-type-inference": true,
@@ -28,6 +36,8 @@
         "local-context-pass": true,
         "constant-folding": true,
         "static-constant-class-folding": true,
+        "call-gatherer-pass": true,
+        "check-invalid-reads": false,
         "private-internal-methods": true
     },
     "namespace": "lynx",
@@ -35,5 +45,5 @@
     "description": "",
     "author": "",
     "version": "0.0.1",
-    "verbose": false
+    "verbose": true
 }
