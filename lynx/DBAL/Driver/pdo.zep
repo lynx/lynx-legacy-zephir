@@ -4,22 +4,12 @@
 
 namespace Lynx\DBAL\Driver;
 
-class Pdo
+class Pdo extends \PDO
 {
-	protected _pdo;
-
 	public function __construct(string! dsn, var username = null, var password = null, array options = null)
 	{
-		let this->_pdo = new \PDO(dsn, username, password, options);
-	}
-
-	public function connect()
-	{
-
-	}
-
-	public function query(string! sqlStatement, array bindParams = null, array bindTypes = null)
-	{
-
+		parent::__construct(dsn, username, password, options);
+		this->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+		this->setAttribute(\PDO::ATTR_STATEMENT_CLASS, ["Lynx\\DBAL\\Driver\\PDO\\Statement", []]);
 	}
 }

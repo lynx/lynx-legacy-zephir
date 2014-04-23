@@ -24,6 +24,7 @@
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
 
+zend_class_entry *lynx_dbal_driver_connection_ce;
 zend_class_entry *lynx_cache_cachedriver_ce;
 zend_class_entry *lynx_annotation_parser_ce;
 zend_class_entry *lynx_annotation_reflectionclassparser_ce;
@@ -32,6 +33,7 @@ zend_class_entry *lynx_cache_memcached_ce;
 zend_class_entry *lynx_cache_nativearray_ce;
 zend_class_entry *lynx_dbal_connection_ce;
 zend_class_entry *lynx_dbal_driver_pdo_ce;
+zend_class_entry *lynx_dbal_driver_pdo_statement_ce;
 zend_class_entry *lynx_orm_entitymanager_ce;
 zend_class_entry *lynx_orm_entityrepository_ce;
 zend_class_entry *lynx_orm_exception_ce;
@@ -204,6 +206,7 @@ static PHP_MINIT_FUNCTION(lynx)
 	setlocale(LC_ALL, "C");
 #endif
 
+	ZEPHIR_INIT(Lynx_DBAL_Driver_Connection);
 	ZEPHIR_INIT(Lynx_Cache_CacheDriver);
 	ZEPHIR_INIT(Lynx_Annotation_Parser);
 	ZEPHIR_INIT(Lynx_Annotation_ReflectionClassParser);
@@ -211,6 +214,7 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_Cache_Memcached);
 	ZEPHIR_INIT(Lynx_Cache_NativeArray);
 	ZEPHIR_INIT(Lynx_DBAL_Connection);
+	ZEPHIR_INIT(Lynx_DBAL_Driver_PDO_Statement);
 	ZEPHIR_INIT(Lynx_DBAL_Driver_Pdo);
 	ZEPHIR_INIT(Lynx_ORM_EntityManager);
 	ZEPHIR_INIT(Lynx_ORM_EntityRepository);
