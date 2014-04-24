@@ -15,15 +15,45 @@ class EntityManager
 
 	protected connection {get};
 
+	protected modelsManager {get};
+
+	protected repositories;
+
 	public function __construct(<Connection> connection)
 	{
 		let this->connection = connection;
 		let this->unitOfWork = new UnitOfWork(this);
+		let this->modelsManager = new ModelsManager();
 	}
 
 	public function flush(var entity)
 	{
 
+	}
+
+    public function commit()
+    {
+        this->connection->commit();
+    }
+
+
+    public function rollback()
+    {
+        this->connection->rollback();
+    }
+
+    
+	public function getRepository(string! entityName)
+	{
+		var modelInfo;
+
+		if (isset(this->repositories[entityName])) {
+			return this->repositories[entityName];
+		}
+
+       	let modelInfo = this->modelsManager->get(entityName);
+       	let this->repositories[entityName] = new EntityRepository(this, modelInfo);
+       	return this->repositories[entityName];
 	}
 
 	public function createQueryBuilder() -> <QueryBuilder>

@@ -3,6 +3,9 @@ namespace Lynx\Annotation;
 
 class ReflectionClassParser
 {
+    /**
+     * @var \ReflectionClass
+     */
     protected reflectionClass;
 
     public function __construct(var parameter)

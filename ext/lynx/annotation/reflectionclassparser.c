@@ -23,6 +23,9 @@ ZEPHIR_INIT_CLASS(Lynx_Annotation_ReflectionClassParser) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\Annotation, ReflectionClassParser, lynx, annotation_reflectionclassparser, lynx_annotation_reflectionclassparser_method_entry, 0);
 
+	/**
+	 * @var \ReflectionClass
+	 */
 	zend_declare_property_null(lynx_annotation_reflectionclassparser_ce, SL("reflectionClass"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
@@ -53,7 +56,7 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, __construct) {
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("reflectionClass"), _1 TSRMLS_CC);
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "$parameter must be class name (string) or object instance (object)", "lynx/Annotation/ReflectionClassParser.zep", 13);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "$parameter must be class name (string) or object instance (object)", "lynx/Annotation/ReflectionClassParser.zep", 16);
 		return;
 	}
 	ZEPHIR_MM_RESTORE();

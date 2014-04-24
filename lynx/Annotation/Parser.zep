@@ -1,7 +1,11 @@
 
 namespace Lynx\Annotation;
 
-final class Parser {
+final class Parser
+{
+    /**
+     * @return array
+     */
     public static function parseAnnotations(var docComment)
     {
         var hasAnnotations, matches = [], anno, annoName, val, hasParams, params = [], param;
@@ -59,6 +63,7 @@ final class Parser {
 
 		return annotations;
     }
+
 
     /**
      * @return mixed

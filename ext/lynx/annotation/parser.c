@@ -28,6 +28,9 @@ ZEPHIR_INIT_CLASS(Lynx_Annotation_Parser) {
 
 }
 
+/**
+ * @return array
+ */
 PHP_METHOD(Lynx_Annotation_Parser, parseAnnotations) {
 
 	zval *_14 = NULL;

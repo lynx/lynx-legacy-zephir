@@ -17,6 +17,8 @@
 #include "lynx/orm/entitymanager.h"
 #include "lynx/orm/entityrepository.h"
 #include "lynx/orm/exception.h"
+#include "lynx/orm/modelmetadata.h"
+#include "lynx/orm/modelsmanager.h"
 #include "lynx/orm/query.h"
 #include "lynx/orm/querybuilder.h"
 #include "lynx/orm/sqlbuilder.h"

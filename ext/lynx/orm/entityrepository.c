@@ -30,15 +30,30 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_EntityRepository) {
 	 */
 	zend_declare_property_null(lynx_orm_entityrepository_ce, SL("em"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	/**
+	 * @var ModelMetaData
+	 */
+	zend_declare_property_null(lynx_orm_entityrepository_ce, SL("modelWrapper"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
 	return SUCCESS;
+
+}
+
+/**
+ * @var EntityManager
+ */
+PHP_METHOD(Lynx_ORM_EntityRepository, getEm) {
+
+
+	RETURN_MEMBER(this_ptr, "em");
 
 }
 
 PHP_METHOD(Lynx_ORM_EntityRepository, __construct) {
 
-	zval *em;
+	zval *em, *modelWrapper;
 
-	zephir_fetch_params(0, 1, 0, &em);
+	zephir_fetch_params(0, 2, 0, &em, &modelWrapper);
 
 
 
@@ -46,7 +61,12 @@ PHP_METHOD(Lynx_ORM_EntityRepository, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
 		return;
 	}
+	if (!(zephir_instance_of_ev(modelWrapper, lynx_orm_modelmetadata_ce TSRMLS_CC))) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'modelWrapper' must be an instance of 'Lynx\\ORM\\ModelMetaData'", "", 0);
+		return;
+	}
 	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("modelWrapper"), modelWrapper TSRMLS_CC);
 
 }
 

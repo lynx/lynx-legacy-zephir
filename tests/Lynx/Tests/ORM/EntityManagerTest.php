@@ -34,4 +34,10 @@ class EntityManagerTest
 		$queryBuilder = $this->_em->createQuery($sql);
 		$this->assertTrue($queryBuilder instanceof ORM\Query);
 	}
+
+    public function testGetRepositorySuccess()
+    {
+        $result = $this->_em->getRepository('Model\User');
+        $this->assertInstanceOf('Lynx\\ORM\\EntityRepository', $result);
+    }
 }

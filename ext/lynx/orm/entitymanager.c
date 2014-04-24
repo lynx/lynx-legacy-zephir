@@ -16,6 +16,8 @@
 #include "kernel/exception.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/array.h"
+#include "ext/spl/spl_exceptions.h"
 
 
 /**
@@ -32,6 +34,10 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_EntityManager) {
 
 	zend_declare_property_null(lynx_orm_entitymanager_ce, SL("connection"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	zend_declare_property_null(lynx_orm_entitymanager_ce, SL("modelsManager"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
+	zend_declare_property_null(lynx_orm_entitymanager_ce, SL("repositories"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
 	return SUCCESS;
 
 }
@@ -43,10 +49,17 @@ PHP_METHOD(Lynx_ORM_EntityManager, getConnection) {
 
 }
 
+PHP_METHOD(Lynx_ORM_EntityManager, getModelsManager) {
+
+
+	RETURN_MEMBER(this_ptr, "modelsManager");
+
+}
+
 PHP_METHOD(Lynx_ORM_EntityManager, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *connection, *_0;
+	zval *connection, *_0, *_1;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &connection);
@@ -63,6 +76,13 @@ PHP_METHOD(Lynx_ORM_EntityManager, __construct) {
 	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, this_ptr);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("unitOfWork"), _0 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_1);
+	object_init_ex(_1, lynx_orm_modelsmanager_ce);
+	if (zephir_has_constructor(_1 TSRMLS_CC)) {
+		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL);
+		zephir_check_call_status();
+	}
+	zephir_update_property_this(this_ptr, SL("modelsManager"), _1 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -75,6 +95,76 @@ PHP_METHOD(Lynx_ORM_EntityManager, flush) {
 
 
 
+
+}
+
+PHP_METHOD(Lynx_ORM_EntityManager, commit) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *_0;
+
+	ZEPHIR_MM_GROW();
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(NULL, _0, "commit", NULL);
+	zephir_check_call_status();
+	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(Lynx_ORM_EntityManager, rollback) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *_0;
+
+	ZEPHIR_MM_GROW();
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(NULL, _0, "rollback", NULL);
+	zephir_check_call_status();
+	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(Lynx_ORM_EntityManager, getRepository) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *entityName_param = NULL, *modelInfo = NULL, *_0, *_1, *_2, *_3, *_4;
+	zval *entityName = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &entityName_param);
+
+	if (unlikely(Z_TYPE_P(entityName_param) != IS_STRING && Z_TYPE_P(entityName_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'entityName' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(entityName_param) == IS_STRING)) {
+		entityName = entityName_param;
+	} else {
+		ZEPHIR_INIT_VAR(entityName);
+		ZVAL_EMPTY_STRING(entityName);
+	}
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("repositories"), PH_NOISY_CC);
+	if (zephir_array_isset(_0, entityName)) {
+		_1 = zephir_fetch_nproperty_this(this_ptr, SL("repositories"), PH_NOISY_CC);
+		zephir_array_fetch(&_2, _1, entityName, PH_NOISY | PH_READONLY TSRMLS_CC);
+		RETURN_CTOR(_2);
+	}
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("modelsManager"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&modelInfo, _1, "get", NULL, entityName);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_3);
+	object_init_ex(_3, lynx_orm_entityrepository_ce);
+	ZEPHIR_CALL_METHOD(NULL, _3, "__construct", NULL, this_ptr, modelInfo);
+	zephir_check_call_status();
+	zephir_update_property_array(this_ptr, SL("repositories"), entityName, _3 TSRMLS_CC);
+	_4 = zephir_fetch_nproperty_this(this_ptr, SL("repositories"), PH_NOISY_CC);
+	zephir_array_fetch(&_2, _4, entityName, PH_NOISY | PH_READONLY TSRMLS_CC);
+	RETURN_CTOR(_2);
 
 }
 

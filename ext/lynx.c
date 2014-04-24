@@ -37,6 +37,8 @@ zend_class_entry *lynx_dbal_driver_pdo_statement_ce;
 zend_class_entry *lynx_orm_entitymanager_ce;
 zend_class_entry *lynx_orm_entityrepository_ce;
 zend_class_entry *lynx_orm_exception_ce;
+zend_class_entry *lynx_orm_modelmetadata_ce;
+zend_class_entry *lynx_orm_modelsmanager_ce;
 zend_class_entry *lynx_orm_query_ce;
 zend_class_entry *lynx_orm_querybuilder_ce;
 zend_class_entry *lynx_orm_sqlbuilder_ce;
@@ -219,6 +221,8 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_ORM_EntityManager);
 	ZEPHIR_INIT(Lynx_ORM_EntityRepository);
 	ZEPHIR_INIT(Lynx_ORM_Exception);
+	ZEPHIR_INIT(Lynx_ORM_ModelMetaData);
+	ZEPHIR_INIT(Lynx_ORM_ModelsManager);
 	ZEPHIR_INIT(Lynx_ORM_Query);
 	ZEPHIR_INIT(Lynx_ORM_QueryBuilder);
 	ZEPHIR_INIT(Lynx_ORM_SqlBuilder);

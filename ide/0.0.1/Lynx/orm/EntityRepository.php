@@ -8,8 +8,17 @@ class EntityRepository
 	 * @var EntityManager
 	 */
 	protected $em;
+	/**
+	 * @var ModelMetaData
+	 */
+	protected $modelWrapper;
 
-	public function __construct($em) {}
+	/**
+	 * @var EntityManager
+	 */
+	public function getEm() {}
+
+	public function __construct($em, $modelWrapper) {}
 
 	/**
 	 * @todo set alias to QueryBuilder

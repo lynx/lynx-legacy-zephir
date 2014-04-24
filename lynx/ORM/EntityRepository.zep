@@ -11,11 +11,17 @@ class EntityRepository
     /**
      * @var EntityManager
      */
-    protected em;
+    protected em {get};
 
-    public function __construct(<EntityManager> em)
+    /**
+     * @var ModelMetaData
+     */
+    protected modelWrapper;
+
+    public function __construct(<EntityManager> em, <ModelMetaData> modelWrapper)
     {
         let this->em = em;
+        let this->modelWrapper = modelWrapper;
     }
 
     /**
