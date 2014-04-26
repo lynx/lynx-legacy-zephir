@@ -272,7 +272,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, limit) {
 	}
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(_0, limit);
-	zephir_update_property_zval(this_ptr, SL("limit"), _0 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("limit"), _0 TSRMLS_CC);
 	RETURN_THISW();
 
 }
@@ -289,7 +289,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, offset) {
 
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(_0, offset);
-	zephir_update_property_zval(this_ptr, SL("offset"), _0 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("offset"), _0 TSRMLS_CC);
 	RETURN_THISW();
 
 }
