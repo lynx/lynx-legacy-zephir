@@ -6,12 +6,18 @@ class ModelMetaData
 {
 	protected $classname;
 	protected $tablename;
-	protected $columns;
+	protected $properties;
 
 	public function getClassname() {}
 
 	public function getTablename() {}
 
 	public function __construct($classname) {}
+
+	public function getProperties() {}
+
+	public function getProperty($key) {}
+
+	public function getPrimaryKey() {}
 
 }

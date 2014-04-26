@@ -17,6 +17,7 @@
 #include "kernel/object.h"
 #include "kernel/exception.h"
 #include "kernel/hash.h"
+#include "kernel/array.h"
 
 
 ZEPHIR_INIT_CLASS(Lynx_Annotation_ReflectionClassParser) {
@@ -82,12 +83,15 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getClassAnnotations) {
 
 PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getPropertiesAnnotations) {
 
+	zephir_fcall_cache_entry *_5 = NULL;
 	HashTable *_2;
 	HashPosition _1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *properties = NULL, *property = NULL, *_0, **_3;
+	zval *properties = NULL, *property = NULL, *result, *_0, **_3, *_4 = NULL, *_6 = NULL, *_7 = NULL;
 
 	ZEPHIR_MM_GROW();
+	ZEPHIR_INIT_VAR(result);
+	array_init(result);
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("reflectionClass"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&properties, _0, "getproperties",  NULL);
@@ -98,8 +102,15 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getPropertiesAnnotations) {
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HVALUE(property, _3);
+		ZEPHIR_CALL_METHOD(&_6, property, "getdoccomment",  NULL);
+		zephir_check_call_status();
+		ZEPHIR_CALL_CE_STATIC(&_4, lynx_annotation_regexdocparser_ce, "parseannotations", &_5, _6);
+		zephir_check_call_status();
+		ZEPHIR_CALL_METHOD(&_7, property, "getname",  NULL);
+		zephir_check_call_status();
+		zephir_array_update_zval(&result, _7, &_4, PH_COPY | PH_SEPARATE);
 	}
-	ZEPHIR_MM_RESTORE();
+	RETURN_CCTOR(result);
 
 }
 

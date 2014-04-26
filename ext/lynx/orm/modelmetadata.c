@@ -16,6 +16,8 @@
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
+#include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
 
 
 ZEPHIR_INIT_CLASS(Lynx_ORM_ModelMetaData) {
@@ -26,7 +28,7 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_ModelMetaData) {
 
 	zend_declare_property_null(lynx_orm_modelmetadata_ce, SL("tablename"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(lynx_orm_modelmetadata_ce, SL("columns"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(lynx_orm_modelmetadata_ce, SL("properties"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -49,7 +51,7 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getTablename) {
 PHP_METHOD(Lynx_ORM_ModelMetaData, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *classname, *parser, *result = NULL, *_0, *_1;
+	zval *classname, *parser, *result = NULL, *_0, *_1, *_2 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &classname);
@@ -66,7 +68,60 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, __construct) {
 	zephir_array_fetch_string(&_0, result, SL("table"), PH_NOISY | PH_READONLY TSRMLS_CC);
 	zephir_array_fetch_string(&_1, _0, SL("name"), PH_NOISY | PH_READONLY TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("tablename"), _1 TSRMLS_CC);
+	ZEPHIR_CALL_METHOD(&_2, parser, "getpropertiesannotations",  NULL);
+	zephir_check_call_status();
+	zephir_update_property_this(this_ptr, SL("properties"), _2 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(Lynx_ORM_ModelMetaData, getProperties) {
+
+	zval *_0;
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("properties"), PH_NOISY_CC);
+	if (!Z_TYPE_P(_0) == IS_NULL) {
+		RETURN_MEMBER(this_ptr, "properties");
+	}
+	array_init(return_value);
+	return;
+
+}
+
+PHP_METHOD(Lynx_ORM_ModelMetaData, getProperty) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *key_param = NULL, *properties = NULL, *_0;
+	zval *key = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &key_param);
+
+	if (unlikely(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(key_param) == IS_STRING)) {
+		key = key_param;
+	} else {
+		ZEPHIR_INIT_VAR(key);
+		ZVAL_EMPTY_STRING(key);
+	}
+
+
+	ZEPHIR_CALL_METHOD(&properties, this_ptr, "getproperties",  NULL);
+	zephir_check_call_status();
+	zephir_array_fetch_string(&_0, properties, SL("id"), PH_NOISY | PH_READONLY TSRMLS_CC);
+	RETURN_CTOR(_0);
+
+}
+
+PHP_METHOD(Lynx_ORM_ModelMetaData, getPrimaryKey) {
+
+
+	RETURN_STRING("id", 1);
 
 }
 

@@ -8,7 +8,7 @@ class ModelMetaData
 
 	protected tablename {get};
 
-	protected columns;
+	protected properties;
 
 	public function __construct(classname)
 	{
@@ -21,5 +21,28 @@ class ModelMetaData
 
 
         let this->tablename = result["table"]["name"];
+        let this->properties = parser->getPropertiesAnnotations();
+	}
+
+	public function getProperties()
+	{
+		if (!is_null(this->properties)) {
+			return this->properties;
+		}
+		
+		return [];
+	}
+
+	public function getProperty(string! key)
+	{
+		var properties;
+		let properties = this->getProperties();
+
+		return properties["id"];
+	}
+
+	public function getPrimaryKey()
+	{
+		return "id";
 	}
 }

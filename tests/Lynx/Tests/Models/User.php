@@ -13,7 +13,8 @@ namespace Model;
 class User
 {
     /**
-     * @Id @Column(type="integer")
+     * @Id 
+     * @Column(type="integer", length=11)
      */
     private $id;
 

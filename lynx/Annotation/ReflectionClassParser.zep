@@ -28,11 +28,13 @@ class ReflectionClassParser
 
     public function getPropertiesAnnotations()
     {
-        var properties, property;
+        var properties, property, result = [];
         let properties = this->reflectionClass->getProperties();
 
         for property in properties {
-
+            let result[property->getName()] = RegexDocParser::parseAnnotations(property->getDocComment());
         }
+
+        return result;
     }
 }
