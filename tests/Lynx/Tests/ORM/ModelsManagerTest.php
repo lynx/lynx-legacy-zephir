@@ -11,10 +11,11 @@ use Lynx\ORM,
 class ModalsManagerTest
 	extends TestCase
 {
-	public function testCreateQueryBuilder()
+	public function testGetModel()
 	{
-		$modalsManager = $this->_em->getModelsManager();
-		$modalMetaData = $modalsManager->get('Model\User');
-		var_dump($modalMetaData->getProperty('id'));
+		$modelsManager = $this->_em->getModelsManager();
+		$result = $modelsManager->get('Model\User');
+
+        $this->assertInstanceOf('Lynx\\ORM\\ModelMetaData', $result);
 	}
 }

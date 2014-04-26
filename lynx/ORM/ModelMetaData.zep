@@ -29,7 +29,7 @@ class ModelMetaData
 		if (!is_null(this->properties)) {
 			return this->properties;
 		}
-		
+
 		return [];
 	}
 
@@ -38,11 +38,11 @@ class ModelMetaData
 		var properties;
 		let properties = this->getProperties();
 
-		return properties["id"];
+		return properties[key];
 	}
 
 	public function getPrimaryKey()
 	{
-		return "id";
+		return this->getProperty("id");
 	}
 }

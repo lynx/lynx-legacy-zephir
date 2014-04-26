@@ -217,13 +217,13 @@ PHP_METHOD(Lynx_Annotation_RegexDocParser, parseValue) {
 			ZVAL_LONG(&_12, 1);
 			ZEPHIR_CALL_FUNCTION(&_10, "substr", &_3, val, &_1, &_12);
 			zephir_check_call_status();
-			_14 = ZEPHIR_IS_LONG(_10, '"');
+			_14 = ZEPHIR_IS_STRING(_10, "\"");
 			if (_14) {
 				ZEPHIR_SINIT_NVAR(_1);
 				ZVAL_LONG(&_1, -1);
 				ZEPHIR_CALL_FUNCTION(&_15, "substr", &_3, val, &_1);
 				zephir_check_call_status();
-				_14 = ZEPHIR_IS_LONG(_15, '"');
+				_14 = ZEPHIR_IS_STRING(_15, "\"");
 			}
 			if (_14) {
 				ZEPHIR_SINIT_NVAR(_1);

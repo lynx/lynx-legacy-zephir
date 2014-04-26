@@ -87,12 +87,12 @@ final class RegexDocParser
 		} else {
             if (substr(val, 0, 1) == "{" && substr(val, -1) == "}") {
                 // If is json object that start with { } decode them
-                return json_decode($val);
+                return json_decode(val);
             } else {
-                if (substr($val, 0, 1) == '"' && substr($val, -1) == '"') {
+                if (substr(val, 0, 1) == "\"" && substr(val, -1) == "\"") {
                     // Quoted value, remove the quotes then recursively parse and return
                     let val = substr(val, 1, -1);
-                    return self::parseValue($val);
+                    return self::parseValue(val);
                 } else {
                     if (strtolower(val) == "true") {
                         // Boolean value = true

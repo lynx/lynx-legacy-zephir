@@ -40,4 +40,10 @@ class EntityManagerTest
         $result = $this->_em->getRepository('Model\User');
         $this->assertInstanceOf('Lynx\\ORM\\EntityRepository', $result);
     }
+
+	public function testGetModelsManager()
+	{
+		$result = $this->_em->getModelsManager();
+		$this->assertInstanceOf('Lynx\\ORM\\ModelsManager', $result);
+	}
 }
