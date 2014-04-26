@@ -16,8 +16,8 @@
 #include "kernel/exception.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
-#include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
+#include "kernel/array.h"
 
 
 /**
@@ -35,6 +35,8 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_EntityManager) {
 	zend_declare_property_null(lynx_orm_entitymanager_ce, SL("connection"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(lynx_orm_entitymanager_ce, SL("modelsManager"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
+	zend_declare_property_null(lynx_orm_entitymanager_ce, SL("eventManager"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(lynx_orm_entitymanager_ce, SL("repositories"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
@@ -56,13 +58,20 @@ PHP_METHOD(Lynx_ORM_EntityManager, getModelsManager) {
 
 }
 
+PHP_METHOD(Lynx_ORM_EntityManager, getEventManager) {
+
+
+	RETURN_MEMBER(this_ptr, "eventManager");
+
+}
+
 PHP_METHOD(Lynx_ORM_EntityManager, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *connection, *_0, *_1;
+	zval *connection, *eventManager, *_0, *_1;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &connection);
+	zephir_fetch_params(1, 2, 0, &connection, &eventManager);
 
 
 
@@ -70,6 +79,11 @@ PHP_METHOD(Lynx_ORM_EntityManager, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'connection' must be an instance of 'Lynx\\DBAL\\Connection'", "", 0);
 		return;
 	}
+	if (!(zephir_instance_of_ev(eventManager, lynx_stdlib_eventmanager_ce TSRMLS_CC))) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'eventManager' must be an instance of 'Lynx\\Stdlib\\EventManager'", "", 0);
+		return;
+	}
+	zephir_update_property_this(this_ptr, SL("eventManager"), eventManager TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("connection"), connection TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_0);
 	object_init_ex(_0, lynx_orm_unitofwork_ce);
@@ -92,6 +106,22 @@ PHP_METHOD(Lynx_ORM_EntityManager, flush) {
 	zval *entity;
 
 	zephir_fetch_params(0, 1, 0, &entity);
+
+
+
+
+}
+
+PHP_METHOD(Lynx_ORM_EntityManager, remove) {
+
+	zval *entity;
+
+	zephir_fetch_params(0, 1, 0, &entity);
+
+	if (unlikely(Z_TYPE_P(entity) != IS_OBJECT)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'entity' must be an object") TSRMLS_CC);
+		RETURN_NULL();
+	}
 
 
 

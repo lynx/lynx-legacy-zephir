@@ -7,7 +7,8 @@
 namespace Lynx\Tests\ORM;
 
 use Lynx\ORM,
-    Lynx\DBAl;
+    Lynx\DBAl,
+    Lynx\Stdlib\EventManager;
 
 class TestCase
 	extends \PHPUnit_Framework_TestCase
@@ -22,6 +23,6 @@ class TestCase
 		parent::setUp();
 
 		$connection = \Lynx\Tests\Utils::getConnection();
-		$this->_em = new ORM\EntityManager($connection);
+		$this->_em = new ORM\EntityManager($connection, new EventManager());
 	}
 } 

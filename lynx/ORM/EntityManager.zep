@@ -5,6 +5,7 @@
 namespace Lynx\ORM;
 
 use Lynx\DBAL\Connection;
+use Lynx\Stdlib\EventManager;
 
 class EntityManager
 {
@@ -17,16 +18,24 @@ class EntityManager
 
 	protected modelsManager {get};
 
+	protected eventManager {get};
+
 	protected repositories;
 
-	public function __construct(<Connection> connection)
+	public function __construct(<Connection> connection, <EventManager> eventManager)
 	{
+		let this->eventManager = eventManager;
 		let this->connection = connection;
 		let this->unitOfWork = new UnitOfWork(this);
 		let this->modelsManager = new ModelsManager();
 	}
 
 	public function flush(var entity)
+	{
+
+	}
+
+	public function remove(object! entity)
 	{
 
 	}

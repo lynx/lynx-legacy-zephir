@@ -23,5 +23,6 @@
 #include "lynx/orm/querybuilder.h"
 #include "lynx/orm/sqlbuilder.h"
 #include "lynx/orm/unitofwork.h"
+#include "lynx/stdlib/eventmanager.h"
 
 #endif

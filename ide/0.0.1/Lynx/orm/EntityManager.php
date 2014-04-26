@@ -10,15 +10,20 @@ class EntityManager
 	protected $unitOfWork;
 	protected $connection;
 	protected $modelsManager;
+	protected $eventManager;
 	protected $repositories;
 
 	public function getConnection() {}
 
 	public function getModelsManager() {}
 
-	public function __construct($connection) {}
+	public function getEventManager() {}
+
+	public function __construct($connection, $eventManager) {}
 
 	public function flush($entity) {}
+
+	public function remove($entity) {}
 
 	public function beginTransaction() {}
 

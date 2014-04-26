@@ -43,6 +43,7 @@ zend_class_entry *lynx_orm_query_ce;
 zend_class_entry *lynx_orm_querybuilder_ce;
 zend_class_entry *lynx_orm_sqlbuilder_ce;
 zend_class_entry *lynx_orm_unitofwork_ce;
+zend_class_entry *lynx_stdlib_eventmanager_ce;
 
 ZEND_DECLARE_MODULE_GLOBALS(lynx)
 
@@ -227,6 +228,7 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_ORM_QueryBuilder);
 	ZEPHIR_INIT(Lynx_ORM_SqlBuilder);
 	ZEPHIR_INIT(Lynx_ORM_UnitOfWork);
+	ZEPHIR_INIT(Lynx_Stdlib_EventManager);
 
 #if PHP_VERSION_ID < 50500
 	setlocale(LC_ALL, old_lc_all);
