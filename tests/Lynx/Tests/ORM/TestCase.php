@@ -29,7 +29,6 @@ class TestCase
 		$configuration = new ORM\Configuration();
 		$configuration->setCacheDriver(new Cache\NativeArray());
 
-
 		$eventManager = new EventManager();
 
 		$this->_em = new ORM\EntityManager($connection, $configuration, $eventManager);

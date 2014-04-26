@@ -3,6 +3,9 @@
  * @author Patsura Dmitry <zaets28rus@gmail.com>
  */
 
+use Lynx\Annotation\RegexDocParser;
+use Lynx\Annotation\ReflectionClassParser;
+
 class ParserTest extends \PHPUnit_Framework_TestCase
 {
     public function testParseAnnotation()
@@ -13,14 +16,14 @@ class ParserTest extends \PHPUnit_Framework_TestCase
  */
 EOT;
 
-        $returnValue = \Lynx\Annotation\Parser::parseAnnotations($comment);
+        $returnValue = RegexDocParser::parseAnnotations($comment);
         $this->assertInternalType('array', $returnValue);
         $this->assertCount(1, $returnValue);
     }
 
     protected function reflectionClassParserTest($class)
     {
-        $annotationsReflector = new \Lynx\Annotation\ReflectionClassParser($class);
+        $annotationsReflector = new ReflectionClassParser($class);
         $returnValue = $annotationsReflector->getClassAnnotations();
         $this->assertInternalType('array', $returnValue);
         $this->assertCount(2, $returnValue);
