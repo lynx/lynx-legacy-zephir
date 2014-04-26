@@ -12,6 +12,7 @@ class EntityManager
 	protected $modelsManager;
 	protected $eventManager;
 	protected $repositories;
+	protected $configuration;
 
 	public function getConnection() {}
 
@@ -19,7 +20,9 @@ class EntityManager
 
 	public function getEventManager() {}
 
-	public function __construct($connection, $eventManager) {}
+	public function getConfiguration() {}
+
+	public function __construct($connection, $configuration, $eventManager) {}
 
 	public function flush($entity) {}
 

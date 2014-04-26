@@ -22,12 +22,16 @@ class EntityManager
 
 	protected repositories;
 
-	public function __construct(<Connection> connection, <EventManager> eventManager)
+	protected configuration {get};
+
+	public function __construct(<Connection> connection, <Configuration> configuration, <EventManager> eventManager)
 	{
 		let this->eventManager = eventManager;
 		let this->connection = connection;
+		let this->configuration = configuration;
+
 		let this->unitOfWork = new UnitOfWork(this);
-		let this->modelsManager = new ModelsManager();
+		let this->modelsManager = new ModelsManager(this);
 	}
 
 	public function flush(var entity)

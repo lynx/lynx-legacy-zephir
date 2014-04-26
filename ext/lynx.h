@@ -4,8 +4,8 @@
 #ifndef ZEPHIR_CLASS_ENTRIES_H
 #define ZEPHIR_CLASS_ENTRIES_H
 
-#include "lynx/annotation/parser.h"
 #include "lynx/annotation/reflectionclassparser.h"
+#include "lynx/annotation/regexdocparser.h"
 #include "lynx/cache/cachedriver.h"
 #include "lynx/cache/memcache.h"
 #include "lynx/cache/memcached.h"
@@ -14,6 +14,7 @@
 #include "lynx/dbal/driver/connection.h"
 #include "lynx/dbal/driver/pdo/statement.h"
 #include "lynx/dbal/driver/pdo.h"
+#include "lynx/orm/configuration.h"
 #include "lynx/orm/entitymanager.h"
 #include "lynx/orm/entityrepository.h"
 #include "lynx/orm/exception.h"

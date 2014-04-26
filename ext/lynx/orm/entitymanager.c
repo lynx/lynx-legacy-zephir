@@ -40,6 +40,8 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_EntityManager) {
 
 	zend_declare_property_null(lynx_orm_entitymanager_ce, SL("repositories"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	zend_declare_property_null(lynx_orm_entitymanager_ce, SL("configuration"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
 	return SUCCESS;
 
 }
@@ -65,18 +67,29 @@ PHP_METHOD(Lynx_ORM_EntityManager, getEventManager) {
 
 }
 
+PHP_METHOD(Lynx_ORM_EntityManager, getConfiguration) {
+
+
+	RETURN_MEMBER(this_ptr, "configuration");
+
+}
+
 PHP_METHOD(Lynx_ORM_EntityManager, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *connection, *eventManager, *_0, *_1;
+	zval *connection, *configuration, *eventManager, *_0, *_1;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 0, &connection, &eventManager);
+	zephir_fetch_params(1, 3, 0, &connection, &configuration, &eventManager);
 
 
 
 	if (!(zephir_instance_of_ev(connection, lynx_dbal_connection_ce TSRMLS_CC))) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'connection' must be an instance of 'Lynx\\DBAL\\Connection'", "", 0);
+		return;
+	}
+	if (!(zephir_instance_of_ev(configuration, lynx_orm_configuration_ce TSRMLS_CC))) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'configuration' must be an instance of 'Lynx\\ORM\\Configuration'", "", 0);
 		return;
 	}
 	if (!(zephir_instance_of_ev(eventManager, lynx_stdlib_eventmanager_ce TSRMLS_CC))) {
@@ -85,6 +98,7 @@ PHP_METHOD(Lynx_ORM_EntityManager, __construct) {
 	}
 	zephir_update_property_this(this_ptr, SL("eventManager"), eventManager TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("connection"), connection TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("configuration"), configuration TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_0);
 	object_init_ex(_0, lynx_orm_unitofwork_ce);
 	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, this_ptr);
@@ -92,10 +106,8 @@ PHP_METHOD(Lynx_ORM_EntityManager, __construct) {
 	zephir_update_property_this(this_ptr, SL("unitOfWork"), _0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	object_init_ex(_1, lynx_orm_modelsmanager_ce);
-	if (zephir_has_constructor(_1 TSRMLS_CC)) {
-		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL);
-		zephir_check_call_status();
-	}
+	ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, this_ptr);
+	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("modelsManager"), _1 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 

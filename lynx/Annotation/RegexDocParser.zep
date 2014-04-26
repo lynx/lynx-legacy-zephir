@@ -1,7 +1,7 @@
 
 namespace Lynx\Annotation;
 
-final class Parser
+final class RegexDocParser
 {
     /**
      * @return array

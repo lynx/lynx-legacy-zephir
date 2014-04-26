@@ -22,7 +22,7 @@ class ReflectionClassParser
         var docComment, result;
         let docComment = this->reflectionClass->getDocComment();
 
-        let result = Parser::parseAnnotations(docComment);
+        let result = RegexDocParser::parseAnnotations(docComment);
         return result;
     }
 

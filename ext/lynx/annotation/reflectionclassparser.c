@@ -74,7 +74,7 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getClassAnnotations) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("reflectionClass"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&docComment, _0, "getdoccomment",  NULL);
 	zephir_check_call_status();
-	ZEPHIR_CALL_CE_STATIC(&result, lynx_annotation_parser_ce, "parseannotations", &_1, docComment);
+	ZEPHIR_CALL_CE_STATIC(&result, lynx_annotation_regexdocparser_ce, "parseannotations", &_1, docComment);
 	zephir_check_call_status();
 	RETURN_CCTOR(result);
 
