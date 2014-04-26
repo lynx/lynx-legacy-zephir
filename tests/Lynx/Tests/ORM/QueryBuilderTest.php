@@ -33,7 +33,7 @@ class QueryBuilderTest
     public function testGetSQl()
 	{
 		$queryBuilder = $this->_em->createQueryBuilder();
-		$queryBuilder->select()->from('User', 'u');
+		$queryBuilder->select()->from('Model\User', 'u');
 
 		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
 
@@ -44,7 +44,7 @@ class QueryBuilderTest
 	public function testGetQuery()
 	{
 		$queryBuilder = $this->_em->createQueryBuilder();
-		$queryBuilder->select()->from('User', 'u');
+		$queryBuilder->select()->from('Model\User', 'u');
 		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
 
 		$query = $queryBuilder->getQuery();
@@ -56,14 +56,14 @@ class QueryBuilderTest
 
 		$queryBuilder = $this->_em->createQueryBuilder();
 
-		$queryBuilder->select()->from('User', 'u');
-		$this->assertEquals('SELECT * FROM User', $queryBuilder->getSQL());
+		$queryBuilder->select()->from('Model\User', 'u');
+		$this->assertEquals('SELECT * FROM `users` u', $queryBuilder->getSQL());
 
 		$queryBuilder->limit(1);
-		$this->assertEquals('SELECT * FROM User LIMIT 1', $queryBuilder->getSQL());
+		$this->assertEquals('SELECT * FROM `users` u LIMIT 1', $queryBuilder->getSQL());
 
 		$queryBuilder->offset(1);
-		$this->assertEquals('SELECT * FROM User LIMIT 1,1', $queryBuilder->getSQL());
+		$this->assertEquals('SELECT * FROM `users` u LIMIT 1,1', $queryBuilder->getSQL());
 
 		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);	}
 } 

@@ -7,7 +7,7 @@ class QueryBuilder
 	const SELECT = 1;
 	const UPDATE = 2;
 	const DELETE = 3;
-	protected $alias;
+	protected $alias = "default";
 	protected $from;
 	protected $parts;
 	protected $where;
@@ -52,6 +52,8 @@ class QueryBuilder
 	public function limit($limit) {}
 
 	public function offset($offset) {}
+
+	inline protected function wrap($id) {}
 
 	public function getSQL() {}
 

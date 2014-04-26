@@ -20,6 +20,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, orWhere);
 PHP_METHOD(Lynx_ORM_QueryBuilder, orderBy);
 PHP_METHOD(Lynx_ORM_QueryBuilder, limit);
 PHP_METHOD(Lynx_ORM_QueryBuilder, offset);
+PHP_METHOD(Lynx_ORM_QueryBuilder, wrap);
 PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL);
 PHP_METHOD(Lynx_ORM_QueryBuilder, getQuery);
 
@@ -71,6 +72,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_offset, 0, 0, 1)
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_wrap, 0, 0, 1)
+	ZEND_ARG_INFO(0, id)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(lynx_orm_querybuilder_method_entry) {
 	PHP_ME(Lynx_ORM_QueryBuilder, getType, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, getLimit, NULL, ZEND_ACC_PUBLIC)
@@ -89,6 +94,7 @@ ZEPHIR_INIT_FUNCS(lynx_orm_querybuilder_method_entry) {
 	PHP_ME(Lynx_ORM_QueryBuilder, orderBy, arginfo_lynx_orm_querybuilder_orderby, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, limit, arginfo_lynx_orm_querybuilder_limit, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, offset, arginfo_lynx_orm_querybuilder_offset, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_ORM_QueryBuilder, wrap, arginfo_lynx_orm_querybuilder_wrap, ZEND_ACC_PROTECTED)
 	PHP_ME(Lynx_ORM_QueryBuilder, getSQL, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, getQuery, NULL, ZEND_ACC_PUBLIC)
   PHP_FE_END

@@ -10,7 +10,7 @@ class QueryBuilder
 	const UPDATE = 2;
 	const DELETE = 3;
 
-	protected alias;
+	protected alias = "default";
 
 	protected from;
 
@@ -132,6 +132,11 @@ class QueryBuilder
 		return this;
 	}
 
+	inline protected function wrap(string id)
+    {
+        return "`" . id . "`";
+    }
+
 	public function getSQL() -> string
 	{
 		var sql;
@@ -139,6 +144,9 @@ class QueryBuilder
 		if (is_null(this->from)) {
 			throw new \Exception("From field must be set");
 		}
+
+		var rootModel;
+		let rootModel = this->em->getModelsManager()->get(this->from);
 
 		switch(this->type) {
 			case self::SELECT:
@@ -152,7 +160,7 @@ class QueryBuilder
 				break;
 		}
 
-		let sql .= " FROM ".this->from;
+		let sql .= " FROM ".this->wrap(rootModel->getTablename())." ".this->alias;
 
 		if (!is_null(this->limit)) {
 			let sql .= " LIMIT ".this->limit;
