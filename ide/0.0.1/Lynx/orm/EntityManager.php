@@ -20,6 +20,8 @@ class EntityManager
 
 	public function flush($entity) {}
 
+	public function beginTransaction() {}
+
 	public function commit() {}
 
 	public function rollback() {}

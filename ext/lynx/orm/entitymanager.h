@@ -7,6 +7,7 @@ PHP_METHOD(Lynx_ORM_EntityManager, getConnection);
 PHP_METHOD(Lynx_ORM_EntityManager, getModelsManager);
 PHP_METHOD(Lynx_ORM_EntityManager, __construct);
 PHP_METHOD(Lynx_ORM_EntityManager, flush);
+PHP_METHOD(Lynx_ORM_EntityManager, beginTransaction);
 PHP_METHOD(Lynx_ORM_EntityManager, commit);
 PHP_METHOD(Lynx_ORM_EntityManager, rollback);
 PHP_METHOD(Lynx_ORM_EntityManager, getRepository);
@@ -34,6 +35,7 @@ ZEPHIR_INIT_FUNCS(lynx_orm_entitymanager_method_entry) {
 	PHP_ME(Lynx_ORM_EntityManager, getModelsManager, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_EntityManager, __construct, arginfo_lynx_orm_entitymanager___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Lynx_ORM_EntityManager, flush, arginfo_lynx_orm_entitymanager_flush, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_ORM_EntityManager, beginTransaction, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_EntityManager, commit, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_EntityManager, rollback, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_EntityManager, getRepository, arginfo_lynx_orm_entitymanager_getrepository, ZEND_ACC_PUBLIC)

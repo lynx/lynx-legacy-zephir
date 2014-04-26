@@ -98,6 +98,20 @@ PHP_METHOD(Lynx_ORM_EntityManager, flush) {
 
 }
 
+PHP_METHOD(Lynx_ORM_EntityManager, beginTransaction) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *_0;
+
+	ZEPHIR_MM_GROW();
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(NULL, _0, "begintransaction", NULL);
+	zephir_check_call_status();
+	ZEPHIR_MM_RESTORE();
+
+}
+
 PHP_METHOD(Lynx_ORM_EntityManager, commit) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

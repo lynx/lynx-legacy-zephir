@@ -31,6 +31,11 @@ class EntityManager
 
 	}
 
+	public function beginTransaction()
+	{
+		this->connection->beginTransaction();
+	}
+
     public function commit()
     {
         this->connection->commit();
