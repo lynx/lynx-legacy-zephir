@@ -377,10 +377,16 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 PHP_METHOD(Lynx_ORM_QueryBuilder, getQuery) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *query = NULL, *_0, *_1 = NULL;
+	zval *query = NULL, *identityMap, *_0, *_1 = NULL;
 
 	ZEPHIR_MM_GROW();
 
+	ZEPHIR_INIT_VAR(identityMap);
+	object_init_ex(identityMap, lynx_orm_queryidentitymap_ce);
+	if (zephir_has_constructor(identityMap TSRMLS_CC)) {
+		ZEPHIR_CALL_METHOD(NULL, identityMap, "__construct", NULL);
+		zephir_check_call_status();
+	}
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getsql",  NULL);
 	zephir_check_call_status();

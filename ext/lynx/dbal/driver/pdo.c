@@ -15,7 +15,6 @@
 #include "ext/pdo/php_pdo_driver.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
-#include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 #include "kernel/operators.h"
@@ -35,7 +34,7 @@ ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Pdo) {
 PHP_METHOD(Lynx_DBAL_Driver_Pdo, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *options = NULL, *_2;
+	zval *options = NULL;
 	zval *dsn_param = NULL, *username = NULL, *password = NULL, *options_param = NULL, *_0, *_1;
 	zval *dsn = NULL;
 
@@ -75,17 +74,11 @@ PHP_METHOD(Lynx_DBAL_Driver_Pdo, __construct) {
 	ZVAL_LONG(_1, 2);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setattribute", NULL, _0, _1);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(_2);
-	array_init_size(_2, 3);
 	ZEPHIR_INIT_BNVAR(_0);
-	ZVAL_STRING(_0, "Lynx\\DBAL\\Driver\\PDO\\Statement", 1);
-	zephir_array_fast_append(_2, _0);
-	ZEPHIR_INIT_BNVAR(_0);
-	array_init(_0);
-	zephir_array_fast_append(_2, _0);
-	ZEPHIR_INIT_BNVAR(_0);
-	ZVAL_LONG(_0, 13);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setattribute", NULL, _0, _2);
+	ZVAL_LONG(_0, 19);
+	ZEPHIR_INIT_BNVAR(_1);
+	ZVAL_LONG(_1, 2);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setattribute", NULL, _0, _1);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

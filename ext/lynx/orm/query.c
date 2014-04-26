@@ -15,6 +15,7 @@
 #include "kernel/object.h"
 #include "kernel/exception.h"
 #include "kernel/memory.h"
+#include "kernel/fcall.h"
 
 
 /**
@@ -51,57 +52,98 @@ PHP_METHOD(Lynx_ORM_Query, __construct) {
 
 PHP_METHOD(Lynx_ORM_Query, fetchArray) {
 
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *parameters = NULL;
 
-	zephir_fetch_params(0, 0, 1, &parameters);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &parameters);
 
 	if (!parameters) {
 		parameters = ZEPHIR_GLOBAL(global_null);
 	}
 
 
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getresult", NULL);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+PHP_METHOD(Lynx_ORM_Query, getResult) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *connection = NULL, *statement = NULL, *_0, *_1;
+
+	ZEPHIR_MM_GROW();
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&connection, _0, "getconnection",  NULL);
+	zephir_check_call_status();
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("query"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&statement, connection, "prepare", NULL, _1);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, statement, "execute", NULL);
+	zephir_check_call_status();
+	ZEPHIR_RETURN_CALL_METHOD(statement, "fetchall", NULL);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 
 PHP_METHOD(Lynx_ORM_Query, fetchAll) {
 
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *parameters = NULL;
 
-	zephir_fetch_params(0, 0, 1, &parameters);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &parameters);
 
 	if (!parameters) {
 		parameters = ZEPHIR_GLOBAL(global_null);
 	}
 
 
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getresult", NULL);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 
 PHP_METHOD(Lynx_ORM_Query, fetchObject) {
 
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *parameters = NULL;
 
-	zephir_fetch_params(0, 0, 1, &parameters);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &parameters);
 
 	if (!parameters) {
 		parameters = ZEPHIR_GLOBAL(global_null);
 	}
 
 
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getresult", NULL);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 
 PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *parameters = NULL;
 
-	zephir_fetch_params(0, 0, 1, &parameters);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &parameters);
 
 	if (!parameters) {
 		parameters = ZEPHIR_GLOBAL(global_null);
 	}
 
 
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getresult", NULL);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 

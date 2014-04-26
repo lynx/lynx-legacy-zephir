@@ -22,6 +22,7 @@
 #include "lynx/orm/modelsmanager.h"
 #include "lynx/orm/query.h"
 #include "lynx/orm/querybuilder.h"
+#include "lynx/orm/queryidentitymap.h"
 #include "lynx/orm/sqlbuilder.h"
 #include "lynx/orm/unitofwork.h"
 #include "lynx/stdlib/eventmanager.h"

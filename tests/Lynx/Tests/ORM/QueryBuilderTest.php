@@ -58,12 +58,18 @@ class QueryBuilderTest
 
 		$queryBuilder->select()->from('Model\User', 'u');
 		$this->assertEquals('SELECT * FROM `users` u', $queryBuilder->getSQL());
+		$query = $queryBuilder->getQuery();
+		$this->assertInternalType('array', $query->fetchArray());
 
 		$queryBuilder->limit(1);
 		$this->assertEquals('SELECT * FROM `users` u LIMIT 1', $queryBuilder->getSQL());
+//        $query = $queryBuilder->getQuery();
+//        $this->assertInternalType('array', $query->fetchArray());
 
 		$queryBuilder->offset(1);
 		$this->assertEquals('SELECT * FROM `users` u LIMIT 1,1', $queryBuilder->getSQL());
+//        $query = $queryBuilder->getQuery();
+//        $this->assertInternalType('array', $query->fetchArray());
 
 		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);	}
 } 

@@ -27,9 +27,4 @@ class ConnectionTest
 	{
 		$this->assertTrue($this->_connection instanceof DBAL\Connection);
 	}
-
-	public function testIsConnected()
-	{
-//		$this->assertTrue($this->_connection->isConnected());
-	}
 }

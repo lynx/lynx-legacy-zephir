@@ -175,7 +175,9 @@ class QueryBuilder
 
 	public function getQuery() -> <Query>
 	{
-		var query;
+		var query, identityMap;
+
+		let identityMap = new QueryIdentityMap();
 		let query = this->em->createQuery(this->getSQL());
 
 		return query;

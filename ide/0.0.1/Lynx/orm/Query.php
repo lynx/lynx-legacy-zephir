@@ -11,6 +11,8 @@ class Query
 
 	public function fetchArray($parameters = null) {}
 
+	public function getResult() {}
+
 	public function fetchAll($parameters = null) {}
 
 	public function fetchObject($parameters = null) {}

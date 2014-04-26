@@ -16,23 +16,33 @@ class Query
 		let this->em = em;
 	}
 
-	public function fetchArray($parameters = null)
+	public function fetchArray(var parameters = null)
 	{
+		return this->getResult();
+	}
 
+	public function getResult()
+	{
+		var connection, statement;
+		let connection = this->em->getConnection();
+
+		let statement = connection->prepare(this->query);
+		statement->execute();
+		return statement->fetchAll();
 	}
 
 	public function fetchAll($parameters = null)
 	{
-
+		return this->getResult();
 	}
 
 	public function fetchObject($parameters = null)
 	{
-
+		return this->getResult();
 	}
 
 	public function fetchOne($parameters = null)
 	{
-
+		return this->getResult();
 	}
 }
