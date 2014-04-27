@@ -5,7 +5,7 @@
 namespace Lynx\ORM;
 
 use Lynx\DBAL\Connection;
-use Lynx\Stdlib\EventManager;
+use Lynx\Stdlib\Events\Manager as EventsManager;
 
 class EntityManager
 {
@@ -24,7 +24,7 @@ class EntityManager
 
 	protected configuration {get};
 
-	public function __construct(<Connection> connection, <Configuration> configuration, <EventManager> eventManager)
+	public function __construct(<Connection> connection, <Configuration> configuration, <EventsManager> eventManager)
 	{
 		let this->eventManager = eventManager;
 		let this->connection = connection;

@@ -10,7 +10,7 @@ use Lynx\ORM,
     Lynx\DBAl,
     Lynx\Cache,
     Lynx\Annotation,
-    Lynx\Stdlib\EventManager;
+    Lynx\Stdlib\Events\Manager as EventsManager;
 
 class TestCase
 	extends \PHPUnit_Framework_TestCase
@@ -29,7 +29,7 @@ class TestCase
 		$configuration = new ORM\Configuration();
 		$configuration->setCacheDriver(new Cache\NativeArray());
 
-		$eventManager = new EventManager();
+		$eventManager = new EventsManager();
 
 		$this->_em = new ORM\EntityManager($connection, $configuration, $eventManager);
 	}

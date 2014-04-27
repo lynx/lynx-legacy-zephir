@@ -25,6 +25,7 @@
 #include "kernel/memory.h"
 
 zend_class_entry *lynx_dbal_driver_connection_ce;
+zend_class_entry *lynx_stdlib_events_eventsmanager_ce;
 zend_class_entry *lynx_cache_cachedriver_ce;
 zend_class_entry *lynx_annotation_reflectionclassparser_ce;
 zend_class_entry *lynx_annotation_regexdocparser_ce;
@@ -46,7 +47,7 @@ zend_class_entry *lynx_orm_querybuilder_ce;
 zend_class_entry *lynx_orm_queryidentitymap_ce;
 zend_class_entry *lynx_orm_sqlbuilder_ce;
 zend_class_entry *lynx_orm_unitofwork_ce;
-zend_class_entry *lynx_stdlib_eventmanager_ce;
+zend_class_entry *lynx_stdlib_events_manager_ce;
 
 ZEND_DECLARE_MODULE_GLOBALS(lynx)
 
@@ -213,6 +214,7 @@ static PHP_MINIT_FUNCTION(lynx)
 #endif
 
 	ZEPHIR_INIT(Lynx_DBAL_Driver_Connection);
+	ZEPHIR_INIT(Lynx_Stdlib_Events_EventsManager);
 	ZEPHIR_INIT(Lynx_Cache_CacheDriver);
 	ZEPHIR_INIT(Lynx_Annotation_ReflectionClassParser);
 	ZEPHIR_INIT(Lynx_Annotation_RegexDocParser);
@@ -234,7 +236,7 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_ORM_QueryIdentityMap);
 	ZEPHIR_INIT(Lynx_ORM_SqlBuilder);
 	ZEPHIR_INIT(Lynx_ORM_UnitOfWork);
-	ZEPHIR_INIT(Lynx_Stdlib_EventManager);
+	ZEPHIR_INIT(Lynx_Stdlib_Events_Manager);
 
 #if PHP_VERSION_ID < 50500
 	setlocale(LC_ALL, old_lc_all);

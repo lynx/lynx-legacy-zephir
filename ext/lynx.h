@@ -26,6 +26,7 @@
 #include "lynx/orm/queryidentitymap.h"
 #include "lynx/orm/sqlbuilder.h"
 #include "lynx/orm/unitofwork.h"
-#include "lynx/stdlib/eventmanager.h"
+#include "lynx/stdlib/events/eventsmanager.h"
+#include "lynx/stdlib/events/manager.h"
 
 #endif
