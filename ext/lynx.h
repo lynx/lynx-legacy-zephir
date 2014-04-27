@@ -14,6 +14,7 @@
 #include "lynx/dbal/driver/connection.h"
 #include "lynx/dbal/driver/pdo/statement.h"
 #include "lynx/dbal/driver/pdo.h"
+#include "lynx/dbal/events.h"
 #include "lynx/orm/configuration.h"
 #include "lynx/orm/entitymanager.h"
 #include "lynx/orm/entityrepository.h"
