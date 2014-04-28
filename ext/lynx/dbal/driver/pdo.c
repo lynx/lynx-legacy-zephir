@@ -19,6 +19,7 @@
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 #include "kernel/operators.h"
+#include "kernel/array.h"
 
 
 /**
@@ -96,6 +97,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pdo, __construct) {
 
 PHP_METHOD(Lynx_DBAL_Driver_Pdo, connect) {
 
+	zval *_2;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *dsn, *username, *password, *options, *_0, *_1;
 
@@ -111,6 +113,15 @@ PHP_METHOD(Lynx_DBAL_Driver_Pdo, connect) {
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_LONG(_1, 2);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setattribute", NULL, _0, _1);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_2);
+	array_init_size(_2, 2);
+	ZEPHIR_INIT_BNVAR(_0);
+	ZVAL_STRING(_0, "\\Lynx\\DBAL\\Driver\\PDO\\Statement", 1);
+	zephir_array_fast_append(_2, _0);
+	ZEPHIR_INIT_BNVAR(_0);
+	ZVAL_LONG(_0, 13);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setattribute", NULL, _0, _2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_BNVAR(_0);
 	ZVAL_LONG(_0, 19);
