@@ -11,4 +11,6 @@ interface Connection
 
 	public function beginTransaction() {}
 
+	public function setEventsManager($eventsManager) {}
+
 }

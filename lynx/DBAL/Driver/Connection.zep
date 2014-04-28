@@ -8,4 +8,6 @@ interface Connection
 	public function rollBack();
 
 	public function beginTransaction();
+
+	public function setEventsManager(eventsManager);
 }

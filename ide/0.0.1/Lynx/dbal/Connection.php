@@ -8,7 +8,7 @@ class Connection
 
 	public function getDriver() {}
 
-	public function __construct($driver, $parameters) {}
+	public function __construct($driver, $parameters, $eventsManager = null) {}
 
 	public function prepare($statement) {}
 

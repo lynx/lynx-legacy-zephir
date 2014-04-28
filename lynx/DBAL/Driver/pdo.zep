@@ -6,11 +6,18 @@ namespace Lynx\DBAL\Driver;
 
 class Pdo extends \PDO
 {
+    protected eventsManager {set, get};
+
 	public function __construct(string! dsn, var username = null, var password = null, array options = null)
 	{
-		parent::__construct(dsn, username, password, options);
-		this->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-		///this->setAttribute(\PDO::ATTR_STATEMENT_CLASS, ["\\Lynx\\DBAL\\Driver\\PDO\\Statement", []]);
-		this->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+        this->connect(dsn, username, password, options);
+	}
+
+	public function connect(dsn, username, password, options)
+	{
+        parent::__construct(dsn, username, password, options);
+        this->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        //this->setAttribute(\PDO::ATTR_STATEMENT_CLASS, ["\\Lynx\\DBAL\\Driver\\PDO\\Statement", []]);
+        this->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
 	}
 }

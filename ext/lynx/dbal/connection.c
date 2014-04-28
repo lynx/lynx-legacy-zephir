@@ -13,6 +13,7 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
+#include "kernel/exception.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 
@@ -39,13 +40,40 @@ PHP_METHOD(Lynx_DBAL_Connection, getDriver) {
 
 PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 
-	zval *driver, *parameters;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zend_bool _0;
+	zval *driver, *parameters, *eventsManager = NULL;
 
-	zephir_fetch_params(0, 2, 0, &driver, &parameters);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 1, &driver, &parameters, &eventsManager);
+
+	if (!eventsManager) {
+		ZEPHIR_CPY_WRT(eventsManager, ZEPHIR_GLOBAL(global_null));
+	} else {
+		ZEPHIR_SEPARATE_PARAM(eventsManager);
+	}
 
 
-
+	_0 = Z_TYPE_P(eventsManager) != IS_NULL;
+	if (_0) {
+		_0 = !zephir_instance_of_ev(eventsManager, lynx_stdlib_events_manager_ce TSRMLS_CC);
+	}
+	if (_0) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'eventsManager' must be an instance of 'Lynx\\Stdlib\\Events\\Manager'", "", 0);
+		return;
+	}
+	if (Z_TYPE_P(eventsManager) == IS_NULL) {
+		ZEPHIR_INIT_NVAR(eventsManager);
+		object_init_ex(eventsManager, lynx_stdlib_events_manager_ce);
+		if (zephir_has_constructor(eventsManager TSRMLS_CC)) {
+			ZEPHIR_CALL_METHOD(NULL, eventsManager, "__construct", NULL);
+			zephir_check_call_status();
+		}
+	}
+	ZEPHIR_CALL_METHOD(NULL, driver, "seteventsmanager", NULL, eventsManager);
+	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("driver"), driver TSRMLS_CC);
+	ZEPHIR_MM_RESTORE();
 
 }
 

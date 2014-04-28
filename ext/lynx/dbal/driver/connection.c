@@ -26,3 +26,5 @@ ZEPHIR_DOC_METHOD(Lynx_DBAL_Driver_Connection, rollBack);
 
 ZEPHIR_DOC_METHOD(Lynx_DBAL_Driver_Connection, beginTransaction);
 
+ZEPHIR_DOC_METHOD(Lynx_DBAL_Driver_Connection, setEventsManager);
+
