@@ -10,5 +10,9 @@
     ],
     "require": {
 
+    },
+    "scripts": {
+        "post-install-cmd": ["./ext/install"],
+        "post-update-cmd": ["./ext/install"]
     }
 }
