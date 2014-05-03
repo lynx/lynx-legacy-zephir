@@ -13,13 +13,12 @@
 
 #include "kernel/main.h"
 #include "ext/pdo/php_pdo_driver.h"
-#include "kernel/object.h"
-#include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/memory.h"
+#include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 #include "kernel/operators.h"
-#include "kernel/array.h"
 
 
 /**
@@ -29,36 +28,15 @@ ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Pdo) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Lynx\\DBAL\\Driver, Pdo, lynx, dbal_driver_pdo, php_pdo_get_dbh_ce(), lynx_dbal_driver_pdo_method_entry, 0);
 
-	zend_declare_property_null(lynx_dbal_driver_pdo_ce, SL("eventsManager"), ZEND_ACC_PROTECTED TSRMLS_CC);
-
 	return SUCCESS;
-
-}
-
-PHP_METHOD(Lynx_DBAL_Driver_Pdo, setEventsManager) {
-
-	zval *eventsManager;
-
-	zephir_fetch_params(0, 1, 0, &eventsManager);
-
-
-
-	zephir_update_property_this(this_ptr, SL("eventsManager"), eventsManager TSRMLS_CC);
-
-}
-
-PHP_METHOD(Lynx_DBAL_Driver_Pdo, getEventsManager) {
-
-
-	RETURN_MEMBER(this_ptr, "eventsManager");
 
 }
 
 PHP_METHOD(Lynx_DBAL_Driver_Pdo, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *options = NULL;
-	zval *dsn_param = NULL, *username = NULL, *password = NULL, *options_param = NULL;
+	zval *options = NULL, *_2;
+	zval *dsn_param = NULL, *username = NULL, *password = NULL, *options_param = NULL, *_0, *_1;
 	zval *dsn = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -87,23 +65,6 @@ PHP_METHOD(Lynx_DBAL_Driver_Pdo, __construct) {
 	} else {
 		zephir_get_arrval(options, options_param);
 	}
-
-
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL, dsn, username, password, options);
-	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
-
-}
-
-PHP_METHOD(Lynx_DBAL_Driver_Pdo, connect) {
-
-	zval *_2;
-	int ZEPHIR_LAST_CALL_STATUS;
-	zval *dsn, *username, *password, *options, *_0, *_1;
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 4, 0, &dsn, &username, &password, &options);
-
 
 
 	ZEPHIR_CALL_PARENT(NULL, lynx_dbal_driver_pdo_ce, this_ptr, "__construct", NULL, dsn, username, password, options);

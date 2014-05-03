@@ -7,8 +7,7 @@ PHP_METHOD(Lynx_DBAL_Connection, getDriver);
 PHP_METHOD(Lynx_DBAL_Connection, __construct);
 PHP_METHOD(Lynx_DBAL_Connection, prepare);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection___construct, 0, 0, 2)
-	ZEND_ARG_INFO(0, driver)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, parameters)
 	ZEND_ARG_INFO(0, eventsManager)
 ZEND_END_ARG_INFO()

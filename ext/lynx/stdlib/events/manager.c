@@ -91,11 +91,11 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, attach) {
 		priority = 100;
 	} else {
 	if (unlikely(Z_TYPE_P(priority_param) != IS_LONG)) {
-			zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'priority' must be a long/integer") TSRMLS_CC);
-			RETURN_MM_NULL();
-		}
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'priority' must be a long/integer") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
 
-		priority = Z_LVAL_P(priority_param);
+	priority = Z_LVAL_P(priority_param);
 	}
 
 
@@ -430,11 +430,11 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fireQueue) {
  */
 PHP_METHOD(Lynx_Stdlib_Events_Manager, fire) {
 
+	zephir_fcall_cache_entry *_4 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_class_entry *_1, *_5, *_6;
-	zend_bool cancelable, _4;
-	zval *eventType_param = NULL, *source, *data = NULL, *cancelable_param = NULL, *events, *eventParts, *type, *eventName, *event, *status = NULL, *fireEvents = NULL, *_0, *_3;
-	zval *eventType = NULL, *_2;
+	zend_bool cancelable, _3;
+	zval *eventType_param = NULL, *source, *data = NULL, *cancelable_param = NULL, *events, *eventParts, *type, *eventName, *event, *status = NULL, *fireEvents = NULL, *_0, *_2;
+	zval *eventType = NULL, *_1;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &eventType_param, &source, &data, &cancelable_param);
@@ -467,11 +467,10 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fire) {
 	}
 	if (!(zephir_memnstr_str(eventType, SL(":"), "lynx/Stdlib/Events/Manager.zep", 417))) {
 		ZEPHIR_INIT_VAR(_0);
-		_1 = zend_fetch_class(SL("Phalcon\\Events\\Exception"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
-		object_init_ex(_0, _1);
-		ZEPHIR_INIT_VAR(_2);
-		ZEPHIR_CONCAT_SV(_2, "Invalid event type ", eventType);
-		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, _2);
+		object_init_ex(_0, zend_exception_get_default(TSRMLS_C));
+		ZEPHIR_INIT_VAR(_1);
+		ZEPHIR_CONCAT_SV(_1, "Invalid event type ", eventType);
+		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, _1);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_0, "lynx/Stdlib/Events/Manager.zep", 418 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -485,23 +484,22 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fire) {
 	zephir_array_fetch_long(&eventName, eventParts, 1, PH_NOISY TSRMLS_CC);
 	ZEPHIR_INIT_VAR(status);
 	ZVAL_NULL(status);
-	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_collect"), PH_NOISY_CC);
-	if (zephir_is_true(_3)) {
+	_2 = zephir_fetch_nproperty_this(this_ptr, SL("_collect"), PH_NOISY_CC);
+	if (zephir_is_true(_2)) {
 		zephir_update_property_this(this_ptr, SL("_responses"), ZEPHIR_GLOBAL(global_null) TSRMLS_CC);
 	}
 	ZEPHIR_INIT_VAR(event);
 	ZVAL_NULL(event);
 	ZEPHIR_OBS_VAR(fireEvents);
 	if (zephir_array_isset_fetch(&fireEvents, events, type, 0 TSRMLS_CC)) {
-		_4 = Z_TYPE_P(fireEvents) == IS_OBJECT;
-		if (!(_4)) {
-			_4 = Z_TYPE_P(fireEvents) == IS_ARRAY;
+		_3 = Z_TYPE_P(fireEvents) == IS_OBJECT;
+		if (!(_3)) {
+			_3 = Z_TYPE_P(fireEvents) == IS_ARRAY;
 		}
-		if (_4) {
+		if (_3) {
 			ZEPHIR_INIT_BNVAR(event);
-			_5 = zend_fetch_class(SL("Phalcon\\Events\\Event"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
-			object_init_ex(event, _5);
-			ZEPHIR_CALL_METHOD(NULL, event, "__construct", NULL, eventName, source, data, (cancelable ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
+			object_init_ex(event, lynx_stdlib_events_event_ce);
+			ZEPHIR_CALL_METHOD(NULL, event, "__construct", &_4, eventName, source, data, (cancelable ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&status, this_ptr, "firequeue", NULL, fireEvents, event);
 			zephir_check_call_status();
@@ -509,16 +507,15 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fire) {
 	}
 	ZEPHIR_OBS_NVAR(fireEvents);
 	if (zephir_array_isset_fetch(&fireEvents, events, eventType, 0 TSRMLS_CC)) {
-		_4 = Z_TYPE_P(fireEvents) == IS_OBJECT;
-		if (!(_4)) {
-			_4 = Z_TYPE_P(fireEvents) == IS_ARRAY;
+		_3 = Z_TYPE_P(fireEvents) == IS_OBJECT;
+		if (!(_3)) {
+			_3 = Z_TYPE_P(fireEvents) == IS_ARRAY;
 		}
-		if (_4) {
+		if (_3) {
 			if (Z_TYPE_P(event) == IS_NULL) {
 				ZEPHIR_INIT_BNVAR(event);
-				_6 = zend_fetch_class(SL("Phalcon\\Events\\Event"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
-				object_init_ex(event, _6);
-				ZEPHIR_CALL_METHOD(NULL, event, "__construct", NULL, eventName, source, data, (cancelable ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
+				object_init_ex(event, lynx_stdlib_events_event_ce);
+				ZEPHIR_CALL_METHOD(NULL, event, "__construct", &_4, eventName, source, data, (cancelable ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
 				zephir_check_call_status();
 			}
 			ZEPHIR_CALL_METHOD(&status, this_ptr, "firequeue", NULL, fireEvents, event);

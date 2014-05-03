@@ -15,8 +15,8 @@ class Utils
 	{
         $eventsManager = new Manager();
 
-		$driver = new DBAl\Driver\Pdo('mysql:host=localhost;dbname='.$GLOBALS['db_name'], $GLOBALS['db_username'], $GLOBALS['db_password'], array());
-		$connection = new DBAL\Connection($driver, null, $eventsManager);
+		$driver = new DBAl\Driver\Mysql('mysql:host=localhost;dbname='.$GLOBALS['db_name'], $GLOBALS['db_username'], $GLOBALS['db_password'], array());
+		$connection = new DBAL\Connection(['driver' => $driver], $eventsManager);
 
 		return $connection;
 	}

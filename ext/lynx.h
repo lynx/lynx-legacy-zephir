@@ -12,6 +12,7 @@
 #include "lynx/cache/nativearray.h"
 #include "lynx/dbal/connection.h"
 #include "lynx/dbal/driver/connection.h"
+#include "lynx/dbal/driver/mysql.h"
 #include "lynx/dbal/driver/pdo/statement.h"
 #include "lynx/dbal/driver/pdo.h"
 #include "lynx/dbal/events.h"
@@ -26,6 +27,7 @@
 #include "lynx/orm/queryidentitymap.h"
 #include "lynx/orm/sqlbuilder.h"
 #include "lynx/orm/unitofwork.h"
+#include "lynx/stdlib/events/event.h"
 #include "lynx/stdlib/events/eventsmanager.h"
 #include "lynx/stdlib/events/manager.h"
 

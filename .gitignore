@@ -35,3 +35,4 @@ ext/config.status
 ext/libtool
 ext/.libs/
 ext/modules/
+/vendor/

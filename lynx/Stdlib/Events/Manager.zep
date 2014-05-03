@@ -415,7 +415,7 @@ class Manager implements EventsManager
 		 * All valid events must have a colon separator
 		 */
 		if !memstr(eventType, ":") {
-			throw new \Phalcon\Events\Exception("Invalid event type " . eventType);
+			throw new \Exception("Invalid event type " . eventType);
 		}
 
 		let eventParts = explode(":", eventType),
@@ -443,7 +443,7 @@ class Manager implements EventsManager
 				/**
 				 * Create the event context
 				 */
-				let event = new \Phalcon\Events\Event(eventName, source, data, cancelable);
+				let event = new Event(eventName, source, data, cancelable);
 
 				/**
 				 * Call the events queue
@@ -464,7 +464,7 @@ class Manager implements EventsManager
 				 * Create the event if it wasn't created before
 				 */
 				if event === null {
-					let event = new \Phalcon\Events\Event(eventName, source, data, cancelable);
+					let event = new Event(eventName, source, data, cancelable);
 				}
 
 				/**

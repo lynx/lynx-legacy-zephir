@@ -16,6 +16,7 @@
 #include "kernel/exception.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/array.h"
 
 
 /**
@@ -42,10 +43,10 @@ PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool _0;
-	zval *driver, *parameters, *eventsManager = NULL;
+	zval *parameters, *eventsManager = NULL, *_1, *_2;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 1, &driver, &parameters, &eventsManager);
+	zephir_fetch_params(1, 1, 1, &parameters, &eventsManager);
 
 	if (!eventsManager) {
 		ZEPHIR_CPY_WRT(eventsManager, ZEPHIR_GLOBAL(global_null));
@@ -70,9 +71,16 @@ PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 			zephir_check_call_status();
 		}
 	}
-	ZEPHIR_CALL_METHOD(NULL, driver, "seteventsmanager", NULL, eventsManager);
+	if (zephir_array_isset_string(parameters, SS("driver"))) {
+		zephir_array_fetch_string(&_1, parameters, SL("driver"), PH_NOISY | PH_READONLY TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("driver"), _1 TSRMLS_CC);
+	} else {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Driver didn`t find in $parameters", "lynx/DBAL/Connection.zep", 25);
+		return;
+	}
+	_2 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(NULL, _2, "seteventsmanager", NULL, eventsManager);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("driver"), driver TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
