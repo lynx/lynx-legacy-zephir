@@ -38,7 +38,7 @@ class QueryBuilder
 
 	public function join($join, $alias) {}
 
-	public function where($statement) {}
+	public function where($statement, $param) {}
 
 	public function andWhere($statement) {}
 

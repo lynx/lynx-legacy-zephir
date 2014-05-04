@@ -21,7 +21,7 @@ class EntityRepository
 	public function __construct($em, $modelWrapper) {}
 
 	/**
-	 * @todo set alias to QueryBuilder
+	 * @param string alias
 	 * @return QueryBuilder
 	 */
 	public function createQueryBuilder($alias) {}

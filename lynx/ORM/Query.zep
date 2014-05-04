@@ -21,27 +21,36 @@ class Query
 		return this->getResult();
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function getResult()
 	{
-		var connection, statement;
+		var connection, statement, result;
 		let connection = this->em->getConnection();
 
 		let statement = connection->prepare(this->query);
 		statement->execute();
-		return statement->fetchAll();
+		let result = statement->fetchAll();
+
+		if (count(result) == 0) {
+			return false;
+		}
+
+		return result;
 	}
 
-	public function fetchAll($parameters = null)
+	public function fetchAll(var parameters = null)
 	{
 		return this->getResult();
 	}
 
-	public function fetchObject($parameters = null)
+	public function fetchObject(var parameters = null)
 	{
 		return this->getResult();
 	}
 
-	public function fetchOne($parameters = null)
+	public function fetchOne(var parameters = null)
 	{
 		return this->getResult();
 	}

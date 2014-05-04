@@ -72,7 +72,7 @@ PHP_METHOD(Lynx_ORM_Query, fetchArray) {
 PHP_METHOD(Lynx_ORM_Query, getResult) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *connection = NULL, *statement = NULL, *_0, *_1;
+	zval *connection = NULL, *statement = NULL, *result = NULL, *_0, *_1;
 
 	ZEPHIR_MM_GROW();
 
@@ -84,9 +84,12 @@ PHP_METHOD(Lynx_ORM_Query, getResult) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, statement, "execute", NULL);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(statement, "fetchall", NULL);
+	ZEPHIR_CALL_METHOD(&result, statement, "fetchall",  NULL);
 	zephir_check_call_status();
-	RETURN_MM();
+	if (zephir_fast_count_int(result TSRMLS_CC) == 0) {
+		RETURN_MM_BOOL(0);
+	}
+	RETURN_CCTOR(result);
 
 }
 

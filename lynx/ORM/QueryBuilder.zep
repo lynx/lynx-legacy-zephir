@@ -52,7 +52,6 @@ class QueryBuilder
 		return this;
 	}
 
-
 	public function from(var from, var alias)
 	{
 		let this->from = from;
@@ -82,7 +81,7 @@ class QueryBuilder
 		return this;
 	}
 
-	public function where(var statement)
+	public function where(var statement, param)
 	{
 		let this->where[] = statement;
 
@@ -161,6 +160,10 @@ class QueryBuilder
 		}
 
 		let sql .= " FROM ".this->wrap(rootModel->getTablename())." ".this->alias;
+
+		if (count(this->where) > 0) {
+			let sql .= " WHERE ".this->where[0];
+		}
 
 		if (!is_null(this->limit)) {
 			let sql .= " LIMIT ".this->limit;

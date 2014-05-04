@@ -34,6 +34,10 @@ class EntityManager
 
 	public function rollback() {}
 
+	/**
+	 * @param string $entityName
+	 * @return EntityRepository|boolean
+	 */
 	public function getRepository($entityName) {}
 
 	public function createQueryBuilder() {}

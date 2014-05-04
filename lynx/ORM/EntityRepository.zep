@@ -25,12 +25,13 @@ class EntityRepository
     }
 
     /**
-     * @todo set alias to QueryBuilder
+     * @param string alias
      * @return QueryBuilder
      */
-    public function createQueryBuilder(var alias) -> <QueryBuilder>
+    public function createQueryBuilder(string! alias) -> <QueryBuilder>
     {
-        return this->em->createQueryBuilder();
+        return this->em->createQueryBuilder()
+        	->from(this->modelWrapper->classname, alias);
     }
 
 	/**
@@ -38,7 +39,8 @@ class EntityRepository
 	 */
     public function find(var id)
     {
-		return this->em->createQueryBuilder("find_")
+		return this->createQueryBuilder("find_")
+			->where("find_.id = ".id, id)
 			->limit(1)
 			->getQuery()
 			->fetchOne();
@@ -49,8 +51,7 @@ class EntityRepository
 	 */
     public function findAll()
     {
-		return this->em->createQueryBuilder("find_")
-			->limit(1)
+		return this->createQueryBuilder("findall_")
 			->getQuery()
 			->fetchAll();
     }

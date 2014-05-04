@@ -182,6 +182,10 @@ PHP_METHOD(Lynx_ORM_EntityManager, rollback) {
 
 }
 
+/**
+ * @param string $entityName
+ * @return EntityRepository|boolean
+ */
 PHP_METHOD(Lynx_ORM_EntityManager, getRepository) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

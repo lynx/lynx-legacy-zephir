@@ -16,6 +16,8 @@
 #include "kernel/exception.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "ext/spl/spl_exceptions.h"
+#include "kernel/concat.h"
 
 
 /**
@@ -71,21 +73,38 @@ PHP_METHOD(Lynx_ORM_EntityRepository, __construct) {
 }
 
 /**
- * @todo set alias to QueryBuilder
+ * @param string alias
  * @return QueryBuilder
  */
 PHP_METHOD(Lynx_ORM_EntityRepository, createQueryBuilder) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *alias, *_0;
+	zval *alias_param = NULL, *_0, *_1 = NULL, *_2, *_3;
+	zval *alias = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &alias);
+	zephir_fetch_params(1, 1, 0, &alias_param);
 
+	if (unlikely(Z_TYPE_P(alias_param) != IS_STRING && Z_TYPE_P(alias_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'alias' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(alias_param) == IS_STRING)) {
+		alias = alias_param;
+	} else {
+		ZEPHIR_INIT_VAR(alias);
+		ZVAL_EMPTY_STRING(alias);
+	}
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-	ZEPHIR_RETURN_CALL_METHOD(_0, "createquerybuilder", NULL);
+	ZEPHIR_CALL_METHOD(&_1, _0, "createquerybuilder",  NULL);
+	zephir_check_call_status();
+	_2 = zephir_fetch_nproperty_this(this_ptr, SL("modelWrapper"), PH_NOISY_CC);
+	ZEPHIR_OBS_VAR(_3);
+	zephir_read_property(&_3, _2, SL("classname"), PH_NOISY_CC);
+	ZEPHIR_RETURN_CALL_METHOD(_1, "from", NULL, _3, alias);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -97,26 +116,29 @@ PHP_METHOD(Lynx_ORM_EntityRepository, createQueryBuilder) {
 PHP_METHOD(Lynx_ORM_EntityRepository, find) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *id, *_0, *_1 = NULL, *_2, *_3 = NULL, *_4 = NULL;
+	zval *id, *_0 = NULL, *_1, *_2 = NULL, *_3, *_4 = NULL, *_5 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &id);
 
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-	ZEPHIR_INIT_VAR(_2);
-	ZVAL_STRING(_2, "find_", 0);
-	ZEPHIR_CALL_METHOD(&_1, _0, "createquerybuilder", NULL, _2);
-	zephir_check_temp_parameter(_2);
+	ZEPHIR_INIT_VAR(_1);
+	ZVAL_STRING(_1, "find_", 0);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "createquerybuilder", NULL, _1);
+	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
-	ZEPHIR_INIT_BNVAR(_2);
-	ZVAL_LONG(_2, 1);
-	ZEPHIR_CALL_METHOD(&_3, _1, "limit", NULL, _2);
+	ZEPHIR_INIT_VAR(_3);
+	ZEPHIR_CONCAT_SV(_3, "find_.id = ", id);
+	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _3, id);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_4, _3, "getquery",  NULL);
+	ZEPHIR_INIT_BNVAR(_1);
+	ZVAL_LONG(_1, 1);
+	ZEPHIR_CALL_METHOD(&_4, _2, "limit", NULL, _1);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(_4, "fetchone", NULL);
+	ZEPHIR_CALL_METHOD(&_5, _4, "getquery",  NULL);
+	zephir_check_call_status();
+	ZEPHIR_RETURN_CALL_METHOD(_5, "fetchone", NULL);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -128,23 +150,18 @@ PHP_METHOD(Lynx_ORM_EntityRepository, find) {
 PHP_METHOD(Lynx_ORM_EntityRepository, findAll) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *_0, *_1 = NULL, *_2, *_3 = NULL, *_4 = NULL;
+	zval *_0 = NULL, *_1, *_2 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-	ZEPHIR_INIT_VAR(_2);
-	ZVAL_STRING(_2, "find_", 0);
-	ZEPHIR_CALL_METHOD(&_1, _0, "createquerybuilder", NULL, _2);
-	zephir_check_temp_parameter(_2);
+	ZEPHIR_INIT_VAR(_1);
+	ZVAL_STRING(_1, "findall_", 0);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "createquerybuilder", NULL, _1);
+	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
-	ZEPHIR_INIT_BNVAR(_2);
-	ZVAL_LONG(_2, 1);
-	ZEPHIR_CALL_METHOD(&_3, _1, "limit", NULL, _2);
+	ZEPHIR_CALL_METHOD(&_2, _0, "getquery",  NULL);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_4, _3, "getquery",  NULL);
-	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(_4, "fetchall", NULL);
+	ZEPHIR_RETURN_CALL_METHOD(_2, "fetchall", NULL);
 	zephir_check_call_status();
 	RETURN_MM();
 
