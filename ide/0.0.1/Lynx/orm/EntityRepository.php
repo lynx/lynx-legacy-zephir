@@ -26,8 +26,14 @@ class EntityRepository
 	 */
 	public function createQueryBuilder($alias) {}
 
+	/**
+	 * Find entity by primary key
+	 */
 	public function find($id) {}
 
+	/**
+	 * Find all entities from repository
+	 */
 	public function findAll() {}
 
 	public function findBy() {}

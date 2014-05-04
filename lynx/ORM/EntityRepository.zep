@@ -33,14 +33,26 @@ class EntityRepository
         return this->em->createQueryBuilder();
     }
 
+	/**
+	 * Find entity by primary key
+	 */
     public function find(var id)
     {
-
+		return this->em->createQueryBuilder("find_")
+			->limit(1)
+			->getQuery()
+			->fetchOne();
     }
 
+	/**
+	 * Find all entities from repository
+	 */
     public function findAll()
     {
-
+		return this->em->createQueryBuilder("find_")
+			->limit(1)
+			->getQuery()
+			->fetchAll();
     }
 
     public function findBy()
