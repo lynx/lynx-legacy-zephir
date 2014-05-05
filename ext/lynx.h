@@ -30,5 +30,6 @@
 #include "lynx/stdlib/events/event.h"
 #include "lynx/stdlib/events/eventsmanager.h"
 #include "lynx/stdlib/events/manager.h"
+#include "lynx/stdlib/hydrator/classproperties.h"
 
 #endif

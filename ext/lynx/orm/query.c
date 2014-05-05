@@ -69,6 +69,9 @@ PHP_METHOD(Lynx_ORM_Query, fetchArray) {
 
 }
 
+/**
+ * @return mixed
+ */
 PHP_METHOD(Lynx_ORM_Query, getResult) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

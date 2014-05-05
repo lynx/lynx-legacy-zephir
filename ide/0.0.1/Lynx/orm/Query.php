@@ -11,6 +11,9 @@ class Query
 
 	public function fetchArray($parameters = null) {}
 
+	/**
+	 * @return mixed
+	 */
 	public function getResult() {}
 
 	public function fetchAll($parameters = null) {}

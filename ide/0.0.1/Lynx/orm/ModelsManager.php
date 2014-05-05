@@ -14,7 +14,7 @@ class ModelsManager
 	protected $cacheLoaded = false;
 	protected $cacheLoadType;
 
-	public function __construct($em, $cacheLoadType = ) {}
+	public function __construct($em, $cacheLoadType = self::CACHE_LOAD_PER_GET_ALL) {}
 
 	public function get($classname) {}
 
