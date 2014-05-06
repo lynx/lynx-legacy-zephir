@@ -29,6 +29,11 @@ ZEPHIR_INIT_CLASS(Lynx_Stdlib_Hydrator_ClassProperties) {
 
 }
 
+/**
+ * @param arrray $data
+ * $param object $currentObject
+ * @return object
+ */
 PHP_METHOD(Lynx_Stdlib_Hydrator_ClassProperties, hydrate) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
