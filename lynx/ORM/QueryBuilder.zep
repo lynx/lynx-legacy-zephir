@@ -16,13 +16,15 @@ class QueryBuilder
 
 	protected parts;
 
-	protected where = null;
+	protected where = [];
 
 	protected type = self::SELECT {get};
 
 	protected limit = null {get};
 
 	protected offset = null {get};
+
+	protected order = null {get};
 
 	protected em;
 
@@ -105,8 +107,13 @@ class QueryBuilder
 		return this;
 	}
 
-	public function orderBy(var sort)
+	/**
+	 * @return $this
+	 */
+	public function orderBy(var statement, string! sort = "DESC") -> <Query>
 	{
+		let this->order = statement . " " . sort;
+
 		return this;
 	}
 

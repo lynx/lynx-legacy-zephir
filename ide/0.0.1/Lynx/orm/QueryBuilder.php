@@ -10,10 +10,11 @@ class QueryBuilder
 	protected $alias = "default";
 	protected $from;
 	protected $parts;
-	protected $where;
+	protected $where = array();
 	protected $type;
 	protected $limit;
 	protected $offset;
+	protected $order;
 	protected $em;
 
 	public function getType() {}
@@ -21,6 +22,8 @@ class QueryBuilder
 	public function getLimit() {}
 
 	public function getOffset() {}
+
+	public function getOrder() {}
 
 	public function __construct($em) {}
 
@@ -44,7 +47,10 @@ class QueryBuilder
 
 	public function orWhere($statement) {}
 
-	public function orderBy($sort) {}
+	/**
+	 * @return $this
+	 */
+	public function orderBy($statement, $sort = "DESC") {}
 
 	/**
 	 * Set limit to the query

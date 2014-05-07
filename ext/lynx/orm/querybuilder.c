@@ -18,13 +18,10 @@
 #include "kernel/string.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
-#include "kernel/operators.h"
 #include "kernel/concat.h"
+#include "ext/spl/spl_exceptions.h"
+#include "kernel/operators.h"
 
-
-/**
- * @author Patsura Dmitry <zaets28rus@gmail.com>
- */
 ZEPHIR_INIT_CLASS(Lynx_ORM_QueryBuilder) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\ORM, QueryBuilder, lynx, orm_querybuilder, lynx_orm_querybuilder_method_entry, 0);
@@ -42,6 +39,8 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_QueryBuilder) {
 	zend_declare_property_null(lynx_orm_querybuilder_ce, SL("limit"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(lynx_orm_querybuilder_ce, SL("offset"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
+	zend_declare_property_null(lynx_orm_querybuilder_ce, SL("order"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(lynx_orm_querybuilder_ce, SL("em"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
@@ -76,19 +75,31 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getOffset) {
 
 }
 
+PHP_METHOD(Lynx_ORM_QueryBuilder, getOrder) {
+
+
+	RETURN_MEMBER(this_ptr, "order");
+
+}
+
 PHP_METHOD(Lynx_ORM_QueryBuilder, __construct) {
 
-	zval *em;
+	zval *em, *_0;
 
-	zephir_fetch_params(0, 1, 0, &em);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &em);
 
 
 
 	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_0);
+	array_init(_0);
+	zephir_update_property_this(this_ptr, SL("where"), _0 TSRMLS_CC);
+	ZEPHIR_MM_RESTORE();
 
 }
 
@@ -241,15 +252,39 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, orWhere) {
 
 }
 
+/**
+ * @return $this
+ */
 PHP_METHOD(Lynx_ORM_QueryBuilder, orderBy) {
 
-	zval *sort;
+	zval *sort = NULL;
+	zval *statement, *sort_param = NULL, *_0;
 
-	zephir_fetch_params(0, 1, 0, &sort);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 1, &statement, &sort_param);
+
+	if (!sort_param) {
+		ZEPHIR_INIT_VAR(sort);
+		ZVAL_STRING(sort, "DESC", 1);
+	} else {
+	if (unlikely(Z_TYPE_P(sort_param) != IS_STRING && Z_TYPE_P(sort_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'sort' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(sort_param) == IS_STRING)) {
+		sort = sort_param;
+	} else {
+		ZEPHIR_INIT_VAR(sort);
+		ZVAL_EMPTY_STRING(sort);
+	}
+	}
 
 
-
-	RETURN_THISW();
+	ZEPHIR_INIT_VAR(_0);
+	ZEPHIR_CONCAT_VSV(_0, statement, " ", sort);
+	zephir_update_property_this(this_ptr, SL("order"), _0 TSRMLS_CC);
+	RETURN_THIS();
 
 }
 
@@ -267,7 +302,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, limit) {
 
 
 	if (limit <= 0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "$limit must be >= 0", "lynx/ORM/QueryBuilder.zep", 119);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "$limit must be >= 0", "lynx/ORM/QueryBuilder.zep", 126);
 		return;
 	}
 	ZEPHIR_INIT_ZVAL_NREF(_0);
@@ -319,7 +354,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
 	if (Z_TYPE_P(_0) == IS_NULL) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "From field must be set", "lynx/ORM/QueryBuilder.zep", 144);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "From field must be set", "lynx/ORM/QueryBuilder.zep", 151);
 		return;
 	}
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
