@@ -2,6 +2,8 @@
 
 namespace Lynx\ORM;
 
+use Lynx\Annotation\ReflectionClassParser;
+
 class ModelMetaData
 {
 	protected classname {get};
@@ -16,7 +18,7 @@ class ModelMetaData
 
 		let this->classname = classname;
 
-        let parser = new \Lynx\Annotation\ReflectionClassParser(classname);
+        let parser = new ReflectionClassParser(classname);
         let result = parser->getClassAnnotations();
 
 
