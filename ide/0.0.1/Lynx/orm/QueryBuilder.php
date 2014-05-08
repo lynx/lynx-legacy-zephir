@@ -48,6 +48,8 @@ class QueryBuilder
 	public function orWhere($statement) {}
 
 	/**
+	 * @param statement
+	 * @param string sort
 	 * @return $this
 	 */
 	public function orderBy($statement, $sort = "DESC") {}

@@ -61,13 +61,18 @@ class QueryBuilderTest
 		$query = $queryBuilder->getQuery();
 		$this->assertInternalType('array', $query->fetchArray());
 
+		$queryBuilder->select()->from('Model\User', 'u')->orderBy('u.id');
+		$this->assertEquals('SELECT * FROM `users` u ORDER BY u.id DESC', $queryBuilder->getSQL());
+		$query = $queryBuilder->getQuery();
+		$this->assertInternalType('array', $query->fetchArray());
+
 		$queryBuilder->limit(1);
-		$this->assertEquals('SELECT * FROM `users` u LIMIT 1', $queryBuilder->getSQL());
+		$this->assertEquals('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1', $queryBuilder->getSQL());
         $query = $queryBuilder->getQuery();
         $this->assertInternalType('array', $query->fetchArray());
 
 		$queryBuilder->offset(1);
-		$this->assertEquals('SELECT * FROM `users` u LIMIT 1,1', $queryBuilder->getSQL());
+		$this->assertEquals('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1,1', $queryBuilder->getSQL());
         $query = $queryBuilder->getQuery();
         $this->assertInternalType('array', $query->fetchArray());
 

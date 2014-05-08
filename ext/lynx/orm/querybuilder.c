@@ -253,6 +253,8 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, orWhere) {
 }
 
 /**
+ * @param statement
+ * @param string sort
  * @return $this
  */
 PHP_METHOD(Lynx_ORM_QueryBuilder, orderBy) {
@@ -302,7 +304,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, limit) {
 
 
 	if (limit <= 0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "$limit must be >= 0", "lynx/ORM/QueryBuilder.zep", 126);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "$limit must be >= 0", "lynx/ORM/QueryBuilder.zep", 128);
 		return;
 	}
 	ZEPHIR_INIT_ZVAL_NREF(_0);
@@ -354,7 +356,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
 	if (Z_TYPE_P(_0) == IS_NULL) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "From field must be set", "lynx/ORM/QueryBuilder.zep", 151);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "From field must be set", "lynx/ORM/QueryBuilder.zep", 153);
 		return;
 	}
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
@@ -397,6 +399,13 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 		zephir_array_fetch_long(&_11, _10, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_12);
 		ZEPHIR_CONCAT_SV(_12, " WHERE ", _11);
+		zephir_concat_self(&sql, _12 TSRMLS_CC);
+	}
+	_10 = zephir_fetch_nproperty_this(this_ptr, SL("order"), PH_NOISY_CC);
+	if (zephir_is_true(_10)) {
+		_10 = zephir_fetch_nproperty_this(this_ptr, SL("order"), PH_NOISY_CC);
+		ZEPHIR_INIT_LNVAR(_12);
+		ZEPHIR_CONCAT_SV(_12, " ORDER BY ", _10);
 		zephir_concat_self(&sql, _12 TSRMLS_CC);
 	}
 	_10 = zephir_fetch_nproperty_this(this_ptr, SL("limit"), PH_NOISY_CC);

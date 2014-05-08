@@ -108,6 +108,8 @@ class QueryBuilder
 	}
 
 	/**
+	 * @param statement
+	 * @param string sort
 	 * @return $this
 	 */
 	public function orderBy(var statement, string! sort = "DESC") -> <Query>
@@ -170,6 +172,10 @@ class QueryBuilder
 
 		if (count(this->where) > 0) {
 			let sql .= " WHERE ".this->where[0];
+		}
+
+		if (this->order) {
+			let sql .= " ORDER BY ".this->order;
 		}
 
 		if (!is_null(this->limit)) {
