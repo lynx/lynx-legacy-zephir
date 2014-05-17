@@ -2,7 +2,34 @@ PHP_ARG_ENABLE(lynx, whether to enable lynx, [ --enable-lynx   Enable Lynx])
 
 if test "$PHP_LYNX" = "yes"; then
 	AC_DEFINE(HAVE_LYNX, 1, [Whether you have Lynx])
-	lynx_sources="lynx.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/exit.c lynx/annotation/reflectionclassparser.c lynx/annotation/regexdocparser.c lynx/cache/cachedriver.c lynx/cache/memcache.c lynx/cache/memcached.c lynx/cache/nativearray.c lynx/dbal/connection.c lynx/dbal/driver/connection.c lynx/dbal/driver/mysql.c lynx/dbal/driver/pdo/statement.c lynx/dbal/driver/pdo.c lynx/dbal/events.c lynx/orm/configuration.c lynx/orm/entitymanager.c lynx/orm/entityrepository.c lynx/orm/exception.c lynx/orm/modelmetadata.c lynx/orm/modelsmanager.c lynx/orm/query.c lynx/orm/querybuilder.c lynx/orm/queryidentitymap.c lynx/orm/sqlbuilder.c lynx/orm/unitofwork.c lynx/stdlib/events/event.c lynx/stdlib/events/eventsmanager.c lynx/stdlib/events/manager.c lynx/stdlib/hydrator/classmethods.c lynx/stdlib/hydrator/classproperties.c "
+	lynx_sources="lynx.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/exit.c lynx/annotation/reflectionclassparser.zep.c
+	lynx/annotation/regexdocparser.zep.c
+	lynx/cache/cachedriver.zep.c
+	lynx/cache/memcache.zep.c
+	lynx/cache/memcached.zep.c
+	lynx/cache/nativearray.zep.c
+	lynx/dbal/connection.zep.c
+	lynx/dbal/driver/connection.zep.c
+	lynx/dbal/driver/mysql.zep.c
+	lynx/dbal/driver/pdo/statement.zep.c
+	lynx/dbal/driver/pdo.zep.c
+	lynx/dbal/events.zep.c
+	lynx/orm/configuration.zep.c
+	lynx/orm/entitymanager.zep.c
+	lynx/orm/entityrepository.zep.c
+	lynx/orm/exception.zep.c
+	lynx/orm/modelmetadata.zep.c
+	lynx/orm/modelsmanager.zep.c
+	lynx/orm/query.zep.c
+	lynx/orm/querybuilder.zep.c
+	lynx/orm/queryidentitymap.zep.c
+	lynx/orm/sqlbuilder.zep.c
+	lynx/orm/unitofwork.zep.c
+	lynx/stdlib/events/event.zep.c
+	lynx/stdlib/events/eventsmanager.zep.c
+	lynx/stdlib/events/manager.zep.c
+	lynx/stdlib/hydrator/classmethods.zep.c
+	lynx/stdlib/hydrator/classproperties.zep.c "
 	PHP_NEW_EXTENSION(lynx, $lynx_sources, $ext_shared)
 
 	old_CPPFLAGS=$CPPFLAGS
