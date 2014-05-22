@@ -17,6 +17,7 @@
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "ext/spl/spl_exceptions.h"
+#include "kernel/concat.h"
 
 
 /**
@@ -176,15 +177,111 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findAll) {
 
 }
 
+/**
+ * Find all entities from repository by column = :value
+ * @param string $column
+ * @param $value
+ * @return object|boolean
+ */
 PHP_METHOD(Lynx_ORM_EntityRepository, findBy) {
 
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *column_param = NULL, *value, *_0 = NULL, *_1, *_2 = NULL, *_4 = NULL, *_5 = NULL, *_6;
+	zval *column = NULL, *_3;
 
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 0, &column_param, &value);
+
+	if (unlikely(Z_TYPE_P(column_param) != IS_STRING && Z_TYPE_P(column_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'column' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(column_param) == IS_STRING)) {
+		column = column_param;
+	} else {
+		ZEPHIR_INIT_VAR(column);
+		ZVAL_EMPTY_STRING(column);
+	}
+
+
+	ZEPHIR_INIT_VAR(_1);
+	ZVAL_STRING(_1, "find_", 0);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "createquerybuilder", NULL, _1);
+	zephir_check_temp_parameter(_1);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_3);
+	ZEPHIR_CONCAT_SVS(_3, "find_.", column, " = :column");
+	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _3);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_4, _2, "getquery",  NULL);
+	zephir_check_call_status();
+	ZEPHIR_INIT_BNVAR(_1);
+	ZVAL_STRING(_1, "column", 0);
+	ZEPHIR_INIT_VAR(_6);
+	ZVAL_LONG(_6, 1);
+	ZEPHIR_CALL_METHOD(&_5, _4, "bindvalue", NULL, _1, value, _6);
+	zephir_check_temp_parameter(_1);
+	zephir_check_call_status();
+	ZEPHIR_RETURN_CALL_METHOD(_5, "fetchall", NULL);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 
+/**
+ * Find one entity from repository by column = :value
+ * @param string $column
+ * @param $value
+ * @return object|boolean
+ */
 PHP_METHOD(Lynx_ORM_EntityRepository, findOneBy) {
 
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *column_param = NULL, *value, *_0 = NULL, *_1, *_2 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_7;
+	zval *column = NULL, *_3;
 
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 0, &column_param, &value);
+
+	if (unlikely(Z_TYPE_P(column_param) != IS_STRING && Z_TYPE_P(column_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'column' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(column_param) == IS_STRING)) {
+		column = column_param;
+	} else {
+		ZEPHIR_INIT_VAR(column);
+		ZVAL_EMPTY_STRING(column);
+	}
+
+
+	ZEPHIR_INIT_VAR(_1);
+	ZVAL_STRING(_1, "find_", 0);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "createquerybuilder", NULL, _1);
+	zephir_check_temp_parameter(_1);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_3);
+	ZEPHIR_CONCAT_SVS(_3, "find_.", column, " = :column");
+	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _3);
+	zephir_check_call_status();
+	ZEPHIR_INIT_BNVAR(_1);
+	ZVAL_LONG(_1, 1);
+	ZEPHIR_CALL_METHOD(&_4, _2, "limit", NULL, _1);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_5, _4, "getquery",  NULL);
+	zephir_check_call_status();
+	ZEPHIR_INIT_BNVAR(_1);
+	ZVAL_STRING(_1, "column", 0);
+	ZEPHIR_INIT_VAR(_7);
+	ZVAL_LONG(_7, 1);
+	ZEPHIR_CALL_METHOD(&_6, _5, "bindvalue", NULL, _1, value, _7);
+	zephir_check_temp_parameter(_1);
+	zephir_check_call_status();
+	ZEPHIR_RETURN_CALL_METHOD(_6, "fetchone", NULL);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 

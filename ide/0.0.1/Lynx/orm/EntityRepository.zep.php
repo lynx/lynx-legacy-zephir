@@ -47,10 +47,28 @@ class EntityRepository
      */
 	public function findAll() {}
 
+    /**
+     * 	 * Find all entities from repository by column = :value
+     * 	 * @param string $column
+     * 	 * @param $value
+     * 	 * @return object|boolean
+     * 	
+     *
+     * @param string $column 
+     * @param variable $value 
+     */
+	public function findBy($column, $value) {}
 
-	public function findBy() {}
-
-
-	public function findOneBy() {}
+    /**
+     * 	 * Find one entity from repository by column = :value
+     * 	 * @param string $column
+     * 	 * @param $value
+     * 	 * @return object|boolean
+     * 	
+     *
+     * @param string $column 
+     * @param variable $value 
+     */
+	public function findOneBy($column, $value) {}
 
 }

@@ -25,6 +25,9 @@ class EntityRepositoryTest
         $this->assertTrue($repository->findAll() !== false);
     }
 
+    /**
+     * Test for primary key find
+     */
     public function testFind()
     {
         $repository = $this->getUserRepository();

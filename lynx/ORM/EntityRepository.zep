@@ -59,13 +59,34 @@ class EntityRepository
 			->fetchAll();
     }
 
-    public function findBy()
+	/**
+	 * Find all entities from repository by column = :value
+	 * @param string $column
+	 * @param $value
+	 * @return object|boolean
+	 */
+    public function findBy(string! column, var value)
     {
-
+		return this->createQueryBuilder("find_")
+			->where("find_." .column. " = :column")
+			->getQuery()
+			->bindValue("column", value, \PDO::PARAM_INT)
+			->fetchAll();
     }
 
-    public function findOneBy()
+	/**
+	 * Find one entity from repository by column = :value
+	 * @param string $column
+	 * @param $value
+	 * @return object|boolean
+	 */
+    public function findOneBy(string! column, var value)
     {
-
+		return this->createQueryBuilder("find_")
+			->where("find_." .column. " = :column")
+			->limit(1)
+			->getQuery()
+			->bindValue("column", value, \PDO::PARAM_INT)
+			->fetchOne();
     }
 }
