@@ -10,10 +10,14 @@ class Query
 
 	protected em;
 
+	protected statement;
+
 	public function __construct(var query, <EntityManager> em)
 	{
 		let this->query = query;
 		let this->em = em;
+
+		let this->statement = this->em->getConnection()->prepare(this->query);
 	}
 
 	public function fetchArray(var parameters = null)
@@ -21,17 +25,21 @@ class Query
 		return this->getResult();
 	}
 
+	public function bindValue(var parameter, var value, var data_type = \PDO::PARAM_STR)
+	{
+		this->statement->bindValue(":".parameter, value, data_type);
+		return this;
+	}
+
 	/**
 	 * @return mixed
 	 */
 	public function getResult()
 	{
-		var connection, statement, result;
-		let connection = this->em->getConnection();
+		var result;
 
-		let statement = connection->prepare(this->query);
-		statement->execute();
-		let result = statement->fetchAll();
+		this->statement->execute();
+		let result = this->statement->fetchAll();
 
 		if (count(result) == 0) {
 			return false;

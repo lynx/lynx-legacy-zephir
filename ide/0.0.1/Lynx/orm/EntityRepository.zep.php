@@ -33,6 +33,8 @@ class EntityRepository
 
     /**
      * 	 * Find entity by primary key
+     * 	 * @param $id
+     * 	 * @return object|boolean
      * 	
      *
      * @param variable $id 

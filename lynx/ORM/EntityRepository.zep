@@ -36,13 +36,16 @@ class EntityRepository
 
 	/**
 	 * Find entity by primary key
+	 * @param $id
+	 * @return object|boolean
 	 */
     public function find(var id)
     {
 		return this->createQueryBuilder("find_")
-			->where("find_.id = ?", id)
+			->where("find_.id = :id")
 			->limit(1)
 			->getQuery()
+			->bindValue("id", id, \PDO::PARAM_INT)
 			->fetchOne();
     }
 

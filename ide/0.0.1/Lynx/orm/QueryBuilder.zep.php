@@ -81,9 +81,8 @@ class QueryBuilder
 
     /**
      * @param variable $statement 
-     * @param mixed $param 
      */
-	public function where($statement, $param) {}
+	public function where($statement) {}
 
     /**
      * @param variable $statement 

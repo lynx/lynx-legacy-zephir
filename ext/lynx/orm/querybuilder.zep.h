@@ -49,9 +49,8 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_join, 0, 0, 2)
 	ZEND_ARG_INFO(0, alias)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_where, 0, 0, 2)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_where, 0, 0, 1)
 	ZEND_ARG_INFO(0, statement)
-	ZEND_ARG_INFO(0, param)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_andwhere, 0, 0, 1)

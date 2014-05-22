@@ -30,7 +30,6 @@ class EntityRepositoryTest
         $repository = $this->getUserRepository();
         $this->assertTrue($repository->find(1) !== false);
 
-
         /**
          * not found
          */

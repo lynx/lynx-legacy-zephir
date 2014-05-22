@@ -83,7 +83,7 @@ class QueryBuilder
 		return this;
 	}
 
-	public function where(var statement, param)
+	public function where(var statement)
 	{
 		let this->where[] = statement;
 

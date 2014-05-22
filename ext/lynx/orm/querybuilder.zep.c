@@ -213,9 +213,9 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, join) {
 
 PHP_METHOD(Lynx_ORM_QueryBuilder, where) {
 
-	zval *statement, *param;
+	zval *statement;
 
-	zephir_fetch_params(0, 2, 0, &statement, &param);
+	zephir_fetch_params(0, 1, 0, &statement);
 
 
 

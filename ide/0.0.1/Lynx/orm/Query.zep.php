@@ -9,6 +9,8 @@ class Query
 
     protected $em;
 
+    protected $statement;
+
     /**
      * @param variable $query 
      * @param EntityManager $em 
@@ -19,6 +21,13 @@ class Query
      * @param variable $parameters 
      */
 	public function fetchArray($parameters = null) {}
+
+    /**
+     * @param variable $parameter 
+     * @param variable $value 
+     * @param variable $data_type 
+     */
+	public function bindValue($parameter, $value, $data_type = \PDO::PARAM_STR) {}
 
     /**
      * 	 * @return mixed
