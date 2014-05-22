@@ -17,7 +17,6 @@
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "ext/spl/spl_exceptions.h"
-#include "kernel/concat.h"
 
 
 /**
@@ -116,7 +115,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, createQueryBuilder) {
 PHP_METHOD(Lynx_ORM_EntityRepository, find) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *id, *_0 = NULL, *_1, *_2 = NULL, *_3, *_4 = NULL, *_5 = NULL;
+	zval *id, *_0 = NULL, *_1, *_2 = NULL, *_3 = NULL, *_4 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &id);
@@ -128,17 +127,18 @@ PHP_METHOD(Lynx_ORM_EntityRepository, find) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "createquerybuilder", NULL, _1);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(_3);
-	ZEPHIR_CONCAT_SV(_3, "find_.id = ", id);
-	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _3, id);
+	ZEPHIR_INIT_BNVAR(_1);
+	ZVAL_STRING(_1, "find_.id = ?", 0);
+	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _1, id);
+	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_BNVAR(_1);
 	ZVAL_LONG(_1, 1);
-	ZEPHIR_CALL_METHOD(&_4, _2, "limit", NULL, _1);
+	ZEPHIR_CALL_METHOD(&_3, _2, "limit", NULL, _1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_5, _4, "getquery",  NULL);
+	ZEPHIR_CALL_METHOD(&_4, _3, "getquery",  NULL);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(_5, "fetchone", NULL);
+	ZEPHIR_RETURN_CALL_METHOD(_4, "fetchone", NULL);
 	zephir_check_call_status();
 	RETURN_MM();
 

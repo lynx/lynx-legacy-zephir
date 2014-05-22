@@ -40,7 +40,7 @@ class EntityRepository
     public function find(var id)
     {
 		return this->createQueryBuilder("find_")
-			->where("find_.id = ".id, id)
+			->where("find_.id = ?", id)
 			->limit(1)
 			->getQuery()
 			->fetchOne();

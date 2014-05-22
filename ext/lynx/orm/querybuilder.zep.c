@@ -403,9 +403,9 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 	}
 	_10 = zephir_fetch_nproperty_this(this_ptr, SL("order"), PH_NOISY_CC);
 	if (zephir_is_true(_10)) {
-		_10 = zephir_fetch_nproperty_this(this_ptr, SL("order"), PH_NOISY_CC);
+		_13 = zephir_fetch_nproperty_this(this_ptr, SL("order"), PH_NOISY_CC);
 		ZEPHIR_INIT_LNVAR(_12);
-		ZEPHIR_CONCAT_SV(_12, " ORDER BY ", _10);
+		ZEPHIR_CONCAT_SV(_12, " ORDER BY ", _13);
 		zephir_concat_self(&sql, _12 TSRMLS_CC);
 	}
 	_10 = zephir_fetch_nproperty_this(this_ptr, SL("limit"), PH_NOISY_CC);

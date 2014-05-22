@@ -72,7 +72,7 @@ PHP_METHOD(Lynx_ORM_ModelsManager, __construct) {
 PHP_METHOD(Lynx_ORM_ModelsManager, get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *classname_param = NULL, *_0, *cacheDriver = NULL, *_1 = NULL, *_2, *_3, *_4, *_5;
+	zval *classname_param = NULL, *_0, *cacheDriver = NULL, *_1, *_2 = NULL, *_3, *_4, *_5;
 	zval *classname = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -93,16 +93,16 @@ PHP_METHOD(Lynx_ORM_ModelsManager, get) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("cacheLoaded"), PH_NOISY_CC);
 	if (zephir_is_true(_0)) {
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_1, _0, "getconfiguration",  NULL);
+		_1 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_2, _1, "getconfiguration",  NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&cacheDriver, _1, "getcachedriver",  NULL);
+		ZEPHIR_CALL_METHOD(&cacheDriver, _2, "getcachedriver",  NULL);
 		zephir_check_call_status();
 		if (zephir_is_true(cacheDriver)) {
 		}
 	}
-	_2 = zephir_fetch_nproperty_this(this_ptr, SL("cachedModels"), PH_NOISY_CC);
-	if (zephir_array_isset(_2, classname)) {
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("cachedModels"), PH_NOISY_CC);
+	if (zephir_array_isset(_1, classname)) {
 		_3 = zephir_fetch_nproperty_this(this_ptr, SL("cachedModels"), PH_NOISY_CC);
 		zephir_array_fetch(&_4, _3, classname, PH_NOISY | PH_READONLY TSRMLS_CC);
 		RETURN_CTOR(_4);
@@ -112,8 +112,8 @@ PHP_METHOD(Lynx_ORM_ModelsManager, get) {
 	ZEPHIR_CALL_METHOD(NULL, _5, "__construct", NULL, classname);
 	zephir_check_call_status();
 	zephir_update_property_array(this_ptr, SL("cachedModels"), classname, _5 TSRMLS_CC);
-	_3 = zephir_fetch_nproperty_this(this_ptr, SL("cachedModels"), PH_NOISY_CC);
-	zephir_array_fetch(&_4, _3, classname, PH_NOISY | PH_READONLY TSRMLS_CC);
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("cachedModels"), PH_NOISY_CC);
+	zephir_array_fetch(&_4, _1, classname, PH_NOISY | PH_READONLY TSRMLS_CC);
 	RETURN_CTOR(_4);
 
 }
