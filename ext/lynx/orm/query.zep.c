@@ -82,6 +82,9 @@ PHP_METHOD(Lynx_ORM_Query, fetchArray) {
 
 }
 
+/**
+ * Binds a value to a parameter
+ */
 PHP_METHOD(Lynx_ORM_Query, bindValue) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -100,6 +103,38 @@ PHP_METHOD(Lynx_ORM_Query, bindValue) {
 	ZEPHIR_INIT_VAR(_1);
 	ZEPHIR_CONCAT_SV(_1, ":", parameter);
 	ZEPHIR_CALL_METHOD(NULL, _0, "bindvalue", NULL, _1, value, data_type);
+	zephir_check_call_status();
+	RETURN_THIS();
+
+}
+
+/**
+ * Binds a parameter to the specified variable name
+ */
+PHP_METHOD(Lynx_ORM_Query, bindParam) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *parameter, *value, *data_type = NULL, *lenght = NULL, *driver_options = NULL, *_0, *_1;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 3, &parameter, &value, &data_type, &lenght, &driver_options);
+
+	if (!data_type) {
+		ZEPHIR_INIT_VAR(data_type);
+		ZVAL_LONG(data_type, 2);
+	}
+	if (!lenght) {
+		lenght = ZEPHIR_GLOBAL(global_null);
+	}
+	if (!driver_options) {
+		driver_options = ZEPHIR_GLOBAL(global_null);
+	}
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("statement"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_1);
+	ZEPHIR_CONCAT_SV(_1, ":", parameter);
+	ZEPHIR_CALL_METHOD(NULL, _0, "bindparam", NULL, _1, value, data_type, lenght, driver_options);
 	zephir_check_call_status();
 	RETURN_THIS();
 

@@ -25,9 +25,21 @@ class Query
 		return this->getResult();
 	}
 
+	/**
+	 * Binds a value to a parameter
+	 */
 	public function bindValue(var parameter, var value, var data_type = \PDO::PARAM_STR)
 	{
 		this->statement->bindValue(":".parameter, value, data_type);
+		return this;
+	}
+
+	/**
+	 * Binds a parameter to the specified variable name
+	 */
+	public function bindParam(var parameter, var value, var data_type = \PDO::PARAM_STR, var lenght = null, var driver_options = null)
+	{
+		this->statement->bindParam(":".parameter, value, data_type, lenght, driver_options);
 		return this;
 	}
 
