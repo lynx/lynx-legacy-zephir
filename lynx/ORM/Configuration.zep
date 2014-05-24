@@ -1,6 +1,8 @@
 
 namespace Lynx\ORM;
 
+use Lynx\Cache\CacheDriver;
+
 class Configuration
 {
 	protected cacheDriver {get};
@@ -8,7 +10,7 @@ class Configuration
 	/**
 	 * Set Cache Driver
 	 */
-	public function setCacheDriver(<\Lynx\Cache\CacheDriver> cacheDriver)
+	public function setCacheDriver(<CacheDriver> cacheDriver)
 	{
 		let this->cacheDriver = cacheDriver;
 	}

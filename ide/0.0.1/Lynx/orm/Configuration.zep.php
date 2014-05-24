@@ -15,7 +15,7 @@ class Configuration
      * 	 * Set Cache Driver
      * 	
      *
-     * @param \Lynx\Cache\CacheDriver $cacheDriver 
+     * @param CacheDriver $cacheDriver 
      */
 	public function setCacheDriver($cacheDriver) {}
 
