@@ -65,4 +65,13 @@ class Query
      */
 	public function fetchOne($parameters = null) {}
 
+    /**
+     * @param variable $parameters 
+     * @param variable $hydrationMod 
+     */
+	public function execute($parameters, $hydrationMod = null) {}
+
+
+	public function getScalarResult() {}
+
 }

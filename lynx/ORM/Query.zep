@@ -74,4 +74,14 @@ class Query
 	{
 		return this->getResult();
 	}
+
+	public function execute(var parameters, var hydrationMod = null)
+	{
+		
+	}
+
+	public function getScalarResult()
+	{
+		return this->getResult();	
+	}
 }

@@ -220,3 +220,29 @@ PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 
 }
 
+PHP_METHOD(Lynx_ORM_Query, execute) {
+
+	zval *parameters, *hydrationMod = NULL;
+
+	zephir_fetch_params(0, 1, 1, &parameters, &hydrationMod);
+
+	if (!hydrationMod) {
+		hydrationMod = ZEPHIR_GLOBAL(global_null);
+	}
+
+
+
+}
+
+PHP_METHOD(Lynx_ORM_Query, getScalarResult) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getresult", NULL);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
