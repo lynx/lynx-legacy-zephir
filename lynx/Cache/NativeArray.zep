@@ -5,7 +5,7 @@ class NativeArray extends CacheDriver
 {
     protected options;
 
-    protected instance = [];
+    protected instance = [] {get};
 
     public function __construct(array options = null)
     {
@@ -16,11 +16,7 @@ class NativeArray extends CacheDriver
     {
         let this->instance = instance;
     }
-
-    protected function getInstance()
-    {
-    }
-
+    
     public function save(string! id, data, lifeTime = 3600)
     {
         let this->instance[id] = data;

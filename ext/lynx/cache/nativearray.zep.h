@@ -3,9 +3,9 @@ extern zend_class_entry *lynx_cache_nativearray_ce;
 
 ZEPHIR_INIT_CLASS(Lynx_Cache_NativeArray);
 
+PHP_METHOD(Lynx_Cache_NativeArray, getInstance);
 PHP_METHOD(Lynx_Cache_NativeArray, __construct);
 PHP_METHOD(Lynx_Cache_NativeArray, setInstance);
-PHP_METHOD(Lynx_Cache_NativeArray, getInstance);
 PHP_METHOD(Lynx_Cache_NativeArray, save);
 PHP_METHOD(Lynx_Cache_NativeArray, delete);
 PHP_METHOD(Lynx_Cache_NativeArray, get);
@@ -34,9 +34,9 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_cache_nativearray_get, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(lynx_cache_nativearray_method_entry) {
+	PHP_ME(Lynx_Cache_NativeArray, getInstance, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_NativeArray, __construct, arginfo_lynx_cache_nativearray___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Lynx_Cache_NativeArray, setInstance, arginfo_lynx_cache_nativearray_setinstance, ZEND_ACC_PUBLIC)
-	PHP_ME(Lynx_Cache_NativeArray, getInstance, NULL, ZEND_ACC_PROTECTED)
 	PHP_ME(Lynx_Cache_NativeArray, save, arginfo_lynx_cache_nativearray_save, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_NativeArray, delete, arginfo_lynx_cache_nativearray_delete, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_NativeArray, get, arginfo_lynx_cache_nativearray_get, ZEND_ACC_PUBLIC)

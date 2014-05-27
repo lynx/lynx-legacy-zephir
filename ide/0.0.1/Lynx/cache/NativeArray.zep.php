@@ -9,6 +9,9 @@ class NativeArray extends \Lynx\Cache\CacheDriver
 
     protected $instance = array();
 
+
+	public function getInstance() {}
+
     /**
      * @param array $options 
      */
@@ -18,9 +21,6 @@ class NativeArray extends \Lynx\Cache\CacheDriver
      * @param array $instance 
      */
 	public function setInstance($instance) {}
-
-
-	protected function getInstance() {}
 
     /**
      * @param string $id 

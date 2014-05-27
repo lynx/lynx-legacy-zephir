@@ -31,6 +31,13 @@ ZEPHIR_INIT_CLASS(Lynx_Cache_NativeArray) {
 
 }
 
+PHP_METHOD(Lynx_Cache_NativeArray, getInstance) {
+
+
+	RETURN_MEMBER(this_ptr, "instance");
+
+}
+
 PHP_METHOD(Lynx_Cache_NativeArray, __construct) {
 
 	zval *options_param = NULL, *_0;
@@ -72,12 +79,6 @@ PHP_METHOD(Lynx_Cache_NativeArray, setInstance) {
 
 
 	zephir_update_property_this(this_ptr, SL("instance"), instance TSRMLS_CC);
-
-}
-
-PHP_METHOD(Lynx_Cache_NativeArray, getInstance) {
-
-
 
 }
 
