@@ -37,7 +37,7 @@ final class RegexDocParser
 				if (hasParams) {
 					let val = [];
 					for param in params {
-					    let val[param[1]] = self::parseValue($param[2]);
+					    let val[param[1]] = self::parseValue(param[2]);
 					    //let val[param[1]] = param[2];
 					}
 				} else {
@@ -55,7 +55,7 @@ final class RegexDocParser
 				if (!is_array(annotations[annoName])) {
 					let annotations[annoName] = [annotations[annoName]];
 				}
-				let annotations[$annoName][] = val;
+				let annotations[annoName][] = val;
 			} else {
 				let annotations[annoName] = val;
 			}
@@ -76,7 +76,7 @@ final class RegexDocParser
 
 		if (substr(val, 0, 1) == "[" && substr(val, -1) == "]") {
 			// Array values
-			let vals = explode(',', substr($val, 1, -1));
+			let vals = explode(',', substr(val, 1, -1));
 			let val = [];
 
 			for v in vals {
@@ -105,9 +105,9 @@ final class RegexDocParser
                             if (is_numeric(val)) {
                                 // Numeric value, determine if int or float and then cast
                                 if ((float) val == (int) val) {
-                                    return (int) $val;
+                                    return (int) val;
                                 } else {
-                                    return (float) $val;
+                                    return (float) val;
                                 }
                             }
                         }
