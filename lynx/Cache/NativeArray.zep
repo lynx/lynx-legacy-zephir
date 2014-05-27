@@ -16,7 +16,7 @@ class NativeArray extends CacheDriver
     {
         let this->instance = instance;
     }
-    
+
     public function save(string! id, data, lifeTime = 3600)
     {
         let this->instance[id] = data;

@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-
+        "php": "~5.4"
     },
     "scripts": {
         "post-install-cmd": ["./ext/install"],
