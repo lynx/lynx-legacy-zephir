@@ -163,6 +163,9 @@ PHP_METHOD(Lynx_ORM_Query, getResult) {
 
 }
 
+/**
+ * @return array|boolean
+ */
 PHP_METHOD(Lynx_ORM_Query, fetchAll) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -182,6 +185,9 @@ PHP_METHOD(Lynx_ORM_Query, fetchAll) {
 
 }
 
+/**
+ * @return object|boolean
+ */
 PHP_METHOD(Lynx_ORM_Query, fetchObject) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

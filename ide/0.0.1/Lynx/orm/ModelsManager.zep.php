@@ -10,7 +10,7 @@ class ModelsManager
     const CACHE_LOAD_PER_GET_ALL = 1;
     /**
      * 
-     * 	 * @var EntityManager
+     * @var EntityManager
      * 	
      */
     protected $em;
@@ -23,7 +23,7 @@ class ModelsManager
 
     /**
      * @param EntityManager $em 
-     * @param variable $cacheLoadType 
+     * @param mixed $cacheLoadType 
      */
 	public function __construct($em, $cacheLoadType = self::CACHE_LOAD_PER_GET_ALL) {}
 

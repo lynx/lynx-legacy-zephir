@@ -12,7 +12,7 @@ class Configuration
 
     /**
      * 
-     * 	 * Set Cache Driver
+     * Set Cache Driver
      * 	
      *
      * @param CacheDriver $cacheDriver 

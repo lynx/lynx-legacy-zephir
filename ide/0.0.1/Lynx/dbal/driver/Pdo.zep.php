@@ -7,8 +7,8 @@ class Pdo extends \PDO
 
     /**
      * @param string $dsn 
-     * @param variable $username 
-     * @param variable $password 
+     * @param mixed $username 
+     * @param mixed $password 
      * @param array $options 
      */
 	public function __construct($dsn, $username = null, $password = null, $options = null) {}

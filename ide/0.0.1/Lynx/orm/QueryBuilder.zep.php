@@ -56,52 +56,52 @@ class QueryBuilder
 	public function update() {}
 
     /**
-     * @param variable $from 
-     * @param variable $alias 
+     * @param mixed $from 
+     * @param mixed $alias 
      */
 	public function from($from, $alias) {}
 
     /**
-     * @param variable $join 
-     * @param variable $alias 
+     * @param mixed $join 
+     * @param mixed $alias 
      */
 	public function leftJoin($join, $alias) {}
 
     /**
-     * @param variable $join 
-     * @param variable $alias 
+     * @param mixed $join 
+     * @param mixed $alias 
      */
 	public function rightJoin($join, $alias) {}
 
     /**
-     * @param variable $join 
-     * @param variable $alias 
+     * @param mixed $join 
+     * @param mixed $alias 
      */
 	public function join($join, $alias) {}
 
     /**
-     * @param variable $statement 
+     * @param mixed $statement 
      */
 	public function where($statement) {}
 
     /**
-     * @param variable $statement 
+     * @param mixed $statement 
      */
 	public function andWhere($statement) {}
 
     /**
-     * @param variable $statement 
+     * @param mixed $statement 
      */
 	public function orWhere($statement) {}
 
     /**
      * 
-     * 	 * @param statement
-     * 	 * @param string sort
-     * 	 * @return $this
+     * @param statement
+     * @param string sort
+     * @return $this
      * 	
      *
-     * @param variable $statement 
+     * @param mixed $statement 
      * @param string $sort 
      * @return Query 
      */

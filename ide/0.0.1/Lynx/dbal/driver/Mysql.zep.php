@@ -18,7 +18,7 @@ class Mysql
     protected $connection;
 
     /**
-     * @param variable $eventsManager 
+     * @param mixed $eventsManager 
      */
 	public function setEventsManager($eventsManager) {}
 
@@ -27,8 +27,8 @@ class Mysql
 
     /**
      * @param string $dsn 
-     * @param variable $username 
-     * @param variable $password 
+     * @param mixed $username 
+     * @param mixed $password 
      * @param array $driverOptions 
      */
 	public function __construct($dsn, $username = null, $password = null, $driverOptions = array()) {}
@@ -37,7 +37,7 @@ class Mysql
 	public function connect() {}
 
     /**
-     * @param variable $statement 
+     * @param mixed $statement 
      */
 	public function prepare($statement) {}
 

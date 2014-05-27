@@ -32,42 +32,42 @@ class EntityRepository
 	public function createQueryBuilder($alias) {}
 
     /**
-     * 	 * Find entity by primary key
-     * 	 * @param $id
-     * 	 * @return object|boolean
+     * Find entity by primary key
+     * @param $id
+     * @return object|boolean
      * 	
      *
-     * @param variable $id 
+     * @param mixed $id 
      */
 	public function find($id) {}
 
     /**
-     * 	 * Find all entities from repository
+     * Find all entities from repository
      * 	
      */
 	public function findAll() {}
 
     /**
-     * 	 * Find all entities from repository by column = :value
-     * 	 * @param string $column
-     * 	 * @param $value
-     * 	 * @return object|boolean
+     * Find all entities from repository by column = :value
+     * @param string $column
+     * @param $value
+     * @return object|boolean
      * 	
      *
      * @param string $column 
-     * @param variable $value 
+     * @param mixed $value 
      */
 	public function findBy($column, $value) {}
 
     /**
-     * 	 * Find one entity from repository by column = :value
-     * 	 * @param string $column
-     * 	 * @param $value
-     * 	 * @return object|boolean
+     * Find one entity from repository by column = :value
+     * @param string $column
+     * @param $value
+     * @return object|boolean
      * 	
      *
      * @param string $column 
-     * @param variable $value 
+     * @param mixed $value 
      */
 	public function findOneBy($column, $value) {}
 

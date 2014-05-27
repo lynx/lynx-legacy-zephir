@@ -6,13 +6,13 @@ final class RegexDocParser
 {
 
     /**
-     * @param variable $docComment 
+     * @param mixed $docComment 
      * @return array 
      */
 	public static function parseAnnotations($docComment) {}
 
     /**
-     * @param variable $value 
+     * @param mixed $value 
      * @return mixed 
      */
 	private static function parseValue($value) {}

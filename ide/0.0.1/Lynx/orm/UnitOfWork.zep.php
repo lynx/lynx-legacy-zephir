@@ -6,7 +6,7 @@ class UnitOfWork
 {
     /**
      * 
-     * 	 * @var EntityManager
+     * @var EntityManager
      * 	
      */
     protected $em;
@@ -38,7 +38,7 @@ class UnitOfWork
 	public function delete($entity) {}
 
     /**
-     * @param variable $entity 
+     * @param mixed $entity 
      */
 	public function commit($entity = null) {}
 

@@ -10,7 +10,7 @@ class ReflectionClassParser
     protected $reflectionClass;
 
     /**
-     * @param variable $parameter 
+     * @param mixed $parameter 
      */
 	public function __construct($parameter) {}
 

@@ -39,7 +39,7 @@ class EntityManager
 	public function __construct($connection, $configuration, $eventManager) {}
 
     /**
-     * @param variable $entity 
+     * @param mixed $entity 
      */
 	public function flush($entity) {}
 
@@ -69,7 +69,7 @@ class EntityManager
 	public function createQueryBuilder() {}
 
     /**
-     * @param variable $sql 
+     * @param mixed $sql 
      * @return Query 
      */
 	public function createQuery($sql) {}

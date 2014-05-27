@@ -11,13 +11,13 @@ class Connection
 	public function getDriver() {}
 
     /**
-     * @param variable $parameters 
+     * @param mixed $parameters 
      * @param EventsManager $eventsManager 
      */
 	public function __construct($parameters, $eventsManager = null) {}
 
     /**
-     * @param variable $statement 
+     * @param mixed $statement 
      */
 	public function prepare($statement) {}
 

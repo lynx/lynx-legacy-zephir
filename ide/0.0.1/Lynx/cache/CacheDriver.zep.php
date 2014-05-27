@@ -6,13 +6,13 @@ abstract class CacheDriver
 {
 
     /**
-     * 	 * To initialize cache provider
+     * To initialize cache provider
      * 	
      */
 	abstract protected function getInstance();
 
     /**
-     * 	 * Save data
+     * Save data
      * 	
      *
      * @param string $id 
@@ -22,7 +22,7 @@ abstract class CacheDriver
 	abstract public function save($id, $data, $lifeTime = 3600);
 
     /**
-     * 	 * Save data by id
+     * Save data by id
      * 	
      *
      * @param string $id 
@@ -30,7 +30,7 @@ abstract class CacheDriver
 	abstract public function delete($id);
 
     /**
-     * 	 * Fetch data by id
+     * Fetch data by id
      * 	
      *
      * @param string $id 

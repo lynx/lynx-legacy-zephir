@@ -60,11 +60,17 @@ class Query
 		return result;
 	}
 
+	/**
+	 * @return array|boolean
+	 */
 	public function fetchAll(var parameters = null)
 	{
 		return this->getResult();
 	}
 
+	/**
+	 * @return object|boolean
+	 */
 	public function fetchObject(var parameters = null)
 	{
 		return this->getResult();

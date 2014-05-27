@@ -7,13 +7,13 @@ class ClassProperties
 
     /**
      * 
-     * 	 * @param arrray $data
-     * 	 * $param object $currentObject
-     * 	 * @return object
+     * @param arrray $data
+     * $param object $currentObject
+     * @return object
      * 	
      *
      * @param array $data 
-     * @param variable $currentObject 
+     * @param mixed $currentObject 
      */
 	public static function hydrate($data, $currentObject) {}
 

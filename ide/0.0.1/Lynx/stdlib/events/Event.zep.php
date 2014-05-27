@@ -16,7 +16,7 @@ class Event
     protected $_cancelable = true;
 
     /**
-     * @param variable $type 
+     * @param mixed $type 
      */
 	public function setType($type) {}
 
@@ -27,7 +27,7 @@ class Event
 	public function getSource() {}
 
     /**
-     * @param variable $data 
+     * @param mixed $data 
      */
 	public function setData($data) {}
 
@@ -38,12 +38,12 @@ class Event
 	public function getCancelable() {}
 
     /**
-     * 	 * Phalcon\Events\Event constructor
+     * Phalcon\Events\Event constructor
      * 	
-     * 	 * @param string type
-     * 	 * @param object source
-     * 	 * @param mixed data
-     * 	 * @param boolean cancelable
+     * @param string type
+     * @param object source
+     * @param mixed data
+     * @param boolean cancelable
      * 	
      *
      * @param string $type 
@@ -54,15 +54,15 @@ class Event
 	public function __construct($type, $source, $data = null, $cancelable = true) {}
 
     /**
-     * 	 * Stops the event preventing propagation
+     * Stops the event preventing propagation
      * 	
      */
 	public function stop() {}
 
     /**
-     * 	 * Check whether the event is currently stopped
+     * Check whether the event is currently stopped
      * 	
-     * 	 * @return boolean
+     * @return boolean
      * 	
      *
      * @return bool 
