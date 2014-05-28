@@ -7,7 +7,7 @@ namespace Lynx\ORM;
 
 class QueryIdentityMap
 {
-	protected rootAlias {get};
+	protected rootAlias {get, set};
 
-	protected aliases {get};
+	protected aliases {get, set};
 }

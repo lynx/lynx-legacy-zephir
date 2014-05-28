@@ -4,23 +4,46 @@ namespace Lynx\ORM;
 
 class Query
 {
-
+    /**
+     * Sql plain query
+     * 	
+     */
     protected $query;
 
     protected $em;
 
     protected $statement;
+    /**
+     * IdentityMap for SQL. need for hydrate data with many relations (joins)
+     * 	
+     */
+    protected $identityMap;
+
+    /**
+     * Sql plain query
+     * 	
+     */
+	public function getQuery() {}
+
+    /**
+     * IdentityMap for SQL. need for hydrate data with many relations (joins)
+     * 	
+     */
+	public function getIdentityMap() {}
+
+    /**
+     * IdentityMap for SQL. need for hydrate data with many relations (joins)
+     * 	
+     *
+     * @param mixed $identityMap 
+     */
+	public function setIdentityMap($identityMap) {}
 
     /**
      * @param mixed $query 
      * @param EntityManager $em 
      */
 	public function __construct($query, $em) {}
-
-    /**
-     * @param mixed $parameters 
-     */
-	public function fetchArray($parameters = null) {}
 
     /**
      * Binds a value to a parameter
@@ -49,6 +72,11 @@ class Query
      * 	
      */
 	public function getResult() {}
+
+    /**
+     * @param mixed $parameters 
+     */
+	public function fetchArray($parameters = null) {}
 
     /**
      * @return array|boolean

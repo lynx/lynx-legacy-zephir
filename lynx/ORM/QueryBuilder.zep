@@ -194,7 +194,10 @@ class QueryBuilder
 		var query, identityMap;
 
 		let identityMap = new QueryIdentityMap();
+		identityMap->setRootAlias(this->alias);
+
 		let query = this->em->createQuery(this->getSQL());
+		query->setIdentityMap(identityMap);
 
 		return query;
 	}

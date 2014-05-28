@@ -13,6 +13,7 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
+#include "kernel/memory.h"
 
 
 /**
@@ -37,10 +38,34 @@ PHP_METHOD(Lynx_ORM_QueryIdentityMap, getRootAlias) {
 
 }
 
+PHP_METHOD(Lynx_ORM_QueryIdentityMap, setRootAlias) {
+
+	zval *rootAlias;
+
+	zephir_fetch_params(0, 1, 0, &rootAlias);
+
+
+
+	zephir_update_property_this(this_ptr, SL("rootAlias"), rootAlias TSRMLS_CC);
+
+}
+
 PHP_METHOD(Lynx_ORM_QueryIdentityMap, getAliases) {
 
 
 	RETURN_MEMBER(this_ptr, "aliases");
+
+}
+
+PHP_METHOD(Lynx_ORM_QueryIdentityMap, setAliases) {
+
+	zval *aliases;
+
+	zephir_fetch_params(0, 1, 0, &aliases);
+
+
+
+	zephir_update_property_this(this_ptr, SL("aliases"), aliases TSRMLS_CC);
 
 }
 

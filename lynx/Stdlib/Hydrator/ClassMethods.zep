@@ -19,7 +19,6 @@ class ClassMethods
             }
     	}
 
-
         return currentObject;
     }
 }

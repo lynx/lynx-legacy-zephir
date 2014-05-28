@@ -6,11 +6,19 @@ namespace Lynx\ORM;
 
 class Query
 {
-	protected query;
+	/**
+	 * Sql plain query
+	 */
+	protected query {get};
 
 	protected em;
 
 	protected statement;
+
+	/**
+	 * IdentityMap for SQL. need for hydrate data with many relations (joins)
+	 */
+	protected identityMap {get, set};
 
 	public function __construct(var query, <EntityManager> em)
 	{
@@ -18,11 +26,6 @@ class Query
 		let this->em = em;
 
 		let this->statement = this->em->getConnection()->prepare(this->query);
-	}
-
-	public function fetchArray(var parameters = null)
-	{
-		return this->getResult();
 	}
 
 	/**
@@ -58,6 +61,11 @@ class Query
 		}
 
 		return result;
+	}
+
+	public function fetchArray(var parameters = null)
+	{
+		return this->getResult();
 	}
 
 	/**

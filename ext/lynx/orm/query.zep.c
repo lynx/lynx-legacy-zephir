@@ -13,8 +13,8 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/exception.h"
 #include "kernel/memory.h"
+#include "kernel/exception.h"
 #include "kernel/fcall.h"
 #include "kernel/concat.h"
 
@@ -26,13 +26,56 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_Query) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\ORM, Query, lynx, orm_query, lynx_orm_query_method_entry, 0);
 
+	/**
+	 * Sql plain query
+	 */
 	zend_declare_property_null(lynx_orm_query_ce, SL("query"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(lynx_orm_query_ce, SL("em"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(lynx_orm_query_ce, SL("statement"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	/**
+	 * IdentityMap for SQL. need for hydrate data with many relations (joins)
+	 */
+	zend_declare_property_null(lynx_orm_query_ce, SL("identityMap"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
 	return SUCCESS;
+
+}
+
+/**
+ * Sql plain query
+ */
+PHP_METHOD(Lynx_ORM_Query, getQuery) {
+
+
+	RETURN_MEMBER(this_ptr, "query");
+
+}
+
+/**
+ * IdentityMap for SQL. need for hydrate data with many relations (joins)
+ */
+PHP_METHOD(Lynx_ORM_Query, getIdentityMap) {
+
+
+	RETURN_MEMBER(this_ptr, "identityMap");
+
+}
+
+/**
+ * IdentityMap for SQL. need for hydrate data with many relations (joins)
+ */
+PHP_METHOD(Lynx_ORM_Query, setIdentityMap) {
+
+	zval *identityMap;
+
+	zephir_fetch_params(0, 1, 0, &identityMap);
+
+
+
+	zephir_update_property_this(this_ptr, SL("identityMap"), identityMap TSRMLS_CC);
 
 }
 
@@ -60,25 +103,6 @@ PHP_METHOD(Lynx_ORM_Query, __construct) {
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("statement"), _2 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
-
-}
-
-PHP_METHOD(Lynx_ORM_Query, fetchArray) {
-
-	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters = NULL;
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 1, &parameters);
-
-	if (!parameters) {
-		parameters = ZEPHIR_GLOBAL(global_null);
-	}
-
-
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getresult", NULL);
-	zephir_check_call_status();
-	RETURN_MM();
 
 }
 
@@ -160,6 +184,25 @@ PHP_METHOD(Lynx_ORM_Query, getResult) {
 		RETURN_MM_BOOL(0);
 	}
 	RETURN_CCTOR(result);
+
+}
+
+PHP_METHOD(Lynx_ORM_Query, fetchArray) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *parameters = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &parameters);
+
+	if (!parameters) {
+		parameters = ZEPHIR_GLOBAL(global_null);
+	}
+
+
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getresult", NULL);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 

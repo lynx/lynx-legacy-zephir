@@ -17,7 +17,6 @@ class ClassProperties
             }
     	}
 
-
         return currentObject;
     }
 }
