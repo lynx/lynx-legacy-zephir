@@ -10,12 +10,22 @@ class ArrayCollection extends Collection
 {
 	protected elements;
 
-  	public function getIterator()
+	public function __construct(array! elements = [])
+	{
+		let this->elements = elements;
+	}
+
+	public function add(element)
+	{
+		let this->elements[] = element;
+	}
+
+  	public function getIterator() -> <ArrayIterator>
     {
         return new ArrayIterator(this->elements);
     }
 
-	public function count()
+	public function count() -> int
 	{
 		return count(this->elements);
 	}

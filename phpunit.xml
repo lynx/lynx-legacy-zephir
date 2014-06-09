@@ -32,5 +32,8 @@
         <testsuite name="Lynx ORM Test Suite">
             <directory>./tests/Lynx/Tests/ORM</directory>
         </testsuite>
+		<testsuite name="Lynx Stdlib Test Suite">
+            <directory>./tests/Lynx/Tests/Stdlib</directory>
+        </testsuite>
     </testsuites>
 </phpunit>

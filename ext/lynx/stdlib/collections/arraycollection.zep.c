@@ -12,9 +12,11 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/fcall.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
+#include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
+#include "kernel/fcall.h"
 
 
 /**
@@ -27,6 +29,45 @@ ZEPHIR_INIT_CLASS(Lynx_Stdlib_Collections_ArrayCollection) {
 	zend_declare_property_null(lynx_stdlib_collections_arraycollection_ce, SL("elements"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
+
+}
+
+PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, __construct) {
+
+	zval *elements_param = NULL;
+	zval *elements = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &elements_param);
+
+	if (!elements_param) {
+		ZEPHIR_INIT_VAR(elements);
+		array_init(elements);
+	} else {
+	if (unlikely(Z_TYPE_P(elements_param) != IS_ARRAY)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'elements' must be an array") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+		elements = elements_param;
+
+	}
+
+
+	zephir_update_property_this(this_ptr, SL("elements"), elements TSRMLS_CC);
+	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, add) {
+
+	zval *element;
+
+	zephir_fetch_params(0, 1, 0, &element);
+
+
+
+	zephir_update_property_array_append(this_ptr, SL("elements"), element TSRMLS_CC);
 
 }
 
