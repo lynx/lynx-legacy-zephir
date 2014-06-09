@@ -27,6 +27,7 @@
 zend_class_entry *lynx_dbal_driver_connection_ce;
 zend_class_entry *lynx_stdlib_events_eventsmanager_ce;
 zend_class_entry *lynx_cache_cachedriver_ce;
+zend_class_entry *lynx_stdlib_collections_collection_ce;
 zend_class_entry *lynx_annotation_reflectionclassparser_ce;
 zend_class_entry *lynx_annotation_regexdocparser_ce;
 zend_class_entry *lynx_cache_memcache_ce;
@@ -48,6 +49,7 @@ zend_class_entry *lynx_orm_querybuilder_ce;
 zend_class_entry *lynx_orm_queryidentitymap_ce;
 zend_class_entry *lynx_orm_sqlbuilder_ce;
 zend_class_entry *lynx_orm_unitofwork_ce;
+zend_class_entry *lynx_stdlib_collections_arraycollection_ce;
 zend_class_entry *lynx_stdlib_events_event_ce;
 zend_class_entry *lynx_stdlib_events_manager_ce;
 zend_class_entry *lynx_stdlib_hydrator_classmethods_ce;
@@ -220,6 +222,7 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_DBAL_Driver_Connection);
 	ZEPHIR_INIT(Lynx_Stdlib_Events_EventsManager);
 	ZEPHIR_INIT(Lynx_Cache_CacheDriver);
+	ZEPHIR_INIT(Lynx_Stdlib_Collections_Collection);
 	ZEPHIR_INIT(Lynx_Annotation_ReflectionClassParser);
 	ZEPHIR_INIT(Lynx_Annotation_RegexDocParser);
 	ZEPHIR_INIT(Lynx_Cache_Memcache);
@@ -241,6 +244,7 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_ORM_QueryIdentityMap);
 	ZEPHIR_INIT(Lynx_ORM_SqlBuilder);
 	ZEPHIR_INIT(Lynx_ORM_UnitOfWork);
+	ZEPHIR_INIT(Lynx_Stdlib_Collections_ArrayCollection);
 	ZEPHIR_INIT(Lynx_Stdlib_Events_Event);
 	ZEPHIR_INIT(Lynx_Stdlib_Events_Manager);
 	ZEPHIR_INIT(Lynx_Stdlib_Hydrator_ClassMethods);

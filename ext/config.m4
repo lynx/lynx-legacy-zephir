@@ -25,6 +25,8 @@ if test "$PHP_LYNX" = "yes"; then
 	lynx/orm/queryidentitymap.zep.c
 	lynx/orm/sqlbuilder.zep.c
 	lynx/orm/unitofwork.zep.c
+	lynx/stdlib/collections/arraycollection.zep.c
+	lynx/stdlib/collections/collection.zep.c
 	lynx/stdlib/events/event.zep.c
 	lynx/stdlib/events/eventsmanager.zep.c
 	lynx/stdlib/events/manager.zep.c

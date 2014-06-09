@@ -27,6 +27,8 @@
 #include "lynx/orm/queryidentitymap.zep.h"
 #include "lynx/orm/sqlbuilder.zep.h"
 #include "lynx/orm/unitofwork.zep.h"
+#include "lynx/stdlib/collections/arraycollection.zep.h"
+#include "lynx/stdlib/collections/collection.zep.h"
 #include "lynx/stdlib/events/event.zep.h"
 #include "lynx/stdlib/events/eventsmanager.zep.h"
 #include "lynx/stdlib/events/manager.zep.h"
