@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Lynx ORM\DBAL</title>
+    <title>Lynx by lynx</title>
+
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -16,7 +17,10 @@
       <header>
         <h1>Lynx</h1>
         <p>Lynx</p>
+
         <p class="view"><a href="https://github.com/lynx/lynx">View the Project on GitHub <small>lynx/lynx</small></a></p>
+
+
         <ul>
           <li><a href="https://github.com/lynx/lynx/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/lynx/lynx/tarball/master">Download <strong>TAR Ball</strong></a></li>
@@ -24,22 +28,107 @@
         </ul>
       </header>
       <section>
-        <h3>
-			<a name="welcome-to-lynx-project" class="anchor" href="#welcome-to-lynx-project"><span class="octicon octicon-link"></span></a>Welcome to Lynx Project.
-		</h3>
+        <h1>
+<a name="lynx-ormdbal-" class="anchor" href="#lynx-ormdbal-"><span class="octicon octicon-link"></span></a>Lynx ORM|DBAL <a href="https://travis-ci.org/lynx/lynx"><img src="https://travis-ci.org/lynx/lynx.svg" alt="Build Status"></a>
+</h1>
+
+<h3>
+<a name="current-development-status" class="anchor" href="#current-development-status"><span class="octicon octicon-link"></span></a>Current development status</h3>
+
+<p>In development (not work). 2 month to version 0.0.1 (ALPHA)</p>
+
+<h3>
+<a name="why-it-would-be-need" class="anchor" href="#why-it-would-be-need"><span class="octicon octicon-link"></span></a>Why it would be need?</h3>
+
+<p>I like Doctrine2 but i dislike Phalcon 2 ORM* and create this project for incubate new ORM on Zephir Language for best perfomance.</p>
+
+<h3>
+<a name="idea" class="anchor" href="#idea"><span class="octicon octicon-link"></span></a>Idea</h3>
+
+<ul>
+<li>Every day push &gt;= 1 commit</li>
+<li>Write small ORM|DBAL and libg with max functions support</li>
+<li>Perfomance tune (will start do it after beta release)</li>
+</ul><h3>
+<a name="why-it-would-be-great" class="anchor" href="#why-it-would-be-great"><span class="octicon octicon-link"></span></a>Why it would be great?</h3>
+
+<ul>
+<li>Small but support all</li>
+<li>Speed (because build on c with zephir)</li>
+</ul><h3>
+<a name="on-what-ideas-it-would-based" class="anchor" href="#on-what-ideas-it-would-based"><span class="octicon octicon-link"></span></a>On What ideas it would based</h3>
+
+<ul>
+<li>Annotation
+
+<ul>
+<li>RefelecationClassParser
+
+<ul>
+<li>RegexDocParser</li>
+<li>LineParser (will be soon)</li>
+</ul>
+</li>
+<li>PHPFileParser (will be soon)
+
+<ul>
+<li>RegexDocParser</li>
+<li>LineParser (will be soon)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ORM (Object relation mapper)
+
+<ul>
+<li>EntityManager</li>
+<li>UnitOfWork</li>
+<li>QueryBuilder</li>
+</ul>
+</li>
+<li>DBAL (Database abstraction layer)</li>
+<li>Cache (Cache drivers for all database)</li>
+<li>StdLib
+
+<ul>
+<li>EventManager (will be soon)</li>
+<li>Hydrators (will be soon)</li>
+</ul>
+</li>
+</ul><h3>
+<a name="system-requirements" class="anchor" href="#system-requirements"><span class="octicon octicon-link"></span></a>SYSTEM REQUIREMENTS</h3>
+
+<p>To build the PHP extension:</p>
+
+<ul>
+<li>g++ &gt;= 4.4/clang++ &gt;= 3.x/vc++ 9</li>
+<li>gnu make 3.81 or later</li>
+<li>php development headers and tools</li>
+</ul><p>To build the zep Source to c extension:</p>
+
+<ul>
+<li><a href="https://github.com/phalcon/zephir">zephir</a></li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>This project is open-sourced software licensed under the MIT License. See the LICENSE file for more information.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/lynx">lynx</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-20503308-2', 'github.com');
-		ga('send', 'pageview');
-	</script>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-20503308-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
