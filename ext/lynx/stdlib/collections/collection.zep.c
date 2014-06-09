@@ -35,3 +35,10 @@ PHP_METHOD(Lynx_Stdlib_Collections_Collection, getIterator) {
 
 }
 
+/**
+ * Add element to collection
+ */
+PHP_METHOD(Lynx_Stdlib_Collections_Collection, add) {
+
+}
+
