@@ -1,0 +1,5 @@
+cd ./../lynx-docs/
+./compile-all
+cd ./../lynx-website/
+cp ~/projects/lynx-docs/ru/build/html/* ~/projects/lynx-website/docs/latest/ru/ -r
+cp ~/projects/lynx-docs/en/build/html/* ~/projects/lynx-website/docs/latest/en/ -r

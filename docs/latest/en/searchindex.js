@@ -1,0 +1,1 @@
+Search.setIndex({envversion:42,terms:{from:1,configur:0,compos:1,content:0,defin:1,json:1,command:1,can:1,file:1,follow:1,call:1,line:1,instal:0,your:1,requir:1},objtypes:{},objnames:{},filenames:["index","install"],titles:["Welcome to Lynx&#8217;s documentation!","Installation and Configuration"],objects:{},titleterms:{instal:1,lynx:0,document:0,welcom:0,configur:1}})
