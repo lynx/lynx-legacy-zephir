@@ -22,6 +22,12 @@ class ArrayCollectionTest
         $this->assertEquals(5, count($collection));
     }
 
+    public function testGetArrayIterator()
+    {
+        $collection = new ArrayCollection();
+        $this->assertInstanceOf('ArrayIterator', $collection->getIterator());
+    }
+
     public function testAdd()
     {
         $collection = new ArrayCollection();
