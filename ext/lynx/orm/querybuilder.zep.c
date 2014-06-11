@@ -17,8 +17,8 @@
 #include "kernel/memory.h"
 #include "kernel/string.h"
 #include "kernel/fcall.h"
-#include "kernel/array.h"
 #include "kernel/concat.h"
+#include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/operators.h"
 
@@ -239,16 +239,26 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, andWhere) {
 
 PHP_METHOD(Lynx_ORM_QueryBuilder, orWhere) {
 
-	zval *statement, *index, *_0;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
+	zval *statement, *index = NULL, *_0, *_2, *_3, *_4;
 
-	zephir_fetch_params(0, 1, 0, &statement);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &statement);
 
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("parts"), PH_NOISY_CC);
-	zephir_array_fetch_string(&index, _0, SL("where"), PH_NOISY | PH_READONLY TSRMLS_CC);
-	zephir_update_property_array_multi(this_ptr, SL("where"), &statement TSRMLS_CC, SL("za"), 1, index);
-	RETURN_THISW();
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
+	Z_SET_ISREF_P(_0);
+	ZEPHIR_CALL_FUNCTION(&index, "key", &_1, _0);
+	Z_UNSET_ISREF_P(_0);
+	zephir_check_call_status();
+	_2 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
+	zephir_array_fetch(&_3, _2, index, PH_NOISY | PH_READONLY TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_4);
+	ZEPHIR_CONCAT_SVSVS(_4, "(", _3, " OR ", statement, ")");
+	zephir_update_property_array(this_ptr, SL("where"), index, _4 TSRMLS_CC);
+	RETURN_THIS();
 
 }
 

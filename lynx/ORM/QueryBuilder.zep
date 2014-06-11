@@ -100,9 +100,9 @@ class QueryBuilder
 	public function orWhere(var statement)
 	{
 		var index;
-		let index = this->parts["where"];
+		let index = key(this->where);
 
-		let this->where[index][] = statement;
+		let this->where[index] = "(" . this->where[index] . " OR " . statement . ")";
 
 		return this;
 	}
