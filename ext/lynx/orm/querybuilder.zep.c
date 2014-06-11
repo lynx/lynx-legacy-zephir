@@ -405,21 +405,22 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 	zephir_concat_self(&sql, _8 TSRMLS_CC);
 	_9 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
 	if (zephir_fast_count_int(_9 TSRMLS_CC) > 0) {
-		_10 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
-		zephir_array_fetch_long(&_11, _10, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_10);
+		_11 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
+		zephir_fast_join_str(_10, SL(" AND "), _11 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_12);
-		ZEPHIR_CONCAT_SV(_12, " WHERE ", _11);
+		ZEPHIR_CONCAT_SV(_12, " WHERE ", _10);
 		zephir_concat_self(&sql, _12 TSRMLS_CC);
 	}
-	_10 = zephir_fetch_nproperty_this(this_ptr, SL("order"), PH_NOISY_CC);
-	if (zephir_is_true(_10)) {
+	_11 = zephir_fetch_nproperty_this(this_ptr, SL("order"), PH_NOISY_CC);
+	if (zephir_is_true(_11)) {
 		_13 = zephir_fetch_nproperty_this(this_ptr, SL("order"), PH_NOISY_CC);
 		ZEPHIR_INIT_LNVAR(_12);
 		ZEPHIR_CONCAT_SV(_12, " ORDER BY ", _13);
 		zephir_concat_self(&sql, _12 TSRMLS_CC);
 	}
-	_10 = zephir_fetch_nproperty_this(this_ptr, SL("limit"), PH_NOISY_CC);
-	if (!Z_TYPE_P(_10) == IS_NULL) {
+	_11 = zephir_fetch_nproperty_this(this_ptr, SL("limit"), PH_NOISY_CC);
+	if (!Z_TYPE_P(_11) == IS_NULL) {
 		_13 = zephir_fetch_nproperty_this(this_ptr, SL("limit"), PH_NOISY_CC);
 		ZEPHIR_INIT_LNVAR(_12);
 		ZEPHIR_CONCAT_SV(_12, " LIMIT ", _13);

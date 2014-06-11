@@ -55,17 +55,31 @@ class QueryBuilderTest
     {
         $queryBuilder = $this->_em->createQueryBuilder();
 
-        $queryBuilder->select()->from('Model\User', 'u')->where('u.id = :id');
+        $queryBuilder = $this->_em->createQueryBuilder()->select()->from('Model\User', 'u')->where('u.id = :id');
         $this->assertEquals('SELECT * FROM `users` u WHERE u.id = :id', $queryBuilder->getSQL());
         $query = $queryBuilder->getQuery()->bindParam('id', 1);
         $this->assertInternalType('array', $query->fetchArray());
 
-        $queryBuilder->select()->from('Model\User', 'u')->where('u.id = :id')->orWhere('u.id = :id_next');
+        $queryBuilder = $this->_em->createQueryBuilder()->select()->from('Model\User', 'u')->where('u.id = :id')->orWhere('u.id = :id_next');
         $this->assertEquals('SELECT * FROM `users` u WHERE (u.id = :id OR u.id = :id_next)', $queryBuilder->getSQL());
 
         $query = $queryBuilder->getQuery()
             ->bindValue('id', 1)
             ->bindValue('id_next', 1);
+        $this->assertInternalType('array', $query->fetchArray());
+
+        $queryBuilder = $this->_em->createQueryBuilder()
+            ->select()
+            ->from('Model\User', 'u')
+            ->where('u.id = :id')
+            ->andWhere('u.group_id = :group_id');
+
+        $this->assertEquals('SELECT * FROM `users` u WHERE u.id = :id AND u.group_id = :group_id', $queryBuilder->getSQL());
+
+        $query = $queryBuilder->getQuery()
+            ->bindValue('id', 1)
+            ->bindValue('group_id', 1);
+
         $this->assertInternalType('array', $query->fetchArray());
     }
 

@@ -171,7 +171,7 @@ class QueryBuilder
 		let sql .= " FROM ".this->wrap(rootModel->getTablename())." ".this->alias;
 
 		if (count(this->where) > 0) {
-			let sql .= " WHERE ".this->where[0];
+			let sql .= " WHERE ".implode(" AND ", this->where);
 		}
 
 		if (this->order) {
