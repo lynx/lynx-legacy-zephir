@@ -95,12 +95,6 @@ class QueryBuilder
 	public function orWhere($statement) {}
 
     /**
-     * 
-     * @param statement
-     * @param string sort
-     * @return $this
-     * 	
-     *
      * @param mixed $statement 
      * @param string $sort 
      * @return Query 
@@ -123,7 +117,7 @@ class QueryBuilder
     /**
      * @param string $id 
      */
-	inline protected function wrap($id) {}
+	protected function wrap($id) {}
 
     /**
      * @return string 

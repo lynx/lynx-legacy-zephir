@@ -108,9 +108,7 @@ class QueryBuilder
 	}
 
 	/**
-	 * @param statement
-	 * @param string sort
-	 * @return $this
+	 * Set order by to the query
 	 */
 	public function orderBy(var statement, string! sort = "DESC") -> <Query>
 	{
