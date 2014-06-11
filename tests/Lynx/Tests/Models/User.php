@@ -16,26 +16,15 @@ class User
      * @Id 
      * @Column(type="integer", length=11)
      */
-    private $id;
+    public $id;
 
     /**
      * @Column(length=50)
      */
-    private $name;
+    public $name;
 
     /**
-     * @return mixed
+     * @Column(type="integer", length=11, name="group_id")
      */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
+    public $group_id;
 } 

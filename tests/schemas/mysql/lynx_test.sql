@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
+  `group_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
@@ -43,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`) VALUES
-(1, 'Дмитрий'),
-(2, 'Илья'),
-(3, 'Денис'),
-(4, 'Елисей');
+(1, 'Дмитрий', 1),
+(2, 'Илья', 2),
+(3, 'Денис', 2),
+(4, 'Елисей', 2);
