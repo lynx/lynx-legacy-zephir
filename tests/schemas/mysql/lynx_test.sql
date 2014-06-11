@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `name`) VALUES
+INSERT INTO `users` (`id`, `name`, `group_id`) VALUES
 (1, 'Дмитрий', 1),
 (2, 'Илья', 2),
 (3, 'Денис', 2),
