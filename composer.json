@@ -1,0 +1,18 @@
+{
+    "name": "lynx/lynx",
+    "description": "DBAL\\ORM builded with Zephir",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Дмитрий Пацура",
+            "email": "zaets28rus@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "~5.4"
+    },
+    "scripts": {
+        "post-install-cmd": ["./ext/install"],
+        "post-update-cmd": ["./ext/install"]
+    }
+}

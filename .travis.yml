@@ -1,0 +1,34 @@
+language:
+  - php
+  - c
+
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+
+matrix:
+  allow_failures:
+    - php: 5.6
+    
+services:
+  - memcached
+
+env:
+  - DB=mysql
+
+before_install:
+ - mysql -uroot -e 'create database lynx_test charset=utf8 collate=utf8_unicode_ci;'
+ - mysql -uroot lynx_test < ./tests/schemas/mysql/lynx_test.sql
+
+before_script:
+ - git submodule --quiet update --init --recursive
+ - (cd ext; export CFLAGS="-g3 -O1 -std=gnu90 -Wall"; phpize && ./configure --enable-lynx && make --silent -j4 && sudo make --silent install && phpenv config-add ../tests/ci/lynx.ini)
+ - ulimit -c unlimited || true
+
+script:
+ - phpunit -v --configuration tests/travis/$DB.travis.xml
+
+after_failure:
+ - sudo apt-get -qq install gdb
+ - ./tests/ci/after_failure.sh
