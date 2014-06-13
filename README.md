@@ -11,7 +11,7 @@ I like Doctrine2 but i dislike Phalcon 2 ORM* and create this project for incuba
 ### Idea
 
 * Every day push >= 1 commit
-* Write small ORM|DBAL and libg with max functions support
+* Write ORM|DBAL and sublibs with max functions support
 * Perfomance tune (will start do it after beta release)
 
 ### Why it would be great?
