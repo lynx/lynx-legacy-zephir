@@ -33,9 +33,10 @@ I like Doctrine2 but i dislike Phalcon 2 ORM* and create this project for incuba
     * UnitOfWork
     * QueryBuilder
 * DBAL (Database abstraction layer)
-* Cache (Cache drivers for all database)
+* Cache (Cache drivers)
 * StdLib
-	* EventManager (will be soon)
+	* Collections
+	* EventManager (ported from phalcon)
 	* Hydrators (will be soon)
 
 ### SYSTEM REQUIREMENTS
