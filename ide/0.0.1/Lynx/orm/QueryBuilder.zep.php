@@ -27,6 +27,8 @@ class QueryBuilder
 
     protected $order;
 
+    protected $rootModel;
+
     protected $em;
 
 
@@ -95,6 +97,10 @@ class QueryBuilder
 	public function orWhere($statement) {}
 
     /**
+     * 
+     * Set order by to the query
+     * 	
+     *
      * @param mixed $statement 
      * @param string $sort 
      * @return Query 

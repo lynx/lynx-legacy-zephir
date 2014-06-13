@@ -23,11 +23,32 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_QueryIdentityMap) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\ORM, QueryIdentityMap, lynx, orm_queryidentitymap, lynx_orm_queryidentitymap_method_entry, 0);
 
+	zend_declare_property_null(lynx_orm_queryidentitymap_ce, SL("rootModel"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
 	zend_declare_property_null(lynx_orm_queryidentitymap_ce, SL("rootAlias"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(lynx_orm_queryidentitymap_ce, SL("aliases"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
+
+}
+
+PHP_METHOD(Lynx_ORM_QueryIdentityMap, getRootModel) {
+
+
+	RETURN_MEMBER(this_ptr, "rootModel");
+
+}
+
+PHP_METHOD(Lynx_ORM_QueryIdentityMap, setRootModel) {
+
+	zval *rootModel;
+
+	zephir_fetch_params(0, 1, 0, &rootModel);
+
+
+
+	zephir_update_property_this(this_ptr, SL("rootModel"), rootModel TSRMLS_CC);
 
 }
 

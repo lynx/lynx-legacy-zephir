@@ -26,6 +26,8 @@ class QueryBuilder
 
 	protected order = null {get};
 
+	protected rootModel;
+
 	protected em;
 
 	public function __construct(<EntityManager> em)
@@ -151,8 +153,7 @@ class QueryBuilder
 			throw new \Exception("From field must be set");
 		}
 
-		var rootModel;
-		let rootModel = this->em->getModelsManager()->get(this->from);
+		let this->rootModel = this->em->getModelsManager()->get(this->from);
 
 		switch(this->type) {
 			case self::SELECT:
@@ -166,7 +167,7 @@ class QueryBuilder
 				break;
 		}
 
-		let sql .= " FROM ".this->wrap(rootModel->getTablename())." ".this->alias;
+		let sql .= " FROM ".this->wrap(this->rootModel->getTablename())." ".this->alias;
 
 		if (count(this->where) > 0) {
 			let sql .= " WHERE ".implode(" AND ", this->where);
@@ -192,6 +193,7 @@ class QueryBuilder
 		var query, identityMap;
 
 		let identityMap = new QueryIdentityMap();
+		identityMap->setRootModel(this->rootModel);
 		identityMap->setRootAlias(this->alias);
 
 		let query = this->em->createQuery(this->getSQL());

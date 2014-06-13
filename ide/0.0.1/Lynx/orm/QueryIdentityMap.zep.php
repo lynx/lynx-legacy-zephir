@@ -5,9 +5,19 @@ namespace Lynx\ORM;
 class QueryIdentityMap
 {
 
+    protected $rootModel;
+
     protected $rootAlias;
 
     protected $aliases;
+
+
+	public function getRootModel() {}
+
+    /**
+     * @param mixed $rootModel 
+     */
+	public function setRootModel($rootModel) {}
 
 
 	public function getRootAlias() {}
