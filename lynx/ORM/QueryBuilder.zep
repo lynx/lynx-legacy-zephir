@@ -154,6 +154,9 @@ class QueryBuilder
 		}
 
 		let this->rootModel = this->em->getModelsManager()->get(this->from);
+		if (is_null(this->rootModel)) {
+			throw new \Exception("Cant find model by alias '" . this->from . "'");
+		}
 
 		switch(this->type) {
 			case self::SELECT:

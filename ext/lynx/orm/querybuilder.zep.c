@@ -360,7 +360,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, wrap) {
 PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *sql = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5, *_6 = NULL, *_7, *_8 = NULL, *_9, *_10, *_11, *_12, *_13, *_14 = NULL, *_15, *_16, *_17, *_18;
+	zval *sql = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5, *_6 = NULL, *_7, *_8 = NULL, *_9, *_10 = NULL, *_11 = NULL, *_12, *_13, *_14, *_15, *_16, *_17;
 
 	ZEPHIR_MM_GROW();
 
@@ -376,20 +376,33 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 	ZEPHIR_CALL_METHOD(&_3, _2, "get", NULL, _4);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("rootModel"), _3 TSRMLS_CC);
-	ZEPHIR_OBS_VAR(_5);
-	zephir_read_property_this(&_5, this_ptr, SL("type"), PH_NOISY_CC);
+	_5 = zephir_fetch_nproperty_this(this_ptr, SL("rootModel"), PH_NOISY_CC);
+	if (Z_TYPE_P(_5) == IS_NULL) {
+		ZEPHIR_INIT_VAR(_6);
+		object_init_ex(_6, zend_exception_get_default(TSRMLS_C));
+		_7 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
+		ZEPHIR_INIT_VAR(_8);
+		ZEPHIR_CONCAT_SVS(_8, "Cant find model by alias '", _7, "'");
+		ZEPHIR_CALL_METHOD(NULL, _6, "__construct", NULL, _8);
+		zephir_check_call_status();
+		zephir_throw_exception_debug(_6, "lynx/ORM/QueryBuilder.zep", 158 TSRMLS_CC);
+		ZEPHIR_MM_RESTORE();
+		return;
+	}
+	ZEPHIR_OBS_VAR(_9);
+	zephir_read_property_this(&_9, this_ptr, SL("type"), PH_NOISY_CC);
 	do {
-		if (ZEPHIR_IS_LONG(_5, 1)) {
+		if (ZEPHIR_IS_LONG(_9, 1)) {
 			ZEPHIR_INIT_VAR(sql);
 			ZVAL_STRING(sql, "SELECT *", 1);
 			break;
 		}
-		if (ZEPHIR_IS_LONG(_5, 2)) {
+		if (ZEPHIR_IS_LONG(_9, 2)) {
 			ZEPHIR_INIT_NVAR(sql);
 			ZVAL_STRING(sql, "UPDATE ", 1);
 			break;
 		}
-		if (ZEPHIR_IS_LONG(_5, 3)) {
+		if (ZEPHIR_IS_LONG(_9, 3)) {
 			ZEPHIR_INIT_NVAR(sql);
 			ZVAL_STRING(sql, "DELETE ", 1);
 			break;
@@ -397,42 +410,42 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 	} while(0);
 
 	_7 = zephir_fetch_nproperty_this(this_ptr, SL("rootModel"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_8, _7, "gettablename",  NULL);
+	ZEPHIR_CALL_METHOD(&_11, _7, "gettablename",  NULL);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_6, this_ptr, "wrap", NULL, _8);
+	ZEPHIR_CALL_METHOD(&_10, this_ptr, "wrap", NULL, _11);
 	zephir_check_call_status();
-	_9 = zephir_fetch_nproperty_this(this_ptr, SL("alias"), PH_NOISY_CC);
-	ZEPHIR_INIT_VAR(_10);
-	ZEPHIR_CONCAT_SVSV(_10, " FROM ", _6, " ", _9);
-	zephir_concat_self(&sql, _10 TSRMLS_CC);
-	_11 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
-	if (zephir_fast_count_int(_11 TSRMLS_CC) > 0) {
-		ZEPHIR_INIT_VAR(_12);
-		_13 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
-		zephir_fast_join_str(_12, SL(" AND "), _13 TSRMLS_CC);
+	_12 = zephir_fetch_nproperty_this(this_ptr, SL("alias"), PH_NOISY_CC);
+	ZEPHIR_INIT_LNVAR(_6);
+	ZEPHIR_CONCAT_SVSV(_6, " FROM ", _10, " ", _12);
+	zephir_concat_self(&sql, _6 TSRMLS_CC);
+	_13 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
+	if (zephir_fast_count_int(_13 TSRMLS_CC) > 0) {
 		ZEPHIR_INIT_VAR(_14);
-		ZEPHIR_CONCAT_SV(_14, " WHERE ", _12);
-		zephir_concat_self(&sql, _14 TSRMLS_CC);
+		_15 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
+		zephir_fast_join_str(_14, SL(" AND "), _15 TSRMLS_CC);
+		ZEPHIR_INIT_LNVAR(_8);
+		ZEPHIR_CONCAT_SV(_8, " WHERE ", _14);
+		zephir_concat_self(&sql, _8 TSRMLS_CC);
 	}
-	_13 = zephir_fetch_nproperty_this(this_ptr, SL("order"), PH_NOISY_CC);
-	if (zephir_is_true(_13)) {
+	_7 = zephir_fetch_nproperty_this(this_ptr, SL("order"), PH_NOISY_CC);
+	if (zephir_is_true(_7)) {
 		_15 = zephir_fetch_nproperty_this(this_ptr, SL("order"), PH_NOISY_CC);
-		ZEPHIR_INIT_LNVAR(_14);
-		ZEPHIR_CONCAT_SV(_14, " ORDER BY ", _15);
-		zephir_concat_self(&sql, _14 TSRMLS_CC);
+		ZEPHIR_INIT_LNVAR(_6);
+		ZEPHIR_CONCAT_SV(_6, " ORDER BY ", _15);
+		zephir_concat_self(&sql, _6 TSRMLS_CC);
 	}
-	_13 = zephir_fetch_nproperty_this(this_ptr, SL("limit"), PH_NOISY_CC);
-	if (!Z_TYPE_P(_13) == IS_NULL) {
+	_7 = zephir_fetch_nproperty_this(this_ptr, SL("limit"), PH_NOISY_CC);
+	if (!Z_TYPE_P(_7) == IS_NULL) {
 		_15 = zephir_fetch_nproperty_this(this_ptr, SL("limit"), PH_NOISY_CC);
-		ZEPHIR_INIT_LNVAR(_14);
-		ZEPHIR_CONCAT_SV(_14, " LIMIT ", _15);
-		zephir_concat_self(&sql, _14 TSRMLS_CC);
+		ZEPHIR_INIT_LNVAR(_6);
+		ZEPHIR_CONCAT_SV(_6, " LIMIT ", _15);
+		zephir_concat_self(&sql, _6 TSRMLS_CC);
 		_16 = zephir_fetch_nproperty_this(this_ptr, SL("offset"), PH_NOISY_CC);
 		if (!Z_TYPE_P(_16) == IS_NULL) {
 			_17 = zephir_fetch_nproperty_this(this_ptr, SL("offset"), PH_NOISY_CC);
-			ZEPHIR_INIT_VAR(_18);
-			ZEPHIR_CONCAT_SV(_18, ",", _17);
-			zephir_concat_self(&sql, _18 TSRMLS_CC);
+			ZEPHIR_INIT_LNVAR(_8);
+			ZEPHIR_CONCAT_SV(_8, ",", _17);
+			zephir_concat_self(&sql, _8 TSRMLS_CC);
 		}
 	}
 	RETURN_CCTOR(sql);
