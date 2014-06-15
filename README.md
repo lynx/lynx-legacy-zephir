@@ -1,5 +1,6 @@
 Lynx ORM|DBAL
 =============
+[![Latest Stable Version](https://poser.pugx.org/lynx/lynx/v/stable.svg)](https://packagist.org/packages/lynx/lynx)
 [![Build Status](https://travis-ci.org/lynx/lynx.svg)](https://travis-ci.org/lynx/lynx)
 [![License](https://poser.pugx.org/lynx/lynx/license.svg)](https://packagist.org/packages/lynx/lynx)
 
