@@ -24,6 +24,7 @@
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
 
+zend_class_entry *lynx_cache_driver_ce;
 zend_class_entry *lynx_dbal_driver_connection_ce;
 zend_class_entry *lynx_stdlib_events_eventsmanager_ce;
 zend_class_entry *lynx_cache_cachedriver_ce;
@@ -219,6 +220,7 @@ static PHP_MINIT_FUNCTION(lynx)
 	setlocale(LC_ALL, "C");
 #endif
 
+	ZEPHIR_INIT(Lynx_Cache_Driver);
 	ZEPHIR_INIT(Lynx_DBAL_Driver_Connection);
 	ZEPHIR_INIT(Lynx_Stdlib_Events_EventsManager);
 	ZEPHIR_INIT(Lynx_Cache_CacheDriver);

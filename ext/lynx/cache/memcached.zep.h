@@ -36,7 +36,7 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(lynx_cache_memcached_method_entry) {
 	PHP_ME(Lynx_Cache_Memcached, __construct, arginfo_lynx_cache_memcached___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Lynx_Cache_Memcached, setInstance, arginfo_lynx_cache_memcached_setinstance, ZEND_ACC_PUBLIC)
-	PHP_ME(Lynx_Cache_Memcached, getInstance, NULL, ZEND_ACC_PROTECTED)
+	PHP_ME(Lynx_Cache_Memcached, getInstance, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_Memcached, save, arginfo_lynx_cache_memcached_save, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_Memcached, delete, arginfo_lynx_cache_memcached_delete, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Cache_Memcached, get, arginfo_lynx_cache_memcached_get, ZEND_ACC_PUBLIC)

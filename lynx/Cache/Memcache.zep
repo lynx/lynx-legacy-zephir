@@ -17,7 +17,7 @@ class Memcache extends CacheDriver
         let this->instance = instance;
     }
 
-    protected function getInstance() -> <\Memcache>
+    public function getInstance() -> <\Memcache>
     {
         if (is_null(this->instance)) {
             let this->instance = new \Memcache;

@@ -5,6 +5,7 @@ if test "$PHP_LYNX" = "yes"; then
 	lynx_sources="lynx.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/exit.c lynx/annotation/reflectionclassparser.zep.c
 	lynx/annotation/regexdocparser.zep.c
 	lynx/cache/cachedriver.zep.c
+	lynx/cache/driver.zep.c
 	lynx/cache/memcache.zep.c
 	lynx/cache/memcached.zep.c
 	lynx/cache/nativearray.zep.c

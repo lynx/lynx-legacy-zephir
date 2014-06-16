@@ -17,7 +17,7 @@ class Memcached extends CacheDriver
         let this->instance = instance;
     }
 
-    protected function getInstance() -> <\Memcached>
+    public function getInstance() -> <\Memcached>
     {
         if (is_null(this->instance)) {
             let this->instance = new \Memcached;

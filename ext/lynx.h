@@ -7,6 +7,7 @@
 #include "lynx/annotation/reflectionclassparser.zep.h"
 #include "lynx/annotation/regexdocparser.zep.h"
 #include "lynx/cache/cachedriver.zep.h"
+#include "lynx/cache/driver.zep.h"
 #include "lynx/cache/memcache.zep.h"
 #include "lynx/cache/memcached.zep.h"
 #include "lynx/cache/nativearray.zep.h"

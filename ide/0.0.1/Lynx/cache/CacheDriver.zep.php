@@ -2,37 +2,10 @@
 
 namespace Lynx\Cache;
 
-abstract class CacheDriver
+abstract class CacheDriver implements \Lynx\Cache\Driver
 {
 
     /**
-     * To initialize cache provider
-     * 	
-     */
-	abstract protected function getInstance();
-
-    /**
-     * Save data
-     * 	
-     *
-     * @param string $id 
-     * @param mixed $data 
-     * @param mixed $lifeTime 
-     */
-	abstract public function save($id, $data, $lifeTime = 3600);
-
-    /**
-     * Save data by id
-     * 	
-     *
-     * @param string $id 
-     */
-	abstract public function delete($id);
-
-    /**
-     * Fetch data by id
-     * 	
-     *
      * @param string $id 
      */
 	abstract public function get($id);

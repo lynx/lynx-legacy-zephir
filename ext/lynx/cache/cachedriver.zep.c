@@ -26,34 +26,11 @@ ZEPHIR_INIT_CLASS(Lynx_Cache_CacheDriver) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\Cache, CacheDriver, lynx, cache_cachedriver, lynx_cache_cachedriver_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
+	zend_class_implements(lynx_cache_cachedriver_ce TSRMLS_CC, 1, lynx_cache_driver_ce);
 	return SUCCESS;
 
 }
 
-/**
- * To initialize cache provider
- */
-PHP_METHOD(Lynx_Cache_CacheDriver, getInstance) {
-
-}
-
-/**
- * Save data
- */
-PHP_METHOD(Lynx_Cache_CacheDriver, save) {
-
-}
-
-/**
- * Save data by id
- */
-PHP_METHOD(Lynx_Cache_CacheDriver, delete) {
-
-}
-
-/**
- * Fetch data by id
- */
 PHP_METHOD(Lynx_Cache_CacheDriver, get) {
 
 }

@@ -123,7 +123,7 @@ class QueryBuilder
     /**
      * @param string $id 
      */
-	protected function wrap($id) {}
+	inline protected function wrap($id) {}
 
     /**
      * @return string 

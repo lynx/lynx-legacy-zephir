@@ -22,7 +22,7 @@ class Memcached extends \Lynx\Cache\CacheDriver
     /**
      * @return \Memcached 
      */
-	protected function getInstance() {}
+	public function getInstance() {}
 
     /**
      * @param string $id 
