@@ -23,5 +23,8 @@ interface Driver
 	 */
 	public function get(string! id);
 
+	/**
+	 * Is value exist?
+	 */
 	public function exists(string! id);
 }

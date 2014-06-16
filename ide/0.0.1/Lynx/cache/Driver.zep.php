@@ -38,6 +38,9 @@ interface Driver
 	public function get($id);
 
     /**
+     * Is row exist?
+     * 	
+     *
      * @param string $id 
      */
 	public function exists($id);

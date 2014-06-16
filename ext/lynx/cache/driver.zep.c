@@ -40,5 +40,8 @@ ZEPHIR_DOC_METHOD(Lynx_Cache_Driver, delete);
  */
 ZEPHIR_DOC_METHOD(Lynx_Cache_Driver, get);
 
+/**
+ * Is row exist?
+ */
 ZEPHIR_DOC_METHOD(Lynx_Cache_Driver, exists);
 
