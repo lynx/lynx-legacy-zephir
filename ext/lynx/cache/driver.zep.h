@@ -27,5 +27,6 @@ ZEPHIR_INIT_FUNCS(lynx_cache_driver_method_entry) {
 	PHP_ABSTRACT_ME(Lynx_Cache_Driver, delete, arginfo_lynx_cache_driver_delete)
 	PHP_ABSTRACT_ME(Lynx_Cache_Driver, get, arginfo_lynx_cache_driver_get)
 	PHP_ABSTRACT_ME(Lynx_Cache_Driver, exists, arginfo_lynx_cache_driver_exists)
+	PHP_ABSTRACT_ME(Lynx_Cache_Driver, flush, NULL)
   PHP_FE_END
 };

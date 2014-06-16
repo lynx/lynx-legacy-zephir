@@ -38,11 +38,17 @@ interface Driver
 	public function get($id);
 
     /**
-     * Is row exist?
+     * Is value exist?
      * 	
      *
      * @param string $id 
      */
 	public function exists($id);
+
+    /**
+     * Flush all values
+     * 	
+     */
+	public function flush();
 
 }

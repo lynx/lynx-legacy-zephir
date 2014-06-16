@@ -27,4 +27,9 @@ interface Driver
 	 * Is value exist?
 	 */
 	public function exists(string! id);
+
+	/**
+	 * Flush all values
+	 */
+	public function flush();
 }
