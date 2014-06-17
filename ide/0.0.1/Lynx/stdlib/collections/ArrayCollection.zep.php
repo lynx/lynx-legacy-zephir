@@ -17,6 +17,12 @@ class ArrayCollection extends \Lynx\Stdlib\Collections\Collection
      */
 	public function add($element) {}
 
+
+	public function first() {}
+
+
+	public function last() {}
+
     /**
      * @return ArrayIterator 
      */

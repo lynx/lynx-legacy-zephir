@@ -71,6 +71,40 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, add) {
 
 }
 
+PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, first) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
+	zval *_0;
+
+	ZEPHIR_MM_GROW();
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("elements"), PH_NOISY_CC);
+	Z_SET_ISREF_P(_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("reset", &_1, _0);
+	Z_UNSET_ISREF_P(_0);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, last) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
+	zval *_0;
+
+	ZEPHIR_MM_GROW();
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("elements"), PH_NOISY_CC);
+	Z_SET_ISREF_P(_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("end", &_1, _0);
+	Z_UNSET_ISREF_P(_0);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, getIterator) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

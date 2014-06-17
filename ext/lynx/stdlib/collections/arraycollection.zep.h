@@ -5,6 +5,8 @@ ZEPHIR_INIT_CLASS(Lynx_Stdlib_Collections_ArrayCollection);
 
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, __construct);
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, add);
+PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, first);
+PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, last);
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, getIterator);
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, count);
 
@@ -19,6 +21,8 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(lynx_stdlib_collections_arraycollection_method_entry) {
 	PHP_ME(Lynx_Stdlib_Collections_ArrayCollection, __construct, arginfo_lynx_stdlib_collections_arraycollection___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Lynx_Stdlib_Collections_ArrayCollection, add, arginfo_lynx_stdlib_collections_arraycollection_add, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_Stdlib_Collections_ArrayCollection, first, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_Stdlib_Collections_ArrayCollection, last, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Stdlib_Collections_ArrayCollection, getIterator, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_Stdlib_Collections_ArrayCollection, count, NULL, ZEND_ACC_PUBLIC)
   PHP_FE_END

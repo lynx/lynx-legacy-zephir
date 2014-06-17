@@ -20,6 +20,16 @@ class ArrayCollection extends Collection
 		let this->elements[] = element;
 	}
 
+	public function first()
+	{
+		return reset(this->elements);
+	}
+
+	public function last()
+	{
+		return end(this->elements);
+	}
+
   	public function getIterator() -> <ArrayIterator>
     {
         return new ArrayIterator(this->elements);

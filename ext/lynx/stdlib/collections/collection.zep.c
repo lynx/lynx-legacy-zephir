@@ -36,6 +36,20 @@ PHP_METHOD(Lynx_Stdlib_Collections_Collection, getIterator) {
 }
 
 /**
+ * Set current element to the first element and return it
+ */
+PHP_METHOD(Lynx_Stdlib_Collections_Collection, first) {
+
+}
+
+/**
+ * Set current element to the last element and return it
+ */
+PHP_METHOD(Lynx_Stdlib_Collections_Collection, last) {
+
+}
+
+/**
  * Add element to collection
  */
 PHP_METHOD(Lynx_Stdlib_Collections_Collection, add) {
