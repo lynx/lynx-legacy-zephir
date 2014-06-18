@@ -16,6 +16,7 @@
 #include "kernel/memory.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
+#include "Zend/zend_closures.h"
 #include "kernel/fcall.h"
 
 
@@ -32,6 +33,9 @@ ZEPHIR_INIT_CLASS(Lynx_Stdlib_Collections_ArrayCollection) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, __construct) {
 
 	zval *elements_param = NULL;
@@ -59,6 +63,9 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, __construct) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, add) {
 
 	zval *element;
@@ -71,6 +78,61 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, add) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
+PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, map) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
+	zval *func, *_0, *_1 = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &func);
+
+
+
+	if (!(zephir_instance_of_ev(func, zend_ce_closure TSRMLS_CC))) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'func' must be an instance of 'Closure'", "", 0);
+		return;
+	}
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("elements"), PH_NOISY_CC);
+	ZEPHIR_CALL_FUNCTION(&_1, "array_map", &_2, func, _0);
+	zephir_check_call_status();
+	zephir_update_property_this(this_ptr, SL("elements"), _1 TSRMLS_CC);
+	ZEPHIR_MM_RESTORE();
+
+}
+
+/**
+ * {@inheritDoc}
+ */
+PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, filter) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
+	zval *func, *_0, *_1 = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &func);
+
+
+
+	if (!(zephir_instance_of_ev(func, zend_ce_closure TSRMLS_CC))) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'func' must be an instance of 'Closure'", "", 0);
+		return;
+	}
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("elements"), PH_NOISY_CC);
+	ZEPHIR_CALL_FUNCTION(&_1, "array_filter", &_2, func, _0);
+	zephir_check_call_status();
+	zephir_update_property_this(this_ptr, SL("elements"), _1 TSRMLS_CC);
+	ZEPHIR_MM_RESTORE();
+
+}
+
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, first) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -88,6 +150,9 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, first) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, last) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -105,6 +170,9 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, last) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, getIterator) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -122,6 +190,9 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, getIterator) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, count) {
 
 	zval *_0;

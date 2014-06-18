@@ -27,11 +27,32 @@ ZEPHIR_INIT_CLASS(Lynx_Stdlib_Collections_Collection) {
 
 }
 
+/**
+ * Get elements count from collection
+ */
 PHP_METHOD(Lynx_Stdlib_Collections_Collection, count) {
 
 }
 
+/**
+ * Get iterator
+ */
 PHP_METHOD(Lynx_Stdlib_Collections_Collection, getIterator) {
+
+}
+
+/**
+ * Execute fuction to each element in the collection
+ */
+PHP_METHOD(Lynx_Stdlib_Collections_Collection, map) {
+
+}
+
+/**
+ * Execute fuction to each element in the collection and
+ * remove element from collection if executed function return false
+ */
+PHP_METHOD(Lynx_Stdlib_Collections_Collection, filter) {
 
 }
 

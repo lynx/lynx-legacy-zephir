@@ -9,9 +9,26 @@ use IteratorAggregate;
 
 class Collection implements Countable, IteratorAggregate
 {
+	/**
+	 * Get elements count from collection
+	 */
 	abstract public function count();
 
+	/**
+	 * Get iterator
+	 */
 	abstract public function getIterator();
+
+	/**
+	 * Execute fuction to each element in the collection
+	 */
+	abstract public function map(<\Closure> func);
+
+	/**
+	 * Execute fuction to each element in the collection and
+	 * remove element from collection if executed function return false
+	 */
+	abstract public function filter(<\Closure> func);
 
 	/**
 	 * Set current element to the first element and return it
