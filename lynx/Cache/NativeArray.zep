@@ -17,11 +17,17 @@ class NativeArray extends CacheDriver
         let this->instance = instance;
     }
 
+	/**
+	 * {@inheritDoc}
+	 */
     public function save(string! id, data, lifeTime = 3600)
     {
         let this->instance[id] = data;
     }
 
+	/**
+	 * {@inheritDoc}
+	 */
     public function delete(string! id) -> boolean
     {
         if (isset(this->instance[id])) {
@@ -33,6 +39,9 @@ class NativeArray extends CacheDriver
         return false;
     }
 
+	/**
+	 * {@inheritDoc}
+	 */
     public function get(string! id)
     {
         var result;
@@ -44,6 +53,9 @@ class NativeArray extends CacheDriver
         return false;
     }
 
+	/**
+	 * {@inheritDoc}
+	 */
     public function flush()
     {
         let this->instance = [];

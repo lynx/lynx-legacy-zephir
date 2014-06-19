@@ -101,6 +101,9 @@ PHP_METHOD(Lynx_Cache_Memcache, getInstance) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Cache_Memcache, save) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -137,6 +140,9 @@ PHP_METHOD(Lynx_Cache_Memcache, save) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Cache_Memcache, delete) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -167,6 +173,9 @@ PHP_METHOD(Lynx_Cache_Memcache, delete) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Cache_Memcache, get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -197,6 +206,9 @@ PHP_METHOD(Lynx_Cache_Memcache, get) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Cache_Memcache, flush) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

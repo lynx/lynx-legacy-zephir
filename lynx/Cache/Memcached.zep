@@ -29,21 +29,33 @@ class Memcached extends CacheDriver
         return this->instance;
     }
 
+	/**
+	 * {@inheritDoc}
+	 */
     public function save(string! id, data, lifeTime = 3600)
     {
         return this->getInstance()->set(id, data, lifeTime);
     }
 
+	/**
+	 * {@inheritDoc}
+	 */
     public function delete(string! id)
     {
         return this->getInstance()->delete(id);
     }
 
+	/**
+	 * {@inheritDoc}
+	 */
     public function get(string! id)
     {
         return this->getInstance()->get(id);
     }
 
+	/**
+	 * {@inheritDoc}
+	 */
     public function flush()
     {
         return this->getInstance()->flush();

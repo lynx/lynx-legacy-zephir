@@ -25,6 +25,9 @@ class Memcache extends \Lynx\Cache\CacheDriver
 	public function getInstance() {}
 
     /**
+     * {@inheritDoc}
+     * 	
+     *
      * @param string $id 
      * @param mixed $data 
      * @param mixed $lifeTime 
@@ -32,16 +35,25 @@ class Memcache extends \Lynx\Cache\CacheDriver
 	public function save($id, $data, $lifeTime = 3600) {}
 
     /**
+     * {@inheritDoc}
+     * 	
+     *
      * @param string $id 
      */
 	public function delete($id) {}
 
     /**
+     * {@inheritDoc}
+     * 	
+     *
      * @param string $id 
      */
 	public function get($id) {}
 
-
+    /**
+     * {@inheritDoc}
+     * 	
+     */
 	public function flush() {}
 
 }

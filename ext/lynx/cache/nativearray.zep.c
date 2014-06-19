@@ -82,6 +82,9 @@ PHP_METHOD(Lynx_Cache_NativeArray, setInstance) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Cache_NativeArray, save) {
 
 	zval *id_param = NULL, *data, *lifeTime = NULL;
@@ -112,6 +115,9 @@ PHP_METHOD(Lynx_Cache_NativeArray, save) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Cache_NativeArray, delete) {
 
 	zval *id_param = NULL, *_0, *_1;
@@ -143,6 +149,9 @@ PHP_METHOD(Lynx_Cache_NativeArray, delete) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Cache_NativeArray, get) {
 
 	zval *id_param = NULL, *result, *_0;
@@ -172,6 +181,9 @@ PHP_METHOD(Lynx_Cache_NativeArray, get) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Cache_NativeArray, flush) {
 
 	zval *_0;
