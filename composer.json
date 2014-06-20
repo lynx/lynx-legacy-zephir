@@ -1,6 +1,6 @@
 {
     "name": "lynx/lynx",
-    "description": "DBAL\\ORM builded with Zephir",
+    "description": "DBAL and ORM extension created with Zephir",
     "license": "MIT",
     "authors": [
         {
