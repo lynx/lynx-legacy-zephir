@@ -9,7 +9,7 @@
 #include "kernel/globals.h"
 
 #define PHP_LYNX_NAME        "Lynx"
-#define PHP_LYNX_VERSION     "0.0.1"
+#define PHP_LYNX_VERSION     "0.0.3"
 #define PHP_LYNX_EXTNAME     "lynx"
 #define PHP_LYNX_AUTHOR      ""
 #define PHP_LYNX_ZEPVERSION  "0.4.2a"

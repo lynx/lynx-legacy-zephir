@@ -55,7 +55,7 @@ class ArrayCollection extends \Lynx\Stdlib\Collections\Collection
      * {@inheritDoc}
      * 	
      *
-     * @return ArrayIterator 
+     * @return ArrayIterator
      */
 	public function getIterator() {}
 

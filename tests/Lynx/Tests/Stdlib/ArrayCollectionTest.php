@@ -22,6 +22,27 @@ class ArrayCollectionTest
         $this->assertEquals(5, count($collection));
     }
 
+    public function testMap()
+    {
+        $elements = [
+            0,
+            1,
+            2
+        ];
+
+        $collection = new ArrayCollection($elements);
+
+        $callback = function($element) {
+            $element++;
+
+            return $element;
+        };
+        $collection->map($callback);
+
+        $elements = array_map($callback, $elements);
+        $this->assertEquals($elements, $collection->getIterator()->getArrayCopy());
+    }
+
     public function testGetArrayIterator()
     {
         $collection = new ArrayCollection();
