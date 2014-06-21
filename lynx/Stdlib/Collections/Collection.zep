@@ -28,7 +28,7 @@ class Collection implements Countable, IteratorAggregate
 	 * Execute fuction to each element in the collection and
 	 * remove element from collection if executed function return false
 	 */
-	abstract public function filter(<\Closure> func);
+	abstract public function filter(func);
 
 	/**
 	 * Set current element to the first element and return it

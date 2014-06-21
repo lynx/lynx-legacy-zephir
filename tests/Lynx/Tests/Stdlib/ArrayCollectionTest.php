@@ -43,6 +43,28 @@ class ArrayCollectionTest
         $this->assertEquals($elements, $collection->getIterator()->getArrayCopy());
     }
 
+    public function testFilter()
+    {
+        $elements = [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ];
+
+        $collection = new ArrayCollection($elements);
+
+        $callback = function ($element) {
+            return $element > 2 && $element < 4;
+        };
+        $collection->filter($callback);
+
+        $elements = array_filter($elements, $callback);
+        $this->assertEquals($elements, $collection->getIterator()->getArrayCopy());
+    }
+
     public function testGetArrayIterator()
     {
         $collection = new ArrayCollection();

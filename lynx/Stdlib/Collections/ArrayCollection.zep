@@ -37,9 +37,9 @@ class ArrayCollection extends Collection
 	/**
 	 * {@inheritDoc}
 	 */
-	public function filter(<\Closure> func)
+	public function filter(func)
 	{
-		let this->elements = array_filter(func, this->elements);
+		let this->elements = array_filter(this->elements, func);
 	}
 
 	/**

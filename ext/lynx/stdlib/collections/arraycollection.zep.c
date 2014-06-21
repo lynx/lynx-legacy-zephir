@@ -118,12 +118,8 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, filter) {
 
 
 
-	if (!(zephir_instance_of_ev(func, zend_ce_closure TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'func' must be an instance of 'Closure'", "", 0);
-		return;
-	}
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("elements"), PH_NOISY_CC);
-	ZEPHIR_CALL_FUNCTION(&_1, "array_filter", &_2, func, _0);
+	ZEPHIR_CALL_FUNCTION(&_1, "array_filter", &_2, _0, func);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("elements"), _1 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
