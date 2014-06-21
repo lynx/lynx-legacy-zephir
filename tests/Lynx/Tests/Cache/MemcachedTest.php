@@ -10,7 +10,7 @@ class MemcachedTest
 {
 	protected function initCacheDriver()
 	{
-		$driver = new \Lynx\Cache\Memcache();
+		$driver = new \Lynx\Cache\Memcached();
 		return $driver;
 	}
 } 
