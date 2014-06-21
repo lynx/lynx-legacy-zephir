@@ -90,7 +90,7 @@ PHP_METHOD(Lynx_Cache_Memcached, getInstance) {
 		ZVAL_STRING(_4, "localhost", 0);
 		ZEPHIR_INIT_VAR(_5);
 		ZVAL_LONG(_5, 11211);
-		ZEPHIR_CALL_METHOD(NULL, _3, "connect", NULL, _4, _5);
+		ZEPHIR_CALL_METHOD(NULL, _3, "addserver", NULL, _4, _5);
 		zephir_check_temp_parameter(_4);
 		zephir_check_call_status();
 		RETURN_MM_MEMBER(this_ptr, "instance");

@@ -21,7 +21,7 @@ class Memcached extends CacheDriver
     {
         if (is_null(this->instance)) {
             let this->instance = new \Memcached;
-            this->instance->connect("localhost", 11211);
+            this->instance->addServer("localhost", 11211);
 
             return this->instance;
         }

@@ -65,7 +65,7 @@ PHP_METHOD(Lynx_Cache_CacheDriver, exists) {
 
 	ZEPHIR_CALL_METHOD(&result, this_ptr, "get", NULL, id);
 	zephir_check_call_status();
-	RETURN_MM_BOOL(!ZEPHIR_IS_FALSE(result));
+	RETURN_MM_BOOL(!ZEPHIR_IS_FALSE_IDENTICAL(result));
 
 }
 

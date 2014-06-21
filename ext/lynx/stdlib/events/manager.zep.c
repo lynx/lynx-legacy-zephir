@@ -243,7 +243,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, dettachAll) {
 
 	ZEPHIR_OBS_VAR(events);
 	zephir_read_property_this(&events, this_ptr, SL("_events"), PH_NOISY_CC);
-	if (ZEPHIR_IS_STRING(type, "")) {
+	if (ZEPHIR_IS_STRING_IDENTICAL(type, "")) {
 		ZEPHIR_INIT_BNVAR(events);
 		ZVAL_NULL(events);
 	} else {
