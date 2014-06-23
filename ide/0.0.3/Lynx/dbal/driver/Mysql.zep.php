@@ -33,6 +33,11 @@ class Mysql
      */
 	public function __construct($dsn, $username = null, $password = null, $driverOptions = array()) {}
 
+    /**
+     * @return bool 
+     */
+	public function isConnected() {}
+
 
 	public function connect() {}
 

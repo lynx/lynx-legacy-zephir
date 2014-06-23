@@ -23,9 +23,14 @@ class Mysql
 		let this->driverOptions = driverOptions;
 	}
 
+	inline public function isConnected() -> boolean
+	{
+		return !is_null(this->connection);
+	}
+
 	public function connect()
 	{
-		if (!is_null(this->connection)) {
+		if (this->isConnected()) {
 			return false;
 		}
 

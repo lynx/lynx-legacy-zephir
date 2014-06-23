@@ -101,15 +101,26 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, __construct) {
 
 }
 
+PHP_METHOD(Lynx_DBAL_Driver_Mysql, isConnected) {
+
+	zval *_0;
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
+	RETURN_BOOL(!Z_TYPE_P(_0) == IS_NULL);
+
+}
+
 PHP_METHOD(Lynx_DBAL_Driver_Mysql, connect) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *_0, *_1, *_2, *_3, *_4, *_5;
+	zval *_0 = NULL, *_1, *_2, *_3, *_4, *_5;
 
 	ZEPHIR_MM_GROW();
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
-	if (!Z_TYPE_P(_0) == IS_NULL) {
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isconnected",  NULL);
+	zephir_check_call_status();
+	if (zephir_is_true(_0)) {
 		RETURN_MM_BOOL(0);
 	}
 	ZEPHIR_INIT_VAR(_1);

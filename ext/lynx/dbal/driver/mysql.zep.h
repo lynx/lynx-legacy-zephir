@@ -6,6 +6,7 @@ ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Mysql);
 PHP_METHOD(Lynx_DBAL_Driver_Mysql, setEventsManager);
 PHP_METHOD(Lynx_DBAL_Driver_Mysql, getEventsManager);
 PHP_METHOD(Lynx_DBAL_Driver_Mysql, __construct);
+PHP_METHOD(Lynx_DBAL_Driver_Mysql, isConnected);
 PHP_METHOD(Lynx_DBAL_Driver_Mysql, connect);
 PHP_METHOD(Lynx_DBAL_Driver_Mysql, prepare);
 
@@ -28,6 +29,7 @@ ZEPHIR_INIT_FUNCS(lynx_dbal_driver_mysql_method_entry) {
 	PHP_ME(Lynx_DBAL_Driver_Mysql, setEventsManager, arginfo_lynx_dbal_driver_mysql_seteventsmanager, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_DBAL_Driver_Mysql, getEventsManager, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_DBAL_Driver_Mysql, __construct, arginfo_lynx_dbal_driver_mysql___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+	PHP_ME(Lynx_DBAL_Driver_Mysql, isConnected, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_DBAL_Driver_Mysql, connect, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_DBAL_Driver_Mysql, prepare, arginfo_lynx_dbal_driver_mysql_prepare, ZEND_ACC_PUBLIC)
   PHP_FE_END
