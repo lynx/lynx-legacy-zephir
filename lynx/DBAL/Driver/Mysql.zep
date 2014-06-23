@@ -28,6 +28,16 @@ class Mysql
 		return !is_null(this->connection);
 	}
 
+	/**
+	 * Execute query and return result
+	 */
+	public function execute(string! query) -> int
+	{
+		this->connect();
+
+		return this->connection->exec(query);
+	}
+
 	public function connect()
 	{
 		if (this->isConnected()) {

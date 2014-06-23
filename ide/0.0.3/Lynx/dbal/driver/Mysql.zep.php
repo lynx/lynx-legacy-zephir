@@ -38,6 +38,15 @@ class Mysql
      */
 	public function isConnected() {}
 
+    /**
+     * Execute query and return result
+     * 	
+     *
+     * @param string $query 
+     * @return int 
+     */
+	public function execute($query) {}
+
 
 	public function connect() {}
 

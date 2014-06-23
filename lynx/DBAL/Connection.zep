@@ -8,6 +8,9 @@ use Lynx\Stdlib\Events\Manager as EventsManager;
 
 class Connection
 {
+	/**
+	 * Current used driver
+	 */
 	protected driver {get};
 
 	public function __construct(var parameters, <EventsManager> eventsManager = null)
@@ -26,6 +29,23 @@ class Connection
 		}
 
 	    this->driver->setEventsManager(eventsManager);
+	}
+
+	/**
+	 * Insert row to the table with spicifed data and types
+	 * return the nubmer of affected rows
+	 */
+	public function insert(string! table, array! data, array! types = []) -> int
+	{
+		/**
+		 * @todo implement work with types
+		 */
+
+		var query;
+		let query = "INSERT INTO " . table . " (" . implode(", ", array_keys(data)) . ")" .
+			" VALUES (" . implode(", ", data) . ")";
+
+		return this->driver->execute(query);
 	}
 
 	public function prepare(var statement)

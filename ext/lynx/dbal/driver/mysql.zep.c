@@ -111,6 +111,40 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, isConnected) {
 
 }
 
+/**
+ * Execute query and return result
+ */
+PHP_METHOD(Lynx_DBAL_Driver_Mysql, execute) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *query_param = NULL, *_0;
+	zval *query = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &query_param);
+
+	if (unlikely(Z_TYPE_P(query_param) != IS_STRING && Z_TYPE_P(query_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'query' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(query_param) == IS_STRING)) {
+		query = query_param;
+	} else {
+		ZEPHIR_INIT_VAR(query);
+		ZVAL_EMPTY_STRING(query);
+	}
+
+
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL);
+	zephir_check_call_status();
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
+	ZEPHIR_RETURN_CALL_METHOD(_0, "exec", NULL, query);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
 PHP_METHOD(Lynx_DBAL_Driver_Mysql, connect) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
