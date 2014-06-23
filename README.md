@@ -4,10 +4,6 @@ Lynx ORM|DBAL
 [![Build Status](https://travis-ci.org/lynx/lynx.svg)](https://travis-ci.org/lynx/lynx)
 [![License](https://poser.pugx.org/lynx/lynx/license.svg)](https://packagist.org/packages/lynx/lynx)
 
-### Current development status
-
-In development (not work). 2 month to version 0.0.1 (ALPHA)
-
 ### Why it would be need?
 
 I like Doctrine2 but i dislike Phalcon 2 ORM* and create this project for incubate new ORM on Zephir Language for best performance.
