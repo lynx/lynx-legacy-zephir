@@ -37,14 +37,52 @@ class Connection
 	 */
 	public function insert(string! table, array! data, array! types = []) -> int
 	{
-		/**
-		 * @todo implement work with types
-		 */
-
 		var query;
 		let query = "INSERT INTO " . table . " (" . implode(", ", array_keys(data)) . ")" .
 			" VALUES (" . implode(", ", data) . ")";
 
+		/**
+		 * @todo implement work with types
+		 */
+		return this->driver->execute(query);
+	}
+
+	/**
+	 * Delete rows where $column = $key from $table
+	 * return the nubmer of affected rows
+	 */
+	public function deleteByColumn(string! table, string! column, string! value, string! type = null)
+	{
+		/**
+		 * @todo implement work with type
+		 */
+		return this->driver->execute("DELETE FROM " . table . " WHERE " . column . " = " . value);
+	}
+
+	/**
+	 * Delete rows from tables where identifiers is spicifed
+	 * return the nubmer of affected rows
+	 */
+	public function delete(string! table, array! identifiers, array! types = []) -> int
+	{
+		var query, key, value;
+		boolean first = true;
+
+		let query = "DELETE FROM " . table . " WHERE ";
+
+		for key, value in identifiers {
+			if (!first) {
+				let query .= " AND";
+			} else {
+				let first = false;
+			}
+
+			let query = " " . key . " = " . value;
+		}
+
+		/**
+		 * @todo implement work with type
+		 */
 		return this->driver->execute(query);
 	}
 

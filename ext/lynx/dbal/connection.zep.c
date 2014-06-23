@@ -20,6 +20,8 @@
 #include "kernel/concat.h"
 #include "kernel/string.h"
 #include "ext/spl/spl_exceptions.h"
+#include "kernel/hash.h"
+#include "kernel/operators.h"
 
 
 /**
@@ -150,6 +152,153 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 	ZEPHIR_CONCAT_SVSVSSVS(query, "INSERT INTO ", table, " (", _0, ")", " VALUES (", _2, ")");
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
 	ZEPHIR_RETURN_CALL_METHOD(_3, "execute", NULL, query);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
+ * Delete rows where $column = $key from $table
+ * return the nubmer of affected rows
+ */
+PHP_METHOD(Lynx_DBAL_Connection, deleteByColumn) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *table_param = NULL, *column_param = NULL, *value_param = NULL, *type_param = NULL, *_0;
+	zval *table = NULL, *column = NULL, *value = NULL, *type = NULL, *_1;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 3, 1, &table_param, &column_param, &value_param, &type_param);
+
+	if (unlikely(Z_TYPE_P(table_param) != IS_STRING && Z_TYPE_P(table_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'table' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(table_param) == IS_STRING)) {
+		table = table_param;
+	} else {
+		ZEPHIR_INIT_VAR(table);
+		ZVAL_EMPTY_STRING(table);
+	}
+	if (unlikely(Z_TYPE_P(column_param) != IS_STRING && Z_TYPE_P(column_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'column' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(column_param) == IS_STRING)) {
+		column = column_param;
+	} else {
+		ZEPHIR_INIT_VAR(column);
+		ZVAL_EMPTY_STRING(column);
+	}
+	if (unlikely(Z_TYPE_P(value_param) != IS_STRING && Z_TYPE_P(value_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'value' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(value_param) == IS_STRING)) {
+		value = value_param;
+	} else {
+		ZEPHIR_INIT_VAR(value);
+		ZVAL_EMPTY_STRING(value);
+	}
+	if (!type_param) {
+		ZEPHIR_INIT_VAR(type);
+		ZVAL_EMPTY_STRING(type);
+	} else {
+	if (unlikely(Z_TYPE_P(type_param) != IS_STRING && Z_TYPE_P(type_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'type' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(type_param) == IS_STRING)) {
+		type = type_param;
+	} else {
+		ZEPHIR_INIT_VAR(type);
+		ZVAL_EMPTY_STRING(type);
+	}
+	}
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_1);
+	ZEPHIR_CONCAT_SVSVSV(_1, "DELETE FROM ", table, " WHERE ", column, " = ", value);
+	ZEPHIR_RETURN_CALL_METHOD(_0, "execute", NULL, _1);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
+ * Delete rows from tables where identifiers is spicifed
+ * return the nubmer of affected rows
+ */
+PHP_METHOD(Lynx_DBAL_Connection, delete) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	HashTable *_2;
+	HashPosition _1;
+	zend_bool first = 1;
+	zval *identifiers = NULL, *types = NULL;
+	zval *table_param = NULL, *identifiers_param = NULL, *types_param = NULL, *query = NULL, *key = NULL, *value = NULL, **_3, *_4;
+	zval *table = NULL, *_0;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 1, &table_param, &identifiers_param, &types_param);
+
+	if (unlikely(Z_TYPE_P(table_param) != IS_STRING && Z_TYPE_P(table_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'table' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(table_param) == IS_STRING)) {
+		table = table_param;
+	} else {
+		ZEPHIR_INIT_VAR(table);
+		ZVAL_EMPTY_STRING(table);
+	}
+	if (unlikely(Z_TYPE_P(identifiers_param) != IS_ARRAY)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'identifiers' must be an array") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+		identifiers = identifiers_param;
+
+	if (!types_param) {
+		ZEPHIR_INIT_VAR(types);
+		array_init(types);
+	} else {
+	if (unlikely(Z_TYPE_P(types_param) != IS_ARRAY)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'types' must be an array") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+		types = types_param;
+
+	}
+
+
+	ZEPHIR_INIT_VAR(_0);
+	ZEPHIR_CONCAT_SVS(_0, "DELETE FROM ", table, " WHERE ");
+	ZEPHIR_CPY_WRT(query, _0);
+	zephir_is_iterable(identifiers, &_2, &_1, 0, 0);
+	for (
+	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_2, &_1)
+	) {
+		ZEPHIR_GET_HMKEY(key, _2, _1);
+		ZEPHIR_GET_HVALUE(value, _3);
+		if (!first) {
+			zephir_concat_self_str(&query, SL(" AND") TSRMLS_CC);
+		} else {
+			first = 0;
+		}
+		ZEPHIR_INIT_NVAR(query);
+		ZEPHIR_CONCAT_SVSV(query, " ", key, " = ", value);
+	}
+	_4 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
+	ZEPHIR_RETURN_CALL_METHOD(_4, "execute", NULL, query);
 	zephir_check_call_status();
 	RETURN_MM();
 
