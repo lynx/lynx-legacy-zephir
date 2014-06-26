@@ -7,6 +7,7 @@ namespace Lynx\Tests\DBAL;
 
 use Lynx\ORM,
     Lynx\DBAl;
+use Lynx\Tests\Utils;
 
 class ConnectionTest
 	extends TestCase
@@ -20,8 +21,13 @@ class ConnectionTest
 	{
 		parent::setUp();
 
-		$this->_connection = \Lynx\Tests\Utils::getConnection();
+		$this->_connection = Utils::getConnection();
 	}
+
+    public function testGetDriver()
+    {
+        $this->assertInstanceOf('Lynx\DBAL\Driver\Mysql', $this->_connection->getDriver());
+    }
 
 	public function testIsConnection()
 	{
