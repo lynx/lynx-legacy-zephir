@@ -29,6 +29,12 @@ class ConnectionTest
         $this->assertInstanceOf('Lynx\DBAL\Driver\Mysql', $this->_connection->getDriver());
     }
 
+    public function testPrepare()
+    {
+        $sql = 'SELECT * FROM `users`';
+        $this->assertInstanceOf('Lynx\DBAL\Driver\PDO\Statement', $this->_connection->prepare($sql));
+    }
+
 	public function testIsConnection()
 	{
 		$this->assertTrue($this->_connection instanceof DBAL\Connection);
