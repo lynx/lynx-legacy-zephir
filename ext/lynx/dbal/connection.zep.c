@@ -50,6 +50,9 @@ PHP_METHOD(Lynx_DBAL_Connection, getDriver) {
 
 }
 
+/**
+ * Construct connection
+ */
 PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -86,7 +89,7 @@ PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 		zephir_array_fetch_string(&_1, parameters, SL("driver"), PH_NOISY | PH_READONLY TSRMLS_CC);
 		zephir_update_property_this(this_ptr, SL("driver"), _1 TSRMLS_CC);
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Driver didn`t find in $parameters", "lynx/DBAL/Connection.zep", 28);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Driver didn`t find in $parameters", "lynx/DBAL/Connection.zep", 31);
 		return;
 	}
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
@@ -152,6 +155,100 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 	ZEPHIR_CONCAT_SVSVSSVS(query, "INSERT INTO ", table, " (", _0, ")", " VALUES (", _2, ")");
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
 	ZEPHIR_RETURN_CALL_METHOD(_3, "execute", NULL, query);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
+ * Update row(s) from table and return the number of updated rows
+ */
+PHP_METHOD(Lynx_DBAL_Connection, update) {
+
+	zephir_nts_static zephir_fcall_cache_entry *_11 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
+	HashTable *_1;
+	HashPosition _0;
+	zval *data = NULL, *identifiers = NULL, *types = NULL;
+	zval *table_param = NULL, *data_param = NULL, *identifiers_param = NULL, *types_param = NULL, *set, *stmt = NULL, *columnName = NULL, *value = NULL, **_2, *_3 = NULL, *_4, _5, *_6, *_7, *_8, *_9, *_10 = NULL, *_12 = NULL;
+	zval *table = NULL, *query = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 3, 1, &table_param, &data_param, &identifiers_param, &types_param);
+
+	if (unlikely(Z_TYPE_P(table_param) != IS_STRING && Z_TYPE_P(table_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'table' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (unlikely(Z_TYPE_P(table_param) == IS_STRING)) {
+		table = table_param;
+	} else {
+		ZEPHIR_INIT_VAR(table);
+		ZVAL_EMPTY_STRING(table);
+	}
+	if (unlikely(Z_TYPE_P(data_param) != IS_ARRAY)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'data' must be an array") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+		data = data_param;
+
+	if (unlikely(Z_TYPE_P(identifiers_param) != IS_ARRAY)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'identifiers' must be an array") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+		identifiers = identifiers_param;
+
+	if (!types_param) {
+		ZEPHIR_INIT_VAR(types);
+		array_init(types);
+	} else {
+	if (unlikely(Z_TYPE_P(types_param) != IS_ARRAY)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'types' must be an array") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+		types = types_param;
+
+	}
+	ZEPHIR_INIT_VAR(set);
+	array_init(set);
+
+
+	zephir_is_iterable(data, &_1, &_0, 0, 0);
+	for (
+	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_1, &_0)
+	) {
+		ZEPHIR_GET_HMKEY(columnName, _1, _0);
+		ZEPHIR_GET_HVALUE(value, _2);
+		ZEPHIR_INIT_LNVAR(_3);
+		ZEPHIR_CONCAT_SVS(_3, "`", columnName, "` = ?");
+		zephir_array_append(&set, _3, PH_SEPARATE);
+	}
+	ZEPHIR_INIT_VAR(_4);
+	ZEPHIR_SINIT_VAR(_5);
+	ZVAL_LONG(&_5, ', ');
+	zephir_fast_join(_4, &_5, set TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_6);
+	ZEPHIR_INIT_VAR(_7);
+	zephir_array_keys(_7, identifiers TSRMLS_CC);
+	zephir_fast_join_str(_6, SL(" = ? AND "), _7 TSRMLS_CC);
+	ZEPHIR_INIT_LNVAR(_3);
+	ZEPHIR_CONCAT_SVSVSV(_3, "UPDATE ", table, " SET ", _4, " WHERE ", _6);
+	zephir_get_strval(query, _3);
+	_8 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&stmt, _8, "prepare", NULL, query);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_9);
+	ZEPHIR_CALL_FUNCTION(&_10, "array_values", &_11, data);
+	zephir_check_call_status();
+	ZEPHIR_CALL_FUNCTION(&_12, "array_values", &_11, identifiers);
+	zephir_check_call_status();
+	zephir_fast_array_merge(_9, &(_10), &(_12) TSRMLS_CC);
+	ZEPHIR_RETURN_CALL_METHOD(stmt, "execute", NULL, _9);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -304,6 +401,9 @@ PHP_METHOD(Lynx_DBAL_Connection, delete) {
 
 }
 
+/**
+ * Prepares a statement for execution and returns a statement
+ */
 PHP_METHOD(Lynx_DBAL_Connection, prepare) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

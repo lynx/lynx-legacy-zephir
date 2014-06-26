@@ -17,6 +17,9 @@ class Connection
 	public function getDriver() {}
 
     /**
+     * Construct connection
+     * 	
+     *
      * @param mixed $parameters 
      * @param EventsManager $eventsManager 
      */
@@ -33,6 +36,18 @@ class Connection
      * @return int 
      */
 	public function insert($table, $data, $types = array()) {}
+
+    /**
+     * Update row(s) from table and return the number of updated rows
+     * 	
+     *
+     * @param string $table 
+     * @param array $data 
+     * @param array $identifiers 
+     * @param array $types 
+     * @return int 
+     */
+	public function update($table, $data, $identifiers, $types = array()) {}
 
     /**
      * Delete rows where $column = $key from $table
@@ -59,6 +74,9 @@ class Connection
 	public function delete($table, $identifiers, $types = array()) {}
 
     /**
+     * Prepares a statement for execution and returns a statement
+     * 	
+     *
      * @param mixed $statement 
      */
 	public function prepare($statement) {}

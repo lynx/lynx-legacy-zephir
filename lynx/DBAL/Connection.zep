@@ -13,6 +13,9 @@ class Connection
 	 */
 	protected driver {get};
 
+	/**
+	 * Construct connection
+	 */
 	public function __construct(var parameters, <EventsManager> eventsManager = null)
 	{
 	    if (is_null(eventsManager)) {
@@ -45,6 +48,25 @@ class Connection
 		 * @todo implement work with types
 		 */
 		return this->driver->execute(query);
+	}
+
+	/**
+	 * Update row(s) from table and return the number of updated rows
+	 */
+	public function update(string! table, array! data, array! identifiers, array! types = []) -> int
+	{
+		string query;
+
+   		var set = [], stmt, columnName, value;
+
+		for columnName, value in data {
+			let set[] = "`" . columnName . "` = ?";
+		}
+
+		let query =  "UPDATE " . table . " SET " . implode(', ', set) . " WHERE " . implode(" = ? AND ", array_keys(identifiers));
+		let stmt = this->driver->prepare(query);
+
+		return stmt->execute(array_merge(array_values(data), array_values(identifiers)));
 	}
 
 	/**
@@ -86,6 +108,9 @@ class Connection
 		return this->driver->execute(query);
 	}
 
+	/**
+	 * Prepares a statement for execution and returns a statement
+	 */
 	public function prepare(var statement)
 	{
 		var smt;
