@@ -5,8 +5,8 @@
 
 namespace Lynx\Tests\DBAL;
 
-use Lynx\ORM,
-    Lynx\DBAl;
+use Lynx\ORM;
+use Lynx\DBAl;
 use Lynx\Tests\Utils;
 
 class ConnectionTest
@@ -17,10 +17,11 @@ class ConnectionTest
 	 */
 	protected $_connection;
 
-	function setUp()
+    /**
+     * Set connection
+     */
+    public function setUp()
 	{
-		parent::setUp();
-
 		$this->_connection = Utils::getConnection();
 	}
 
