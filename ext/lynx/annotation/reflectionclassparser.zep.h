@@ -7,7 +7,7 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, __construct);
 PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getClassAnnotations);
 PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getPropertiesAnnotations);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_annotation_reflectionclassparser___construct, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_annotation_reflectionclassparser___construct, 0, 0, 0)
 	ZEND_ARG_INFO(0, parameter)
 ZEND_END_ARG_INFO()
 

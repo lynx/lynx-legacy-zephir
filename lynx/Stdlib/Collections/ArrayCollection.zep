@@ -21,9 +21,17 @@ class ArrayCollection extends Collection
 	/**
 	 * {@inheritDoc}
 	 */
-	public function add(element)
+	public function add(var element)
 	{
 		let this->elements[] = element;
+	}
+
+	/**
+	 * Checks is collection empty?
+	 */
+	public function isEmpty() -> boolean
+	{
+		return this->count() != 0;
 	}
 
 	/**

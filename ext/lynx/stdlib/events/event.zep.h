@@ -13,11 +13,11 @@ PHP_METHOD(Lynx_Stdlib_Events_Event, __construct);
 PHP_METHOD(Lynx_Stdlib_Events_Event, stop);
 PHP_METHOD(Lynx_Stdlib_Events_Event, isStopped);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_events_event_settype, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_events_event_settype, 0, 0, 0)
 	ZEND_ARG_INFO(0, type)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_events_event_setdata, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_events_event_setdata, 0, 0, 0)
 	ZEND_ARG_INFO(0, data)
 ZEND_END_ARG_INFO()
 

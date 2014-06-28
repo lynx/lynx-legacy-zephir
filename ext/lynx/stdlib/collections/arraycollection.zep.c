@@ -16,8 +16,9 @@
 #include "kernel/memory.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
-#include "Zend/zend_closures.h"
 #include "kernel/fcall.h"
+#include "kernel/operators.h"
+#include "Zend/zend_closures.h"
 
 
 /**
@@ -75,6 +76,22 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, add) {
 
 
 	zephir_update_property_array_append(this_ptr, SL("elements"), element TSRMLS_CC);
+
+}
+
+/**
+ * Checks is collection empty?
+ */
+PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, isEmpty) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *_0 = NULL;
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "count",  NULL);
+	zephir_check_call_status();
+	RETURN_MM_BOOL(!ZEPHIR_IS_LONG(_0, 0));
 
 }
 

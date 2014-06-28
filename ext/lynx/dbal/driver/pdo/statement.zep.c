@@ -15,9 +15,9 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_PDO_Statement) {
+ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Pdo_Statement) {
 
-	ZEPHIR_REGISTER_CLASS_EX(Lynx\\DBAL\\Driver\\PDO, Statement, lynx, dbal_driver_pdo_statement, zephir_get_internal_ce(SS("pdostatement") TSRMLS_CC), NULL, 0);
+	ZEPHIR_REGISTER_CLASS_EX(Lynx\\DBAL\\Driver\\Pdo, Statement, lynx, dbal_driver_pdo_statement, zephir_get_internal_ce(SS("pdostatement") TSRMLS_CC), NULL, 0);
 
 	return SUCCESS;
 

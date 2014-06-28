@@ -19,11 +19,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_sqlbuilder___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, em)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_sqlbuilder_limit, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_sqlbuilder_limit, 0, 0, 0)
 	ZEND_ARG_INFO(0, limit)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_sqlbuilder_offset, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_sqlbuilder_offset, 0, 0, 0)
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
 

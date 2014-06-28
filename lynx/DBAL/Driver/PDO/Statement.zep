@@ -1,5 +1,5 @@
 
-namespace Lynx\DBAL\Driver\PDO;
+namespace Lynx\DBAL\Driver\Pdo;
 
 class Statement extends \PDOStatement
 {

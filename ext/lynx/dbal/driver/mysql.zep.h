@@ -11,7 +11,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, execute);
 PHP_METHOD(Lynx_DBAL_Driver_Mysql, connect);
 PHP_METHOD(Lynx_DBAL_Driver_Mysql, prepare);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_driver_mysql_seteventsmanager, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_driver_mysql_seteventsmanager, 0, 0, 0)
 	ZEND_ARG_INFO(0, eventsManager)
 ZEND_END_ARG_INFO()
 
@@ -26,7 +26,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_driver_mysql_execute, 0, 0, 1)
 	ZEND_ARG_INFO(0, query)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_driver_mysql_prepare, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_driver_mysql_prepare, 0, 0, 0)
 	ZEND_ARG_INFO(0, statement)
 ZEND_END_ARG_INFO()
 

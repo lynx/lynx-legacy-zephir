@@ -232,8 +232,8 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_Cache_NativeArray);
 	ZEPHIR_INIT(Lynx_DBAL_Connection);
 	ZEPHIR_INIT(Lynx_DBAL_Driver_Mysql);
-	ZEPHIR_INIT(Lynx_DBAL_Driver_PDO_Statement);
 	ZEPHIR_INIT(Lynx_DBAL_Driver_Pdo);
+	ZEPHIR_INIT(Lynx_DBAL_Driver_Pdo_Statement);
 	ZEPHIR_INIT(Lynx_DBAL_Events);
 	ZEPHIR_INIT(Lynx_ORM_Configuration);
 	ZEPHIR_INIT(Lynx_ORM_EntityManager);

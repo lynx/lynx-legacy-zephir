@@ -2,7 +2,7 @@
 
 namespace Lynx\DBAL\Driver;
 
-class Pdo extends \PDO
+class Pdo extends \\PDO
 {
 
     /**
