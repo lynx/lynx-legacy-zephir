@@ -23,7 +23,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_entitymanager___construct, 0, 0, 3)
 	ZEND_ARG_INFO(0, eventManager)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_entitymanager_flush, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_entitymanager_flush, 0, 0, 1)
 	ZEND_ARG_INFO(0, entity)
 ZEND_END_ARG_INFO()
 
@@ -35,7 +35,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_entitymanager_getrepository, 0, 0, 1)
 	ZEND_ARG_INFO(0, entityName)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_entitymanager_createquery, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_entitymanager_createquery, 0, 0, 1)
 	ZEND_ARG_INFO(0, sql)
 ZEND_END_ARG_INFO()
 

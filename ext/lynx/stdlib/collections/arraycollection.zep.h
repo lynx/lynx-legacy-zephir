@@ -13,11 +13,11 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, last);
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, getIterator);
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, count);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_arraycollection___construct, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_arraycollection___construct, 0, 0, 0)
 	ZEND_ARG_INFO(0, elements)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_arraycollection_add, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_arraycollection_add, 0, 0, 1)
 	ZEND_ARG_INFO(0, element)
 ZEND_END_ARG_INFO()
 

@@ -19,7 +19,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_collection_filter, 0, 0, 
 	ZEND_ARG_INFO(0, func)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_collection_add, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_collection_add, 0, 0, 1)
 	ZEND_ARG_INFO(0, element)
 ZEND_END_ARG_INFO()
 

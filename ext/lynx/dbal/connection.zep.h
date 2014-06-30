@@ -11,38 +11,38 @@ PHP_METHOD(Lynx_DBAL_Connection, deleteByColumn);
 PHP_METHOD(Lynx_DBAL_Connection, delete);
 PHP_METHOD(Lynx_DBAL_Connection, prepare);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection___construct, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, parameters)
 	ZEND_ARG_INFO(0, eventsManager)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection_insert, 0, 0, 3)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection_insert, 0, 0, 2)
 	ZEND_ARG_INFO(0, table)
 	ZEND_ARG_INFO(0, data)
 	ZEND_ARG_INFO(0, types)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection_update, 0, 0, 4)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection_update, 0, 0, 3)
 	ZEND_ARG_INFO(0, table)
 	ZEND_ARG_INFO(0, data)
 	ZEND_ARG_INFO(0, identifiers)
 	ZEND_ARG_INFO(0, types)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection_deletebycolumn, 0, 0, 4)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection_deletebycolumn, 0, 0, 3)
 	ZEND_ARG_INFO(0, table)
 	ZEND_ARG_INFO(0, column)
 	ZEND_ARG_INFO(0, value)
 	ZEND_ARG_INFO(0, type)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection_delete, 0, 0, 3)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection_delete, 0, 0, 2)
 	ZEND_ARG_INFO(0, table)
 	ZEND_ARG_INFO(0, identifiers)
 	ZEND_ARG_INFO(0, types)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection_prepare, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_connection_prepare, 0, 0, 1)
 	ZEND_ARG_INFO(0, statement)
 ZEND_END_ARG_INFO()
 

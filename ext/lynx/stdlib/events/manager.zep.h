@@ -21,11 +21,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_events_manager_attach, 0, 0, 2)
 	ZEND_ARG_INFO(0, priority)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_events_manager_enablepriorities, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_events_manager_enablepriorities, 0, 0, 1)
 	ZEND_ARG_INFO(0, enablePriorities)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_events_manager_collectresponses, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_events_manager_collectresponses, 0, 0, 1)
 	ZEND_ARG_INFO(0, collect)
 ZEND_END_ARG_INFO()
 
@@ -33,7 +33,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_events_manager_dettachall, 0, 0, 0)
 	ZEND_ARG_INFO(0, type)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_events_manager_firequeue, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_events_manager_firequeue, 0, 0, 2)
 	ZEND_ARG_INFO(0, queue)
 	ZEND_ARG_INFO(0, event)
 ZEND_END_ARG_INFO()

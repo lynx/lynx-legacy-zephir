@@ -29,35 +29,35 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, em)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_from, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_from, 0, 0, 2)
 	ZEND_ARG_INFO(0, from)
 	ZEND_ARG_INFO(0, alias)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_leftjoin, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_leftjoin, 0, 0, 2)
 	ZEND_ARG_INFO(0, join)
 	ZEND_ARG_INFO(0, alias)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_rightjoin, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_rightjoin, 0, 0, 2)
 	ZEND_ARG_INFO(0, join)
 	ZEND_ARG_INFO(0, alias)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_join, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_join, 0, 0, 2)
 	ZEND_ARG_INFO(0, join)
 	ZEND_ARG_INFO(0, alias)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_where, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_where, 0, 0, 1)
 	ZEND_ARG_INFO(0, statement)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_andwhere, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_andwhere, 0, 0, 1)
 	ZEND_ARG_INFO(0, statement)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_orwhere, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_orwhere, 0, 0, 1)
 	ZEND_ARG_INFO(0, statement)
 ZEND_END_ARG_INFO()
 
@@ -66,15 +66,15 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_orderby, 0, 0, 1)
 	ZEND_ARG_INFO(0, sort)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_limit, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_limit, 0, 0, 1)
 	ZEND_ARG_INFO(0, limit)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_offset, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_offset, 0, 0, 1)
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_wrap, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_wrap, 0, 0, 1)
 	ZEND_ARG_INFO(0, id)
 ZEND_END_ARG_INFO()
 

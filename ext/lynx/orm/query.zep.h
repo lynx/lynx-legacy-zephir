@@ -17,22 +17,22 @@ PHP_METHOD(Lynx_ORM_Query, fetchOne);
 PHP_METHOD(Lynx_ORM_Query, execute);
 PHP_METHOD(Lynx_ORM_Query, getScalarResult);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_setidentitymap, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_setidentitymap, 0, 0, 1)
 	ZEND_ARG_INFO(0, identityMap)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query___construct, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query___construct, 0, 0, 2)
 	ZEND_ARG_INFO(0, query)
 	ZEND_ARG_INFO(0, em)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_bindvalue, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_bindvalue, 0, 0, 2)
 	ZEND_ARG_INFO(0, parameter)
 	ZEND_ARG_INFO(0, value)
 	ZEND_ARG_INFO(0, data_type)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_bindparam, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_bindparam, 0, 0, 2)
 	ZEND_ARG_INFO(0, parameter)
 	ZEND_ARG_INFO(0, value)
 	ZEND_ARG_INFO(0, data_type)
@@ -56,7 +56,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_fetchone, 0, 0, 0)
 	ZEND_ARG_INFO(0, parameters)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_execute, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_execute, 0, 0, 1)
 	ZEND_ARG_INFO(0, parameters)
 	ZEND_ARG_INFO(0, hydrationMod)
 ZEND_END_ARG_INFO()

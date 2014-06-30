@@ -10,15 +10,15 @@ PHP_METHOD(Lynx_ORM_QueryIdentityMap, setRootAlias);
 PHP_METHOD(Lynx_ORM_QueryIdentityMap, getAliases);
 PHP_METHOD(Lynx_ORM_QueryIdentityMap, setAliases);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_queryidentitymap_setrootmodel, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_queryidentitymap_setrootmodel, 0, 0, 1)
 	ZEND_ARG_INFO(0, rootModel)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_queryidentitymap_setrootalias, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_queryidentitymap_setrootalias, 0, 0, 1)
 	ZEND_ARG_INFO(0, rootAlias)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_queryidentitymap_setaliases, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_queryidentitymap_setaliases, 0, 0, 1)
 	ZEND_ARG_INFO(0, aliases)
 ZEND_END_ARG_INFO()
 
