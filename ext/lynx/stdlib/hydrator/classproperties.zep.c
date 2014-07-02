@@ -73,3 +73,25 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassProperties, hydrate) {
 
 }
 
+PHP_METHOD(Lynx_Stdlib_Hydrator_ClassProperties, extract) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL;
+	zval *currentObject;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &currentObject);
+
+	if (unlikely(Z_TYPE_P(currentObject) != IS_OBJECT)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'currentObject' must be an object") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+
+
+	ZEPHIR_RETURN_CALL_FUNCTION("get_object_vars", &_0, currentObject);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+

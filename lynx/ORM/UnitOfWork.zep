@@ -15,11 +15,11 @@ class UnitOfWork
 	 */
     protected em;
 
-    protected insertEntities;
+    protected insertEntities = [];
 
-    protected updateEntities;
+    protected updateEntities = [];
 
-    protected deleteEntities;
+    protected deleteEntities = [];
 
     public function __construct(<EntityManager> em)
     {
@@ -45,20 +45,36 @@ class UnitOfWork
     {
     	var model, modelInfo;
 
-		try {
-			for model in this->insertEntities {
-				let modelInfo = this->em->getModelsManager()->get(get_class(model));
+		/**
+		 * Remove try catch from hear because bug in Zephir :(
+		 */
 
-				//this->em->getConnection()->insert(modelInfo->getTablename(), \Lynx\Stdlib\Hydrator\ClassProperties::hydrate(model));
-			}
-
-			//for model in this->deleteEntities {
-				//this->connection->insert;
-			//}
+		for model in this->insertEntities {
+			let modelInfo = this->em->getModelsManager()->get(get_class(model));
+			this->em->getConnection()->insert(modelInfo->getTablename(), \Lynx\Stdlib\Hydrator\ClassProperties::extract(model));
 		}
 
-		let this->insertEntities = null;
-		let this->updateEntities = null;
-		let this->deleteEntities = null;
+		for model in this->updateEntities {
+			var data, identifiers;
+
+			let modelInfo = this->em->getModelsManager()->get(get_class(model));
+
+			let data = \Lynx\Stdlib\Hydrator\ClassProperties::extract(model);
+			let identifiers = [
+				"id" : data["id"]
+			];
+
+			this->em->getConnection()->update(modelInfo->getTablename(), data, identifiers);
+		}
+
+		for model in this->deleteEntities {
+			let modelInfo = this->em->getModelsManager()->get(get_class(model));
+			this->em->getConnection()->delete(modelInfo->getTablename(), \Lynx\Stdlib\Hydrator\ClassProperties::extract(model));
+		}
+
+
+		let this->insertEntities = [];
+		let this->updateEntities = [];
+		let this->deleteEntities = [];
     }
 }

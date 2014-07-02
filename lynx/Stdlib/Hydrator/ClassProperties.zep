@@ -19,4 +19,9 @@ class ClassProperties
 
         return currentObject;
     }
+
+    public static function extract(object! currentObject)
+    {
+    	return get_object_vars(currentObject);
+    }
 }

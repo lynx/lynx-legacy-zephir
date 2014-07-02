@@ -40,14 +40,16 @@ class Connection
 	 */
 	public function insert(string! table, array! data, array! types = []) -> int
 	{
-		var query;
-		let query = "INSERT INTO " . table . " (" . implode(", ", array_keys(data)) . ")" .
-			" VALUES (" . implode(", ", data) . ")";
+		var query, stmt, value, set = [], columnName;
 
-		/**
-		 * @todo implement work with types
-		 */
-		return this->driver->execute(query);
+		for columnName, value in data {
+			let set[] = ":" . columnName . "";
+		}
+
+		let query = "INSERT INTO " . table . " (" . implode(",", array_keys(data)) . ")  VALUES (" . implode(",", set) . ")";
+
+		let stmt = this->driver->prepare(query);
+		return stmt->execute(data);
 	}
 
 	/**

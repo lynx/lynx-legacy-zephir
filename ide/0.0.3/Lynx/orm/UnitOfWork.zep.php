@@ -15,11 +15,11 @@ class UnitOfWork
      */
     protected $em;
 
-    protected $insertEntities;
+    protected $insertEntities = array();
 
-    protected $updateEntities;
+    protected $updateEntities = array();
 
-    protected $deleteEntities;
+    protected $deleteEntities = array();
 
     /**
      * @param EntityManager $em 

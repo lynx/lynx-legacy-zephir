@@ -17,10 +17,10 @@
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
+#include "kernel/hash.h"
 #include "kernel/concat.h"
 #include "kernel/string.h"
 #include "ext/spl/spl_exceptions.h"
-#include "kernel/hash.h"
 #include "kernel/operators.h"
 
 
@@ -106,8 +106,10 @@ PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 PHP_METHOD(Lynx_DBAL_Connection, insert) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
+	HashTable *_1;
+	HashPosition _0;
 	zval *data = NULL, *types = NULL;
-	zval *table_param = NULL, *data_param = NULL, *types_param = NULL, *query, *_0, *_1, *_2, *_3;
+	zval *table_param = NULL, *data_param = NULL, *types_param = NULL, *query, *stmt = NULL, *value = NULL, *set, *columnName = NULL, **_2, *_3 = NULL, *_4, *_5, *_6, *_7;
 	zval *table = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -143,18 +145,33 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 		types = types_param;
 
 	}
+	ZEPHIR_INIT_VAR(set);
+	array_init(set);
 
 
-	ZEPHIR_INIT_VAR(_0);
-	ZEPHIR_INIT_VAR(_1);
-	zephir_array_keys(_1, data TSRMLS_CC);
-	zephir_fast_join_str(_0, SL(", "), _1 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_2);
-	zephir_fast_join_str(_2, SL(", "), data TSRMLS_CC);
+	zephir_is_iterable(data, &_1, &_0, 0, 0);
+	for (
+	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_1, &_0)
+	) {
+		ZEPHIR_GET_HMKEY(columnName, _1, _0);
+		ZEPHIR_GET_HVALUE(value, _2);
+		ZEPHIR_INIT_LNVAR(_3);
+		ZEPHIR_CONCAT_SVS(_3, ":", columnName, "");
+		zephir_array_append(&set, _3, PH_SEPARATE);
+	}
+	ZEPHIR_INIT_VAR(_4);
+	ZEPHIR_INIT_VAR(_5);
+	zephir_array_keys(_5, data TSRMLS_CC);
+	zephir_fast_join_str(_4, SL(","), _5 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_6);
+	zephir_fast_join_str(_6, SL(","), set TSRMLS_CC);
 	ZEPHIR_INIT_VAR(query);
-	ZEPHIR_CONCAT_SVSVSSVS(query, "INSERT INTO ", table, " (", _0, ")", " VALUES (", _2, ")");
-	_3 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
-	ZEPHIR_RETURN_CALL_METHOD(_3, "execute", NULL, query);
+	ZEPHIR_CONCAT_SVSVSVS(query, "INSERT INTO ", table, " (", _4, ")  VALUES (", _6, ")");
+	_7 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&stmt, _7, "prepare", NULL, query);
+	zephir_check_call_status();
+	ZEPHIR_RETURN_CALL_METHOD(stmt, "execute", NULL, data);
 	zephir_check_call_status();
 	RETURN_MM();
 

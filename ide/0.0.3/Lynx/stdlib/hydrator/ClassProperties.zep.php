@@ -17,4 +17,9 @@ class ClassProperties
      */
 	public static function hydrate($data, $currentObject) {}
 
+    /**
+     * @param object $currentObject 
+     */
+	public static function extract($currentObject) {}
+
 }
