@@ -19,6 +19,11 @@ class EntityManager
 
     protected $configuration;
 
+    /**
+     * @var UnitOfWork
+     */
+	public function getUnitOfWork() {}
+
 
 	public function getConnection() {}
 

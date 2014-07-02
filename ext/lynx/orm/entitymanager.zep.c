@@ -46,6 +46,16 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_EntityManager) {
 
 }
 
+/**
+ * @var UnitOfWork
+ */
+PHP_METHOD(Lynx_ORM_EntityManager, getUnitOfWork) {
+
+
+	RETURN_MEMBER(this_ptr, "unitOfWork");
+
+}
+
 PHP_METHOD(Lynx_ORM_EntityManager, getConnection) {
 
 

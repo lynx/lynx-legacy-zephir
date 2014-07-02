@@ -12,7 +12,7 @@ class EntityManager
     /**
      * @var UnitOfWork
      */
-    protected unitOfWork;
+    protected unitOfWork {get};
 
 	protected connection {get};
 

@@ -4,6 +4,10 @@ namespace Lynx\ORM;
 
 class UnitOfWork
 {
+
+    const STATE_MANAGED = 1;
+
+    const STATE_NEW = 2;
     /**
      * 
      * @var EntityManager

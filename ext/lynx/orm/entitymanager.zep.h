@@ -3,6 +3,7 @@ extern zend_class_entry *lynx_orm_entitymanager_ce;
 
 ZEPHIR_INIT_CLASS(Lynx_ORM_EntityManager);
 
+PHP_METHOD(Lynx_ORM_EntityManager, getUnitOfWork);
 PHP_METHOD(Lynx_ORM_EntityManager, getConnection);
 PHP_METHOD(Lynx_ORM_EntityManager, getModelsManager);
 PHP_METHOD(Lynx_ORM_EntityManager, getEventManager);
@@ -40,6 +41,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_entitymanager_createquery, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(lynx_orm_entitymanager_method_entry) {
+	PHP_ME(Lynx_ORM_EntityManager, getUnitOfWork, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_EntityManager, getConnection, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_EntityManager, getModelsManager, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_EntityManager, getEventManager, NULL, ZEND_ACC_PUBLIC)
