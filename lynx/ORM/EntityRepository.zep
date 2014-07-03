@@ -50,6 +50,17 @@ class EntityRepository
     }
 
 	/**
+	 * Count all rows
+	 */
+    public function count() -> int
+    {
+    	return this->createQueryBuilder("count_")
+    		->select("COUNT(*)")
+    		->getQuery()
+    		->getScalarResult(ORM\Query::FETCH_INT);
+    }
+
+	/**
 	 * Find all entities from repository
 	 */
     public function findAll()

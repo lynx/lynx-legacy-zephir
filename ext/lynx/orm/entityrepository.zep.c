@@ -155,6 +155,36 @@ PHP_METHOD(Lynx_ORM_EntityRepository, find) {
 }
 
 /**
+ * Count all rows
+ */
+PHP_METHOD(Lynx_ORM_EntityRepository, count) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *_0 = NULL, *_1, *_2 = NULL, *_3 = NULL;
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_INIT_VAR(_1);
+	ZVAL_STRING(_1, "count_", 0);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "createquerybuilder", NULL, _1);
+	zephir_check_temp_parameter(_1);
+	zephir_check_call_status();
+	ZEPHIR_INIT_BNVAR(_1);
+	ZVAL_STRING(_1, "COUNT(*)", 0);
+	ZEPHIR_CALL_METHOD(&_2, _0, "select", NULL, _1);
+	zephir_check_temp_parameter(_1);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_3, _2, "getquery",  NULL);
+	zephir_check_call_status();
+	ZEPHIR_INIT_BNVAR(_1);
+	ZVAL_LONG(_1, 1);
+	ZEPHIR_RETURN_CALL_METHOD(_3, "getscalarresult", NULL, _1);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
  * Find all entities from repository
  */
 PHP_METHOD(Lynx_ORM_EntityRepository, findAll) {

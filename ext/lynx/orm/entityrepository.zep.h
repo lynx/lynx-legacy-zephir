@@ -7,6 +7,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, getEm);
 PHP_METHOD(Lynx_ORM_EntityRepository, __construct);
 PHP_METHOD(Lynx_ORM_EntityRepository, createQueryBuilder);
 PHP_METHOD(Lynx_ORM_EntityRepository, find);
+PHP_METHOD(Lynx_ORM_EntityRepository, count);
 PHP_METHOD(Lynx_ORM_EntityRepository, findAll);
 PHP_METHOD(Lynx_ORM_EntityRepository, findBy);
 PHP_METHOD(Lynx_ORM_EntityRepository, findOneBy);
@@ -39,6 +40,7 @@ ZEPHIR_INIT_FUNCS(lynx_orm_entityrepository_method_entry) {
 	PHP_ME(Lynx_ORM_EntityRepository, __construct, arginfo_lynx_orm_entityrepository___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Lynx_ORM_EntityRepository, createQueryBuilder, arginfo_lynx_orm_entityrepository_createquerybuilder, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_EntityRepository, find, arginfo_lynx_orm_entityrepository_find, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_ORM_EntityRepository, count, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_EntityRepository, findAll, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_EntityRepository, findBy, arginfo_lynx_orm_entityrepository_findby, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_EntityRepository, findOneBy, arginfo_lynx_orm_entityrepository_findoneby, ZEND_ACC_PUBLIC)

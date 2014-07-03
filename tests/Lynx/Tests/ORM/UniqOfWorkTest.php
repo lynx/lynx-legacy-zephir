@@ -42,12 +42,12 @@ class UniqOfWorkTest
         $new->name = "Test string";
         $new->group_id = 1;
 
-        $collection = $this->entityManager->getRepository('Model\User')->findAll();
+        $count = $this->entityManager->getRepository('Model\User')->count();
 
         $this->unitOfWork->insert($new);
         $this->unitOfWork->commit();
 
-        $newCollection = $this->entityManager->getRepository('Model\User')->findAll();
-        $this->assertSame(count($collection)+1, count($newCollection));
+        $newCount = $this->entityManager->getRepository('Model\User')->count();
+        $this->assertSame($count+1, $newCount);
     }
 }

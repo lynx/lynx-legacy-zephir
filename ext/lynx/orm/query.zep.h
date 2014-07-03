@@ -61,6 +61,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_execute, 0, 0, 1)
 	ZEND_ARG_INFO(0, hydrationMod)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_getscalarresult, 0, 0, 0)
+	ZEND_ARG_INFO(0, type)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(lynx_orm_query_method_entry) {
 	PHP_ME(Lynx_ORM_Query, getQuery, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_Query, getIdentityMap, NULL, ZEND_ACC_PUBLIC)
@@ -74,6 +78,6 @@ ZEPHIR_INIT_FUNCS(lynx_orm_query_method_entry) {
 	PHP_ME(Lynx_ORM_Query, fetchObject, arginfo_lynx_orm_query_fetchobject, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_Query, fetchOne, arginfo_lynx_orm_query_fetchone, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_Query, execute, arginfo_lynx_orm_query_execute, ZEND_ACC_PUBLIC)
-	PHP_ME(Lynx_ORM_Query, getScalarResult, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_ORM_Query, getScalarResult, arginfo_lynx_orm_query_getscalarresult, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };

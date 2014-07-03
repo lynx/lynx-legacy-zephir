@@ -16,6 +16,8 @@ class QueryBuilder
 
 	protected parts;
 
+	protected columns = "*";
+
 	protected where = [];
 
 	protected type = self::SELECT {get};
@@ -35,9 +37,13 @@ class QueryBuilder
 		let this->em = em;
 	}
 
-	public function select()
+	public function select(var columns = null)
 	{
 		let this->type = self::SELECT;
+
+		if (!is_null(columns)) {
+			let this->columns  = columns;
+		}
 
 		return this;
 	}
@@ -160,7 +166,7 @@ class QueryBuilder
 
 		switch(this->type) {
 			case self::SELECT:
-				let sql = "SELECT *";
+				let sql = "SELECT " . this->columns;
 				break;
 			case self::UPDATE:
 				let sql = "UPDATE ";

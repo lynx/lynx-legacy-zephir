@@ -42,6 +42,14 @@ class EntityRepository
 	public function find($id) {}
 
     /**
+     * Count all rows
+     * 	
+     *
+     * @return int 
+     */
+	public function count() {}
+
+    /**
      * Find all entities from repository
      * 	
      */

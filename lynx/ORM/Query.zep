@@ -20,6 +20,8 @@ class Query
 	 */
 	protected identityMap {get, set};
 
+	const FETCH_INT = 1;
+
 	public function __construct(var query, <EntityManager> em)
 	{
 		let this->query = query;
@@ -94,8 +96,22 @@ class Query
 		
 	}
 
-	public function getScalarResult()
+	/**
+	 * Fetch statement and convert first column to type if it is specified
+	 */
+	public function getScalarResult(var type = null)
 	{
-		return this->getResult();	
+		var result;
+		this->statement->execute();
+
+		let result = this->statement->fetchColumn();
+
+		switch(type) {
+			case self::FETCH_INT:
+				return (int) result;
+			default:
+				return result;
+				break;
+		}
 	}
 }

@@ -17,6 +17,8 @@ class QueryBuilder
 
     protected $parts;
 
+    protected $columns = "*";
+
     protected $where = array();
 
     protected $type;
@@ -48,8 +50,10 @@ class QueryBuilder
      */
 	public function __construct($em) {}
 
-
-	public function select() {}
+    /**
+     * @param mixed $columns 
+     */
+	public function select($columns = null) {}
 
 
 	public function delete() {}

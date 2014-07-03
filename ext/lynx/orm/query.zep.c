@@ -17,6 +17,7 @@
 #include "kernel/exception.h"
 #include "kernel/fcall.h"
 #include "kernel/concat.h"
+#include "kernel/operators.h"
 
 
 /**
@@ -39,6 +40,8 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_Query) {
 	 * IdentityMap for SQL. need for hydrate data with many relations (joins)
 	 */
 	zend_declare_property_null(lynx_orm_query_ce, SL("identityMap"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
+	zend_declare_class_constant_long(lynx_orm_query_ce, SL("FETCH_INT"), 1 TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -283,15 +286,37 @@ PHP_METHOD(Lynx_ORM_Query, execute) {
 
 }
 
+/**
+ * Fetch statement and convert first column to type if it is specified
+ */
 PHP_METHOD(Lynx_ORM_Query, getScalarResult) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
+	zval *type = NULL, *result = NULL, *_0, *_1;
 
 	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &type);
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getresult", NULL);
+	if (!type) {
+		type = ZEPHIR_GLOBAL(global_null);
+	}
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("statement"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(NULL, _0, "execute", NULL);
 	zephir_check_call_status();
-	RETURN_MM();
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("statement"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&result, _1, "fetchcolumn",  NULL);
+	zephir_check_call_status();
+	do {
+		if (ZEPHIR_IS_LONG(type, 1)) {
+			RETURN_MM_LONG(zephir_get_intval(result));
+		}
+		RETURN_CCTOR(result);
+		break;
+	} while(0);
+
+	ZEPHIR_MM_RESTORE();
 
 }
 

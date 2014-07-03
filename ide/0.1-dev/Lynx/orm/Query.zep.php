@@ -4,6 +4,8 @@ namespace Lynx\ORM;
 
 class Query
 {
+
+    const FETCH_INT = 1;
     /**
      * Sql plain query
      * 	
@@ -105,7 +107,12 @@ class Query
      */
 	public function execute($parameters, $hydrationMod = null) {}
 
-
-	public function getScalarResult() {}
+    /**
+     * Fetch statement and convert first column to type if it is specified
+     * 	
+     *
+     * @param mixed $type 
+     */
+	public function getScalarResult($type = null) {}
 
 }
