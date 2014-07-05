@@ -27,6 +27,7 @@
 zend_class_entry *lynx_cache_driver_ce;
 zend_class_entry *lynx_dbal_driver_connection_ce;
 zend_class_entry *lynx_stdlib_events_eventsmanager_ce;
+zend_class_entry *lynx_stdlib_hydrator_hydrator_ce;
 zend_class_entry *lynx_cache_cachedriver_ce;
 zend_class_entry *lynx_stdlib_collections_collection_ce;
 zend_class_entry *lynx_annotation_reflectionclassparser_ce;
@@ -223,6 +224,7 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_Cache_Driver);
 	ZEPHIR_INIT(Lynx_DBAL_Driver_Connection);
 	ZEPHIR_INIT(Lynx_Stdlib_Events_EventsManager);
+	ZEPHIR_INIT(Lynx_Stdlib_Hydrator_Hydrator);
 	ZEPHIR_INIT(Lynx_Cache_CacheDriver);
 	ZEPHIR_INIT(Lynx_Stdlib_Collections_Collection);
 	ZEPHIR_INIT(Lynx_Annotation_ReflectionClassParser);

@@ -1,11 +1,9 @@
 namespace Lynx\Stdlib\Hydrator;
 
-class ClassProperties
+class ClassProperties implements Hydrator
 {
 	/**
-	 * @param arrray $data
-	 * $param object $currentObject
-	 * @return object
+	 * {@inheritDoc}
 	 */
     public static function hydrate(array! data, var currentObject)
     {
@@ -20,6 +18,9 @@ class ClassProperties
         return currentObject;
     }
 
+	/**
+	 * {@inheritDoc}
+	 */
     public static function extract(object! currentObject)
     {
     	return get_object_vars(currentObject);

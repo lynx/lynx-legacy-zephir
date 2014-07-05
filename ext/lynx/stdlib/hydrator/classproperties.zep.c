@@ -25,14 +25,13 @@ ZEPHIR_INIT_CLASS(Lynx_Stdlib_Hydrator_ClassProperties) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\Stdlib\\Hydrator, ClassProperties, lynx, stdlib_hydrator_classproperties, lynx_stdlib_hydrator_classproperties_method_entry, 0);
 
+	zend_class_implements(lynx_stdlib_hydrator_classproperties_ce TSRMLS_CC, 1, lynx_stdlib_hydrator_hydrator_ce);
 	return SUCCESS;
 
 }
 
 /**
- * @param arrray $data
- * $param object $currentObject
- * @return object
+ * {@inheritDoc}
  */
 PHP_METHOD(Lynx_Stdlib_Hydrator_ClassProperties, hydrate) {
 
@@ -73,6 +72,9 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassProperties, hydrate) {
 
 }
 
+/**
+ * {@inheritDoc}
+ */
 PHP_METHOD(Lynx_Stdlib_Hydrator_ClassProperties, extract) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

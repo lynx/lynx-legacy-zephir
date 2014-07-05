@@ -3,9 +3,7 @@ namespace Lynx\Stdlib\Hydrator;
 class ClassMethods
 {
 	/**
-	 * @param arrray $data
-	 * $param object $currentObject
-	 * @return object
+	 * {@inheritDoc}
 	 */
     public static function hydrate(array! data, var currentObject)
     {

@@ -7,9 +7,7 @@ class ClassMethods
 
     /**
      * 
-     * @param arrray $data
-     * $param object $currentObject
-     * @return object
+     * {@inheritDoc}
      * 	
      *
      * @param array $data 

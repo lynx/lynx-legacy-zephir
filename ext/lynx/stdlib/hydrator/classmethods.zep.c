@@ -31,9 +31,7 @@ ZEPHIR_INIT_CLASS(Lynx_Stdlib_Hydrator_ClassMethods) {
 }
 
 /**
- * @param arrray $data
- * $param object $currentObject
- * @return object
+ * {@inheritDoc}
  */
 PHP_METHOD(Lynx_Stdlib_Hydrator_ClassMethods, hydrate) {
 

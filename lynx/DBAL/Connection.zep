@@ -65,7 +65,7 @@ class Connection
 			let set[] = "`" . columnName . "` = ?";
 		}
 
-		let query =  "UPDATE " . table . " SET " . implode(', ', set) . " WHERE " . implode(" = ? AND ", array_keys(identifiers));
+		let query =  "UPDATE " . table . " SET " . implode(", ", set) . " WHERE " . implode(" = ? AND ", array_keys(identifiers));
 		let stmt = this->driver->prepare(query);
 
 		return stmt->execute(array_merge(array_values(data), array_values(identifiers)));
