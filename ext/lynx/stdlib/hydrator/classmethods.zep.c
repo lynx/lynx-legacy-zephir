@@ -20,6 +20,7 @@
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
+#include "kernel/operators.h"
 
 
 ZEPHIR_INIT_CLASS(Lynx_Stdlib_Hydrator_ClassMethods) {
@@ -74,6 +75,62 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassMethods, hydrate) {
 		}
 	}
 	RETURN_CCTOR(currentObject);
+
+}
+
+/**
+ * {@inheritDoc}
+ */
+PHP_METHOD(Lynx_Stdlib_Hydrator_ClassMethods, extract) {
+
+	HashTable *_2;
+	HashPosition _1;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_6 = NULL, *_7 = NULL, *_9 = NULL, *_11 = NULL;
+	zval *currentObject, *methods = NULL, *method = NULL, *attribute = NULL, *attributes, **_3, _4 = zval_used_for_init, *_5 = NULL, *_8 = NULL, *_10 = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &currentObject);
+
+	if (unlikely(Z_TYPE_P(currentObject) != IS_OBJECT)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'currentObject' must be an object") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+
+
+	ZEPHIR_CALL_FUNCTION(&methods, "get_class_methods", &_0, currentObject);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(attributes);
+	array_init(attributes);
+	zephir_is_iterable(methods, &_2, &_1, 0, 0);
+	for (
+	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_2, &_1)
+	) {
+		ZEPHIR_GET_HVALUE(method, _3);
+		ZEPHIR_SINIT_NVAR(_4);
+		ZVAL_STRING(&_4, "/^get/", 0);
+		ZEPHIR_CALL_FUNCTION(&_5, "preg_match", &_6, &_4, method);
+		zephir_check_call_status();
+		if (zephir_is_true(_5)) {
+			ZEPHIR_SINIT_NVAR(_4);
+			ZVAL_LONG(&_4, 3);
+			ZEPHIR_CALL_FUNCTION(&attribute, "substr", &_7, method, &_4);
+			zephir_check_call_status();
+			ZEPHIR_CALL_FUNCTION(&_8, "property_exists", &_9, currentObject, attribute);
+			zephir_check_call_status();
+			if (!zephir_is_true(_8)) {
+				ZEPHIR_CALL_FUNCTION(&_10, "lcfirst", &_11, attribute);
+				zephir_check_call_status();
+				ZEPHIR_CPY_WRT(attribute, _10);
+				ZEPHIR_CALL_METHOD(&_10, currentObject, "attributes",  NULL);
+				zephir_check_call_status();
+				zephir_array_update_zval(&attributes, attribute, &_10, PH_COPY | PH_SEPARATE);
+			}
+		}
+	}
+	RETURN_CCTOR(attributes);
 
 }
 

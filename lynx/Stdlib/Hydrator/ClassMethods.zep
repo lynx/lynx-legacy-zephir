@@ -19,4 +19,28 @@ class ClassMethods
 
         return currentObject;
     }
+
+	/**
+	 * {@inheritDoc}
+	 */
+    public static function extract(object! currentObject)
+    {
+    	var methods, method, attribute, attributes;
+
+    	let methods = get_class_methods(currentObject);
+
+		let attributes = [];
+
+    	for method in methods {
+			if (preg_match("/^get/", method)) {
+				let attribute = substr(method, 3);
+				if (!property_exists(currentObject, attribute)) {
+					let attribute = lcfirst(attribute);
+					let attributes[attribute] = currentObject->attributes();
+				}
+			}
+    	}
+
+    	return attributes;
+    }
 }

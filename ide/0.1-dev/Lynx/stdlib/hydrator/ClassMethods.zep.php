@@ -15,4 +15,13 @@ class ClassMethods
      */
 	public static function hydrate($data, $currentObject) {}
 
+    /**
+     * 
+     * {@inheritDoc}
+     * 	
+     *
+     * @param object $currentObject 
+     */
+	public static function extract($currentObject) {}
+
 }
