@@ -199,13 +199,14 @@ class QueryBuilder
 
 	public function getQuery() -> <Query>
 	{
-		var query, identityMap;
+		var query, identityMap, sql;
 
+		let sql = this->getSQL();
 		let identityMap = new QueryIdentityMap();
 		identityMap->setRootModel(this->rootModel);
 		identityMap->setRootAlias(this->alias);
 
-		let query = this->em->createQuery(this->getSQL());
+		let query = this->em->createQuery(sql);
 		query->setIdentityMap(identityMap);
 
 		return query;

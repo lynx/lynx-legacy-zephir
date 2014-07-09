@@ -18,6 +18,7 @@
 #include "kernel/fcall.h"
 #include "kernel/concat.h"
 #include "kernel/operators.h"
+#include "kernel/array.h"
 
 
 /**
@@ -255,8 +256,10 @@ PHP_METHOD(Lynx_ORM_Query, fetchObject) {
 
 PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 
+	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL;
+	zend_bool _0;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters = NULL;
+	zval *parameters = NULL, *result = NULL, *model = NULL, *_1, *_2 = NULL, *_3 = NULL, *_5;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &parameters);
@@ -266,9 +269,25 @@ PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 	}
 
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getresult", NULL);
+	ZEPHIR_CALL_METHOD(&result, this_ptr, "getresult",  NULL);
 	zephir_check_call_status();
-	RETURN_MM();
+	_0 = !zephir_is_true(result);
+	if (!(_0)) {
+		_0 = zephir_fast_count_int(result TSRMLS_CC) == 0;
+	}
+	if (_0) {
+		RETURN_MM_BOOL(0);
+	}
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("identityMap"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&_2, _1, "getrootmodel",  NULL);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&model, _2, "getobject",  NULL);
+	zephir_check_call_status();
+	zephir_array_fetch_long(&_5, result, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
+	ZEPHIR_CALL_CE_STATIC(&_3, lynx_stdlib_hydrator_classproperties_ce, "hydrate", &_4, _5, model);
+	zephir_check_call_status();
+	ZEPHIR_CPY_WRT(model, _3);
+	RETURN_CCTOR(model);
 
 }
 

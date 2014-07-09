@@ -75,6 +75,27 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, __construct) {
 
 }
 
+PHP_METHOD(Lynx_ORM_ModelMetaData, getObject) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zend_class_entry *_1;
+	zval *tmp, *classname = NULL, *_0;
+
+	ZEPHIR_MM_GROW();
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("classname"), PH_NOISY_CC);
+	ZEPHIR_CPY_WRT(classname, _0);
+	ZEPHIR_INIT_VAR(tmp);
+	_1 = zend_fetch_class(Z_STRVAL_P(classname), Z_STRLEN_P(classname), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
+	object_init_ex(tmp, _1);
+	if (zephir_has_constructor(tmp TSRMLS_CC)) {
+		ZEPHIR_CALL_METHOD(NULL, tmp, "__construct", NULL);
+		zephir_check_call_status();
+	}
+	RETURN_CCTOR(tmp);
+
+}
+
 PHP_METHOD(Lynx_ORM_ModelMetaData, getProperties) {
 
 	zval *_0;

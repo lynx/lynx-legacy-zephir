@@ -26,6 +26,16 @@ class ModelMetaData
         let this->properties = parser->getPropertiesAnnotations();
 	}
 
+	public function getObject()
+	{
+		var tmp, classname;
+
+		let classname = this->classname;
+		let tmp = new {classname}();
+
+		return tmp;
+	}
+
 	public function getProperties()
 	{
 		if (!is_null(this->properties)) {

@@ -467,10 +467,12 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 PHP_METHOD(Lynx_ORM_QueryBuilder, getQuery) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *query = NULL, *identityMap, *_0, *_1, *_2, *_3 = NULL;
+	zval *query = NULL, *identityMap, *sql = NULL, *_0, *_1, *_2;
 
 	ZEPHIR_MM_GROW();
 
+	ZEPHIR_CALL_METHOD(&sql, this_ptr, "getsql",  NULL);
+	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(identityMap);
 	object_init_ex(identityMap, lynx_orm_queryidentitymap_ce);
 	if (zephir_has_constructor(identityMap TSRMLS_CC)) {
@@ -484,9 +486,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getQuery) {
 	ZEPHIR_CALL_METHOD(NULL, identityMap, "setrootalias", NULL, _1);
 	zephir_check_call_status();
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_3, this_ptr, "getsql",  NULL);
-	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&query, _2, "createquery", NULL, _3);
+	ZEPHIR_CALL_METHOD(&query, _2, "createquery", NULL, sql);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, query, "setidentitymap", NULL, identityMap);
 	zephir_check_call_status();

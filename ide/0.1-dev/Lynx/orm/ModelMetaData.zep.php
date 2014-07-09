@@ -23,6 +23,9 @@ class ModelMetaData
 	public function __construct($classname) {}
 
 
+	public function getObject() {}
+
+
 	public function getProperties() {}
 
     /**

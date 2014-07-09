@@ -88,7 +88,17 @@ class Query
 
 	public function fetchOne(var parameters = null)
 	{
-		return this->getResult();
+		var result, model;
+		let result = this->getResult();
+
+		if (!result || count(result) == 0) {
+			return false;
+		}
+
+		let model = this->identityMap->getRootModel()->getObject();
+		let model = \Lynx\Stdlib\Hydrator\ClassProperties::hydrate(result[0], model);
+
+		return model;
 	}
 
 	public function execute(var parameters, var hydrationMod = null)
