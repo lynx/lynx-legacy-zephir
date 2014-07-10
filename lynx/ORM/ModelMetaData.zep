@@ -47,10 +47,12 @@ class ModelMetaData
 
 	public function getProperty(string! key)
 	{
-		var properties;
-		let properties = this->getProperties();
+		var properties, tmp;
 
-		return properties[key];
+		let properties = this->getProperties();
+		let tmp = properties[key];
+
+		return tmp;
 	}
 
 	public function getPrimaryKey()

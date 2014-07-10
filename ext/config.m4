@@ -12,8 +12,8 @@ if test "$PHP_LYNX" = "yes"; then
 	lynx/dbal/connection.zep.c
 	lynx/dbal/driver/connection.zep.c
 	lynx/dbal/driver/mysql.zep.c
-	lynx/dbal/driver/pdo.zep.c
 	lynx/dbal/driver/pdo/statement.zep.c
+	lynx/dbal/driver/pdo.zep.c
 	lynx/dbal/events.zep.c
 	lynx/orm/configuration.zep.c
 	lynx/orm/entitymanager.zep.c

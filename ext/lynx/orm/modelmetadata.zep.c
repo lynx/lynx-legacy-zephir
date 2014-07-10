@@ -113,7 +113,7 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getProperties) {
 PHP_METHOD(Lynx_ORM_ModelMetaData, getProperty) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *key_param = NULL, *properties = NULL, *_0;
+	zval *key_param = NULL, *properties = NULL, *tmp;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -134,8 +134,8 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getProperty) {
 
 	ZEPHIR_CALL_METHOD(&properties, this_ptr, "getproperties",  NULL);
 	zephir_check_call_status();
-	zephir_array_fetch(&_0, properties, key, PH_NOISY | PH_READONLY TSRMLS_CC);
-	RETURN_CTOR(_0);
+	zephir_array_fetch(&tmp, properties, key, PH_NOISY | PH_READONLY TSRMLS_CC);
+	RETURN_CTOR(tmp);
 
 }
 

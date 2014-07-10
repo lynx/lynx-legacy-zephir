@@ -67,6 +67,11 @@ class QueryBuilder
 		let this->from = from;
 		let this->alias = alias;
 
+		let this->rootModel = this->em->getModelsManager()->get(this->from);
+		if (is_null(this->rootModel)) {
+			throw new \Exception("Cant find model by alias '" . this->from . "'");
+		}
+
 		return this;
 	}
 
@@ -93,6 +98,12 @@ class QueryBuilder
 
 	public function where(var statement)
 	{
+		var tmp, property;
+		let tmp = explode("=", statement);
+
+		let property = this->rootModel->getProperty(trim(tmp[0]));
+		let statement = property["column"]["name"] . " =" . tmp[1];
+
 		let this->where[] = statement;
 
 		return this;
@@ -100,6 +111,13 @@ class QueryBuilder
 
 	public function andWhere(var statement)
 	{
+		var tmp, property;
+
+		let tmp = explode("=", statement);
+
+		let property = this->rootModel->getProperty(trim(tmp[0]));
+		let statement = property["column"]["name"] . " =" . tmp[1];
+
 		let this->where[] = statement;
 
 		return this;
@@ -157,11 +175,6 @@ class QueryBuilder
 
 		if (is_null(this->from)) {
 			throw new \Exception("From field must be set");
-		}
-
-		let this->rootModel = this->em->getModelsManager()->get(this->from);
-		if (is_null(this->rootModel)) {
-			throw new \Exception("Cant find model by alias '" . this->from . "'");
 		}
 
 		switch(this->type) {
