@@ -57,6 +57,11 @@ class ModelMetaData
 
 	public function getPrimaryKey()
 	{
-		return this->getProperty("id");
+		return this->getProperty(this->getPrimaryFieldName());
+	}
+
+	public function getPrimaryFieldName()
+	{
+		return "id";
 	}
 }

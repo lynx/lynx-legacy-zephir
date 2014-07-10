@@ -170,6 +170,22 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, connect) {
 
 }
 
+PHP_METHOD(Lynx_DBAL_Driver_Mysql, lastInsertId) {
+
+	zval *_0;
+	int ZEPHIR_LAST_CALL_STATUS;
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL);
+	zephir_check_call_status();
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
+	ZEPHIR_RETURN_CALL_METHOD(_0, "lastinsertid", NULL);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
 PHP_METHOD(Lynx_DBAL_Driver_Mysql, prepare) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

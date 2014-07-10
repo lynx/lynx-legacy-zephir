@@ -52,6 +52,13 @@ class Mysql
 		);
 	}
 
+	public function lastInsertId()
+	{
+		this->connect();
+
+		return this->connection->lastInsertId();
+	}
+
 	public function prepare(var statement)
 	{
 		this->connect();

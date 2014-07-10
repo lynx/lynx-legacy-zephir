@@ -43,15 +43,26 @@ class UnitOfWork
 
     public function commit(var entity = null)
     {
-    	var model, modelInfo;
+    	var model, modelInfo, result;
 
 		/**
 		 * Remove try catch from hear because bug in Zephir :(
 		 */
 
 		for model in this->insertEntities {
+			var lastInsertId, primaryField;
+
 			let modelInfo = this->em->getModelsManager()->get(get_class(model));
-			this->em->getConnection()->insert(modelInfo->getTablename(), \Lynx\Stdlib\Hydrator\ClassProperties::extract(model));
+			let result = this->em->getConnection()->insert(modelInfo->getTablename(), \Lynx\Stdlib\Hydrator\ClassProperties::extract(model));
+
+			if (result) {
+				let lastInsertId = this->em->getConnection()->getDriver()->lastInsertId();
+
+				let primaryField = modelInfo->getPrimaryFieldName();
+				if (primaryField) {
+					let model->{primaryField} = lastInsertId;
+				}
+			}
 		}
 
 		for model in this->updateEntities {

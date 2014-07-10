@@ -142,16 +142,22 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getProperty) {
 PHP_METHOD(Lynx_ORM_ModelMetaData, getPrimaryKey) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *_0;
+	zval *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_INIT_VAR(_0);
-	ZVAL_STRING(_0, "id", 0);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getprimaryfieldname",  NULL);
+	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getproperty", NULL, _0);
-	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	RETURN_MM();
+
+}
+
+PHP_METHOD(Lynx_ORM_ModelMetaData, getPrimaryFieldName) {
+
+
+	RETURN_STRING("id", 1);
 
 }
 

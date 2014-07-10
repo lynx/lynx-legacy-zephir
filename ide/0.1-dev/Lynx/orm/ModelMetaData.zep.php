@@ -36,4 +36,7 @@ class ModelMetaData
 
 	public function getPrimaryKey() {}
 
+
+	public function getPrimaryFieldName() {}
+
 }

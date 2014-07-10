@@ -50,6 +50,9 @@ class Mysql
 
 	public function connect() {}
 
+
+	public function lastInsertId() {}
+
     /**
      * @param mixed $statement 
      */
