@@ -43,17 +43,19 @@ class UnitOfWork
 
     public function commit(var entity = null)
     {
-    	var model, modelInfo, result;
+    	var model, modelInfo, result, primaryField;
 
 		/**
 		 * Remove try catch from hear because bug in Zephir :(
 		 */
 
 		for model in this->insertEntities {
-			var lastInsertId, primaryField;
+			var lastInsertId, extractValues;
 
 			let modelInfo = this->em->getModelsManager()->get(get_class(model));
-			let result = this->em->getConnection()->insert(modelInfo->getTablename(), \Lynx\Stdlib\Hydrator\ClassProperties::extract(model));
+			let extractValues = \Lynx\Stdlib\Hydrator\ClassProperties::extract(model);
+
+			let result = this->em->getConnection()->insert(modelInfo->getTablename(), extractValues);
 
 			if (result) {
 				let lastInsertId = this->em->getConnection()->getDriver()->lastInsertId();
@@ -71,9 +73,15 @@ class UnitOfWork
 			let modelInfo = this->em->getModelsManager()->get(get_class(model));
 
 			let data = \Lynx\Stdlib\Hydrator\ClassProperties::extract(model);
-			let identifiers = [
-				"id" : data["id"]
-			];
+
+			let primaryField = modelInfo->getPrimaryFieldName();
+			if (primaryField) {
+				let identifiers = [
+					primaryField : data[primaryField]
+				];
+			} else {
+				throw new \Exception("Entity`s PrimaryField is not set.");
+			}
 
 			this->em->getConnection()->update(modelInfo->getTablename(), data, identifiers);
 		}
