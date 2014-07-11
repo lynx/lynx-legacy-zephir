@@ -103,23 +103,6 @@ class QueryBuilder
 		return this;
 	}
 
-	inline public function prepareWhereStatement(statement)
-	{
-		var tmp, property, tmpField;
-		let tmp = explode("=", statement);
-
-		let tmpField = explode(".", trim(tmp[0]));
-		if (is_array(tmpField)) {
-			let property = this->rootModel->getProperty(tmpField[1]);
-			let statement = tmpField[0] . "." . property["column"]["name"] . " =" . tmp[1];
-		} else {
-			let property = this->rootModel->getProperty(trim(tmp[0]));
-			let statement = property["column"]["name"] . " =" . tmp[1];
-		}
-
-		return statement;
-	}
-
 	public function andWhere(var statement)
 	{
 		let this->where[] = this->prepareWhereStatement(statement);
@@ -227,5 +210,22 @@ class QueryBuilder
 		query->setIdentityMap(identityMap);
 
 		return query;
+	}
+
+	inline protected function prepareWhereStatement(statement)
+	{
+		var tmp, property, tmpField;
+		let tmp = explode("=", statement);
+
+		let tmpField = explode(".", trim(tmp[0]));
+		if (is_array(tmpField)) {
+			let property = this->rootModel->getProperty(tmpField[1]);
+			let statement = tmpField[0] . "." . property["column"]["name"] . " =" . tmp[1];
+		} else {
+			let property = this->rootModel->getProperty(trim(tmp[0]));
+			let statement = property["column"]["name"] . " =" . tmp[1];
+		}
+
+		return statement;
 	}
 }

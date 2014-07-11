@@ -93,11 +93,6 @@ class QueryBuilder
     /**
      * @param mixed $statement 
      */
-	public function prepareWhereStatement($statement) {}
-
-    /**
-     * @param mixed $statement 
-     */
 	public function andWhere($statement) {}
 
     /**
@@ -143,5 +138,10 @@ class QueryBuilder
      * @return Query 
      */
 	public function getQuery() {}
+
+    /**
+     * @param mixed $statement 
+     */
+	protected function prepareWhereStatement($statement) {}
 
 }
