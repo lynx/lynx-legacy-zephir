@@ -14,12 +14,12 @@ class User
 {
     /**
      * @Id 
-     * @Column(type="integer", length=11)
+     * @Column(type="integer", length=11, name="id")
      */
     public $id;
 
     /**
-     * @Column(length=50)
+     * @Column(length=50, , name="name")
      */
     public $name;
 

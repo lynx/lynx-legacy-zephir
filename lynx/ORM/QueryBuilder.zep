@@ -98,27 +98,31 @@ class QueryBuilder
 
 	public function where(var statement)
 	{
-		var tmp, property;
-		let tmp = explode("=", statement);
-
-		let property = this->rootModel->getProperty(trim(tmp[0]));
-		let statement = property["column"]["name"] . " =" . tmp[1];
-
-		let this->where[] = statement;
+		let this->where[] = this->prepareWhereStatement(statement);
 
 		return this;
 	}
 
-	public function andWhere(var statement)
+	inline public function prepareWhereStatement(statement)
 	{
-		var tmp, property;
-
+		var tmp, property, tmpField;
 		let tmp = explode("=", statement);
 
-		let property = this->rootModel->getProperty(trim(tmp[0]));
-		let statement = property["column"]["name"] . " =" . tmp[1];
+		let tmpField = explode(".", trim(tmp[0]));
+		if (is_array(tmpField)) {
+			let property = this->rootModel->getProperty(tmpField[1]);
+			let statement = tmpField[0] . "." . property["column"]["name"] . " =" . tmp[1];
+		} else {
+			let property = this->rootModel->getProperty(trim(tmp[0]));
+			let statement = property["column"]["name"] . " =" . tmp[1];
+		}
 
-		let this->where[] = statement;
+		return statement;
+	}
+
+	public function andWhere(var statement)
+	{
+		let this->where[] = this->prepareWhereStatement(statement);
 
 		return this;
 	}

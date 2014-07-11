@@ -93,6 +93,11 @@ class QueryBuilder
     /**
      * @param mixed $statement 
      */
+	public function prepareWhereStatement($statement) {}
+
+    /**
+     * @param mixed $statement 
+     */
 	public function andWhere($statement) {}
 
     /**
