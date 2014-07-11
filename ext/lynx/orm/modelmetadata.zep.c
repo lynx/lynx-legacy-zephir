@@ -18,6 +18,8 @@
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
+#include "kernel/hash.h"
+#include "kernel/operators.h"
 
 
 ZEPHIR_INIT_CLASS(Lynx_ORM_ModelMetaData) {
@@ -158,6 +160,37 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getPrimaryFieldName) {
 
 
 	RETURN_STRING("id", 1);
+
+}
+
+PHP_METHOD(Lynx_ORM_ModelMetaData, getFieldNameByColumn) {
+
+	HashTable *_1;
+	HashPosition _0;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *field, *properties = NULL, *columnName = NULL, *info = NULL, **_2, *_3, *_4;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &field);
+
+
+
+	ZEPHIR_CALL_METHOD(&properties, this_ptr, "getproperties",  NULL);
+	zephir_check_call_status();
+	zephir_is_iterable(properties, &_1, &_0, 0, 0);
+	for (
+	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_1, &_0)
+	) {
+		ZEPHIR_GET_HMKEY(columnName, _1, _0);
+		ZEPHIR_GET_HVALUE(info, _2);
+		zephir_array_fetch_string(&_3, info, SL("column"), PH_NOISY | PH_READONLY TSRMLS_CC);
+		zephir_array_fetch_string(&_4, _3, SL("name"), PH_NOISY | PH_READONLY TSRMLS_CC);
+		if (ZEPHIR_IS_EQUAL(_4, field)) {
+			RETURN_CCTOR(columnName);
+		}
+	}
+	RETURN_MM_BOOL(0);
 
 }
 

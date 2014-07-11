@@ -64,4 +64,19 @@ class ModelMetaData
 	{
 		return "id";
 	}
+
+	public function getFieldNameByColumn(var field)
+	{
+		var properties, columnName, info;
+
+		let properties = this->getProperties();
+
+		for columnName, info in properties {
+			if (info["column"]["name"] == field) {
+				return columnName;
+			}
+		}
+
+		return false;
+	}
 }

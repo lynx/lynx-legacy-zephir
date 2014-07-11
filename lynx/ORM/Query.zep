@@ -88,7 +88,7 @@ class Query
 
 	public function fetchOne(var parameters = null)
 	{
-		var result, model;
+		var result, model, property, key, value;
 		let result = this->getResult();
 
 		if (!result || count(result) == 0) {
@@ -96,7 +96,14 @@ class Query
 		}
 
 		let model = this->identityMap->getRootModel()->getObject();
-		let model = \Lynx\Stdlib\Hydrator\ClassProperties::hydrate(result[0], model);
+
+		var insertValues = [];
+		for key, value in result[0] {
+			let property = this->identityMap->getRootModel()->getFieldNameByColumn(key);
+			let insertValues[property] = value;
+		}
+
+		let model = \Lynx\Stdlib\Hydrator\ClassProperties::hydrate(insertValues, model);
 
 		return model;
 	}

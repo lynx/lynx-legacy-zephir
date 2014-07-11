@@ -39,4 +39,9 @@ class ModelMetaData
 
 	public function getPrimaryFieldName() {}
 
+    /**
+     * @param mixed $field 
+     */
+	public function getFieldNameByColumn($field) {}
+
 }

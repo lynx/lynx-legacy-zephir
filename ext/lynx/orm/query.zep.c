@@ -19,6 +19,7 @@
 #include "kernel/concat.h"
 #include "kernel/operators.h"
 #include "kernel/array.h"
+#include "kernel/hash.h"
 
 
 /**
@@ -256,10 +257,12 @@ PHP_METHOD(Lynx_ORM_Query, fetchObject) {
 
 PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_9 = NULL;
+	HashTable *_5;
+	HashPosition _4;
 	zend_bool _0;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters = NULL, *result = NULL, *model = NULL, *_1, *_2 = NULL, *_3 = NULL, *_5;
+	zval *parameters = NULL, *result = NULL, *model = NULL, *property = NULL, *key = NULL, *value = NULL, *_1, *_2 = NULL, *insertValues, *_3, **_6, *_7, *_8 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &parameters);
@@ -267,6 +270,8 @@ PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 	if (!parameters) {
 		parameters = ZEPHIR_GLOBAL(global_null);
 	}
+	ZEPHIR_INIT_VAR(insertValues);
+	array_init(insertValues);
 
 
 	ZEPHIR_CALL_METHOD(&result, this_ptr, "getresult",  NULL);
@@ -283,10 +288,24 @@ PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&model, _2, "getobject",  NULL);
 	zephir_check_call_status();
-	zephir_array_fetch_long(&_5, result, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
-	ZEPHIR_CALL_CE_STATIC(&_3, lynx_stdlib_hydrator_classproperties_ce, "hydrate", &_4, _5, model);
+	zephir_array_fetch_long(&_3, result, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
+	zephir_is_iterable(_3, &_5, &_4, 0, 0);
+	for (
+	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_5, &_4)
+	) {
+		ZEPHIR_GET_HMKEY(key, _5, _4);
+		ZEPHIR_GET_HVALUE(value, _6);
+		_7 = zephir_fetch_nproperty_this(this_ptr, SL("identityMap"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_8, _7, "getrootmodel",  NULL);
+		zephir_check_call_status();
+		ZEPHIR_CALL_METHOD(&property, _8, "getfieldnamebycolumn", NULL, key);
+		zephir_check_call_status();
+		zephir_array_update_zval(&insertValues, property, &value, PH_COPY | PH_SEPARATE);
+	}
+	ZEPHIR_CALL_CE_STATIC(&_8, lynx_stdlib_hydrator_classproperties_ce, "hydrate", &_9, insertValues, model);
 	zephir_check_call_status();
-	ZEPHIR_CPY_WRT(model, _3);
+	ZEPHIR_CPY_WRT(model, _8);
 	RETURN_CCTOR(model);
 
 }

@@ -11,6 +11,7 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getProperties);
 PHP_METHOD(Lynx_ORM_ModelMetaData, getProperty);
 PHP_METHOD(Lynx_ORM_ModelMetaData, getPrimaryKey);
 PHP_METHOD(Lynx_ORM_ModelMetaData, getPrimaryFieldName);
+PHP_METHOD(Lynx_ORM_ModelMetaData, getFieldNameByColumn);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_modelmetadata___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, classname)
@@ -18,6 +19,10 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_modelmetadata_getproperty, 0, 0, 1)
 	ZEND_ARG_INFO(0, key)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_modelmetadata_getfieldnamebycolumn, 0, 0, 1)
+	ZEND_ARG_INFO(0, field)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(lynx_orm_modelmetadata_method_entry) {
@@ -29,5 +34,6 @@ ZEPHIR_INIT_FUNCS(lynx_orm_modelmetadata_method_entry) {
 	PHP_ME(Lynx_ORM_ModelMetaData, getProperty, arginfo_lynx_orm_modelmetadata_getproperty, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_ModelMetaData, getPrimaryKey, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_ModelMetaData, getPrimaryFieldName, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_ORM_ModelMetaData, getFieldNameByColumn, arginfo_lynx_orm_modelmetadata_getfieldnamebycolumn, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };
