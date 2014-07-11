@@ -47,20 +47,29 @@ class UnitOfWork
 
 		/**
 		 * Remove try catch from hear because bug in Zephir :(
+		 * @link https://github.com/lynx/lynx/issues/2
 		 */
 
 		for model in this->insertEntities {
-			var lastInsertId, extractValues;
+			var lastInsertId, extractValues, insertValues, property, value, key;
 
 			let modelInfo = this->em->getModelsManager()->get(get_class(model));
+			let primaryField = modelInfo->getPrimaryFieldName();
 			let extractValues = \Lynx\Stdlib\Hydrator\ClassProperties::extract(model);
 
-			let result = this->em->getConnection()->insert(modelInfo->getTablename(), extractValues);
+			let insertValues = [];
+			for key, value in extractValues {
+				if (key == primaryField) {
+					continue;
+				}
 
+				let property = modelInfo->getProperty(key);
+				let insertValues[property["column"]["name"]] = value;
+			}
+
+			let result = this->em->getConnection()->insert(modelInfo->getTablename(), insertValues);
 			if (result) {
 				let lastInsertId = this->em->getConnection()->getDriver()->lastInsertId();
-
-				let primaryField = modelInfo->getPrimaryFieldName();
 				if (primaryField) {
 					let model->{primaryField} = lastInsertId;
 				}
