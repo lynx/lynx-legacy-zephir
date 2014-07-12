@@ -35,6 +35,7 @@
 #include "lynx/stdlib/events/manager.zep.h"
 #include "lynx/stdlib/hydrator/classmethods.zep.h"
 #include "lynx/stdlib/hydrator/classproperties.zep.h"
+#include "lynx/stdlib/hydrator/entity.zep.h"
 #include "lynx/stdlib/hydrator/hydrator.zep.h"
 
 #endif

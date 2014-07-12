@@ -56,6 +56,7 @@ zend_class_entry *lynx_stdlib_events_event_ce;
 zend_class_entry *lynx_stdlib_events_manager_ce;
 zend_class_entry *lynx_stdlib_hydrator_classmethods_ce;
 zend_class_entry *lynx_stdlib_hydrator_classproperties_ce;
+zend_class_entry *lynx_stdlib_hydrator_entity_ce;
 
 ZEND_DECLARE_MODULE_GLOBALS(lynx)
 
@@ -253,6 +254,7 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_Stdlib_Events_Manager);
 	ZEPHIR_INIT(Lynx_Stdlib_Hydrator_ClassMethods);
 	ZEPHIR_INIT(Lynx_Stdlib_Hydrator_ClassProperties);
+	ZEPHIR_INIT(Lynx_Stdlib_Hydrator_Entity);
 
 #if PHP_VERSION_ID < 50500
 	setlocale(LC_ALL, old_lc_all);

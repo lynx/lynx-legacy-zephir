@@ -33,6 +33,7 @@ if test "$PHP_LYNX" = "yes"; then
 	lynx/stdlib/events/manager.zep.c
 	lynx/stdlib/hydrator/classmethods.zep.c
 	lynx/stdlib/hydrator/classproperties.zep.c
+	lynx/stdlib/hydrator/entity.zep.c
 	lynx/stdlib/hydrator/hydrator.zep.c "
 	PHP_NEW_EXTENSION(lynx, $lynx_sources, $ext_shared)
 

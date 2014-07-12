@@ -55,7 +55,7 @@ class UnitOfWork
 
 			let modelInfo = this->em->getModelsManager()->get(get_class(model));
 			let primaryField = modelInfo->getPrimaryFieldName();
-			let extractValues = \Lynx\Stdlib\Hydrator\ClassProperties::extract(model);
+			let extractValues = \Lynx\Stdlib\Hydrator\Entity::extract(model, modelInfo);
 
 			let insertValues = [];
 			for key, value in extractValues {
