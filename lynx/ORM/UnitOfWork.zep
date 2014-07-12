@@ -41,6 +41,22 @@ class UnitOfWork
 		let this->deleteEntities[] = entity;
     }
 
+	protected function convertToScalar(var value, var columnType = null)
+	{
+		switch(columnType) {
+			case "datetime":
+				if value instanceof \DateTime {
+					return value->format("Y-m-d H:i:s");
+				}
+
+				return value;
+				break;
+			default:
+				return value;
+				break;
+		}
+	}
+
     public function commit(var entity = null)
     {
     	var model, modelInfo, result, primaryField;
@@ -64,7 +80,7 @@ class UnitOfWork
 				}
 
 				let property = modelInfo->getProperty(key);
-				let insertValues[property["column"]["name"]] = value;
+				let insertValues[property["column"]["name"]] = this->convertToScalar(value, property["column"]["type"]);
 			}
 
 			let result = this->em->getConnection()->insert(modelInfo->getTablename(), insertValues);

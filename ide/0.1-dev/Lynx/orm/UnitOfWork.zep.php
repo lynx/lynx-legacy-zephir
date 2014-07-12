@@ -42,6 +42,12 @@ class UnitOfWork
 	public function delete($entity) {}
 
     /**
+     * @param mixed $value 
+     * @param mixed $columnType 
+     */
+	protected function convertToScalar($value, $columnType = null) {}
+
+    /**
      * @param mixed $entity 
      */
 	public function commit($entity = null) {}
