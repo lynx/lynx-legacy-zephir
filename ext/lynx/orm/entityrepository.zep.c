@@ -293,7 +293,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findOneBy) {
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_3);
-	ZEPHIR_CONCAT_SVS(_3, "find_.`", column, "` = :column");
+	ZEPHIR_CONCAT_SVS(_3, "find_.", column, " = :column");
 	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _3);
 	zephir_check_call_status();
 	ZEPHIR_INIT_BNVAR(_1);

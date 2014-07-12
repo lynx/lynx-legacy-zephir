@@ -94,7 +94,7 @@ class EntityRepository
     public function findOneBy(string! column, var value)
     {
 		return this->createQueryBuilder("find_")
-			->where("find_.`" .column. "` = :column")
+			->where("find_." .column. " = :column")
 			->limit(1)
 			->getQuery()
 			->bindValue("column", value, \PDO::PARAM_INT)
