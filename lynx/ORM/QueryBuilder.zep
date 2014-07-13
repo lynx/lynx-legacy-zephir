@@ -220,10 +220,10 @@ class QueryBuilder
 		let tmpField = explode(".", trim(tmp[0]));
 		if (is_array(tmpField)) {
 			let property = this->rootModel->getProperty(trim(tmpField[1]));;
-			let statement = tmpField[0] . "." . property["column"]["name"] . " =" . tmp[1];
+			let statement = tmpField[0] . "." . property->name . " =" . tmp[1];
 		} else {
 			let property = this->rootModel->getProperty(trim(tmp[0]));
-			let statement = property["column"]["name"] . " =" . tmp[1];
+			let statement = property->name . " =" . tmp[1];
 		}
 
 		return statement;

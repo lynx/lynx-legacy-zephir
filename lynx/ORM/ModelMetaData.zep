@@ -14,7 +14,7 @@ class ModelMetaData
 
 	public function __construct(classname)
 	{
-	    var parser, result;
+	    var parser, result, properties, column, key, value;
 
 		let this->classname = classname;
 
@@ -23,7 +23,27 @@ class ModelMetaData
 
 
         let this->tablename = result["table"]["name"];
-        let this->properties = parser->getPropertiesAnnotations();
+
+        let properties = parser->getPropertiesAnnotations();
+		for key, value in properties {
+			let column = new ModelMetaData\Column();
+
+			if (isset(value["id"])) {
+				let column->id = true;
+			}
+
+			if (isset(value["column"])) {
+				let column->type = value["column"];
+
+				if (isset(value["column"]["name"])) {
+					let column->name = value["column"]["name"];
+				} else {
+					let column->name = key;
+				}
+			}
+
+			let this->properties[key] = column;
+		}
 	}
 
 	public function getObject()
@@ -47,12 +67,14 @@ class ModelMetaData
 
 	public function getProperty(string! key)
 	{
-		var properties, tmp;
+		var properties;
 
 		let properties = this->getProperties();
-		let tmp = properties[key];
+		if (isset(properties[key])) {
+			return properties[key];
+		}
 
-		return tmp;
+		return false;
 	}
 
 	public function getPrimaryKey()
@@ -72,7 +94,7 @@ class ModelMetaData
 		let properties = this->getProperties();
 
 		for columnName, info in properties {
-			if (info["column"]["name"] == field) {
+			if (info->name == field) {
 				return columnName;
 			}
 		}

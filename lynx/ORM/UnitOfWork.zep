@@ -80,7 +80,11 @@ class UnitOfWork
 				}
 
 				let property = modelInfo->getProperty(key);
-				let insertValues[property["column"]["name"]] = this->convertToScalar(value, property["column"]["type"]);
+				if (!property) {
+					continue;
+				}
+
+				let insertValues[property->name] = this->convertToScalar(value, property->type);
 			}
 
 			let result = this->em->getConnection()->insert(modelInfo->getTablename(), insertValues);

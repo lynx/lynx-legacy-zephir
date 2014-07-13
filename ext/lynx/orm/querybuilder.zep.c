@@ -507,7 +507,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getQuery) {
 PHP_METHOD(Lynx_ORM_QueryBuilder, prepareWhereStatement) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *statement, *tmp, *property = NULL, *tmpField, *_0, *_1, *_2, *_3 = NULL, *_4, *_5, *_6, *_7, *_8;
+	zval *statement, *tmp, *property = NULL, *tmpField, *_0, *_1, *_2, *_3 = NULL, *_4, *_5, *_6 = NULL, *_7;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &statement);
@@ -532,10 +532,10 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, prepareWhereStatement) {
 		zephir_check_call_status();
 		//missing empty
 		zephir_array_fetch_long(&_5, tmpField, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
-		zephir_array_fetch_string(&_6, property, SL("column"), PH_NOISY | PH_READONLY TSRMLS_CC);
-		zephir_array_fetch_string(&_7, _6, SL("name"), PH_NOISY | PH_READONLY TSRMLS_CC);
-		zephir_array_fetch_long(&_8, tmp, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
-		ZEPHIR_CONCAT_VSVSV(statement, _5, ".", _7, " =", _8);
+		ZEPHIR_OBS_VAR(_6);
+		zephir_read_property(&_6, property, SL("name"), PH_NOISY_CC);
+		zephir_array_fetch_long(&_7, tmp, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
+		ZEPHIR_CONCAT_VSVSV(statement, _5, ".", _6, " =", _7);
 	} else {
 		_2 = zephir_fetch_nproperty_this(this_ptr, SL("rootModel"), PH_NOISY_CC);
 		ZEPHIR_INIT_NVAR(_3);
@@ -543,10 +543,10 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, prepareWhereStatement) {
 		zephir_fast_trim(_3, _4, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&property, _2, "getproperty", NULL, _3);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_5, property, SL("column"), PH_NOISY | PH_READONLY TSRMLS_CC);
-		zephir_array_fetch_string(&_6, _5, SL("name"), PH_NOISY | PH_READONLY TSRMLS_CC);
-		zephir_array_fetch_long(&_7, tmp, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
-		ZEPHIR_CONCAT_VSV(statement, _6, " =", _7);
+		ZEPHIR_OBS_NVAR(_6);
+		zephir_read_property(&_6, property, SL("name"), PH_NOISY_CC);
+		zephir_array_fetch_long(&_5, tmp, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
+		ZEPHIR_CONCAT_VSV(statement, _6, " =", _5);
 	}
 	RETURN_CCTOR(statement);
 

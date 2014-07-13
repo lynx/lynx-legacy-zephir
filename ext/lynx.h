@@ -22,6 +22,7 @@
 #include "lynx/orm/entityrepository.zep.h"
 #include "lynx/orm/exception.zep.h"
 #include "lynx/orm/modelmetadata.zep.h"
+#include "lynx/orm/modelmetadata/column.zep.h"
 #include "lynx/orm/modelsmanager.zep.h"
 #include "lynx/orm/query.zep.h"
 #include "lynx/orm/querybuilder.zep.h"

@@ -20,6 +20,7 @@ if test "$PHP_LYNX" = "yes"; then
 	lynx/orm/entityrepository.zep.c
 	lynx/orm/exception.zep.c
 	lynx/orm/modelmetadata.zep.c
+	lynx/orm/modelmetadata/column.zep.c
 	lynx/orm/modelsmanager.zep.c
 	lynx/orm/query.zep.c
 	lynx/orm/querybuilder.zep.c
