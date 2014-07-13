@@ -7,6 +7,8 @@ namespace Lynx\Tests\ORM;
 
 class ModelMetaDataTest extends TestCase
 {
+    const MODEL_SCHEMA_COLUMN_CLASS = 'Lynx\ORM\ModelMetaData\Column';
+
     protected function getUserModel()
     {
         $modelsManager = $this->_em->getModelsManager();
@@ -23,8 +25,8 @@ class ModelMetaDataTest extends TestCase
     {
         $model = $this->getUserModel();
 
-        $result = $model->getPrimaryKey('id');
-        $this->assertInternalType('array', $result);
+        $result = $model->getPrimaryKey();
+        $this->assertInstanceOf(self::MODEL_SCHEMA_COLUMN_CLASS, $result);
     }
 
     public function testGetPropertyByName()
@@ -32,6 +34,6 @@ class ModelMetaDataTest extends TestCase
         $model = $this->getUserModel();
 
         $result = $model->getProperty('id');
-        $this->assertInternalType('array', $result);
+        $this->assertInstanceOf(self::MODEL_SCHEMA_COLUMN_CLASS, $result);
     }
 } 
