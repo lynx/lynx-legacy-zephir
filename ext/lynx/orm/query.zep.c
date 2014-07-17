@@ -303,7 +303,7 @@ PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 		zephir_check_call_status();
 		zephir_array_update_zval(&insertValues, property, &value, PH_COPY | PH_SEPARATE);
 	}
-	ZEPHIR_CALL_CE_STATIC(&_8, lynx_stdlib_hydrator_classproperties_ce, "hydrate", &_9, insertValues, model);
+	ZEPHIR_CALL_CE_STATIC(&_8, lynx_stdlib_hydrator_entity_ce, "hydrate", &_9, insertValues, model);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(model, _8);
 	RETURN_CCTOR(model);

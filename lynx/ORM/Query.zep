@@ -103,7 +103,7 @@ class Query
 			let insertValues[property] = value;
 		}
 
-		let model = \Lynx\Stdlib\Hydrator\ClassProperties::hydrate(insertValues, model);
+		let model = \Lynx\Stdlib\Hydrator\Entity::hydrate(insertValues, model);
 
 		return model;
 	}
