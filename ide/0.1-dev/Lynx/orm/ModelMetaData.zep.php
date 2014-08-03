@@ -11,6 +11,8 @@ class ModelMetaData
 
     protected $properties;
 
+    protected $columns;
+
 
 	public function getClassname() {}
 
@@ -26,7 +28,15 @@ class ModelMetaData
 	public function getObject() {}
 
 
+	public function getColumns() {}
+
+
 	public function getProperties() {}
+
+    /**
+     * @param string $key 
+     */
+	public function getColumn($key) {}
 
     /**
      * @param string $key 

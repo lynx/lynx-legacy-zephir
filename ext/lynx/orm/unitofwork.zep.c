@@ -202,7 +202,7 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 			if (ZEPHIR_IS_EQUAL(key, primaryField)) {
 				continue;
 			}
-			ZEPHIR_CALL_METHOD(&property, modelInfo, "getproperty", NULL, key);
+			ZEPHIR_CALL_METHOD(&property, modelInfo, "getcolumn", NULL, key);
 			zephir_check_call_status();
 			if (!zephir_is_true(property)) {
 				continue;

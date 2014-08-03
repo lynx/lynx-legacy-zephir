@@ -79,7 +79,7 @@ class UnitOfWork
 					continue;
 				}
 
-				let property = modelInfo->getProperty(key);
+				let property = modelInfo->getColumn(key);
 				if (!property) {
 					continue;
 				}

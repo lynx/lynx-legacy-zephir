@@ -28,6 +28,8 @@ class QueryBuilder
 
 	protected order = null {get};
 
+	protected joins = null {get};
+
 	protected rootModel;
 
 	protected em;
@@ -77,8 +79,8 @@ class QueryBuilder
 
 	public function leftJoin(var join, var alias)
 	{
-		var parentAlias;
-		let parentAlias = substr(join, 0, strpos(join, '.'));
+		var aliases;
+		let aliases = explode(".", join);
 
 		return this;
 	}
@@ -177,6 +179,9 @@ class QueryBuilder
 		}
 
 		let sql .= " FROM ".this->wrap(this->rootModel->getTablename())." ".this->alias;
+
+		if (count(this->joins) > 0) {
+		}
 
 		if (count(this->where) > 0) {
 			let sql .= " WHERE ".implode(" AND ", this->where);

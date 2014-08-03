@@ -10,16 +10,16 @@ use Lynx\ORM;
 class QueryBuilderTest
 	extends TestCase
 {
-	public function testLimit()
-	{
-		$queryBuilder = $this->_em->createQueryBuilder();
-		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
+    public function testLimit()
+    {
+        $queryBuilder = $this->_em->createQueryBuilder();
+        $this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
 
-		$queryBuilder->limit(1);
-		$this->assertTrue($queryBuilder->getLimit() === 1);
-		$queryBuilder->limit(100);
-		$this->assertTrue($queryBuilder->getLimit() === 100);
-	}
+        $queryBuilder->limit(1);
+        $this->assertTrue($queryBuilder->getLimit() === 1);
+        $queryBuilder->limit(100);
+        $this->assertTrue($queryBuilder->getLimit() === 100);
+    }
 
     public function testLimitExceptionOnMinusLimit()
     {
@@ -31,25 +31,25 @@ class QueryBuilderTest
     }
 
     public function testGetSQl()
-	{
-		$queryBuilder = $this->_em->createQueryBuilder();
-		$queryBuilder->select()->from('Model\User', 'u');
+    {
+        $queryBuilder = $this->_em->createQueryBuilder();
+        $queryBuilder->select()->from('Model\User', 'u');
 
-		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
+        $this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
 
-		$sql = $queryBuilder->getSQL();
-		$this->assertTrue(is_string($sql));
-	}
+        $sql = $queryBuilder->getSQL();
+        $this->assertTrue(is_string($sql));
+    }
 
-	public function testGetQuery()
-	{
-		$queryBuilder = $this->_em->createQueryBuilder();
-		$queryBuilder->select()->from('Model\User', 'u');
-		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
+    public function testGetQuery()
+    {
+        $queryBuilder = $this->_em->createQueryBuilder();
+        $queryBuilder->select()->from('Model\User', 'u');
+        $this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
 
-		$query = $queryBuilder->getQuery();
-		$this->assertTrue($query instanceof ORM\Query);
-	}
+        $query = $queryBuilder->getQuery();
+        $this->assertTrue($query instanceof ORM\Query);
+    }
 
     public function testWhere()
     {
@@ -83,29 +83,36 @@ class QueryBuilderTest
         $this->assertInternalType('array', $query->fetchArray());
     }
 
-	public function testSimpleSelectQuery()
-	{
-		$queryBuilder = $this->_em->createQueryBuilder();
+    public function testSimpleSelectQuery()
+    {
+        $queryBuilder = $this->_em->createQueryBuilder();
 
-		$queryBuilder->select()->from('Model\User', 'u');
-		$this->assertEquals('SELECT * FROM `users` u', $queryBuilder->getSQL());
-		$query = $queryBuilder->getQuery();
-		$this->assertInternalType('array', $query->fetchArray());
-
-		$queryBuilder->select()->from('Model\User', 'u')->orderBy('u.id');
-		$this->assertEquals('SELECT * FROM `users` u ORDER BY u.id DESC', $queryBuilder->getSQL());
-		$query = $queryBuilder->getQuery();
-		$this->assertInternalType('array', $query->fetchArray());
-
-		$queryBuilder->limit(1);
-		$this->assertEquals('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1', $queryBuilder->getSQL());
+        $queryBuilder->select()->from('Model\User', 'u');
+        $this->assertEquals('SELECT * FROM `users` u', $queryBuilder->getSQL());
         $query = $queryBuilder->getQuery();
         $this->assertInternalType('array', $query->fetchArray());
 
-		$queryBuilder->offset(1);
-		$this->assertEquals('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1,1', $queryBuilder->getSQL());
+        $queryBuilder->select()->from('Model\User', 'u')->orderBy('u.id');
+        $this->assertEquals('SELECT * FROM `users` u ORDER BY u.id DESC', $queryBuilder->getSQL());
         $query = $queryBuilder->getQuery();
         $this->assertInternalType('array', $query->fetchArray());
 
-		$this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);	}
-} 
+        $queryBuilder->limit(1);
+        $this->assertEquals('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1', $queryBuilder->getSQL());
+        $query = $queryBuilder->getQuery();
+        $this->assertInternalType('array', $query->fetchArray());
+
+        $queryBuilder->offset(1);
+        $this->assertEquals('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1,1', $queryBuilder->getSQL());
+        $query = $queryBuilder->getQuery();
+        $this->assertInternalType('array', $query->fetchArray());
+
+        $this->assertTrue($queryBuilder instanceof ORM\QueryBuilder);
+    }
+
+    public function testSelectWithLeftJoinQuery()
+    {
+        $queryBuilder = $this->_em->createQueryBuilder();
+        $queryBuilder->select()->from('Model\User', 'u')->leftJoin('u.Model\Group', 'group');
+    }
+}

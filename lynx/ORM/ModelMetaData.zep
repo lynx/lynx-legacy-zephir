@@ -12,6 +12,8 @@ class ModelMetaData
 
 	protected properties;
 
+	protected columns;
+
 	public function __construct(classname)
 	{
 	    var parser, result, properties, column, key, value;
@@ -44,6 +46,26 @@ class ModelMetaData
 
 			let this->properties[key] = column;
 		}
+
+		for key, value in properties {
+			if (isset(value["column"])) {
+				let column = new ModelMetaData\Column();
+
+				if (isset(value["id"])) {
+					let column->id = true;
+				}
+
+				let column->type = value["column"];
+
+				if (isset(value["column"]["name"])) {
+					let column->name = value["column"]["name"];
+				} else {
+					let column->name = key;
+				}
+
+				let this->columns[key] = column;
+			}
+		}
 	}
 
 	public function getObject()
@@ -56,6 +78,15 @@ class ModelMetaData
 		return tmp;
 	}
 
+	public function getColumns()
+	{
+		if (!is_null(this->columns)) {
+			return this->columns;
+		}
+
+		return [];
+	}
+
 	public function getProperties()
 	{
 		if (!is_null(this->properties)) {
@@ -63,6 +94,18 @@ class ModelMetaData
 		}
 
 		return [];
+	}
+
+	public function getColumn(string! key)
+	{
+		var columns;
+
+		let columns = this->getColumns();
+		if (isset(columns[key])) {
+			return columns[key];
+		}
+
+		return false;
 	}
 
 	public function getProperty(string! key)

@@ -29,6 +29,8 @@ class QueryBuilder
 
     protected $order;
 
+    protected $joins;
+
     protected $rootModel;
 
     protected $em;
@@ -44,6 +46,9 @@ class QueryBuilder
 
 
 	public function getOrder() {}
+
+
+	public function getJoins() {}
 
     /**
      * @param mixed $em 
