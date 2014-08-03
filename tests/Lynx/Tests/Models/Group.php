@@ -8,9 +8,9 @@ namespace Model;
 
 /**
  * @entity
- * @table(name="users")
+ * @table(name="groups")
  */
-class User
+class Group
 {
     /**
      * @Id 
@@ -22,15 +22,4 @@ class User
      * @Column(length=50, , name="name")
      */
     public $name;
-
-    /**
-     * @Column(type="integer", length=11, name="group_id")
-     */
-    public $group_id;
-
-    /**
-     * @OneToOne(targetEntity="Model\Group")
-     * @JoinColumn(name="group_id", referencedColumnName="id")
-     */
-    public $group;
 } 
