@@ -29,7 +29,7 @@ class QueryBuilder
 
     protected $order;
 
-    protected $joins;
+    protected $joins = array();
 
     protected $rootModel;
 
@@ -91,6 +91,12 @@ class QueryBuilder
      * @param mixed $alias 
      */
 	public function rightJoin($join, $alias) {}
+
+    /**
+     * @param mixed $join 
+     * @param mixed $alias 
+     */
+	public function innerJoin($join, $alias) {}
 
     /**
      * @param mixed $join 

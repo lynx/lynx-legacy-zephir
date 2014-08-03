@@ -16,6 +16,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, from);
 PHP_METHOD(Lynx_ORM_QueryBuilder, prepareJoin);
 PHP_METHOD(Lynx_ORM_QueryBuilder, leftJoin);
 PHP_METHOD(Lynx_ORM_QueryBuilder, rightJoin);
+PHP_METHOD(Lynx_ORM_QueryBuilder, innerJoin);
 PHP_METHOD(Lynx_ORM_QueryBuilder, join);
 PHP_METHOD(Lynx_ORM_QueryBuilder, where);
 PHP_METHOD(Lynx_ORM_QueryBuilder, andWhere);
@@ -54,6 +55,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_leftjoin, 0, 0, 2)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_rightjoin, 0, 0, 2)
+	ZEND_ARG_INFO(0, join)
+	ZEND_ARG_INFO(0, alias)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_innerjoin, 0, 0, 2)
 	ZEND_ARG_INFO(0, join)
 	ZEND_ARG_INFO(0, alias)
 ZEND_END_ARG_INFO()
@@ -110,6 +116,7 @@ ZEPHIR_INIT_FUNCS(lynx_orm_querybuilder_method_entry) {
 	PHP_ME(Lynx_ORM_QueryBuilder, prepareJoin, arginfo_lynx_orm_querybuilder_preparejoin, ZEND_ACC_PROTECTED)
 	PHP_ME(Lynx_ORM_QueryBuilder, leftJoin, arginfo_lynx_orm_querybuilder_leftjoin, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, rightJoin, arginfo_lynx_orm_querybuilder_rightjoin, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_ORM_QueryBuilder, innerJoin, arginfo_lynx_orm_querybuilder_innerjoin, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, join, arginfo_lynx_orm_querybuilder_join, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, where, arginfo_lynx_orm_querybuilder_where, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_ORM_QueryBuilder, andWhere, arginfo_lynx_orm_querybuilder_andwhere, ZEND_ACC_PUBLIC)

@@ -3,16 +3,33 @@ namespace Lynx\ORM\QueryBuilder\Expression;
 
 class Join
 {
-    const RIGHT_JOIN     = 'RIGHT';
+    const RIGHT_JOIN     = "RIGHT";
 
-    const INNER_JOIN    = 'INNER';
+    const INNER_JOIN    = "INNER";
 
-    const LEFT_JOIN     = 'LEFT';
+    const LEFT_JOIN     = "LEFT";
 
-	private type {get};
+	private type;
 
-    public fn __construct(string! type, var join, var alias, var conditionType, var condition = null)
+	private join;
+
+	private alias;
+
+	private condition;
+
+    public fn __construct(string type, var join, var alias, var condition = null)
     {
 		let this->type = type;
+		let this->join = join;
+		let this->alias = alias;
+		let this->condition = condition;
+    }
+
+	public fn __toString()
+    {
+        return this->type . " JOIN " . this->join
+             . (this->alias ? " " . this->alias : "")
+             . " ON "
+             . (this->condition ? this->condition : "");
     }
 }

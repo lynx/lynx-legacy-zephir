@@ -30,7 +30,7 @@ class QueryBuilder
 
 	protected order = null {get};
 
-	protected joins = null {get};
+	protected joins = [] {get};
 
 	protected rootModel;
 
@@ -81,13 +81,13 @@ class QueryBuilder
 
 	inline protected function prepareJoin(var joinType, var parentAlias, var modelName, var alias)
 	{
-		var relationModel, targetProperty;
-		//let relationModel = this->em->getModelsManager()->get(modelName);
+		var relationModel, targetProperty, condition;
 
 		let targetProperty = this->rootModel->getProperty(modelName);
-//		var_dump(targetProperty);
-//		die();
-		//let this->joins = new QueryBuilder\Expression\Join(joinType, x);
+		let relationModel = this->em->getModelsManager()->get(targetProperty->targetEntity);
+
+		let condition = this->wrap(parentAlias) . "." . this->wrap(targetProperty->name) . " = " . this->wrap(alias) . "." . this->wrap(targetProperty->referencedColumnName);
+		let this->joins[alias] = new QueryBuilder\Expression\Join(joinType, this->wrap(relationModel->getTableName()), this->wrap(alias), condition);
 	}
 
 	public function leftJoin(var join, var alias)
@@ -102,14 +102,31 @@ class QueryBuilder
 
 	public function rightJoin(var join, var alias)
 	{
-		var parentAlias;
-		let parentAlias = substr(join, 0, strpos(join, '.'));
+		var aliases;
+		let aliases = explode(".", join);
+
+		this->prepareJoin(Join::RIGHT_JOIN, aliases[0], aliases[1], alias);
+
+		return this;
+	}
+
+	public function innerJoin(var join, var alias)
+	{
+		var aliases;
+		let aliases = explode(".", join);
+
+		this->prepareJoin(Join::INNER_JOIN, aliases[0], aliases[1], alias);
 
 		return this;
 	}
 
 	public function join(var join, var alias)
 	{
+		var aliases;
+		let aliases = explode(".", join);
+
+		this->prepareJoin("", aliases[0], aliases[1], alias);
+
 		return this;
 	}
 
@@ -175,7 +192,7 @@ class QueryBuilder
 
 	public function getSQL() -> string
 	{
-		var sql;
+		var sql, value;
 
 		if (is_null(this->from)) {
 			throw new \Exception("From field must be set");
@@ -196,6 +213,9 @@ class QueryBuilder
 		let sql .= " FROM ".this->wrap(this->rootModel->getTablename())." ".this->alias;
 
 		if (count(this->joins) > 0) {
+			for value in this->joins {
+				let sql .= " " . value;
+			}
 		}
 
 		if (count(this->where) > 0) {

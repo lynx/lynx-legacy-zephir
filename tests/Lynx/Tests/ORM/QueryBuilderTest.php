@@ -114,5 +114,6 @@ class QueryBuilderTest
     {
         $queryBuilder = $this->_em->createQueryBuilder();
         $queryBuilder->select()->from('Model\User', 'u')->leftJoin('u.Group', 'g');
+        $this->assertEquals('SELECT * FROM `users` as `u` LEFT JOIN `groups` as `g` ON `u`.`group_id` = `g`.`id`', $queryBuilder->getSQL());
     }
 }
