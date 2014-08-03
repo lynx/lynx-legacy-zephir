@@ -18,7 +18,7 @@
 #include "kernel/fcall.h"
 #include "kernel/array.h"
 #include "kernel/hash.h"
-#include "kernel/concat.h"
+#include "concat.h"
 #include "kernel/string.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/operators.h"

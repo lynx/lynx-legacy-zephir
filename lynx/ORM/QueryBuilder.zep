@@ -4,7 +4,7 @@
 
 namespace Lynx\ORM;
 
-use \Lynx\ORM\QueryBuilder\Expression\Join;
+use Lynx\ORM\QueryBuilder\Expression\Join;
 
 class QueryBuilder
 {
@@ -87,7 +87,7 @@ class QueryBuilder
 		let relationModel = this->em->getModelsManager()->get(targetProperty->targetEntity);
 
 		let condition = this->wrap(parentAlias) . "." . this->wrap(targetProperty->name) . " = " . this->wrap(alias) . "." . this->wrap(targetProperty->referencedColumnName);
-		let this->joins[alias] = new QueryBuilder\Expression\Join(joinType, this->wrap(relationModel->getTableName()), this->wrap(alias), condition);
+		let this->joins[alias] = new Join(joinType, this->wrap(relationModel->getTableName()), this->wrap(alias), condition);
 	}
 
 	public function leftJoin(var join, var alias)

@@ -15,7 +15,7 @@
 #include "kernel/object.h"
 #include "kernel/operators.h"
 #include "kernel/memory.h"
-#include "kernel/concat.h"
+#include "concat.h"
 
 
 ZEPHIR_INIT_CLASS(Lynx_ORM_QueryBuilder_Expression_Join) {
