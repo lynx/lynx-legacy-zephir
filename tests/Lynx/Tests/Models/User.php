@@ -32,5 +32,5 @@ class User
      * @OneToOne(targetEntity="Model\Group")
      * @JoinColumn(name="group_id", referencedColumnName="id")
      */
-    public $group;
+    public $Group;
 } 

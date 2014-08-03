@@ -28,23 +28,23 @@ class ModelMetaData
 
         let properties = parser->getPropertiesAnnotations();
 		for key, value in properties {
-			let column = new ModelMetaData\Column();
+			if (isset(value["joincolumn"])) {
+				let column = new ModelMetaData\Property();
 
-			if (isset(value["id"])) {
-				let column->id = true;
-			}
+				if (isset(value["onetoone"])) {
+					let column->type = 1;
 
-			if (isset(value["column"])) {
-				let column->type = value["column"];
-
-				if (isset(value["column"]["name"])) {
-					let column->name = value["column"]["name"];
-				} else {
-					let column->name = key;
+					/**
+					 * @todo: move to const
+					 */
+					let column->targetEntity = value["onetoone"]["targetEntity"];
 				}
-			}
 
-			let this->properties[key] = column;
+				let column->name = value["joincolumn"]["name"];
+				let column->referencedColumnName = value["joincolumn"]["referencedColumnName"];
+
+				let this->properties[key] = column;
+			}
 		}
 
 		for key, value in properties {
@@ -122,7 +122,7 @@ class ModelMetaData
 
 	public function getPrimaryKey()
 	{
-		return this->getProperty(this->getPrimaryFieldName());
+		return this->getColumn(this->getPrimaryFieldName());
 	}
 
 	public function getPrimaryFieldName()

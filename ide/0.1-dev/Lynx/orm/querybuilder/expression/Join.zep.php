@@ -18,7 +18,11 @@ class Join
 
     /**
      * @param string $type 
+     * @param mixed $join 
+     * @param mixed $alias 
+     * @param mixed $conditionType 
+     * @param mixed $condition 
      */
-	public function __construct($type) {}
+	public function __construct($type, $join, $alias, $conditionType, $condition = null) {}
 
 }

@@ -43,11 +43,11 @@ PHP_METHOD(Lynx_ORM_QueryBuilder_Expression_Join, getType) {
 
 PHP_METHOD(Lynx_ORM_QueryBuilder_Expression_Join, __construct) {
 
-	zval *type_param = NULL;
+	zval *type_param = NULL, *join, *alias, *conditionType, *condition = NULL;
 	zval *type = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &type_param);
+	zephir_fetch_params(1, 4, 1, &type_param, &join, &alias, &conditionType, &condition);
 
 	if (unlikely(Z_TYPE_P(type_param) != IS_STRING && Z_TYPE_P(type_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'type' must be a string") TSRMLS_CC);
@@ -59,6 +59,9 @@ PHP_METHOD(Lynx_ORM_QueryBuilder_Expression_Join, __construct) {
 	} else {
 		ZEPHIR_INIT_VAR(type);
 		ZVAL_EMPTY_STRING(type);
+	}
+	if (!condition) {
+		condition = ZEPHIR_GLOBAL(global_null);
 	}
 
 

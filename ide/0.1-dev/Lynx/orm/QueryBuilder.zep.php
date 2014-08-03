@@ -73,6 +73,14 @@ class QueryBuilder
 	public function from($from, $alias) {}
 
     /**
+     * @param mixed $joinType 
+     * @param mixed $parentAlias 
+     * @param mixed $modelName 
+     * @param mixed $alias 
+     */
+	protected function prepareJoin($joinType, $parentAlias, $modelName, $alias) {}
+
+    /**
      * @param mixed $join 
      * @param mixed $alias 
      */

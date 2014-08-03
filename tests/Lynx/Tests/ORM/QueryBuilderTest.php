@@ -113,6 +113,6 @@ class QueryBuilderTest
     public function testSelectWithLeftJoinQuery()
     {
         $queryBuilder = $this->_em->createQueryBuilder();
-        $queryBuilder->select()->from('Model\User', 'u')->leftJoin('u.Model\Group', 'group');
+        $queryBuilder->select()->from('Model\User', 'u')->leftJoin('u.Group', 'g');
     }
 }

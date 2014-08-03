@@ -6,8 +6,12 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_QueryBuilder_Expression_Join);
 PHP_METHOD(Lynx_ORM_QueryBuilder_Expression_Join, getType);
 PHP_METHOD(Lynx_ORM_QueryBuilder_Expression_Join, __construct);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_expression_join___construct, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_expression_join___construct, 0, 0, 4)
 	ZEND_ARG_INFO(0, type)
+	ZEND_ARG_INFO(0, join)
+	ZEND_ARG_INFO(0, alias)
+	ZEND_ARG_INFO(0, conditionType)
+	ZEND_ARG_INFO(0, condition)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(lynx_orm_querybuilder_expression_join_method_entry) {

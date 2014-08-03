@@ -11,7 +11,7 @@ class Join
 
 	private type {get};
 
-    public fn __construct(string! type)
+    public fn __construct(string! type, var join, var alias, var conditionType, var condition = null)
     {
 		let this->type = type;
     }

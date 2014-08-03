@@ -54,10 +54,10 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getTablename) {
 
 PHP_METHOD(Lynx_ORM_ModelMetaData, __construct) {
 
-	HashTable *_3, *_10;
-	HashPosition _2, _9;
+	HashTable *_3, *_11;
+	HashPosition _2, _10;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *classname, *parser, *result = NULL, *properties = NULL, *column = NULL, *key = NULL, *value = NULL, *_0, *_1, **_4, *_5, *_6, *_7, *_8, **_11;
+	zval *classname, *parser, *result = NULL, *properties = NULL, *column = NULL, *key = NULL, *value = NULL, *_0, *_1, **_4, *_5, *_6, *_7, *_8, *_9, **_12;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &classname);
@@ -83,36 +83,37 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, __construct) {
 	) {
 		ZEPHIR_GET_HMKEY(key, _3, _2);
 		ZEPHIR_GET_HVALUE(value, _4);
-		ZEPHIR_INIT_NVAR(column);
-		object_init_ex(column, lynx_orm_modelmetadata_column_ce);
-		if (zephir_has_constructor(column TSRMLS_CC)) {
-			ZEPHIR_CALL_METHOD(NULL, column, "__construct", NULL);
-			zephir_check_call_status();
-		}
-		if (zephir_array_isset_string(value, SS("id"))) {
-			zephir_update_property_zval(column, SL("id"), (1) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
-		}
-		if (zephir_array_isset_string(value, SS("column"))) {
-			zephir_array_fetch_string(&_5, value, SL("column"), PH_NOISY | PH_READONLY TSRMLS_CC);
-			zephir_update_property_zval(column, SL("type"), _5 TSRMLS_CC);
-			zephir_array_fetch_string(&_6, value, SL("column"), PH_NOISY | PH_READONLY TSRMLS_CC);
-			if (zephir_array_isset_string(_6, SS("name"))) {
-				zephir_array_fetch_string(&_7, value, SL("column"), PH_NOISY | PH_READONLY TSRMLS_CC);
-				zephir_array_fetch_string(&_8, _7, SL("name"), PH_NOISY | PH_READONLY TSRMLS_CC);
-				zephir_update_property_zval(column, SL("name"), _8 TSRMLS_CC);
-			} else {
-				zephir_update_property_zval(column, SL("name"), key TSRMLS_CC);
+		if (zephir_array_isset_string(value, SS("joincolumn"))) {
+			ZEPHIR_INIT_NVAR(column);
+			object_init_ex(column, lynx_orm_modelmetadata_property_ce);
+			if (zephir_has_constructor(column TSRMLS_CC)) {
+				ZEPHIR_CALL_METHOD(NULL, column, "__construct", NULL);
+				zephir_check_call_status();
 			}
+			if (zephir_array_isset_string(value, SS("onetoone"))) {
+				ZEPHIR_INIT_ZVAL_NREF(_5);
+				ZVAL_LONG(_5, 1);
+				zephir_update_property_zval(column, SL("type"), _5 TSRMLS_CC);
+				zephir_array_fetch_string(&_6, value, SL("onetoone"), PH_NOISY | PH_READONLY TSRMLS_CC);
+				zephir_array_fetch_string(&_7, _6, SL("targetEntity"), PH_NOISY | PH_READONLY TSRMLS_CC);
+				zephir_update_property_zval(column, SL("targetEntity"), _7 TSRMLS_CC);
+			}
+			zephir_array_fetch_string(&_6, value, SL("joincolumn"), PH_NOISY | PH_READONLY TSRMLS_CC);
+			zephir_array_fetch_string(&_7, _6, SL("name"), PH_NOISY | PH_READONLY TSRMLS_CC);
+			zephir_update_property_zval(column, SL("name"), _7 TSRMLS_CC);
+			zephir_array_fetch_string(&_8, value, SL("joincolumn"), PH_NOISY | PH_READONLY TSRMLS_CC);
+			zephir_array_fetch_string(&_9, _8, SL("referencedColumnName"), PH_NOISY | PH_READONLY TSRMLS_CC);
+			zephir_update_property_zval(column, SL("referencedColumnName"), _9 TSRMLS_CC);
+			zephir_update_property_array(this_ptr, SL("properties"), key, column TSRMLS_CC);
 		}
-		zephir_update_property_array(this_ptr, SL("properties"), key, column TSRMLS_CC);
 	}
-	zephir_is_iterable(properties, &_10, &_9, 0, 0);
+	zephir_is_iterable(properties, &_11, &_10, 0, 0);
 	for (
-	  ; zephir_hash_get_current_data_ex(_10, (void**) &_11, &_9) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_10, &_9)
+	  ; zephir_hash_get_current_data_ex(_11, (void**) &_12, &_10) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_11, &_10)
 	) {
-		ZEPHIR_GET_HMKEY(key, _10, _9);
-		ZEPHIR_GET_HVALUE(value, _11);
+		ZEPHIR_GET_HMKEY(key, _11, _10);
+		ZEPHIR_GET_HVALUE(value, _12);
 		if (zephir_array_isset_string(value, SS("column"))) {
 			ZEPHIR_INIT_NVAR(column);
 			object_init_ex(column, lynx_orm_modelmetadata_column_ce);
@@ -123,13 +124,13 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, __construct) {
 			if (zephir_array_isset_string(value, SS("id"))) {
 				zephir_update_property_zval(column, SL("id"), (1) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
 			}
-			zephir_array_fetch_string(&_5, value, SL("column"), PH_NOISY | PH_READONLY TSRMLS_CC);
-			zephir_update_property_zval(column, SL("type"), _5 TSRMLS_CC);
 			zephir_array_fetch_string(&_6, value, SL("column"), PH_NOISY | PH_READONLY TSRMLS_CC);
-			if (zephir_array_isset_string(_6, SS("name"))) {
-				zephir_array_fetch_string(&_7, value, SL("column"), PH_NOISY | PH_READONLY TSRMLS_CC);
-				zephir_array_fetch_string(&_8, _7, SL("name"), PH_NOISY | PH_READONLY TSRMLS_CC);
-				zephir_update_property_zval(column, SL("name"), _8 TSRMLS_CC);
+			zephir_update_property_zval(column, SL("type"), _6 TSRMLS_CC);
+			zephir_array_fetch_string(&_7, value, SL("column"), PH_NOISY | PH_READONLY TSRMLS_CC);
+			if (zephir_array_isset_string(_7, SS("name"))) {
+				zephir_array_fetch_string(&_8, value, SL("column"), PH_NOISY | PH_READONLY TSRMLS_CC);
+				zephir_array_fetch_string(&_9, _8, SL("name"), PH_NOISY | PH_READONLY TSRMLS_CC);
+				zephir_update_property_zval(column, SL("name"), _9 TSRMLS_CC);
 			} else {
 				zephir_update_property_zval(column, SL("name"), key TSRMLS_CC);
 			}
@@ -262,7 +263,7 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getPrimaryKey) {
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getprimaryfieldname",  NULL);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getproperty", NULL, _0);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getcolumn", NULL, _0);
 	zephir_check_call_status();
 	RETURN_MM();
 

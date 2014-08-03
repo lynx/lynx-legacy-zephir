@@ -4,6 +4,8 @@
 
 namespace Lynx\ORM;
 
+use \Lynx\ORM\QueryBuilder\Expression\Join;
+
 class QueryBuilder
 {
 	const SELECT = 1;
@@ -77,10 +79,23 @@ class QueryBuilder
 		return this;
 	}
 
+	inline protected function prepareJoin(var joinType, var parentAlias, var modelName, var alias)
+	{
+		var relationModel, targetProperty;
+		//let relationModel = this->em->getModelsManager()->get(modelName);
+
+		let targetProperty = this->rootModel->getProperty(modelName);
+//		var_dump(targetProperty);
+//		die();
+		//let this->joins = new QueryBuilder\Expression\Join(joinType, x);
+	}
+
 	public function leftJoin(var join, var alias)
 	{
 		var aliases;
 		let aliases = explode(".", join);
+
+		this->prepareJoin(Join::LEFT_JOIN, aliases[0], aliases[1], alias);
 
 		return this;
 	}
@@ -224,10 +239,10 @@ class QueryBuilder
 
 		let tmpField = explode(".", trim(tmp[0]));
 		if (is_array(tmpField)) {
-			let property = this->rootModel->getProperty(trim(tmpField[1]));;
+			let property = this->rootModel->getColumn(trim(tmpField[1]));;
 			let statement = tmpField[0] . "." . property->name . " =" . tmp[1];
 		} else {
-			let property = this->rootModel->getProperty(trim(tmp[0]));
+			let property = this->rootModel->getColumn(trim(tmp[0]));
 			let statement = property->name . " =" . tmp[1];
 		}
 

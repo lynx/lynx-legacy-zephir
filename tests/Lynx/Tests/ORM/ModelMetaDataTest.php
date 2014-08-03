@@ -33,7 +33,7 @@ class ModelMetaDataTest extends TestCase
     {
         $model = $this->getUserModel();
 
-        $result = $model->getProperty('id');
+        $result = $model->getColumn('id');
         $this->assertInstanceOf(self::MODEL_SCHEMA_COLUMN_CLASS, $result);
     }
 } 

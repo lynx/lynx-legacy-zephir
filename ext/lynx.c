@@ -46,6 +46,7 @@ zend_class_entry *lynx_orm_entityrepository_ce;
 zend_class_entry *lynx_orm_exception_ce;
 zend_class_entry *lynx_orm_modelmetadata_ce;
 zend_class_entry *lynx_orm_modelmetadata_column_ce;
+zend_class_entry *lynx_orm_modelmetadata_property_ce;
 zend_class_entry *lynx_orm_modelsmanager_ce;
 zend_class_entry *lynx_orm_query_ce;
 zend_class_entry *lynx_orm_querybuilder_ce;
@@ -246,6 +247,7 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_ORM_Exception);
 	ZEPHIR_INIT(Lynx_ORM_ModelMetaData);
 	ZEPHIR_INIT(Lynx_ORM_ModelMetaData_Column);
+	ZEPHIR_INIT(Lynx_ORM_ModelMetaData_Property);
 	ZEPHIR_INIT(Lynx_ORM_ModelsManager);
 	ZEPHIR_INIT(Lynx_ORM_Query);
 	ZEPHIR_INIT(Lynx_ORM_QueryBuilder);
