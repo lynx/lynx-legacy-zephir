@@ -7,7 +7,7 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassProperties, hydrate);
 PHP_METHOD(Lynx_Stdlib_Hydrator_ClassProperties, extract);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_hydrator_classproperties_hydrate, 0, 0, 2)
-	ZEND_ARG_INFO(0, data)
+	ZEND_ARG_ARRAY_INFO(0, data, 0)
 	ZEND_ARG_INFO(0, currentObject)
 ZEND_END_ARG_INFO()
 

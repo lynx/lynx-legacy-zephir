@@ -20,7 +20,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_driver_mysql___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, dsn)
 	ZEND_ARG_INFO(0, username)
 	ZEND_ARG_INFO(0, password)
-	ZEND_ARG_INFO(0, driverOptions)
+	ZEND_ARG_ARRAY_INFO(0, driverOptions, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_driver_mysql_execute, 0, 0, 1)

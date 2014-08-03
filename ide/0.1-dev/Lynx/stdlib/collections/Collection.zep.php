@@ -21,7 +21,7 @@ class Collection implements \Countable, \IteratorAggregate
      * Execute fuction to each element in the collection
      * 	
      *
-     * @param \Closure $func 
+     * @param mixed $func 
      */
 	abstract public function map($func);
 

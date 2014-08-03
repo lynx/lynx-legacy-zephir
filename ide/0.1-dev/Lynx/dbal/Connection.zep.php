@@ -21,7 +21,7 @@ class Connection
      * 	
      *
      * @param mixed $parameters 
-     * @param EventsManager $eventsManager 
+     * @param mixed $eventsManager 
      */
 	public function __construct($parameters, $eventsManager = null) {}
 

@@ -9,7 +9,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_driver_pdo___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, dsn)
 	ZEND_ARG_INFO(0, username)
 	ZEND_ARG_INFO(0, password)
-	ZEND_ARG_INFO(0, options)
+	ZEND_ARG_ARRAY_INFO(0, options, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(lynx_dbal_driver_pdo_method_entry) {

@@ -4,7 +4,7 @@ extern zend_class_entry *lynx_stdlib_hydrator_hydrator_ce;
 ZEPHIR_INIT_CLASS(Lynx_Stdlib_Hydrator_Hydrator);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_hydrator_hydrator_hydrate, 0, 0, 2)
-	ZEND_ARG_INFO(0, data)
+	ZEND_ARG_ARRAY_INFO(0, data, 0)
 	ZEND_ARG_INFO(0, currentObject)
 ZEND_END_ARG_INFO()
 

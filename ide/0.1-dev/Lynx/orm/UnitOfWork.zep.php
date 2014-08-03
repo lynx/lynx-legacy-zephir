@@ -22,7 +22,7 @@ class UnitOfWork
     protected $deleteEntities = array();
 
     /**
-     * @param EntityManager $em 
+     * @param mixed $em 
      */
 	public function __construct($em) {}
 

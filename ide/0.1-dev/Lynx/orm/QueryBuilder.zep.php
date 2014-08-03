@@ -46,7 +46,7 @@ class QueryBuilder
 	public function getOrder() {}
 
     /**
-     * @param EntityManager $em 
+     * @param mixed $em 
      */
 	public function __construct($em) {}
 

@@ -43,7 +43,7 @@ class Query
 
     /**
      * @param mixed $query 
-     * @param EntityManager $em 
+     * @param mixed $em 
      */
 	public function __construct($query, $em) {}
 

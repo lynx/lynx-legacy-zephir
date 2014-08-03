@@ -15,7 +15,7 @@ class Configuration
      * Set Cache Driver
      * 	
      *
-     * @param CacheDriver $cacheDriver 
+     * @param mixed $cacheDriver 
      */
 	public function setCacheDriver($cacheDriver) {}
 

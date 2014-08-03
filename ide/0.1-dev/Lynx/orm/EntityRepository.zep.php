@@ -19,8 +19,8 @@ class EntityRepository
 	public function getEm() {}
 
     /**
-     * @param EntityManager $em 
-     * @param ModelMetaData $modelWrapper 
+     * @param mixed $em 
+     * @param mixed $modelWrapper 
      */
 	public function __construct($em, $modelWrapper) {}
 

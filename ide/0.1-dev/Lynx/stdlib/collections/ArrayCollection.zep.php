@@ -35,7 +35,7 @@ class ArrayCollection extends \Lynx\Stdlib\Collections\Collection
      * {@inheritDoc}
      * 	
      *
-     * @param \Closure $func 
+     * @param mixed $func 
      */
 	public function map($func) {}
 

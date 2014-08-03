@@ -37,9 +37,9 @@ class EntityManager
 	public function getConfiguration() {}
 
     /**
-     * @param Connection $connection 
-     * @param Configuration $configuration 
-     * @param EventsManager $eventManager 
+     * @param mixed $connection 
+     * @param mixed $configuration 
+     * @param mixed $eventManager 
      */
 	public function __construct($connection, $configuration, $eventManager) {}
 

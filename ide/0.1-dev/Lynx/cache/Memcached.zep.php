@@ -15,7 +15,7 @@ class Memcached extends \Lynx\Cache\CacheDriver
 	public function __construct($options = null) {}
 
     /**
-     * @param \Memcached $instance 
+     * @param mixed $instance 
      */
 	public function setInstance($instance) {}
 

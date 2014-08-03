@@ -22,7 +22,7 @@ class ModelsManager
     protected $cacheLoadType;
 
     /**
-     * @param EntityManager $em 
+     * @param mixed $em 
      * @param mixed $cacheLoadType 
      */
 	public function __construct($em, $cacheLoadType = self::CACHE_LOAD_PER_GET_ALL) {}

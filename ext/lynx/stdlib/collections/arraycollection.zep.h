@@ -14,7 +14,7 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, getIterator);
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, count);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_arraycollection___construct, 0, 0, 0)
-	ZEND_ARG_INFO(0, elements)
+	ZEND_ARG_ARRAY_INFO(0, elements, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_arraycollection_add, 0, 0, 1)

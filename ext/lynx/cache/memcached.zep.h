@@ -12,7 +12,7 @@ PHP_METHOD(Lynx_Cache_Memcached, get);
 PHP_METHOD(Lynx_Cache_Memcached, flush);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_cache_memcached___construct, 0, 0, 0)
-	ZEND_ARG_INFO(0, options)
+	ZEND_ARG_ARRAY_INFO(0, options, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_cache_memcached_setinstance, 0, 0, 1)
