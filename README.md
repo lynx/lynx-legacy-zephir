@@ -40,16 +40,43 @@ I like Doctrine2 but i dislike Phalcon 2 ORM* and create this project for incuba
 	* EventManager (ported from phalcon)
 	* Hydrators (will be soon)
 
-### SYSTEM REQUIREMENTS
+### System Requirements
 
-To build the PHP extension:
+To build you need the following requirements:
 
 * g++ >= 4.4/clang++ >= 3.x/vc++ 9
 * gnu make 3.81 or later
+* autoconf 2.31 or later
+* automake 1.14 or later
 * php development headers and tools
 
-To build the zep Source to c extension:
+If you’re using Ubuntu, you can install the required packages this way:
 
+```
+sudo apt-get update
+sudo apt-get install git gcc make re2c php5 php5-json php5-dev libpcre3-dev
+```
+
+### Installation
+
+You can build extension and install it like:
+```
+git clone https://github.com/lynx/lynx.git
+git submodule update --init
+cd ext
+./install
+echo extension=lynx.so > /etc/php5/fpm/conf.d/lynx.ini
+echo extension=lynx.so > /etc/php5/cli/conf.d/lynx.ini
+```
+
+Don't forget to restart your php-fpm:
+```
+sudo service php5-fpm restart
+```
+
+### Build Zephir code
+
+To build the zep Source to c extension:
 * [zephir](https://github.com/phalcon/zephir)
 
 License
