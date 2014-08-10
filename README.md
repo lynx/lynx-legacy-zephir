@@ -22,7 +22,7 @@ I like Doctrine2 but i dislike Phalcon 2 ORM* and create this project for incuba
 ### On What ideas it would based
 
 * Annotation
-	* RefelecationClassParser
+	* ReflectionClassParser
 		* RegexDocParser
 		* LineParser (will be soon)
 	* PHPFileParser (will be soon)
