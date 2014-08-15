@@ -84,7 +84,6 @@ class UnitOfWork
 					continue;
 				}
 
-var_dump(property->type);
 				let insertValues[property->name] = this->convertToScalar(value, property->type);
 			}
 
