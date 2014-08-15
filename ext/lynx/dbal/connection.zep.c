@@ -18,7 +18,7 @@
 #include "kernel/fcall.h"
 #include "kernel/array.h"
 #include "kernel/hash.h"
-#include "concat.h"
+#include "kernel/concat.h"
 #include "kernel/string.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/operators.h"
@@ -86,7 +86,7 @@ PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 		}
 	}
 	if (zephir_array_isset_string(parameters, SS("driver"))) {
-		zephir_array_fetch_string(&_1, parameters, SL("driver"), PH_NOISY | PH_READONLY TSRMLS_CC);
+		zephir_array_fetch_string(&_1, parameters, SL("driver"), PH_NOISY | PH_READONLY, "lynx/DBAL/Connection.zep", 29 TSRMLS_CC);
 		zephir_update_property_this(this_ptr, SL("driver"), _1 TSRMLS_CC);
 	} else {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Driver didn`t find in $parameters", "lynx/DBAL/Connection.zep", 31);
@@ -149,7 +149,7 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 	array_init(set);
 
 
-	zephir_is_iterable(data, &_1, &_0, 0, 0);
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/DBAL/Connection.zep", 49);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -158,7 +158,7 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 		ZEPHIR_GET_HVALUE(value, _2);
 		ZEPHIR_INIT_LNVAR(_3);
 		ZEPHIR_CONCAT_SVS(_3, ":", columnName, "");
-		zephir_array_append(&set, _3, PH_SEPARATE);
+		zephir_array_append(&set, _3, PH_SEPARATE, "lynx/DBAL/Connection.zep", 46);
 	}
 	ZEPHIR_INIT_VAR(_4);
 	ZEPHIR_INIT_VAR(_5);
@@ -234,7 +234,7 @@ PHP_METHOD(Lynx_DBAL_Connection, update) {
 	array_init(set);
 
 
-	zephir_is_iterable(data, &_1, &_0, 0, 0);
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/DBAL/Connection.zep", 68);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -243,7 +243,7 @@ PHP_METHOD(Lynx_DBAL_Connection, update) {
 		ZEPHIR_GET_HVALUE(value, _2);
 		ZEPHIR_INIT_LNVAR(_3);
 		ZEPHIR_CONCAT_SVS(_3, "`", columnName, "` = ?");
-		zephir_array_append(&set, _3, PH_SEPARATE);
+		zephir_array_append(&set, _3, PH_SEPARATE, "lynx/DBAL/Connection.zep", 65);
 	}
 	ZEPHIR_INIT_VAR(_4);
 	zephir_fast_join_str(_4, SL(", "), set TSRMLS_CC);
@@ -394,7 +394,7 @@ PHP_METHOD(Lynx_DBAL_Connection, delete) {
 	ZEPHIR_INIT_VAR(_0);
 	ZEPHIR_CONCAT_SVS(_0, "DELETE FROM ", table, " WHERE ");
 	ZEPHIR_CPY_WRT(query, _0);
-	zephir_is_iterable(identifiers, &_2, &_1, 0, 0);
+	zephir_is_iterable(identifiers, &_2, &_1, 0, 0, "lynx/DBAL/Connection.zep", 110);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)

@@ -55,7 +55,7 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassProperties, hydrate) {
 	ZEPHIR_SEPARATE_PARAM(currentObject);
 
 
-	zephir_is_iterable(data, &_1, &_0, 0, 0);
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/Stdlib/Hydrator/ClassProperties.zep", 18);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)

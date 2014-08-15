@@ -13,7 +13,7 @@
 
 #include "kernel/main.h"
 #include "kernel/hash.h"
-#include "concat.h"
+#include "kernel/concat.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/object.h"
@@ -55,7 +55,7 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassMethods, hydrate) {
 
 
 
-	zephir_is_iterable(data, &_1, &_0, 0, 0);
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/Stdlib/Hydrator/ClassMethods.zep", 20);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -103,7 +103,7 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassMethods, extract) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(attributes);
 	array_init(attributes);
-	zephir_is_iterable(methods, &_2, &_1, 0, 0);
+	zephir_is_iterable(methods, &_2, &_1, 0, 0, "lynx/Stdlib/Hydrator/ClassMethods.zep", 44);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)

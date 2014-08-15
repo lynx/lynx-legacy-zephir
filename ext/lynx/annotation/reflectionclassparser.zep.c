@@ -96,7 +96,7 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getPropertiesAnnotations) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("reflectionClass"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&properties, _0, "getproperties",  NULL);
 	zephir_check_call_status();
-	zephir_is_iterable(properties, &_2, &_1, 0, 0);
+	zephir_is_iterable(properties, &_2, &_1, 0, 0, "lynx/Annotation/ReflectionClassParser.zep", 38);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)

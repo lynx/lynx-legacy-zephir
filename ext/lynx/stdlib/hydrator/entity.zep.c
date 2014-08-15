@@ -13,7 +13,7 @@
 
 #include "kernel/main.h"
 #include "kernel/hash.h"
-#include "concat.h"
+#include "kernel/concat.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/object.h"
@@ -57,7 +57,7 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, hydrate) {
 	ZEPHIR_SEPARATE_PARAM(currentObject);
 
 
-	zephir_is_iterable(data, &_1, &_0, 0, 0);
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/Stdlib/Hydrator/Entity.zep", 24);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -116,7 +116,7 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, extract) {
 	array_init(attributes);
 	ZEPHIR_CALL_FUNCTION(&properties, "get_object_vars", &_1, currentObject);
 	zephir_check_call_status();
-	zephir_is_iterable(methods, &_3, &_2, 0, 0);
+	zephir_is_iterable(methods, &_3, &_2, 0, 0, "lynx/Stdlib/Hydrator/Entity.zep", 52);
 	for (
 	  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_3, &_2)
@@ -143,7 +143,7 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, extract) {
 			}
 		}
 	}
-	zephir_is_iterable(properties, &_12, &_11, 0, 0);
+	zephir_is_iterable(properties, &_12, &_11, 0, 0, "lynx/Stdlib/Hydrator/Entity.zep", 56);
 	for (
 	  ; zephir_hash_get_current_data_ex(_12, (void**) &_13, &_11) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_12, &_11)

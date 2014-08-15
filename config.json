@@ -1,4 +1,7 @@
 {
+    "watch": {
+        "fpm-restart": true
+    },
     "stubs": {
         "path": "ide\/%version%\/%namespace%\/",
         "stubs-run-after-generate": true

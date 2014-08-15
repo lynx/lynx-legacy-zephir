@@ -27,6 +27,7 @@ class ModelMetaData
         let this->tablename = result["table"]["name"];
 
         let properties = parser->getPropertiesAnnotations();
+
 		for key, value in properties {
 			if (isset(value["joincolumn"])) {
 				let column = new ModelMetaData\Property();
@@ -55,7 +56,7 @@ class ModelMetaData
 					let column->id = true;
 				}
 
-				let column->type = value["column"];
+				let column->type = value["column"]["type"];
 
 				if (isset(value["column"]["name"])) {
 					let column->name = value["column"]["name"];

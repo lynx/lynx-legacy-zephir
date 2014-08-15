@@ -67,19 +67,19 @@ PHP_METHOD(Lynx_Annotation_RegexDocParser, parseAnnotations) {
 		array_init(return_value);
 		RETURN_MM();
 	}
-	zephir_is_iterable(matches, &_3, &_2, 0, 0);
+	zephir_is_iterable(matches, &_3, &_2, 0, 0, "lynx/Annotation/RegexDocParser.zep", 64);
 	for (
 	  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_3, &_2)
 	) {
 		ZEPHIR_GET_HVALUE(anno, _4);
 		ZEPHIR_INIT_NVAR(annoName);
-		zephir_array_fetch_long(&_5, anno, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
+		zephir_array_fetch_long(&_5, anno, 1, PH_NOISY | PH_READONLY, "lynx/Annotation/RegexDocParser.zep", 30 TSRMLS_CC);
 		zephir_fast_strtolower(annoName, _5);
 		ZEPHIR_INIT_NVAR(val);
 		ZVAL_BOOL(val, 1);
 		if (zephir_array_isset_long(anno, 2)) {
-			zephir_array_fetch_long(&_6, anno, 2, PH_NOISY | PH_READONLY TSRMLS_CC);
+			zephir_array_fetch_long(&_6, anno, 2, PH_NOISY | PH_READONLY, "lynx/Annotation/RegexDocParser.zep", 35 TSRMLS_CC);
 			ZEPHIR_INIT_NVAR(_0);
 			ZVAL_LONG(_0, 2);
 			Z_SET_ISREF_P(params);
@@ -89,22 +89,22 @@ PHP_METHOD(Lynx_Annotation_RegexDocParser, parseAnnotations) {
 			if (zephir_is_true(hasParams)) {
 				ZEPHIR_INIT_NVAR(val);
 				array_init(val);
-				zephir_is_iterable(params, &_8, &_7, 0, 0);
+				zephir_is_iterable(params, &_8, &_7, 0, 0, "lynx/Annotation/RegexDocParser.zep", 43);
 				for (
 				  ; zephir_hash_get_current_data_ex(_8, (void**) &_9, &_7) == SUCCESS
 				  ; zephir_hash_move_forward_ex(_8, &_7)
 				) {
 					ZEPHIR_GET_HVALUE(param, _9);
-					zephir_array_fetch_long(&_12, param, 2, PH_NOISY | PH_READONLY TSRMLS_CC);
+					zephir_array_fetch_long(&_12, param, 2, PH_NOISY | PH_READONLY, "lynx/Annotation/RegexDocParser.zep", 40 TSRMLS_CC);
 					ZEPHIR_CALL_SELF(&_10, "parsevalue", &_11, _12);
 					zephir_check_call_status();
 					ZEPHIR_OBS_NVAR(_13);
-					zephir_array_fetch_long(&_13, param, 1, PH_NOISY TSRMLS_CC);
+					zephir_array_fetch_long(&_13, param, 1, PH_NOISY, "lynx/Annotation/RegexDocParser.zep", 40 TSRMLS_CC);
 					zephir_array_update_zval(&val, _13, &_10, PH_COPY | PH_SEPARATE);
 				}
 			} else {
 				ZEPHIR_INIT_NVAR(val);
-				zephir_array_fetch_long(&_12, anno, 2, PH_NOISY | PH_READONLY TSRMLS_CC);
+				zephir_array_fetch_long(&_12, anno, 2, PH_NOISY | PH_READONLY, "lynx/Annotation/RegexDocParser.zep", 44 TSRMLS_CC);
 				zephir_fast_trim(val, _12, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
 				if (ZEPHIR_IS_STRING(val, "")) {
 					ZEPHIR_INIT_NVAR(val);
@@ -117,12 +117,12 @@ PHP_METHOD(Lynx_Annotation_RegexDocParser, parseAnnotations) {
 			}
 		}
 		if (zephir_array_isset(annotations, annoName)) {
-			zephir_array_fetch(&_6, annotations, annoName, PH_NOISY | PH_READONLY TSRMLS_CC);
+			zephir_array_fetch(&_6, annotations, annoName, PH_NOISY | PH_READONLY, "lynx/Annotation/RegexDocParser.zep", 55 TSRMLS_CC);
 			if (!Z_TYPE_P(_6) == IS_ARRAY) {
 				ZEPHIR_INIT_NVAR(_14);
 				array_init_size(_14, 2);
 				ZEPHIR_OBS_NVAR(_13);
-				zephir_array_fetch(&_13, annotations, annoName, PH_NOISY TSRMLS_CC);
+				zephir_array_fetch(&_13, annotations, annoName, PH_NOISY, "lynx/Annotation/RegexDocParser.zep", 56 TSRMLS_CC);
 				zephir_array_fast_append(_14, _13);
 				zephir_array_update_zval(&annotations, annoName, &_14, PH_COPY | PH_SEPARATE);
 			}
@@ -181,7 +181,7 @@ PHP_METHOD(Lynx_Annotation_RegexDocParser, parseValue) {
 		zephir_fast_explode(vals, &_0, _6, LONG_MAX TSRMLS_CC);
 		ZEPHIR_INIT_BNVAR(val);
 		array_init(val);
-		zephir_is_iterable(vals, &_8, &_7, 0, 0);
+		zephir_is_iterable(vals, &_8, &_7, 0, 0, "lynx/Annotation/RegexDocParser.zep", 86);
 		for (
 		  ; zephir_hash_get_current_data_ex(_8, (void**) &_9, &_7) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_8, &_7)
@@ -189,7 +189,7 @@ PHP_METHOD(Lynx_Annotation_RegexDocParser, parseValue) {
 			ZEPHIR_GET_HVALUE(v, _9);
 			ZEPHIR_CALL_SELF(&_10, "parsevalue", &_11, v);
 			zephir_check_call_status();
-			zephir_array_append(&val, _10, PH_SEPARATE);
+			zephir_array_append(&val, _10, PH_SEPARATE, "lynx/Annotation/RegexDocParser.zep", 83);
 		}
 		RETURN_CCTOR(val);
 	} else {

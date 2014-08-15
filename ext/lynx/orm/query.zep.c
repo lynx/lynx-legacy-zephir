@@ -16,7 +16,7 @@
 #include "kernel/memory.h"
 #include "kernel/exception.h"
 #include "kernel/fcall.h"
-#include "concat.h"
+#include "kernel/concat.h"
 #include "kernel/operators.h"
 #include "kernel/array.h"
 #include "kernel/hash.h"
@@ -288,8 +288,8 @@ PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&model, _2, "getobject",  NULL);
 	zephir_check_call_status();
-	zephir_array_fetch_long(&_3, result, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
-	zephir_is_iterable(_3, &_5, &_4, 0, 0);
+	zephir_array_fetch_long(&_3, result, 0, PH_NOISY | PH_READONLY, "lynx/ORM/Query.zep", 101 TSRMLS_CC);
+	zephir_is_iterable(_3, &_5, &_4, 0, 0, "lynx/ORM/Query.zep", 106);
 	for (
 	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_5, &_4)

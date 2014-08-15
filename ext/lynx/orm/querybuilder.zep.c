@@ -16,7 +16,7 @@
 #include "kernel/exception.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
-#include "concat.h"
+#include "kernel/concat.h"
 #include "kernel/string.h"
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
@@ -262,8 +262,8 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, leftJoin) {
 
 	ZEPHIR_INIT_VAR(aliases);
 	zephir_fast_explode_str(aliases, SL("."), join, LONG_MAX TSRMLS_CC);
-	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
-	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
+	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 98 TSRMLS_CC);
+	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 98 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "LEFT", 0);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparejoin", NULL, _2, _0, _1, alias);
@@ -285,8 +285,8 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, rightJoin) {
 
 	ZEPHIR_INIT_VAR(aliases);
 	zephir_fast_explode_str(aliases, SL("."), join, LONG_MAX TSRMLS_CC);
-	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
-	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
+	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 108 TSRMLS_CC);
+	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 108 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "RIGHT", 0);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparejoin", NULL, _2, _0, _1, alias);
@@ -308,8 +308,8 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, innerJoin) {
 
 	ZEPHIR_INIT_VAR(aliases);
 	zephir_fast_explode_str(aliases, SL("."), join, LONG_MAX TSRMLS_CC);
-	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
-	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
+	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 118 TSRMLS_CC);
+	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 118 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "INNER", 0);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparejoin", NULL, _2, _0, _1, alias);
@@ -331,8 +331,8 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, join) {
 
 	ZEPHIR_INIT_VAR(aliases);
 	zephir_fast_explode_str(aliases, SL("."), join, LONG_MAX TSRMLS_CC);
-	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
-	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
+	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 128 TSRMLS_CC);
+	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 128 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "", 0);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparejoin", NULL, _2, _0, _1, alias);
@@ -393,7 +393,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, orWhere) {
 	Z_UNSET_ISREF_P(_0);
 	zephir_check_call_status();
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
-	zephir_array_fetch(&_3, _2, index, PH_NOISY | PH_READONLY TSRMLS_CC);
+	zephir_array_fetch(&_3, _2, index, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 152 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_4);
 	ZEPHIR_CONCAT_SVSVS(_4, "(", _3, " OR ", statement, ")");
 	zephir_update_property_array(this_ptr, SL("where"), index, _4 TSRMLS_CC);
@@ -541,7 +541,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 	_7 = zephir_fetch_nproperty_this(this_ptr, SL("joins"), PH_NOISY_CC);
 	if (zephir_fast_count_int(_7 TSRMLS_CC) > 0) {
 		_8 = zephir_fetch_nproperty_this(this_ptr, SL("joins"), PH_NOISY_CC);
-		zephir_is_iterable(_8, &_10, &_9, 0, 0);
+		zephir_is_iterable(_8, &_10, &_9, 0, 0, "lynx/ORM/QueryBuilder.zep", 219);
 		for (
 		  ; zephir_hash_get_current_data_ex(_10, (void**) &_11, &_9) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_10, &_9)
@@ -631,33 +631,33 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, prepareWhereStatement) {
 	zephir_fast_explode_str(tmp, SL("="), statement, LONG_MAX TSRMLS_CC);
 	ZEPHIR_INIT_VAR(tmpField);
 	ZEPHIR_INIT_VAR(_0);
-	zephir_array_fetch_long(&_1, tmp, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
+	zephir_array_fetch_long(&_1, tmp, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 260 TSRMLS_CC);
 	zephir_fast_trim(_0, _1, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
 	zephir_fast_explode_str(tmpField, SL("."), _0, LONG_MAX TSRMLS_CC);
 	ZEPHIR_INIT_BNVAR(statement);
 	if (Z_TYPE_P(tmpField) == IS_ARRAY) {
 		_2 = zephir_fetch_nproperty_this(this_ptr, SL("rootModel"), PH_NOISY_CC);
 		ZEPHIR_INIT_VAR(_3);
-		zephir_array_fetch_long(&_4, tmpField, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
+		zephir_array_fetch_long(&_4, tmpField, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 262 TSRMLS_CC);
 		zephir_fast_trim(_3, _4, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&property, _2, "getcolumn", NULL, _3);
 		zephir_check_call_status();
 		//missing empty
-		zephir_array_fetch_long(&_5, tmpField, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
+		zephir_array_fetch_long(&_5, tmpField, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 263 TSRMLS_CC);
 		ZEPHIR_OBS_VAR(_6);
 		zephir_read_property(&_6, property, SL("name"), PH_NOISY_CC);
-		zephir_array_fetch_long(&_7, tmp, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
+		zephir_array_fetch_long(&_7, tmp, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 263 TSRMLS_CC);
 		ZEPHIR_CONCAT_VSVSV(statement, _5, ".", _6, " =", _7);
 	} else {
 		_2 = zephir_fetch_nproperty_this(this_ptr, SL("rootModel"), PH_NOISY_CC);
 		ZEPHIR_INIT_NVAR(_3);
-		zephir_array_fetch_long(&_4, tmp, 0, PH_NOISY | PH_READONLY TSRMLS_CC);
+		zephir_array_fetch_long(&_4, tmp, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 265 TSRMLS_CC);
 		zephir_fast_trim(_3, _4, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&property, _2, "getcolumn", NULL, _3);
 		zephir_check_call_status();
 		ZEPHIR_OBS_NVAR(_6);
 		zephir_read_property(&_6, property, SL("name"), PH_NOISY_CC);
-		zephir_array_fetch_long(&_5, tmp, 1, PH_NOISY | PH_READONLY TSRMLS_CC);
+		zephir_array_fetch_long(&_5, tmp, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 266 TSRMLS_CC);
 		ZEPHIR_CONCAT_VSV(statement, _6, " =", _5);
 	}
 	RETURN_CCTOR(statement);

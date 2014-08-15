@@ -104,7 +104,7 @@ PHP_METHOD(Lynx_ORM_ModelsManager, get) {
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("cachedModels"), PH_NOISY_CC);
 	if (zephir_array_isset(_1, classname)) {
 		_3 = zephir_fetch_nproperty_this(this_ptr, SL("cachedModels"), PH_NOISY_CC);
-		zephir_array_fetch(&_4, _3, classname, PH_NOISY | PH_READONLY TSRMLS_CC);
+		zephir_array_fetch(&_4, _3, classname, PH_NOISY | PH_READONLY, "lynx/ORM/ModelsManager.zep", 39 TSRMLS_CC);
 		RETURN_CTOR(_4);
 	}
 	ZEPHIR_INIT_VAR(_5);
@@ -113,7 +113,7 @@ PHP_METHOD(Lynx_ORM_ModelsManager, get) {
 	zephir_check_call_status();
 	zephir_update_property_array(this_ptr, SL("cachedModels"), classname, _5 TSRMLS_CC);
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("cachedModels"), PH_NOISY_CC);
-	zephir_array_fetch(&_4, _1, classname, PH_NOISY | PH_READONLY TSRMLS_CC);
+	zephir_array_fetch(&_4, _1, classname, PH_NOISY | PH_READONLY, "lynx/ORM/ModelsManager.zep", 43 TSRMLS_CC);
 	RETURN_CTOR(_4);
 
 }

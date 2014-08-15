@@ -221,7 +221,7 @@ PHP_METHOD(Lynx_ORM_EntityManager, getRepository) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("repositories"), PH_NOISY_CC);
 	if (zephir_array_isset(_0, entityName)) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("repositories"), PH_NOISY_CC);
-		zephir_array_fetch(&_2, _1, entityName, PH_NOISY | PH_READONLY TSRMLS_CC);
+		zephir_array_fetch(&_2, _1, entityName, PH_NOISY | PH_READONLY, "lynx/ORM/EntityManager.zep", 72 TSRMLS_CC);
 		RETURN_CTOR(_2);
 	}
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("modelsManager"), PH_NOISY_CC);
@@ -233,7 +233,7 @@ PHP_METHOD(Lynx_ORM_EntityManager, getRepository) {
 	zephir_check_call_status();
 	zephir_update_property_array(this_ptr, SL("repositories"), entityName, _3 TSRMLS_CC);
 	_4 = zephir_fetch_nproperty_this(this_ptr, SL("repositories"), PH_NOISY_CC);
-	zephir_array_fetch(&_2, _4, entityName, PH_NOISY | PH_READONLY TSRMLS_CC);
+	zephir_array_fetch(&_2, _4, entityName, PH_NOISY | PH_READONLY, "lynx/ORM/EntityManager.zep", 77 TSRMLS_CC);
 	RETURN_CTOR(_2);
 
 }

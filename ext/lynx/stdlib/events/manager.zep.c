@@ -23,7 +23,7 @@
 #include "Zend/zend_closures.h"
 #include "kernel/hash.h"
 #include "kernel/string.h"
-#include "concat.h"
+#include "kernel/concat.h"
 
 
 /*
@@ -138,7 +138,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, attach) {
 		ZEPHIR_CALL_METHOD(NULL, priorityQueue, "insert", NULL, handler, _1);
 		zephir_check_call_status();
 	} else {
-		zephir_array_append(&priorityQueue, handler, PH_SEPARATE);
+		zephir_array_append(&priorityQueue, handler, PH_SEPARATE, "lynx/Stdlib/Events/Manager.zep", 90);
 		zephir_array_update_zval(&events, eventType, &priorityQueue, PH_COPY | PH_SEPARATE);
 		zephir_update_property_this(this_ptr, SL("_events"), events TSRMLS_CC);
 	}
@@ -364,7 +364,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fireQueue) {
 			}
 		}
 	} else {
-		zephir_is_iterable(queue, &_5, &_4, 0, 0);
+		zephir_is_iterable(queue, &_5, &_4, 0, 0, "lynx/Stdlib/Events/Manager.zep", 387);
 		for (
 		  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_5, &_4)
@@ -479,9 +479,9 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fire) {
 	ZEPHIR_INIT_VAR(eventParts);
 	zephir_fast_explode_str(eventParts, SL(":"), eventType, LONG_MAX TSRMLS_CC);
 	ZEPHIR_OBS_VAR(type);
-	zephir_array_fetch_long(&type, eventParts, 0, PH_NOISY TSRMLS_CC);
+	zephir_array_fetch_long(&type, eventParts, 0, PH_NOISY, "lynx/Stdlib/Events/Manager.zep", 422 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(eventName);
-	zephir_array_fetch_long(&eventName, eventParts, 1, PH_NOISY TSRMLS_CC);
+	zephir_array_fetch_long(&eventName, eventParts, 1, PH_NOISY, "lynx/Stdlib/Events/Manager.zep", 423 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(status);
 	ZVAL_NULL(status);
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("_collect"), PH_NOISY_CC);

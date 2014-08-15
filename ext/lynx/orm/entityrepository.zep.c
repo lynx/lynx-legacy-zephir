@@ -17,7 +17,7 @@
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "ext/spl/spl_exceptions.h"
-#include "concat.h"
+#include "kernel/concat.h"
 
 
 /**
