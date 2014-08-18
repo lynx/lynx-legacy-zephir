@@ -56,7 +56,9 @@ class ModelMetaData
 					let column->id = true;
 				}
 
-				let column->type = value["column"]["type"];
+				if (isset(value["column"]["type"])) {
+					let column->type = value["column"]["type"];
+				}
 
 				if (isset(value["column"]["name"])) {
 					let column->name = value["column"]["name"];

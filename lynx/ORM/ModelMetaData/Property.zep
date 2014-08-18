@@ -3,7 +3,7 @@ namespace Lynx\ORM\ModelMetaData;
 
 class Property
 {
-	public type;
+	public type = "string";
 
 	public targetEntity;
 

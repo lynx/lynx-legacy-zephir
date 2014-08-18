@@ -8,5 +8,5 @@ class Column {
 
 	public name;
 
-	public type;
+	public type = "string";
 } 

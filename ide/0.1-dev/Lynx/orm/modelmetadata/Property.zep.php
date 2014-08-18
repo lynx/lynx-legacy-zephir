@@ -5,7 +5,7 @@ namespace Lynx\ORM\ModelMetaData;
 class Property
 {
 
-    protected $type;
+    protected $type = "string";
 
     protected $targetEntity;
 

@@ -57,7 +57,7 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, __construct) {
 	HashTable *_3, *_11;
 	HashPosition _2, _10;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *classname, *parser, *result = NULL, *properties = NULL, *column = NULL, *key = NULL, *value = NULL, *_0, *_1, **_4, *_5, *_6, *_7, *_8, *_9, **_12, *_13;
+	zval *classname, *parser, *result = NULL, *properties = NULL, *column = NULL, *key = NULL, *value = NULL, *_0, *_1, **_4, *_5, *_6, *_7, *_8, *_9, **_12;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &classname);
@@ -107,7 +107,7 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, __construct) {
 			zephir_update_property_array(this_ptr, SL("properties"), key, column TSRMLS_CC);
 		}
 	}
-	zephir_is_iterable(properties, &_11, &_10, 0, 0, "lynx/ORM/ModelMetaData.zep", 70);
+	zephir_is_iterable(properties, &_11, &_10, 0, 0, "lynx/ORM/ModelMetaData.zep", 72);
 	for (
 	  ; zephir_hash_get_current_data_ex(_11, (void**) &_12, &_10) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_11, &_10)
@@ -125,13 +125,16 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, __construct) {
 				zephir_update_property_zval(column, SL("id"), (1) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
 			}
 			zephir_array_fetch_string(&_6, value, SL("column"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 59 TSRMLS_CC);
-			zephir_array_fetch_string(&_7, _6, SL("type"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 59 TSRMLS_CC);
-			zephir_update_property_zval(column, SL("type"), _7 TSRMLS_CC);
-			zephir_array_fetch_string(&_8, value, SL("column"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 61 TSRMLS_CC);
-			if (zephir_array_isset_string(_8, SS("name"))) {
-				zephir_array_fetch_string(&_9, value, SL("column"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 62 TSRMLS_CC);
-				zephir_array_fetch_string(&_13, _9, SL("name"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 62 TSRMLS_CC);
-				zephir_update_property_zval(column, SL("name"), _13 TSRMLS_CC);
+			if (zephir_array_isset_string(_6, SS("type"))) {
+				zephir_array_fetch_string(&_7, value, SL("column"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 60 TSRMLS_CC);
+				zephir_array_fetch_string(&_8, _7, SL("type"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 60 TSRMLS_CC);
+				zephir_update_property_zval(column, SL("type"), _8 TSRMLS_CC);
+			}
+			zephir_array_fetch_string(&_6, value, SL("column"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 63 TSRMLS_CC);
+			if (zephir_array_isset_string(_6, SS("name"))) {
+				zephir_array_fetch_string(&_7, value, SL("column"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 64 TSRMLS_CC);
+				zephir_array_fetch_string(&_9, _7, SL("name"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 64 TSRMLS_CC);
+				zephir_update_property_zval(column, SL("name"), _9 TSRMLS_CC);
 			} else {
 				zephir_update_property_zval(column, SL("name"), key TSRMLS_CC);
 			}
@@ -216,7 +219,7 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getColumn) {
 	ZEPHIR_CALL_METHOD(&columns, this_ptr, "getcolumns",  NULL);
 	zephir_check_call_status();
 	if (zephir_array_isset(columns, key)) {
-		zephir_array_fetch(&_0, columns, key, PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 106 TSRMLS_CC);
+		zephir_array_fetch(&_0, columns, key, PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 108 TSRMLS_CC);
 		RETURN_CTOR(_0);
 	}
 	RETURN_MM_BOOL(0);
@@ -248,7 +251,7 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getProperty) {
 	ZEPHIR_CALL_METHOD(&properties, this_ptr, "getproperties",  NULL);
 	zephir_check_call_status();
 	if (zephir_array_isset(properties, key)) {
-		zephir_array_fetch(&_0, properties, key, PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 118 TSRMLS_CC);
+		zephir_array_fetch(&_0, properties, key, PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 120 TSRMLS_CC);
 		RETURN_CTOR(_0);
 	}
 	RETURN_MM_BOOL(0);
@@ -291,7 +294,7 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getFieldNameByColumn) {
 
 	ZEPHIR_CALL_METHOD(&properties, this_ptr, "getproperties",  NULL);
 	zephir_check_call_status();
-	zephir_is_iterable(properties, &_1, &_0, 0, 0, "lynx/ORM/ModelMetaData.zep", 146);
+	zephir_is_iterable(properties, &_1, &_0, 0, 0, "lynx/ORM/ModelMetaData.zep", 148);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)

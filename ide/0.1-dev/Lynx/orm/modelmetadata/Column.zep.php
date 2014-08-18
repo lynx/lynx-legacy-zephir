@@ -11,6 +11,6 @@ class Column
 
     protected $name;
 
-    protected $type;
+    protected $type = "string";
 
 }

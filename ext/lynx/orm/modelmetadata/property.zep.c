@@ -18,7 +18,7 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_ModelMetaData_Property) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\ORM\\ModelMetaData, Property, lynx, orm_modelmetadata_property, NULL, 0);
 
-	zend_declare_property_null(lynx_orm_modelmetadata_property_ce, SL("type"), ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_string(lynx_orm_modelmetadata_property_ce, SL("type"), "string", ZEND_ACC_PUBLIC TSRMLS_CC);
 
 	zend_declare_property_null(lynx_orm_modelmetadata_property_ce, SL("targetEntity"), ZEND_ACC_PUBLIC TSRMLS_CC);
 

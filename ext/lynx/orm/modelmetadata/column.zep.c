@@ -24,7 +24,7 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_ModelMetaData_Column) {
 
 	zend_declare_property_null(lynx_orm_modelmetadata_column_ce, SL("name"), ZEND_ACC_PUBLIC TSRMLS_CC);
 
-	zend_declare_property_null(lynx_orm_modelmetadata_column_ce, SL("type"), ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_string(lynx_orm_modelmetadata_column_ce, SL("type"), "string", ZEND_ACC_PUBLIC TSRMLS_CC);
 
 	return SUCCESS;
 
