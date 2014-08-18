@@ -86,8 +86,8 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassMethods, extract) {
 	HashTable *_2;
 	HashPosition _1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_6 = NULL, *_7 = NULL, *_9 = NULL, *_11 = NULL;
-	zval *currentObject, *methods = NULL, *method = NULL, *attribute = NULL, *attributes, **_3, _4 = zval_used_for_init, *_5 = NULL, *_8 = NULL, *_10 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_6 = NULL, *_8 = NULL, *_10 = NULL, *_12 = NULL;
+	zval *currentObject, *methods = NULL, *method = NULL, *attribute = NULL, *attributes, **_3, *_4 = NULL, *_5 = NULL, _7 = zval_used_for_init, *_9 = NULL, *_11 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &currentObject);
@@ -109,24 +109,25 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassMethods, extract) {
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HVALUE(method, _3);
-		ZEPHIR_SINIT_NVAR(_4);
-		ZVAL_STRING(&_4, "/^get/", 0);
-		ZEPHIR_CALL_FUNCTION(&_5, "preg_match", &_6, &_4, method);
+		ZEPHIR_INIT_NVAR(_4);
+		ZVAL_STRING(_4, "/^get/", 0);
+		ZEPHIR_CALL_FUNCTION(&_5, "preg_match", &_6, _4, method);
+		zephir_check_temp_parameter(_4);
 		zephir_check_call_status();
 		if (zephir_is_true(_5)) {
-			ZEPHIR_SINIT_NVAR(_4);
-			ZVAL_LONG(&_4, 3);
-			ZEPHIR_CALL_FUNCTION(&attribute, "substr", &_7, method, &_4);
+			ZEPHIR_SINIT_NVAR(_7);
+			ZVAL_LONG(&_7, 3);
+			ZEPHIR_CALL_FUNCTION(&attribute, "substr", &_8, method, &_7);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(&_8, "property_exists", &_9, currentObject, attribute);
+			ZEPHIR_CALL_FUNCTION(&_9, "property_exists", &_10, currentObject, attribute);
 			zephir_check_call_status();
-			if (!zephir_is_true(_8)) {
-				ZEPHIR_CALL_FUNCTION(&_10, "lcfirst", &_11, attribute);
+			if (!zephir_is_true(_9)) {
+				ZEPHIR_CALL_FUNCTION(&_11, "lcfirst", &_12, attribute);
 				zephir_check_call_status();
-				ZEPHIR_CPY_WRT(attribute, _10);
-				ZEPHIR_CALL_METHOD(&_10, currentObject, "attributes",  NULL);
+				ZEPHIR_CPY_WRT(attribute, _11);
+				ZEPHIR_CALL_METHOD(&_11, currentObject, "attributes",  NULL);
 				zephir_check_call_status();
-				zephir_array_update_zval(&attributes, attribute, &_10, PH_COPY | PH_SEPARATE);
+				zephir_array_update_zval(&attributes, attribute, &_11, PH_COPY | PH_SEPARATE);
 			}
 		}
 	}

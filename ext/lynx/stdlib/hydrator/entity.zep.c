@@ -91,11 +91,11 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, hydrate) {
  */
 PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, extract) {
 
-	HashTable *_3, *_12;
-	HashPosition _2, _11;
+	HashTable *_3, *_13;
+	HashPosition _2, _12;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_1 = NULL, *_7 = NULL, *_8 = NULL, *_10 = NULL;
-	zval *currentObject, *modelInfo = NULL, *methods = NULL, *method = NULL, *attribute = NULL, *attributes, *properties = NULL, *key = NULL, *value = NULL, **_4, _5 = zval_used_for_init, *_6 = NULL, *_9 = NULL, **_13;
+	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_1 = NULL, *_7 = NULL, *_9 = NULL, *_11 = NULL;
+	zval *currentObject, *modelInfo = NULL, *methods = NULL, *method = NULL, *attribute = NULL, *attributes, *properties = NULL, *key = NULL, *value = NULL, **_4, *_5 = NULL, *_6 = NULL, _8 = zval_used_for_init, *_10 = NULL, **_14;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &currentObject, &modelInfo);
@@ -122,34 +122,35 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, extract) {
 	  ; zephir_hash_move_forward_ex(_3, &_2)
 	) {
 		ZEPHIR_GET_HVALUE(method, _4);
-		ZEPHIR_SINIT_NVAR(_5);
-		ZVAL_STRING(&_5, "/^get/", 0);
-		ZEPHIR_CALL_FUNCTION(&_6, "preg_match", &_7, &_5, method);
+		ZEPHIR_INIT_NVAR(_5);
+		ZVAL_STRING(_5, "/^get/", 0);
+		ZEPHIR_CALL_FUNCTION(&_6, "preg_match", &_7, _5, method);
+		zephir_check_temp_parameter(_5);
 		zephir_check_call_status();
 		if (zephir_is_true(_6)) {
-			ZEPHIR_SINIT_NVAR(_5);
-			ZVAL_LONG(&_5, 3);
-			ZEPHIR_CALL_FUNCTION(&attribute, "substr", &_8, method, &_5);
+			ZEPHIR_SINIT_NVAR(_8);
+			ZVAL_LONG(&_8, 3);
+			ZEPHIR_CALL_FUNCTION(&attribute, "substr", &_9, method, &_8);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(&_9, "lcfirst", &_10, attribute);
+			ZEPHIR_CALL_FUNCTION(&_10, "lcfirst", &_11, attribute);
 			zephir_check_call_status();
-			ZEPHIR_CPY_WRT(attribute, _9);
+			ZEPHIR_CPY_WRT(attribute, _10);
 			if (!zephir_array_isset(properties, attribute)) {
-				ZEPHIR_CALL_METHOD(&_9, currentObject, Z_STRVAL_P(method),  NULL);
+				ZEPHIR_CALL_METHOD(&_10, currentObject, Z_STRVAL_P(method),  NULL);
 				zephir_check_call_status();
-				zephir_array_update_zval(&attributes, attribute, &_9, PH_COPY | PH_SEPARATE);
+				zephir_array_update_zval(&attributes, attribute, &_10, PH_COPY | PH_SEPARATE);
 			} else {
 				zephir_array_unset(&properties, attribute, PH_SEPARATE);
 			}
 		}
 	}
-	zephir_is_iterable(properties, &_12, &_11, 0, 0, "lynx/Stdlib/Hydrator/Entity.zep", 56);
+	zephir_is_iterable(properties, &_13, &_12, 0, 0, "lynx/Stdlib/Hydrator/Entity.zep", 56);
 	for (
-	  ; zephir_hash_get_current_data_ex(_12, (void**) &_13, &_11) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_12, &_11)
+	  ; zephir_hash_get_current_data_ex(_13, (void**) &_14, &_12) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_13, &_12)
 	) {
-		ZEPHIR_GET_HMKEY(key, _12, _11);
-		ZEPHIR_GET_HVALUE(value, _13);
+		ZEPHIR_GET_HMKEY(key, _13, _12);
+		ZEPHIR_GET_HVALUE(value, _14);
 		zephir_array_update_zval(&attributes, key, &value, PH_COPY | PH_SEPARATE);
 	}
 	RETURN_CCTOR(attributes);
