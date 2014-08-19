@@ -7,9 +7,9 @@ PHP_METHOD(Lynx_ORM_QueryBuilder_Expression_Where, __construct);
 PHP_METHOD(Lynx_ORM_QueryBuilder_Expression_Where, __toString);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_expression_where___construct, 0, 0, 3)
-	ZEND_ARG_INFO(0, type)
 	ZEND_ARG_INFO(0, leftExpr)
 	ZEND_ARG_INFO(0, rightExpr)
+	ZEND_ARG_INFO(0, type)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(lynx_orm_querybuilder_expression_where_method_entry) {

@@ -27,16 +27,16 @@ class Where
 
     private $type;
 
-    private $rightExpr;
-
     private $leftExpr;
 
+    private $rightExpr;
+
     /**
-     * @param string $type 
      * @param mixed $leftExpr 
      * @param mixed $rightExpr 
+     * @param string $type 
      */
-	public function __construct($type, $leftExpr, $rightExpr) {}
+	public function __construct($leftExpr, $rightExpr, $type) {}
 
 
 	public function __toString() {}

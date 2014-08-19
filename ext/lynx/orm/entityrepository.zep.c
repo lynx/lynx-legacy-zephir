@@ -118,7 +118,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, createQueryBuilder) {
 PHP_METHOD(Lynx_ORM_EntityRepository, find) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *id, *_0 = NULL, *_1, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6;
+	zval *id, *_0 = NULL, *_1, *_2 = NULL, *_3, *_4 = NULL, *_5 = NULL, *_6 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &id);
@@ -131,24 +131,27 @@ PHP_METHOD(Lynx_ORM_EntityRepository, find) {
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_BNVAR(_1);
-	ZVAL_STRING(_1, "find_.id = :id", 0);
-	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _1);
+	ZVAL_STRING(_1, "find_.id", 0);
+	ZEPHIR_INIT_VAR(_3);
+	ZVAL_STRING(_3, ":id", 0);
+	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _1, _3);
 	zephir_check_temp_parameter(_1);
+	zephir_check_temp_parameter(_3);
 	zephir_check_call_status();
 	ZEPHIR_INIT_BNVAR(_1);
 	ZVAL_LONG(_1, 1);
-	ZEPHIR_CALL_METHOD(&_3, _2, "limit", NULL, _1);
+	ZEPHIR_CALL_METHOD(&_4, _2, "limit", NULL, _1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_4, _3, "getquery",  NULL);
+	ZEPHIR_CALL_METHOD(&_5, _4, "getquery",  NULL);
 	zephir_check_call_status();
 	ZEPHIR_INIT_BNVAR(_1);
 	ZVAL_STRING(_1, "id", 0);
-	ZEPHIR_INIT_VAR(_6);
-	ZVAL_LONG(_6, 1);
-	ZEPHIR_CALL_METHOD(&_5, _4, "bindvalue", NULL, _1, id, _6);
+	ZEPHIR_INIT_BNVAR(_3);
+	ZVAL_LONG(_3, 1);
+	ZEPHIR_CALL_METHOD(&_6, _5, "bindvalue", NULL, _1, id, _3);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(_5, "fetchone", NULL);
+	ZEPHIR_RETURN_CALL_METHOD(_6, "fetchone", NULL);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -241,8 +244,11 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findBy) {
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_3);
-	ZEPHIR_CONCAT_SVS(_3, "find_.", column, " = :column");
-	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _3);
+	ZEPHIR_CONCAT_SV(_3, "find_.", column);
+	ZEPHIR_INIT_BNVAR(_1);
+	ZVAL_STRING(_1, ":column", 0);
+	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _3, _1);
+	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_4, _2, "getquery",  NULL);
 	zephir_check_call_status();
@@ -293,8 +299,11 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findOneBy) {
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_3);
-	ZEPHIR_CONCAT_SVS(_3, "find_.", column, " = :column");
-	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _3);
+	ZEPHIR_CONCAT_SV(_3, "find_.", column);
+	ZEPHIR_INIT_BNVAR(_1);
+	ZVAL_STRING(_1, ":column", 0);
+	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _3, _1);
+	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_BNVAR(_1);
 	ZVAL_LONG(_1, 1);

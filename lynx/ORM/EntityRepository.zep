@@ -42,7 +42,7 @@ class EntityRepository
     public function find(var id)
     {
 		return this->createQueryBuilder("find_")
-			->where("find_.id = :id")
+			->where("find_.id", ":id")
 			->limit(1)
 			->getQuery()
 			->bindValue("id", id, \PDO::PARAM_INT)
@@ -79,7 +79,7 @@ class EntityRepository
     public function findBy(string! column, var value)
     {
 		return this->createQueryBuilder("find_")
-			->where("find_." .column. " = :column")
+			->where("find_." .column, ":column")
 			->getQuery()
 			->bindValue("column", value, \PDO::PARAM_INT)
 			->fetchAll();
@@ -94,7 +94,7 @@ class EntityRepository
     public function findOneBy(string! column, var value)
     {
 		return this->createQueryBuilder("find_")
-			->where("find_." .column. " = :column")
+			->where("find_." .column, ":column")
 			->limit(1)
 			->getQuery()
 			->bindValue("column", value, \PDO::PARAM_INT)

@@ -55,7 +55,7 @@ class QueryBuilderTest
     {
         $queryBuilder = $this->_em->createQueryBuilder();
 
-        $queryBuilder = $this->_em->createQueryBuilder()->select()->from('Model\User', 'u')->where('u.id = :id');
+        $queryBuilder = $this->_em->createQueryBuilder()->select()->from('Model\User', 'u')->where('u.id', ':id');
         $this->assertEquals('SELECT * FROM `users` u WHERE u.id = :id', $queryBuilder->getSQL());
         $query = $queryBuilder->getQuery()->bindParam('id', 1);
         $this->assertInternalType('array', $query->fetchArray());

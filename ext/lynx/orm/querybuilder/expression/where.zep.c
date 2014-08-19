@@ -24,9 +24,9 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_QueryBuilder_Expression_Where) {
 
 	zend_declare_property_null(lynx_orm_querybuilder_expression_where_ce, SL("type"), ZEND_ACC_PRIVATE TSRMLS_CC);
 
-	zend_declare_property_null(lynx_orm_querybuilder_expression_where_ce, SL("rightExpr"), ZEND_ACC_PRIVATE TSRMLS_CC);
-
 	zend_declare_property_null(lynx_orm_querybuilder_expression_where_ce, SL("leftExpr"), ZEND_ACC_PRIVATE TSRMLS_CC);
+
+	zend_declare_property_null(lynx_orm_querybuilder_expression_where_ce, SL("rightExpr"), ZEND_ACC_PRIVATE TSRMLS_CC);
 
 	zend_declare_class_constant_string(lynx_orm_querybuilder_expression_where_ce, SL("EQUAL"), "=" TSRMLS_CC);
 
@@ -54,11 +54,11 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_QueryBuilder_Expression_Where) {
 
 PHP_METHOD(Lynx_ORM_QueryBuilder_Expression_Where, __construct) {
 
-	zval *type_param = NULL, *leftExpr, *rightExpr;
 	zval *type = NULL;
+	zval *leftExpr, *rightExpr, *type_param = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 3, 0, &type_param, &leftExpr, &rightExpr);
+	zephir_fetch_params(1, 3, 0, &leftExpr, &rightExpr, &type_param);
 
 	zephir_get_strval(type, type_param);
 

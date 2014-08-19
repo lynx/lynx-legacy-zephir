@@ -193,7 +193,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, from) {
 		ZEPHIR_CONCAT_SVS(_7, "Cant find model by alias '", _6, "'");
 		ZEPHIR_CALL_METHOD(NULL, _5, "__construct", NULL, _7);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_5, "lynx/ORM/QueryBuilder.zep", 76 TSRMLS_CC);
+		zephir_throw_exception_debug(_5, "lynx/ORM/QueryBuilder.zep", 77 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -262,8 +262,8 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, leftJoin) {
 
 	ZEPHIR_INIT_VAR(aliases);
 	zephir_fast_explode_str(aliases, SL("."), join, LONG_MAX TSRMLS_CC);
-	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 98 TSRMLS_CC);
-	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 98 TSRMLS_CC);
+	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 99 TSRMLS_CC);
+	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 99 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "LEFT", 0);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparejoin", NULL, _2, _0, _1, alias);
@@ -285,8 +285,8 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, rightJoin) {
 
 	ZEPHIR_INIT_VAR(aliases);
 	zephir_fast_explode_str(aliases, SL("."), join, LONG_MAX TSRMLS_CC);
-	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 108 TSRMLS_CC);
-	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 108 TSRMLS_CC);
+	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 109 TSRMLS_CC);
+	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 109 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "RIGHT", 0);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparejoin", NULL, _2, _0, _1, alias);
@@ -308,8 +308,8 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, innerJoin) {
 
 	ZEPHIR_INIT_VAR(aliases);
 	zephir_fast_explode_str(aliases, SL("."), join, LONG_MAX TSRMLS_CC);
-	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 118 TSRMLS_CC);
-	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 118 TSRMLS_CC);
+	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 119 TSRMLS_CC);
+	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 119 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "INNER", 0);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparejoin", NULL, _2, _0, _1, alias);
@@ -331,8 +331,8 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, join) {
 
 	ZEPHIR_INIT_VAR(aliases);
 	zephir_fast_explode_str(aliases, SL("."), join, LONG_MAX TSRMLS_CC);
-	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 128 TSRMLS_CC);
-	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 128 TSRMLS_CC);
+	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 129 TSRMLS_CC);
+	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 129 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "", 0);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparejoin", NULL, _2, _0, _1, alias);
@@ -342,34 +342,21 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, join) {
 
 }
 
-PHP_METHOD(Lynx_ORM_QueryBuilder, where) {
+PHP_METHOD(Lynx_ORM_QueryBuilder, Where) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *statement, *_0 = NULL;
+	zval *column, *value, *comparison = NULL, *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &statement);
+	zephir_fetch_params(1, 2, 1, &column, &value, &comparison);
+
+	if (!comparison) {
+		ZEPHIR_INIT_VAR(comparison);
+		ZVAL_STRING(comparison, "=", 1);
+	}
 
 
-
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "preparewherestatement", NULL, statement);
-	zephir_check_call_status();
-	zephir_update_property_array_append(this_ptr, SL("where"), _0 TSRMLS_CC);
-	RETURN_THIS();
-
-}
-
-PHP_METHOD(Lynx_ORM_QueryBuilder, andWhere) {
-
-	int ZEPHIR_LAST_CALL_STATUS;
-	zval *statement, *_0 = NULL;
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &statement);
-
-
-
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "preparewherestatement", NULL, statement);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "addwhere", NULL, column, value, comparison);
 	zephir_check_call_status();
 	zephir_update_property_array_append(this_ptr, SL("where"), _0 TSRMLS_CC);
 	RETURN_THIS();
@@ -393,11 +380,52 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, orWhere) {
 	Z_UNSET_ISREF_P(_0);
 	zephir_check_call_status();
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
-	zephir_array_fetch(&_3, _2, index, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 152 TSRMLS_CC);
+	zephir_array_fetch(&_3, _2, index, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 146 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_4);
 	ZEPHIR_CONCAT_SVSVS(_4, "(", _3, " OR ", statement, ")");
 	zephir_update_property_array(this_ptr, SL("where"), index, _4 TSRMLS_CC);
 	RETURN_THIS();
+
+}
+
+PHP_METHOD(Lynx_ORM_QueryBuilder, addWhere) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *column, *value, *comparison, *tmpField, *property = NULL, *propertyStatement = NULL, *_0, *_1, *_2 = NULL, *_3;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 3, 0, &column, &value, &comparison);
+
+
+
+	ZEPHIR_INIT_VAR(tmpField);
+	ZEPHIR_INIT_VAR(_0);
+	zephir_fast_trim(_0, column, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
+	zephir_fast_explode_str(tmpField, SL("."), _0, LONG_MAX TSRMLS_CC);
+	if (Z_TYPE_P(tmpField) == IS_ARRAY) {
+		_1 = zephir_fetch_nproperty_this(this_ptr, SL("rootModel"), PH_NOISY_CC);
+		ZEPHIR_INIT_VAR(_2);
+		zephir_array_fetch_long(&_3, tmpField, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 158 TSRMLS_CC);
+		zephir_fast_trim(_2, _3, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
+		ZEPHIR_CALL_METHOD(&property, _1, "getcolumn", NULL, _2);
+		zephir_check_call_status();
+		//missing empty
+		ZEPHIR_OBS_VAR(propertyStatement);
+		zephir_read_property(&propertyStatement, property, SL("name"), PH_NOISY_CC);
+	} else {
+		_1 = zephir_fetch_nproperty_this(this_ptr, SL("rootModel"), PH_NOISY_CC);
+		ZEPHIR_INIT_NVAR(_2);
+		zephir_array_fetch_long(&_3, tmpField, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 161 TSRMLS_CC);
+		zephir_fast_trim(_2, _3, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
+		ZEPHIR_CALL_METHOD(&property, _1, "getcolumn", NULL, _2);
+		zephir_check_call_status();
+		ZEPHIR_OBS_NVAR(propertyStatement);
+		zephir_read_property(&propertyStatement, property, SL("name"), PH_NOISY_CC);
+	}
+	object_init_ex(return_value, lynx_orm_querybuilder_expression_where_ce);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, propertyStatement, value, comparison);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 
@@ -451,7 +479,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, limit) {
 
 
 	if (limit <= 0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "$limit must be >= 0", "lynx/ORM/QueryBuilder.zep", 173);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "$limit must be >= 0", "lynx/ORM/QueryBuilder.zep", 184);
 		return;
 	}
 	ZEPHIR_INIT_ZVAL_NREF(_0);
@@ -505,7 +533,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
 	if (Z_TYPE_P(_0) == IS_NULL) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "From field must be set", "lynx/ORM/QueryBuilder.zep", 198);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "From field must be set", "lynx/ORM/QueryBuilder.zep", 209);
 		return;
 	}
 	ZEPHIR_OBS_VAR(_1);
@@ -541,7 +569,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 	_7 = zephir_fetch_nproperty_this(this_ptr, SL("joins"), PH_NOISY_CC);
 	if (zephir_fast_count_int(_7 TSRMLS_CC) > 0) {
 		_8 = zephir_fetch_nproperty_this(this_ptr, SL("joins"), PH_NOISY_CC);
-		zephir_is_iterable(_8, &_10, &_9, 0, 0, "lynx/ORM/QueryBuilder.zep", 219);
+		zephir_is_iterable(_8, &_10, &_9, 0, 0, "lynx/ORM/QueryBuilder.zep", 230);
 		for (
 		  ; zephir_hash_get_current_data_ex(_10, (void**) &_11, &_9) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_10, &_9)
@@ -613,54 +641,6 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getQuery) {
 	ZEPHIR_CALL_METHOD(NULL, query, "setidentitymap", NULL, identityMap);
 	zephir_check_call_status();
 	RETURN_CCTOR(query);
-
-}
-
-PHP_METHOD(Lynx_ORM_QueryBuilder, prepareWhereStatement) {
-
-	int ZEPHIR_LAST_CALL_STATUS;
-	zval *statement, *tmp, *property = NULL, *tmpField, *_0, *_1, *_2, *_3 = NULL, *_4, *_5, *_6 = NULL, *_7;
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &statement);
-
-	ZEPHIR_SEPARATE_PARAM(statement);
-
-
-	ZEPHIR_INIT_VAR(tmp);
-	zephir_fast_explode_str(tmp, SL("="), statement, LONG_MAX TSRMLS_CC);
-	ZEPHIR_INIT_VAR(tmpField);
-	ZEPHIR_INIT_VAR(_0);
-	zephir_array_fetch_long(&_1, tmp, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 260 TSRMLS_CC);
-	zephir_fast_trim(_0, _1, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
-	zephir_fast_explode_str(tmpField, SL("."), _0, LONG_MAX TSRMLS_CC);
-	ZEPHIR_INIT_BNVAR(statement);
-	if (Z_TYPE_P(tmpField) == IS_ARRAY) {
-		_2 = zephir_fetch_nproperty_this(this_ptr, SL("rootModel"), PH_NOISY_CC);
-		ZEPHIR_INIT_VAR(_3);
-		zephir_array_fetch_long(&_4, tmpField, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 262 TSRMLS_CC);
-		zephir_fast_trim(_3, _4, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
-		ZEPHIR_CALL_METHOD(&property, _2, "getcolumn", NULL, _3);
-		zephir_check_call_status();
-		//missing empty
-		zephir_array_fetch_long(&_5, tmpField, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 263 TSRMLS_CC);
-		ZEPHIR_OBS_VAR(_6);
-		zephir_read_property(&_6, property, SL("name"), PH_NOISY_CC);
-		zephir_array_fetch_long(&_7, tmp, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 263 TSRMLS_CC);
-		ZEPHIR_CONCAT_VSVSV(statement, _5, ".", _6, " =", _7);
-	} else {
-		_2 = zephir_fetch_nproperty_this(this_ptr, SL("rootModel"), PH_NOISY_CC);
-		ZEPHIR_INIT_NVAR(_3);
-		zephir_array_fetch_long(&_4, tmp, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 265 TSRMLS_CC);
-		zephir_fast_trim(_3, _4, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
-		ZEPHIR_CALL_METHOD(&property, _2, "getcolumn", NULL, _3);
-		zephir_check_call_status();
-		ZEPHIR_OBS_NVAR(_6);
-		zephir_read_property(&_6, property, SL("name"), PH_NOISY_CC);
-		zephir_array_fetch_long(&_5, tmp, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 266 TSRMLS_CC);
-		ZEPHIR_CONCAT_VSV(statement, _6, " =", _5);
-	}
-	RETURN_CCTOR(statement);
 
 }
 

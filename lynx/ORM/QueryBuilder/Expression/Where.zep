@@ -18,11 +18,11 @@ class Where
 
 	private type;
 
-	private rightExpr;
-
 	private leftExpr;
 
-    public fn __construct(string type, var leftExpr, var rightExpr)
+	private rightExpr;
+
+    public fn __construct(var leftExpr, var rightExpr, string type)
     {
 		let this->type = type;
 		let this->leftExpr = leftExpr;

@@ -105,19 +105,23 @@ class QueryBuilder
 	public function join($join, $alias) {}
 
     /**
-     * @param mixed $statement 
+     * @param mixed $column 
+     * @param mixed $value 
+     * @param mixed $comparison 
      */
-	public function where($statement) {}
-
-    /**
-     * @param mixed $statement 
-     */
-	public function andWhere($statement) {}
+	public function Where($column, $value, $comparison = Where::EQUAL) {}
 
     /**
      * @param mixed $statement 
      */
 	public function orWhere($statement) {}
+
+    /**
+     * @param mixed $column 
+     * @param mixed $value 
+     * @param mixed $comparison 
+     */
+	protected function addWhere($column, $value, $comparison) {}
 
     /**
      * 
@@ -157,10 +161,5 @@ class QueryBuilder
      * @return Query 
      */
 	public function getQuery() {}
-
-    /**
-     * @param mixed $statement 
-     */
-	protected function prepareWhereStatement($statement) {}
 
 }

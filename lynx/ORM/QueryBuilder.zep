@@ -5,6 +5,7 @@
 namespace Lynx\ORM;
 
 use Lynx\ORM\QueryBuilder\Expression\Join;
+use Lynx\ORM\QueryBuilder\Expression\Where;
 
 class QueryBuilder
 {
@@ -130,16 +131,9 @@ class QueryBuilder
 		return this;
 	}
 
-	public function where(var statement)
+	public function Where(var column, var value, var comparison = Where::EQUAL)
 	{
-		let this->where[] = this->prepareWhereStatement(statement);
-
-		return this;
-	}
-
-	public function andWhere(var statement)
-	{
-		let this->where[] = this->prepareWhereStatement(statement);
+		let this->where[] = this->addWhere(column, value, comparison);
 
 		return this;
 	}
@@ -152,6 +146,23 @@ class QueryBuilder
 		let this->where[index] = "(" . this->where[index] . " OR " . statement . ")";
 
 		return this;
+	}
+
+	protected function addWhere(var column, var value, var comparison)
+	{
+		var tmpField, property, propertyStatement;
+
+		let tmpField = explode(".", trim(column));
+
+		if (is_array(tmpField)) {
+			let property = this->rootModel->getColumn(trim(tmpField[1]));;
+			let propertyStatement = property->name;
+		} else {
+			let property = this->rootModel->getColumn(trim(tmpField[0]));
+			let propertyStatement = property->name;
+		}
+
+		return new Where(propertyStatement, value, comparison);
 	}
 
 	/**
@@ -250,22 +261,5 @@ class QueryBuilder
 		query->setIdentityMap(identityMap);
 
 		return query;
-	}
-
-	inline protected function prepareWhereStatement(statement)
-	{
-		var tmp, property, tmpField;
-		let tmp = explode("=", statement);
-
-		let tmpField = explode(".", trim(tmp[0]));
-		if (is_array(tmpField)) {
-			let property = this->rootModel->getColumn(trim(tmpField[1]));;
-			let statement = tmpField[0] . "." . property->name . " =" . tmp[1];
-		} else {
-			let property = this->rootModel->getColumn(trim(tmp[0]));
-			let statement = property->name . " =" . tmp[1];
-		}
-
-		return statement;
 	}
 }
