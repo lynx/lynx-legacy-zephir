@@ -74,8 +74,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_where, 0, 0, 2)
 	ZEND_ARG_INFO(0, comparison)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_orwhere, 0, 0, 1)
-	ZEND_ARG_INFO(0, statement)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_orwhere, 0, 0, 2)
+	ZEND_ARG_INFO(0, column)
+	ZEND_ARG_INFO(0, value)
+	ZEND_ARG_INFO(0, comparison)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_addwhere, 0, 0, 3)

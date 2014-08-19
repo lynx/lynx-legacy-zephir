@@ -138,9 +138,11 @@ class QueryBuilder
 		return this;
 	}
 
-	public function orWhere(var statement)
+	public function orWhere(var column, var value, var comparison = Where::EQUAL)
 	{
-		var index;
+		var index, statement;
+
+		let statement = this->addWhere(column, value, comparison);
 		let index = key(this->where);
 
 		let this->where[index] = "(" . this->where[index] . " OR " . statement . ")";
