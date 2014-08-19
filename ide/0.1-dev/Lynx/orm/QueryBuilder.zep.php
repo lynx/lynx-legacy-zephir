@@ -123,7 +123,7 @@ class QueryBuilder
      * @param mixed $value 
      * @param mixed $comparison 
      */
-	protected function addWhere($column, $value, $comparison) {}
+	protected function prepareWhereStatement($column, $value, $comparison) {}
 
     /**
      * 

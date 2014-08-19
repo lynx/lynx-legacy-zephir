@@ -133,7 +133,7 @@ class QueryBuilder
 
 	public function Where(var column, var value, var comparison = Where::EQUAL)
 	{
-		let this->where[] = this->addWhere(column, value, comparison);
+		let this->where[] = this->prepareWhereStatement(column, value, comparison);
 
 		return this;
 	}
@@ -142,7 +142,7 @@ class QueryBuilder
 	{
 		var index, statement;
 
-		let statement = this->addWhere(column, value, comparison);
+		let statement = this->prepareWhereStatement(column, value, comparison);
 		let index = key(this->where);
 
 		let this->where[index] = "(" . this->where[index] . " OR " . statement . ")";
@@ -150,7 +150,7 @@ class QueryBuilder
 		return this;
 	}
 
-	protected function addWhere(var column, var value, var comparison)
+	inline protected function prepareWhereStatement(var column, var value, var comparison)
 	{
 		var tmpField, property, propertyStatement;
 

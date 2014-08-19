@@ -356,7 +356,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, Where) {
 	}
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "addwhere", NULL, column, value, comparison);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "preparewherestatement", NULL, column, value, comparison);
 	zephir_check_call_status();
 	zephir_update_property_array_append(this_ptr, SL("where"), _0 TSRMLS_CC);
 	RETURN_THIS();
@@ -378,7 +378,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, orWhere) {
 	}
 
 
-	ZEPHIR_CALL_METHOD(&statement, this_ptr, "addwhere", NULL, column, value, comparison);
+	ZEPHIR_CALL_METHOD(&statement, this_ptr, "preparewherestatement", NULL, column, value, comparison);
 	zephir_check_call_status();
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("where"), PH_NOISY_CC);
 	Z_SET_ISREF_P(_0);
@@ -394,7 +394,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, orWhere) {
 
 }
 
-PHP_METHOD(Lynx_ORM_QueryBuilder, addWhere) {
+PHP_METHOD(Lynx_ORM_QueryBuilder, prepareWhereStatement) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *column, *value, *comparison, *tmpField, *property = NULL, *propertyStatement = NULL, *_0, *_1, *_2 = NULL, *_3, *_4, *_5;
