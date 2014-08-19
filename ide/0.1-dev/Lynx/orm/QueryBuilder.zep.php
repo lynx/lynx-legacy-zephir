@@ -112,9 +112,11 @@ class QueryBuilder
 	public function Where($column, $value, $comparison = Where::EQUAL) {}
 
     /**
-     * @param mixed $statement 
+     * @param mixed $column 
+     * @param mixed $value 
+     * @param mixed $comparison 
      */
-	public function orWhere($statement) {}
+	public function orWhere($column, $value, $comparison = Where::EQUAL) {}
 
     /**
      * @param mixed $column 
