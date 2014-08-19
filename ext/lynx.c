@@ -51,6 +51,7 @@ zend_class_entry *lynx_orm_modelsmanager_ce;
 zend_class_entry *lynx_orm_query_ce;
 zend_class_entry *lynx_orm_querybuilder_ce;
 zend_class_entry *lynx_orm_querybuilder_expression_join_ce;
+zend_class_entry *lynx_orm_querybuilder_expression_where_ce;
 zend_class_entry *lynx_orm_queryidentitymap_ce;
 zend_class_entry *lynx_orm_sqlbuilder_ce;
 zend_class_entry *lynx_orm_unitofwork_ce;
@@ -252,6 +253,7 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_ORM_Query);
 	ZEPHIR_INIT(Lynx_ORM_QueryBuilder);
 	ZEPHIR_INIT(Lynx_ORM_QueryBuilder_Expression_Join);
+	ZEPHIR_INIT(Lynx_ORM_QueryBuilder_Expression_Where);
 	ZEPHIR_INIT(Lynx_ORM_QueryIdentityMap);
 	ZEPHIR_INIT(Lynx_ORM_SqlBuilder);
 	ZEPHIR_INIT(Lynx_ORM_UnitOfWork);

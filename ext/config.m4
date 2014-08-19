@@ -26,6 +26,7 @@ if test "$PHP_LYNX" = "yes"; then
 	lynx/orm/query.zep.c
 	lynx/orm/querybuilder.zep.c
 	lynx/orm/querybuilder/expression/join.zep.c
+	lynx/orm/querybuilder/expression/where.zep.c
 	lynx/orm/queryidentitymap.zep.c
 	lynx/orm/sqlbuilder.zep.c
 	lynx/orm/unitofwork.zep.c

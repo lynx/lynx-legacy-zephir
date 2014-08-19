@@ -28,6 +28,7 @@
 #include "lynx/orm/query.zep.h"
 #include "lynx/orm/querybuilder.zep.h"
 #include "lynx/orm/querybuilder/expression/join.zep.h"
+#include "lynx/orm/querybuilder/expression/where.zep.h"
 #include "lynx/orm/queryidentitymap.zep.h"
 #include "lynx/orm/sqlbuilder.zep.h"
 #include "lynx/orm/unitofwork.zep.h"
