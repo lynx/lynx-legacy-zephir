@@ -156,7 +156,7 @@ class QueryBuilder
 
 		if (is_array(tmpField)) {
 			let property = this->rootModel->getColumn(trim(tmpField[1]));;
-			let propertyStatement = property->name;
+			let propertyStatement = tmpField[0] . "." . property->name;
 		} else {
 			let property = this->rootModel->getColumn(trim(tmpField[0]));
 			let propertyStatement = property->name;

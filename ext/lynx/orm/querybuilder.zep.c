@@ -391,7 +391,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, orWhere) {
 PHP_METHOD(Lynx_ORM_QueryBuilder, addWhere) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *column, *value, *comparison, *tmpField, *property = NULL, *propertyStatement = NULL, *_0, *_1, *_2 = NULL, *_3;
+	zval *column, *value, *comparison, *tmpField, *property = NULL, *propertyStatement = NULL, *_0, *_1, *_2 = NULL, *_3, *_4, *_5;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &column, &value, &comparison);
@@ -410,8 +410,11 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, addWhere) {
 		ZEPHIR_CALL_METHOD(&property, _1, "getcolumn", NULL, _2);
 		zephir_check_call_status();
 		//missing empty
-		ZEPHIR_OBS_VAR(propertyStatement);
-		zephir_read_property(&propertyStatement, property, SL("name"), PH_NOISY_CC);
+		zephir_array_fetch_long(&_4, tmpField, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 159 TSRMLS_CC);
+		ZEPHIR_OBS_VAR(_5);
+		zephir_read_property(&_5, property, SL("name"), PH_NOISY_CC);
+		ZEPHIR_INIT_VAR(propertyStatement);
+		ZEPHIR_CONCAT_VSV(propertyStatement, _4, ".", _5);
 	} else {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("rootModel"), PH_NOISY_CC);
 		ZEPHIR_INIT_NVAR(_2);
