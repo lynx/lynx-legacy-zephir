@@ -31,15 +31,15 @@ ZEPHIR_INIT_CLASS(Lynx_Cache_CacheDriver) {
 
 }
 
+/**
+ * Get data by id
+ */
 PHP_METHOD(Lynx_Cache_CacheDriver, get) {
 
 }
 
 /**
  * Data with id exists?
- *
- * @param string $id
- * @return boolean
  */
 PHP_METHOD(Lynx_Cache_CacheDriver, exists) {
 

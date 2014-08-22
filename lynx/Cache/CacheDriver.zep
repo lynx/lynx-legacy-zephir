@@ -7,14 +7,13 @@ namespace Lynx\Cache;
  */
 abstract class CacheDriver implements Driver
 {
-	//zephir bug :D
+	/**
+	 * Get data by id
+	 */
 	abstract public function get(string! id);
 
 	/**
 	 * Data with id exists?
-	 *
-	 * @param string $id
-	 * @return boolean
 	 */
 	public function exists(string! id)
 	{
