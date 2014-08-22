@@ -3,61 +3,61 @@ namespace Lynx\Cache;
 
 class NativeArray extends CacheDriver
 {
-    protected options;
+	protected options;
 
-    protected instance = [] {get};
+	protected instance = [] {get};
 
-    public function __construct(array options = null)
-    {
-        let this->options = options;
-    }
+	public function __construct(array options = null)
+	{
+		let this->options = options;
+	}
 
-    public function setInstance(array! instance)
-    {
-        let this->instance = instance;
-    }
-
-	/**
-	 * {@inheritDoc}
-	 */
-    public function save(string! id, data, lifeTime = 3600)
-    {
-        let this->instance[id] = data;
-    }
+	public function setInstance(array! instance)
+	{
+		let this->instance = instance;
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-    public function delete(string! id) -> boolean
-    {
-        if (isset(this->instance[id])) {
-            unset(this->instance[id]);
-
-            return true;
-        }
-
-        return false;
-    }
+	public function save(string! id, data, lifeTime = 3600)
+	{
+		let this->instance[id] = data;
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-    public function get(string! id)
-    {
-        var result;
+	public function delete(string! id) -> boolean
+	{
+		if (isset(this->instance[id])) {
+			unset(this->instance[id]);
 
-        if fetch result, this->instance[id] {
-            return result;
-        }
+			return true;
+		}
 
-        return false;
-    }
+		return false;
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-    public function flush()
-    {
-        let this->instance = [];
-    }
+	public function get(string! id)
+	{
+		var result;
+
+		if fetch result, this->instance[id] {
+			return result;
+		}
+
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function flush()
+	{
+		let this->instance = [];
+	}
 }

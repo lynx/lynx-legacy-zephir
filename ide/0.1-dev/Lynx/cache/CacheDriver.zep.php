@@ -12,9 +12,12 @@ abstract class CacheDriver implements \Lynx\Cache\Driver
 
     /**
      * Data with id exists?
+     * 	
+     * @param string $id
+     * @return boolean
+     * 	
      *
      * @param string $id 
-     * @return boolean 
      */
 	public function exists($id) {}
 
