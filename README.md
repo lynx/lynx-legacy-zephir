@@ -4,7 +4,9 @@ Lynx ORM|DBAL
 [![Build Status](https://travis-ci.org/lynx/lynx.svg)](https://travis-ci.org/lynx/lynx)
 [![License](https://poser.pugx.org/lynx/lynx/license.svg)](https://packagist.org/packages/lynx/lynx)
 
-### Why it would be need?
+<img align="right" height="300" src="http://dmtry.me/img/logos/lynx_bnw.svg">
+
+> Yet another ORM\DBAL written by Zephir language.
 
 I like Doctrine2 but i dislike Phalcon 2 ORM* and create this project for incubate new ORM on Zephir Language for best performance.
 
