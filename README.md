@@ -4,7 +4,7 @@ Lynx ORM|DBAL
 [![Build Status](https://travis-ci.org/lynx/lynx.svg)](https://travis-ci.org/lynx/lynx)
 [![License](https://poser.pugx.org/lynx/lynx/license.svg)](https://packagist.org/packages/lynx/lynx)
 
-<img align="right" height="300" src="http://dmtry.me/img/logos/lynx_bnw.svg">
+<img align="right" height="180" src="http://dmtry.me/img/logos/lynx_bnw.svg">
 
 > Yet another ORM\DBAL written by Zephir language.
 
