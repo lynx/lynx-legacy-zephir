@@ -35,27 +35,21 @@
 <a href="https://travis-ci.org/lynx/lynx"><img src="https://travis-ci.org/lynx/lynx.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/lynx/lynx"><img src="https://poser.pugx.org/lynx/lynx/license.svg" alt="License"></a></p>
 
-<h2>
-<a name="quick-start--en--ru-docs" class="anchor" href="#quick-start--en--ru-docs"><span class="octicon octicon-link"></span></a>
-<a href="./docs/start.md">Quick start</a> :: <a href="http://lynx.github.io/lynx/docs/latest/en/">EN</a> :: <a href="http://lynx.github.io/lynx/docs/latest/ru/">RU</a> Docs</h2>
+<p><img align="right" height="300" src="http://dmtry.me/img/logos/lynx_bnw.svg"></p>
 
-<h3>
-<a name="current-development-status" class="anchor" href="#current-development-status"><span class="octicon octicon-link"></span></a>Current development status</h3>
+<blockquote>
+<p>Yet another ORM\DBAL written by Zephir language.</p>
+</blockquote>
 
-<p>In development (not work). 2 month to version 0.0.1 (ALPHA)</p>
-
-<h3>
-<a name="why-it-would-be-need" class="anchor" href="#why-it-would-be-need"><span class="octicon octicon-link"></span></a>Why it would be need?</h3>
-
-<p>I like Doctrine2 but i dislike Phalcon 2 ORM* and create this project for incubate new ORM on Zephir Language for best perfomance.</p>
+<p>I like Doctrine2 but i dislike Phalcon 2 ORM* and create this project for incubate new ORM on Zephir Language for best performance.</p>
 
 <h3>
 <a name="idea" class="anchor" href="#idea"><span class="octicon octicon-link"></span></a>Idea</h3>
 
 <ul>
 <li>Every day push &gt;= 1 commit</li>
-<li>Write small ORM|DBAL and libg with max functions support</li>
-<li>Perfomance tune (will start do it after beta release)</li>
+<li>Write ORM|DBAL and sublibs with max functions support</li>
+<li>Performance tune (will start do it after beta release)</li>
 </ul><h3>
 <a name="why-it-would-be-great" class="anchor" href="#why-it-would-be-great"><span class="octicon octicon-link"></span></a>Why it would be great?</h3>
 
@@ -69,7 +63,7 @@
 <li>Annotation
 
 <ul>
-<li>RefelecationClassParser
+<li>ReflectionClassParser
 
 <ul>
 <li>RegexDocParser</li>
@@ -88,30 +82,61 @@
 <li>ORM (Object relation mapper)
 
 <ul>
+<li>Hydration (Mapping)</li>
 <li>EntityManager</li>
 <li>UnitOfWork</li>
 <li>QueryBuilder</li>
 </ul>
 </li>
 <li>DBAL (Database abstraction layer)</li>
-<li>Cache (Cache drivers for all database)</li>
+<li>Cache (Cache drivers)</li>
 <li>StdLib
 
 <ul>
-<li>EventManager (will be soon)</li>
+<li>Collections</li>
+<li>EventManager (ported from phalcon)</li>
 <li>Hydrators (will be soon)</li>
 </ul>
 </li>
 </ul><h3>
-<a name="system-requirements" class="anchor" href="#system-requirements"><span class="octicon octicon-link"></span></a>SYSTEM REQUIREMENTS</h3>
+<a name="system-requirements" class="anchor" href="#system-requirements"><span class="octicon octicon-link"></span></a>System Requirements</h3>
 
-<p>To build the PHP extension:</p>
+<p>To build you need the following requirements:</p>
 
 <ul>
 <li>g++ &gt;= 4.4/clang++ &gt;= 3.x/vc++ 9</li>
 <li>gnu make 3.81 or later</li>
+<li>autoconf 2.31 or later</li>
+<li>automake 1.14 or later</li>
 <li>php development headers and tools</li>
-</ul><p>To build the zep Source to c extension:</p>
+</ul><p>If you’re using Ubuntu, you can install the required packages this way:</p>
+
+<pre><code>sudo apt-get update
+sudo apt-get install git gcc make re2c php5 php5-json php5-dev libpcre3-dev
+</code></pre>
+
+<h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>You can build extension and install it like:</p>
+
+<pre><code>git clone https://github.com/lynx/lynx.git
+git submodule update --init
+cd ext
+./install
+echo extension=lynx.so &gt; /etc/php5/fpm/conf.d/lynx.ini
+echo extension=lynx.so &gt; /etc/php5/cli/conf.d/lynx.ini
+</code></pre>
+
+<p>Don't forget to restart your php-fpm:</p>
+
+<pre><code>sudo service php5-fpm restart
+</code></pre>
+
+<h3>
+<a name="build-zephir-code" class="anchor" href="#build-zephir-code"><span class="octicon octicon-link"></span></a>Build Zephir code</h3>
+
+<p>To build the zep Source to c extension:</p>
 
 <ul>
 <li><a href="https://github.com/phalcon/zephir">zephir</a></li>
