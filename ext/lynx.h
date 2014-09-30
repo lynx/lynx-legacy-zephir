@@ -15,6 +15,7 @@
 #include "lynx/dbal/driver/connection.zep.h"
 #include "lynx/dbal/driver/mysql.zep.h"
 #include "lynx/dbal/driver/pdo/statement.zep.h"
+#include "lynx/dbal/driver/pdoconnection.zep.h"
 #include "lynx/dbal/driver/pdo.zep.h"
 #include "lynx/dbal/events.zep.h"
 #include "lynx/orm/configuration.zep.h"
