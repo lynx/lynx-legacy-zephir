@@ -38,3 +38,4 @@ ext/modules/
 /vendor/
 compile-errors.log
 compile.log
+composer.lock
