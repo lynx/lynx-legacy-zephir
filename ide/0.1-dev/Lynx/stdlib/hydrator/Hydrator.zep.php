@@ -2,7 +2,7 @@
 
 namespace Lynx\Stdlib\Hydrator;
 
-interface Hydrator
+abstract interface Hydrator
 {
 
     /**

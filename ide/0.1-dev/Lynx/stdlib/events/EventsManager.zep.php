@@ -2,7 +2,7 @@
 
 namespace Lynx\Stdlib\Events;
 
-interface EventsManager
+abstract interface EventsManager
 {
 
     /**

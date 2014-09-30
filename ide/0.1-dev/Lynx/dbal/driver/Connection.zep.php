@@ -2,7 +2,7 @@
 
 namespace Lynx\DBAL\Driver;
 
-interface Connection
+abstract interface Connection
 {
 
 

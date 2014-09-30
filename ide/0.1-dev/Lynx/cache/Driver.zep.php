@@ -2,7 +2,7 @@
 
 namespace Lynx\Cache;
 
-interface Driver
+abstract interface Driver
 {
 
     /**
