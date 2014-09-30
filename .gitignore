@@ -36,3 +36,5 @@ ext/libtool
 ext/.libs/
 ext/modules/
 /vendor/
+compile-errors.log
+compile.log
