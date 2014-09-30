@@ -27,7 +27,7 @@ class TestCase
 		$connection = \Lynx\Tests\Utils::getConnection();
 
 		$configuration = new ORM\Configuration();
-		$configuration->setCacheDriver(new Cache\NativeArray());
+		$configuration->setCacheDriver(new \Cacher\Driver\NativeArray());
 
 		$eventManager = new EventsManager();
 
