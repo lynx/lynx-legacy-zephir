@@ -19,9 +19,9 @@ PHP_METHOD(Lynx_ORM_EntityManager, createQueryBuilder);
 PHP_METHOD(Lynx_ORM_EntityManager, createQuery);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_entitymanager___construct, 0, 0, 3)
-	ZEND_ARG_INFO(0, connection)
-	ZEND_ARG_INFO(0, configuration)
-	ZEND_ARG_INFO(0, eventManager)
+	ZEND_ARG_OBJ_INFO(0, connection, Lynx\\DBAL\\Connection, 0)
+	ZEND_ARG_OBJ_INFO(0, configuration, Lynx\\ORM\\Configuration, 0)
+	ZEND_ARG_OBJ_INFO(0, eventManager, Lynx\\Stdlib\\Events\\Manager, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_entitymanager_flush, 0, 0, 1)

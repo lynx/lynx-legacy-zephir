@@ -54,10 +54,10 @@ PHP_METHOD(Lynx_Cache_NativeArray, __construct) {
 	}
 
 
-	zephir_update_property_this(this_ptr, SL("options"), options TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_0);
 	array_init(_0);
 	zephir_update_property_this(this_ptr, SL("instance"), _0 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("options"), options TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }

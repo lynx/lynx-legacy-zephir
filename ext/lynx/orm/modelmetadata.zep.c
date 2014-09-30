@@ -124,13 +124,13 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, __construct) {
 			if (zephir_array_isset_string(value, SS("id"))) {
 				zephir_update_property_zval(column, SL("id"), (1) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
 			}
-			zephir_array_fetch_string(&_6, value, SL("column"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 59 TSRMLS_CC);
+			zephir_array_fetch_string(&_6, value, SL("column"), PH_READONLY, "lynx/ORM/ModelMetaData.zep", 59 TSRMLS_CC);
 			if (zephir_array_isset_string(_6, SS("type"))) {
 				zephir_array_fetch_string(&_7, value, SL("column"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 60 TSRMLS_CC);
 				zephir_array_fetch_string(&_8, _7, SL("type"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 60 TSRMLS_CC);
 				zephir_update_property_zval(column, SL("type"), _8 TSRMLS_CC);
 			}
-			zephir_array_fetch_string(&_6, value, SL("column"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 63 TSRMLS_CC);
+			zephir_array_fetch_string(&_6, value, SL("column"), PH_READONLY, "lynx/ORM/ModelMetaData.zep", 63 TSRMLS_CC);
 			if (zephir_array_isset_string(_6, SS("name"))) {
 				zephir_array_fetch_string(&_7, value, SL("column"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 64 TSRMLS_CC);
 				zephir_array_fetch_string(&_9, _7, SL("name"), PH_NOISY | PH_READONLY, "lynx/ORM/ModelMetaData.zep", 64 TSRMLS_CC);

@@ -13,8 +13,8 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findBy);
 PHP_METHOD(Lynx_ORM_EntityRepository, findOneBy);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_entityrepository___construct, 0, 0, 2)
-	ZEND_ARG_INFO(0, em)
-	ZEND_ARG_INFO(0, modelWrapper)
+	ZEND_ARG_OBJ_INFO(0, em, Lynx\\ORM\\EntityManager, 0)
+	ZEND_ARG_OBJ_INFO(0, modelWrapper, Lynx\\ORM\\ModelMetaData, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_entityrepository_createquerybuilder, 0, 0, 1)

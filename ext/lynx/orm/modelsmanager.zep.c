@@ -57,14 +57,14 @@ PHP_METHOD(Lynx_ORM_ModelsManager, __construct) {
 
 
 	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\\\ORM\\\\EntityManager'", "", 0);
 		return;
 	}
-	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("cacheLoadType"), cacheLoadType TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_0);
 	array_init(_0);
 	zephir_update_property_this(this_ptr, SL("cachedModels"), _0 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("cacheLoadType"), cacheLoadType TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }

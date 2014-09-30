@@ -11,7 +11,7 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, convertToScalar);
 PHP_METHOD(Lynx_ORM_UnitOfWork, commit);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_unitofwork___construct, 0, 0, 1)
-	ZEND_ARG_INFO(0, em)
+	ZEND_ARG_OBJ_INFO(0, em, Lynx\\ORM\\EntityManager, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_unitofwork_insert, 0, 0, 1)

@@ -54,19 +54,19 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, __construct) {
 
 
 	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\\\ORM\\\\EntityManager'", "", 0);
 		return;
 	}
-	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_0);
 	array_init(_0);
-	zephir_update_property_this(this_ptr, SL("insertEntities"), _0 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("deleteEntities"), _0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	array_init(_1);
 	zephir_update_property_this(this_ptr, SL("updateEntities"), _1 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	array_init(_2);
-	zephir_update_property_this(this_ptr, SL("deleteEntities"), _2 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("insertEntities"), _2 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -145,10 +145,12 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, convertToScalar) {
 				zephir_check_call_status();
 				RETURN_MM();
 			}
-			RETURN_CCTOR(value);
+			RETVAL_ZVAL(value, 1, 0);
+			RETURN_MM();
 			break;
 		}
-		RETURN_CCTOR(value);
+		RETVAL_ZVAL(value, 1, 0);
+		RETURN_MM();
 		break;
 	} while(0);
 

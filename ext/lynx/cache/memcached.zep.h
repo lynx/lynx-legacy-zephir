@@ -16,7 +16,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_cache_memcached___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_cache_memcached_setinstance, 0, 0, 1)
-	ZEND_ARG_INFO(0, instance)
+	ZEND_ARG_OBJ_INFO(0, instance, Memcached, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_cache_memcached_save, 0, 0, 2)

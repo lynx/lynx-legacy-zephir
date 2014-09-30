@@ -13,6 +13,7 @@
 
 #include "kernel/main.h"
 #include "kernel/memory.h"
+#include "ext/reflection/php_reflection.h"
 #include "kernel/fcall.h"
 #include "kernel/object.h"
 #include "kernel/exception.h"
@@ -36,7 +37,6 @@ ZEPHIR_INIT_CLASS(Lynx_Annotation_ReflectionClassParser) {
 PHP_METHOD(Lynx_Annotation_ReflectionClassParser, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_class_entry *_2;
 	zend_bool _0;
 	zval *parameter, *_1;
 
@@ -51,8 +51,7 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, __construct) {
 	}
 	if (_0) {
 		ZEPHIR_INIT_VAR(_1);
-		_2 = zend_fetch_class(SL("ReflectionClass"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
-		object_init_ex(_1, _2);
+		object_init_ex(_1, reflection_class_ptr);
 		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, parameter);
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("reflectionClass"), _1 TSRMLS_CC);

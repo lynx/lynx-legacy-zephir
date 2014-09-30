@@ -95,15 +95,15 @@ PHP_METHOD(Lynx_ORM_EntityManager, __construct) {
 
 
 	if (!(zephir_instance_of_ev(connection, lynx_dbal_connection_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'connection' must be an instance of 'Lynx\\DBAL\\Connection'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'connection' must be an instance of 'Lynx\\\\DBAL\\\\Connection'", "", 0);
 		return;
 	}
 	if (!(zephir_instance_of_ev(configuration, lynx_orm_configuration_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'configuration' must be an instance of 'Lynx\\ORM\\Configuration'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'configuration' must be an instance of 'Lynx\\\\ORM\\\\Configuration'", "", 0);
 		return;
 	}
 	if (!(zephir_instance_of_ev(eventManager, lynx_stdlib_events_manager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'eventManager' must be an instance of 'Lynx\\Stdlib\\Events\\Manager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'eventManager' must be an instance of 'Lynx\\\\Stdlib\\\\Events\\\\Manager'", "", 0);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("eventManager"), eventManager TSRMLS_CC);

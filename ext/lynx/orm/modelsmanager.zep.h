@@ -7,7 +7,7 @@ PHP_METHOD(Lynx_ORM_ModelsManager, __construct);
 PHP_METHOD(Lynx_ORM_ModelsManager, get);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_modelsmanager___construct, 0, 0, 1)
-	ZEND_ARG_INFO(0, em)
+	ZEND_ARG_OBJ_INFO(0, em, Lynx\\ORM\\EntityManager, 0)
 	ZEND_ARG_INFO(0, cacheLoadType)
 ZEND_END_ARG_INFO()
 

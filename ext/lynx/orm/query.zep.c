@@ -16,7 +16,7 @@
 #include "kernel/memory.h"
 #include "kernel/exception.h"
 #include "kernel/fcall.h"
-#include "concat.h"
+#include "kernel/concat.h"
 #include "kernel/operators.h"
 #include "kernel/array.h"
 #include "kernel/hash.h"
@@ -95,7 +95,7 @@ PHP_METHOD(Lynx_ORM_Query, __construct) {
 
 
 	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\\\ORM\\\\EntityManager'", "", 0);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("query"), query TSRMLS_CC);

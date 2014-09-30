@@ -29,7 +29,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL);
 PHP_METHOD(Lynx_ORM_QueryBuilder, getQuery);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder___construct, 0, 0, 1)
-	ZEND_ARG_INFO(0, em)
+	ZEND_ARG_OBJ_INFO(0, em, Lynx\\ORM\\EntityManager, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_querybuilder_select, 0, 0, 0)

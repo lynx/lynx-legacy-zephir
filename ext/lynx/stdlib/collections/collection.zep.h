@@ -12,7 +12,7 @@ PHP_METHOD(Lynx_Stdlib_Collections_Collection, last);
 PHP_METHOD(Lynx_Stdlib_Collections_Collection, add);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_collection_map, 0, 0, 1)
-	ZEND_ARG_INFO(0, func)
+	ZEND_ARG_OBJ_INFO(0, func, Closure, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_collection_filter, 0, 0, 1)

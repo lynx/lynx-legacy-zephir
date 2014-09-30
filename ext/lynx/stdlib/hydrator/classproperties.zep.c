@@ -68,7 +68,8 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassProperties, hydrate) {
 			zephir_update_property_zval_zval(currentObject, property, value TSRMLS_CC);
 		}
 	}
-	RETURN_CCTOR(currentObject);
+	RETVAL_ZVAL(currentObject, 1, 0);
+	RETURN_MM();
 
 }
 

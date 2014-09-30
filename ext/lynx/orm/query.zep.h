@@ -23,7 +23,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query___construct, 0, 0, 2)
 	ZEND_ARG_INFO(0, query)
-	ZEND_ARG_INFO(0, em)
+	ZEND_ARG_OBJ_INFO(0, em, Lynx\\ORM\\EntityManager, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_bindvalue, 0, 0, 2)

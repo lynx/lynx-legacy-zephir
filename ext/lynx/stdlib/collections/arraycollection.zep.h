@@ -22,7 +22,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_arraycollection_add, 0, 0
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_arraycollection_map, 0, 0, 1)
-	ZEND_ARG_INFO(0, func)
+	ZEND_ARG_OBJ_INFO(0, func, Closure, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_stdlib_collections_arraycollection_filter, 0, 0, 1)

@@ -23,7 +23,7 @@
 #include "Zend/zend_closures.h"
 #include "kernel/hash.h"
 #include "kernel/string.h"
-#include "concat.h"
+#include "kernel/concat.h"
 
 
 /*

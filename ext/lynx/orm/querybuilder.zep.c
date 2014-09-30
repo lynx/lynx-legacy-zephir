@@ -16,7 +16,7 @@
 #include "kernel/exception.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
-#include "concat.h"
+#include "kernel/concat.h"
 #include "kernel/string.h"
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
@@ -106,16 +106,16 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, __construct) {
 
 
 	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\\\ORM\\\\EntityManager'", "", 0);
 		return;
 	}
-	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_0);
 	array_init(_0);
-	zephir_update_property_this(this_ptr, SL("where"), _0 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("joins"), _0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	array_init(_1);
-	zephir_update_property_this(this_ptr, SL("joins"), _1 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("where"), _1 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -415,7 +415,6 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, prepareWhereStatement) {
 		zephir_fast_trim(_2, _3, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&property, _1, "getcolumn", NULL, _2);
 		zephir_check_call_status();
-		//missing empty
 		zephir_array_fetch_long(&_4, tmpField, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 161 TSRMLS_CC);
 		ZEPHIR_OBS_VAR(_5);
 		zephir_read_property(&_5, property, SL("name"), PH_NOISY_CC);

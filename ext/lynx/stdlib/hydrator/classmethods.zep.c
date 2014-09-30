@@ -13,7 +13,7 @@
 
 #include "kernel/main.h"
 #include "kernel/hash.h"
-#include "concat.h"
+#include "kernel/concat.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/object.h"
@@ -74,7 +74,8 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassMethods, hydrate) {
 			zephir_check_call_status();
 		}
 	}
-	RETURN_CCTOR(currentObject);
+	RETVAL_ZVAL(currentObject, 1, 0);
+	RETURN_MM();
 
 }
 

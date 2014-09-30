@@ -18,7 +18,7 @@
 #include "kernel/fcall.h"
 #include "kernel/array.h"
 #include "kernel/hash.h"
-#include "concat.h"
+#include "kernel/concat.h"
 #include "kernel/string.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/operators.h"
@@ -74,7 +74,7 @@ PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 		_0 = !zephir_instance_of_ev(eventsManager, lynx_stdlib_events_manager_ce TSRMLS_CC);
 	}
 	if (_0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'eventsManager' must be an instance of 'Lynx\\Stdlib\\Events\\Manager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'eventsManager' must be an instance of 'Lynx\\\\Stdlib\\\\Events\\\\Manager'", "", 0);
 		return;
 	}
 	if (Z_TYPE_P(eventsManager) == IS_NULL) {

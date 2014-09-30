@@ -46,7 +46,7 @@ PHP_METHOD(Lynx_ORM_Configuration, setCacheDriver) {
 
 
 	if (!(zephir_instance_of_ev(cacheDriver, lynx_cache_cachedriver_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'cacheDriver' must be an instance of 'Lynx\\Cache\\CacheDriver'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'cacheDriver' must be an instance of 'Lynx\\\\Cache\\\\CacheDriver'", "", 0);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("cacheDriver"), cacheDriver TSRMLS_CC);
