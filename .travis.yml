@@ -16,7 +16,7 @@ env:
 
 before_install:
   - sh tests/ci/$DB.sh;
-  
+
 install:
   - composer --prefer-source install
   - composer require phalcon/zephir:dev-master
