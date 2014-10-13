@@ -15,9 +15,8 @@ env:
   - DB=pqsql
 
 before_install:
-  - mysql -uroot -e 'create database lynx_test charset=utf8 collate=utf8_unicode_ci;'
-  - mysql -uroot lynx_test < ./tests/schemas/mysql/lynx_test.sql
-
+  - sh tests/ci/$DB.sh;
+  
 install:
   - composer --prefer-source install
   - composer require phalcon/zephir:dev-master
