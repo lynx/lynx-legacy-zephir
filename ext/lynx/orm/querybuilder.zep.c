@@ -525,8 +525,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, wrap) {
 	zephir_get_strval(id, id_param);
 
 
-	ZEPHIR_CONCAT_SVS(return_value, "`", id, "`");
-	RETURN_MM();
+	RETURN_CTOR(id);
 
 }
 
@@ -541,7 +540,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
 	if (Z_TYPE_P(_0) == IS_NULL) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "From field must be set", "lynx/ORM/QueryBuilder.zep", 211);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "From field must be set", "lynx/ORM/QueryBuilder.zep", 212);
 		return;
 	}
 	ZEPHIR_OBS_VAR(_1);
@@ -577,7 +576,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 	_7 = zephir_fetch_nproperty_this(this_ptr, SL("joins"), PH_NOISY_CC);
 	if (zephir_fast_count_int(_7 TSRMLS_CC) > 0) {
 		_8 = zephir_fetch_nproperty_this(this_ptr, SL("joins"), PH_NOISY_CC);
-		zephir_is_iterable(_8, &_10, &_9, 0, 0, "lynx/ORM/QueryBuilder.zep", 232);
+		zephir_is_iterable(_8, &_10, &_9, 0, 0, "lynx/ORM/QueryBuilder.zep", 233);
 		for (
 		  ; zephir_hash_get_current_data_ex(_10, (void**) &_11, &_9) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_10, &_9)

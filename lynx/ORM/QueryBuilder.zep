@@ -200,7 +200,8 @@ class QueryBuilder
 
 	inline protected function wrap(string id)
     {
-        return "`" . id . "`";
+        //return "`" . id . "`";
+        return id;
     }
 
 	public function getSQL() -> string
