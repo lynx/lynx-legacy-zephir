@@ -58,13 +58,41 @@ ALTER TABLE public.products OWNER TO postgres;
 --
 
 CREATE TABLE users (
-    id bigint NOT NULL,
+    id integer NOT NULL,
     name character varying(2044) NOT NULL,
     group_id integer NOT NULL
 );
 
 
 ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
 
 --
 -- Data for Name: groups; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -88,6 +116,21 @@ INSERT INTO users VALUES (1, 'Дмитрий', 1);
 INSERT INTO users VALUES (2, 'Илья', 0);
 INSERT INTO users VALUES (3, 'Денис', 0);
 INSERT INTO users VALUES (4, 'Елисей', 1);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_id_seq', 1, false);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
