@@ -89,7 +89,10 @@ class UnitOfWork
 
 			let result = this->em->getConnection()->insert(modelInfo->getTablename(), insertValues);
 			if (result) {
-				let lastInsertId = this->em->getConnection()->getDriver()->lastInsertId();
+			    /**
+			     * @todo fetch seq id
+			     */
+				let lastInsertId = this->em->getConnection()->getDriver()->lastInsertId(modelInfo->getTablename() . "_id_seq");
 				if (primaryField) {
 					let model->{primaryField} = lastInsertId;
 				}
