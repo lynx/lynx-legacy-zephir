@@ -33,9 +33,16 @@ class Pqsql
 	 */
 	public function execute(string! query) -> int
 	{
+	    var e;
 		this->connect();
 
-		return this->connection->exec(query);
+        try {
+		    return this->connection->exec(query);
+        } catch \Exception, e {
+            var_dump(e->getMessage());
+            die();
+        }
+
 	}
 
 	public function connect()
@@ -52,17 +59,23 @@ class Pqsql
 		);
 	}
 
-	public function lastInsertId()
+	public function lastInsertId(string! seq_id)
 	{
 		this->connect();
 
-		return this->connection->lastInsertId();
+		return this->connection->lastInsertId(seq_id);
 	}
 
 	public function prepare(var statement)
 	{
+	    var e;
 		this->connect();
 
-		return this->connection->prepare(statement);
+        try {
+		    return this->connection->prepare(statement);
+        } catch \Exception, e {
+            var_dump(e->getMessage());
+            die();
+        }
 	}
 }
