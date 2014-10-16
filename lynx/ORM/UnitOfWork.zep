@@ -94,7 +94,7 @@ class UnitOfWork
 			     */
 				let lastInsertId = this->em->getConnection()->getDriver()->lastInsertId(modelInfo->getTablename() . "_id_seq");
 				if (primaryField) {
-					let model->{primaryField} = lastInsertId;
+					let model->{primaryField} = (int) lastInsertId;
 				}
 			}
 		}
