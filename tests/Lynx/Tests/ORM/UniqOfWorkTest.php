@@ -49,6 +49,13 @@ class UniqOfWorkTest
 
         $this->assertInternalType('int', $new->id);
         $newCount = $this->entityManager->getRepository('Model\User')->count();
-        $this->assertSame($count+1, $newCount);
+        $count = $count+1;
+        $this->assertSame($count, $newCount);
+
+        $this->unitOfWork->delete($new);
+        $this->unitOfWork->commit();
+
+        $newCount = $this->entityManager->getRepository('Model\User')->count();
+        $this->assertSame($count-1, $newCount);
     }
 }
