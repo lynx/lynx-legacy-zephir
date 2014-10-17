@@ -13,7 +13,7 @@
 	<php>
 		<var name="db_type" value="pdo_pgsql"/>
 		<var name="db_host" value="localhost" />
-		<var name="db_username" value="travis" />
+		<var name="db_username" value="postgres" />
 		<var name="db_password" value="" />
 		<var name="db_name" value="lynx_test" />
 		<var name="db_port" value="5432"/>
