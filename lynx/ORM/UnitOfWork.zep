@@ -120,7 +120,13 @@ class UnitOfWork
 
 		for model in this->deleteEntities {
 			let modelInfo = this->em->getModelsManager()->get(get_class(model));
-			this->em->getConnection()->delete(modelInfo->getTablename(), \Lynx\Stdlib\Hydrator\ClassProperties::extract(model));
+            let primaryField = modelInfo->getPrimaryFieldName();
+
+            if (primaryField) {
+                this->em->getConnection()->deleteByColumn(modelInfo->getTablename(), primaryField, model->{primaryField});
+            } else {
+			    this->em->getConnection()->delete(modelInfo->getTablename(), \Lynx\Stdlib\Hydrator\Entity::extract(model));
+            }
 		}
 
 
