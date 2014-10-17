@@ -75,7 +75,7 @@ class Connection
 	 * Delete rows where $column = $key from $table
 	 * return the nubmer of affected rows
 	 */
-	public function deleteByColumn(string! table, string! column, string! value, string! type = null)
+	public function deleteByColumn(string! table, string! column, var value, string! type = null)
 	{
 		/**
 		 * @todo implement work with type
