@@ -27,7 +27,6 @@ class ConnectionTest
 
     public function testGetDriver()
     {
-        $this->assertTrue(true);
         $this->assertInstanceOf('Lynx\DBAL\Driver\\' . $this->getDriverName(), $this->_connection->getDriver());
     }
 
