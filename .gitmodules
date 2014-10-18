@@ -1,3 +1,0 @@
-[submodule "ext/kernel"]
-	path = ext/kernel
-	url = https://github.com/lynx/kernel.git
