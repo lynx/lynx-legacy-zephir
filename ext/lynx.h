@@ -12,7 +12,7 @@
 #include "lynx/dbal/driver/pdo/statement.zep.h"
 #include "lynx/dbal/driver/pdoconnection.zep.h"
 #include "lynx/dbal/driver/pdo.zep.h"
-#include "lynx/dbal/driver/pqsql.zep.h"
+#include "lynx/dbal/driver/pgsql.zep.h"
 #include "lynx/dbal/events.zep.h"
 #include "lynx/orm/configuration.zep.h"
 #include "lynx/orm/entitymanager.zep.h"

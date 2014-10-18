@@ -22,7 +22,7 @@ class Utils
                 break;
             case 'pgsql':
             case 'pdo_pgsql':
-                $driver = new DBAl\Driver\Pqsql('pgsql:host=localhost;dbname='.$GLOBALS['db_name'], $GLOBALS['db_username'], $GLOBALS['db_password'], array());
+                $driver = new DBAl\Driver\Pgsql('pgsql:host=localhost;dbname='.$GLOBALS['db_name'], $GLOBALS['db_username'], $GLOBALS['db_password'], array());
                 break;
             default:
                 throw new \InvalidArgumentException('Unsupported db type : ' . $GLOBALS['db_type']);

@@ -1,7 +1,7 @@
 
 namespace Lynx\DBAL\Driver;
 
-class Pqsql
+class Pgsql
 {
 	protected eventsManager {set, get};
 
