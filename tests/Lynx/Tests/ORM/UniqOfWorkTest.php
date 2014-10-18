@@ -38,21 +38,21 @@ class UniqOfWorkTest
 
     public function testInsertData()
     {
-        $new = new User();
-        $new->name = "Test string";
-        $new->group_id = 1;
+        $entity = new User();
+        $entity->name = "Test string";
+        $entity->group_id = 1;
 
         $count = $this->entityManager->getRepository('Model\User')->count();
 
-        $this->unitOfWork->insert($new);
+        $this->unitOfWork->insert($entity);
         $this->unitOfWork->commit();
 
-        $this->assertInternalType('int', $new->id);
+        $this->assertInternalType('int', $entity->id);
         $newCount = $this->entityManager->getRepository('Model\User')->count();
         $count = $count+1;
         $this->assertSame($count, $newCount);
 
-        $this->unitOfWork->delete($new);
+        $this->unitOfWork->delete($entity);
         $this->unitOfWork->commit();
 
         $newCount = $this->entityManager->getRepository('Model\User')->count();
