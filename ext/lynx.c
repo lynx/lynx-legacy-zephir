@@ -24,6 +24,8 @@
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
 
+
+
 zend_class_entry *lynx_stdlib_hydrator_hydrator_ce;
 zend_class_entry *lynx_stdlib_events_eventsmanager_ce;
 zend_class_entry *lynx_dbal_driver_connection_ce;
@@ -271,9 +273,6 @@ static PHP_MSHUTDOWN_FUNCTION(lynx)
 
 	zephir_deinitialize_memory(TSRMLS_C);
 
-	//assert(ZEPHIR_GLOBAL(orm).parser_cache == NULL);
-	//assert(ZEPHIR_GLOBAL(orm).ast_cache == NULL);
-
 	return SUCCESS;
 }
 #endif
@@ -289,6 +288,13 @@ static void php_zephir_init_globals(zend_lynx_globals *zephir_globals TSRMLS_DC)
 
 	/* Virtual Symbol Tables */
 	zephir_globals->active_symbol_table = NULL;
+
+	/* Cache Enabled */
+#if PHP_VERSION_ID < 50600
+	zephir_globals->cache_enabled = 1;
+#else
+	zephir_globals->cache_enabled = 0;
+#endif
 
 	/* Recursive Lock */
 	zephir_globals->recursive_lock = 0;
@@ -311,6 +317,8 @@ static PHP_RINIT_FUNCTION(lynx)
 
 static PHP_RSHUTDOWN_FUNCTION(lynx)
 {
+
+	
 
 	zephir_deinitialize_memory(TSRMLS_C);
 	return SUCCESS;

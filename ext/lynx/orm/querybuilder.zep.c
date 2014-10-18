@@ -265,7 +265,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, leftJoin) {
 	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 99 TSRMLS_CC);
 	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 99 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
-	ZVAL_STRING(_2, "LEFT", 0);
+	ZVAL_STRING(_2, "LEFT", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparejoin", NULL, _2, _0, _1, alias);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
@@ -288,7 +288,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, rightJoin) {
 	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 109 TSRMLS_CC);
 	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 109 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
-	ZVAL_STRING(_2, "RIGHT", 0);
+	ZVAL_STRING(_2, "RIGHT", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparejoin", NULL, _2, _0, _1, alias);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
@@ -311,7 +311,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, innerJoin) {
 	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 119 TSRMLS_CC);
 	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 119 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
-	ZVAL_STRING(_2, "INNER", 0);
+	ZVAL_STRING(_2, "INNER", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparejoin", NULL, _2, _0, _1, alias);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
@@ -334,7 +334,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, join) {
 	zephir_array_fetch_long(&_0, aliases, 0, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 129 TSRMLS_CC);
 	zephir_array_fetch_long(&_1, aliases, 1, PH_NOISY | PH_READONLY, "lynx/ORM/QueryBuilder.zep", 129 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
-	ZVAL_STRING(_2, "", 0);
+	ZVAL_STRING(_2, "", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparejoin", NULL, _2, _0, _1, alias);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
@@ -457,8 +457,8 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, orderBy) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(sort_param) == IS_STRING)) {
-		sort = sort_param;
+	if (likely(Z_TYPE_P(sort_param) == IS_STRING)) {
+		zephir_get_strval(sort, sort_param);
 	} else {
 		ZEPHIR_INIT_VAR(sort);
 		ZVAL_EMPTY_STRING(sort);

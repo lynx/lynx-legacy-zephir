@@ -47,8 +47,8 @@ PHP_METHOD(Lynx_DBAL_Driver_Pdo, __construct) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(dsn_param) == IS_STRING)) {
-		dsn = dsn_param;
+	if (likely(Z_TYPE_P(dsn_param) == IS_STRING)) {
+		zephir_get_strval(dsn, dsn_param);
 	} else {
 		ZEPHIR_INIT_VAR(dsn);
 		ZVAL_EMPTY_STRING(dsn);

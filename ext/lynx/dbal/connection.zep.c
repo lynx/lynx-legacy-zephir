@@ -120,8 +120,8 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(table_param) == IS_STRING)) {
-		table = table_param;
+	if (likely(Z_TYPE_P(table_param) == IS_STRING)) {
+		zephir_get_strval(table, table_param);
 	} else {
 		ZEPHIR_INIT_VAR(table);
 		ZVAL_EMPTY_STRING(table);
@@ -198,8 +198,8 @@ PHP_METHOD(Lynx_DBAL_Connection, update) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(table_param) == IS_STRING)) {
-		table = table_param;
+	if (likely(Z_TYPE_P(table_param) == IS_STRING)) {
+		zephir_get_strval(table, table_param);
 	} else {
 		ZEPHIR_INIT_VAR(table);
 		ZVAL_EMPTY_STRING(table);
@@ -276,19 +276,19 @@ PHP_METHOD(Lynx_DBAL_Connection, update) {
 PHP_METHOD(Lynx_DBAL_Connection, deleteByColumn) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *table_param = NULL, *column_param = NULL, *value_param = NULL, *type_param = NULL, *_0;
-	zval *table = NULL, *column = NULL, *value = NULL, *type = NULL, *_1;
+	zval *table_param = NULL, *column_param = NULL, *value, *type_param = NULL, *_0, *_1;
+	zval *table = NULL, *column = NULL, *type = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 3, 1, &table_param, &column_param, &value_param, &type_param);
+	zephir_fetch_params(1, 3, 1, &table_param, &column_param, &value, &type_param);
 
 	if (unlikely(Z_TYPE_P(table_param) != IS_STRING && Z_TYPE_P(table_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'table' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(table_param) == IS_STRING)) {
-		table = table_param;
+	if (likely(Z_TYPE_P(table_param) == IS_STRING)) {
+		zephir_get_strval(table, table_param);
 	} else {
 		ZEPHIR_INIT_VAR(table);
 		ZVAL_EMPTY_STRING(table);
@@ -298,22 +298,11 @@ PHP_METHOD(Lynx_DBAL_Connection, deleteByColumn) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(column_param) == IS_STRING)) {
-		column = column_param;
+	if (likely(Z_TYPE_P(column_param) == IS_STRING)) {
+		zephir_get_strval(column, column_param);
 	} else {
 		ZEPHIR_INIT_VAR(column);
 		ZVAL_EMPTY_STRING(column);
-	}
-	if (unlikely(Z_TYPE_P(value_param) != IS_STRING && Z_TYPE_P(value_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'value' must be a string") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-	if (unlikely(Z_TYPE_P(value_param) == IS_STRING)) {
-		value = value_param;
-	} else {
-		ZEPHIR_INIT_VAR(value);
-		ZVAL_EMPTY_STRING(value);
 	}
 	if (!type_param) {
 		ZEPHIR_INIT_VAR(type);
@@ -324,8 +313,8 @@ PHP_METHOD(Lynx_DBAL_Connection, deleteByColumn) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(type_param) == IS_STRING)) {
-		type = type_param;
+	if (likely(Z_TYPE_P(type_param) == IS_STRING)) {
+		zephir_get_strval(type, type_param);
 	} else {
 		ZEPHIR_INIT_VAR(type);
 		ZVAL_EMPTY_STRING(type);
@@ -364,8 +353,8 @@ PHP_METHOD(Lynx_DBAL_Connection, delete) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(table_param) == IS_STRING)) {
-		table = table_param;
+	if (likely(Z_TYPE_P(table_param) == IS_STRING)) {
+		zephir_get_strval(table, table_param);
 	} else {
 		ZEPHIR_INIT_VAR(table);
 		ZVAL_EMPTY_STRING(table);

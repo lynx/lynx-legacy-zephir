@@ -124,7 +124,7 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, extract) {
 	) {
 		ZEPHIR_GET_HVALUE(method, _4);
 		ZEPHIR_INIT_NVAR(_5);
-		ZVAL_STRING(_5, "/^get/", 0);
+		ZVAL_STRING(_5, "/^get/", ZEPHIR_TEMP_PARAM_COPY);
 		ZEPHIR_CALL_FUNCTION(&_6, "preg_match", &_7, _5, method);
 		zephir_check_temp_parameter(_5);
 		zephir_check_call_status();

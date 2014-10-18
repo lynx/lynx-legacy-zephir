@@ -20,6 +20,7 @@
 #include "kernel/fcall.h"
 #include "kernel/hash.h"
 #include "kernel/array.h"
+#include "kernel/concat.h"
 
 ZEPHIR_INIT_CLASS(Lynx_ORM_UnitOfWork) {
 
@@ -139,7 +140,7 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, convertToScalar) {
 		if (ZEPHIR_IS_STRING(columnType, "datetime")) {
 			if (zephir_is_instance_of(value, SL("DateTime") TSRMLS_CC)) {
 				ZEPHIR_INIT_VAR(_0);
-				ZVAL_STRING(_0, "Y-m-d H:i:s", 0);
+				ZVAL_STRING(_0, "Y-m-d H:i:s", ZEPHIR_TEMP_PARAM_COPY);
 				ZEPHIR_RETURN_CALL_METHOD(value, "format", NULL, _0);
 				zephir_check_temp_parameter(_0);
 				zephir_check_call_status();
@@ -160,11 +161,11 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, convertToScalar) {
 
 PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 
-	zephir_fcall_cache_entry *_7 = NULL, *_13 = NULL, *_23 = NULL;
+	zephir_fcall_cache_entry *_7 = NULL, *_13 = NULL, *_26 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	HashTable *_2, *_9, *_21, *_25;
-	HashPosition _1, _8, _20, _24;
-	zval *entity = NULL, *model = NULL, *modelInfo = NULL, *result = NULL, *primaryField = NULL, *_0, **_3, *lastInsertId = NULL, *extractValues = NULL, *insertValues = NULL, *property = NULL, *value = NULL, *key = NULL, *_4, *_5 = NULL, *_6 = NULL, **_10, *_11 = NULL, *_12 = NULL, *_14 = NULL, *_15, *_16 = NULL, *_17, *_18 = NULL, *_19 = NULL, **_22, *data = NULL, *identifiers = NULL, **_26, *_27, *_28, *_29;
+	HashTable *_2, *_9, *_24, *_28;
+	HashPosition _1, _8, _23, _27;
+	zval *entity = NULL, *model = NULL, *modelInfo = NULL, *result = NULL, *primaryField = NULL, *_0, **_3, *lastInsertId = NULL, *extractValues = NULL, *insertValues = NULL, *property = NULL, *value = NULL, *key = NULL, *_4, *_5 = NULL, *_6 = NULL, **_10, *_11 = NULL, *_12 = NULL, *_14 = NULL, *_15, *_16 = NULL, *_17, *_18 = NULL, *_19 = NULL, *_20 = NULL, *_21 = NULL, *_22 = NULL, **_25, *data = NULL, *identifiers = NULL, **_29, *_30, *_31;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &entity);
@@ -175,7 +176,7 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("insertEntities"), PH_NOISY_CC);
-	zephir_is_iterable(_0, &_2, &_1, 0, 0, "lynx/ORM/UnitOfWork.zep", 99);
+	zephir_is_iterable(_0, &_2, &_1, 0, 0, "lynx/ORM/UnitOfWork.zep", 102);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
@@ -230,20 +231,26 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&_19, _18, "getdriver",  NULL);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&lastInsertId, _19, "lastinsertid",  NULL);
+			ZEPHIR_CALL_METHOD(&_20, modelInfo, "gettablename",  NULL);
+			zephir_check_call_status();
+			ZEPHIR_INIT_LNVAR(_21);
+			ZEPHIR_CONCAT_VS(_21, _20, "_id_seq");
+			ZEPHIR_CALL_METHOD(&lastInsertId, _19, "lastinsertid", NULL, _21);
 			zephir_check_call_status();
 			if (zephir_is_true(primaryField)) {
-				zephir_update_property_zval_zval(model, primaryField, lastInsertId TSRMLS_CC);
+				ZEPHIR_INIT_NVAR(_22);
+				ZVAL_LONG(_22, zephir_get_intval(lastInsertId));
+				zephir_update_property_zval(model, Z_STRVAL_P(primaryField), Z_STRLEN_P(primaryField), _22 TSRMLS_CC);
 			}
 		}
 	}
 	_4 = zephir_fetch_nproperty_this(this_ptr, SL("updateEntities"), PH_NOISY_CC);
-	zephir_is_iterable(_4, &_21, &_20, 0, 0, "lynx/ORM/UnitOfWork.zep", 118);
+	zephir_is_iterable(_4, &_24, &_23, 0, 0, "lynx/ORM/UnitOfWork.zep", 121);
 	for (
-	  ; zephir_hash_get_current_data_ex(_21, (void**) &_22, &_20) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_21, &_20)
+	  ; zephir_hash_get_current_data_ex(_24, (void**) &_25, &_23) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_24, &_23)
 	) {
-		ZEPHIR_GET_HVALUE(model, _22);
+		ZEPHIR_GET_HVALUE(model, _25);
 		_15 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(&_5, _15, "getmodelsmanager",  NULL);
 		zephir_check_call_status();
@@ -251,7 +258,7 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 		zephir_get_class(_6, model, 0 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&modelInfo, _5, "get", NULL, _6);
 		zephir_check_call_status();
-		ZEPHIR_CALL_CE_STATIC(&data, lynx_stdlib_hydrator_classproperties_ce, "extract", &_23, model);
+		ZEPHIR_CALL_CE_STATIC(&data, lynx_stdlib_hydrator_classproperties_ce, "extract", &_26, model);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&primaryField, modelInfo, "getprimaryfieldname",  NULL);
 		zephir_check_call_status();
@@ -259,10 +266,10 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 			ZEPHIR_INIT_NVAR(identifiers);
 			array_init_size(identifiers, 2);
 			ZEPHIR_OBS_NVAR(_12);
-			zephir_array_fetch(&_12, data, primaryField, PH_NOISY, "lynx/ORM/UnitOfWork.zep", 110 TSRMLS_CC);
+			zephir_array_fetch(&_12, data, primaryField, PH_NOISY, "lynx/ORM/UnitOfWork.zep", 113 TSRMLS_CC);
 			zephir_array_update_zval(&identifiers, primaryField, &_12, PH_COPY);
 		} else {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Entity`s PrimaryField is not set.", "lynx/ORM/UnitOfWork.zep", 112);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Entity`s PrimaryField is not set.", "lynx/ORM/UnitOfWork.zep", 115);
 			return;
 		}
 		_17 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
@@ -274,12 +281,12 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 		zephir_check_call_status();
 	}
 	_4 = zephir_fetch_nproperty_this(this_ptr, SL("deleteEntities"), PH_NOISY_CC);
-	zephir_is_iterable(_4, &_25, &_24, 0, 0, "lynx/ORM/UnitOfWork.zep", 124);
+	zephir_is_iterable(_4, &_28, &_27, 0, 0, "lynx/ORM/UnitOfWork.zep", 133);
 	for (
-	  ; zephir_hash_get_current_data_ex(_25, (void**) &_26, &_24) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_25, &_24)
+	  ; zephir_hash_get_current_data_ex(_28, (void**) &_29, &_27) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_28, &_27)
 	) {
-		ZEPHIR_GET_HVALUE(model, _26);
+		ZEPHIR_GET_HVALUE(model, _29);
 		_15 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(&_5, _15, "getmodelsmanager",  NULL);
 		zephir_check_call_status();
@@ -287,25 +294,39 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 		zephir_get_class(_6, model, 0 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&modelInfo, _5, "get", NULL, _6);
 		zephir_check_call_status();
-		_27 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_16, _27, "getconnection",  NULL);
+		ZEPHIR_CALL_METHOD(&primaryField, modelInfo, "getprimaryfieldname",  NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_18, modelInfo, "gettablename",  NULL);
-		zephir_check_call_status();
-		ZEPHIR_CALL_CE_STATIC(&_19, lynx_stdlib_hydrator_classproperties_ce, "extract", &_23, model);
-		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, _16, "delete", NULL, _18, _19);
-		zephir_check_call_status();
+		if (zephir_is_true(primaryField)) {
+			_30 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(&_16, _30, "getconnection",  NULL);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&_18, modelInfo, "gettablename",  NULL);
+			zephir_check_call_status();
+			ZEPHIR_OBS_NVAR(_12);
+			zephir_read_property_zval(&_12, model, primaryField, PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(NULL, _16, "deletebycolumn", NULL, _18, primaryField, _12);
+			zephir_check_call_status();
+		} else {
+			_17 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(&_11, _17, "getconnection",  NULL);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&_18, modelInfo, "gettablename",  NULL);
+			zephir_check_call_status();
+			ZEPHIR_CALL_CE_STATIC(&_19, lynx_stdlib_hydrator_entity_ce, "extract", &_7, model);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(NULL, _11, "delete", NULL, _18, _19);
+			zephir_check_call_status();
+		}
 	}
 	ZEPHIR_INIT_NVAR(_6);
 	array_init(_6);
 	zephir_update_property_this(this_ptr, SL("insertEntities"), _6 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_28);
-	array_init(_28);
-	zephir_update_property_this(this_ptr, SL("updateEntities"), _28 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_29);
-	array_init(_29);
-	zephir_update_property_this(this_ptr, SL("deleteEntities"), _29 TSRMLS_CC);
+	ZEPHIR_INIT_NVAR(_22);
+	array_init(_22);
+	zephir_update_property_this(this_ptr, SL("updateEntities"), _22 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_31);
+	array_init(_31);
+	zephir_update_property_this(this_ptr, SL("deleteEntities"), _31 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }

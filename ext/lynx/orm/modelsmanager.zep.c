@@ -83,8 +83,8 @@ PHP_METHOD(Lynx_ORM_ModelsManager, get) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(classname_param) == IS_STRING)) {
-		classname = classname_param;
+	if (likely(Z_TYPE_P(classname_param) == IS_STRING)) {
+		zephir_get_strval(classname, classname_param);
 	} else {
 		ZEPHIR_INIT_VAR(classname);
 		ZVAL_EMPTY_STRING(classname);

@@ -18,6 +18,8 @@
 #include "kernel/exception.h"
 #include "kernel/operators.h"
 #include "kernel/fcall.h"
+#include "kernel/variables.h"
+#include "kernel/exit.h"
 
 
 ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Pqsql) {
@@ -73,8 +75,8 @@ PHP_METHOD(Lynx_DBAL_Driver_Pqsql, __construct) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(dsn_param) == IS_STRING)) {
-		dsn = dsn_param;
+	if (likely(Z_TYPE_P(dsn_param) == IS_STRING)) {
+		zephir_get_strval(dsn, dsn_param);
 	} else {
 		ZEPHIR_INIT_VAR(dsn);
 		ZVAL_EMPTY_STRING(dsn);
@@ -117,7 +119,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pqsql, isConnected) {
 PHP_METHOD(Lynx_DBAL_Driver_Pqsql, execute) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *query_param = NULL, *_0;
+	zval *query_param = NULL, *e = NULL, *_0, *_1 = NULL;
 	zval *query = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -128,8 +130,8 @@ PHP_METHOD(Lynx_DBAL_Driver_Pqsql, execute) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(query_param) == IS_STRING)) {
-		query = query_param;
+	if (likely(Z_TYPE_P(query_param) == IS_STRING)) {
+		zephir_get_strval(query, query_param);
 	} else {
 		ZEPHIR_INIT_VAR(query);
 		ZVAL_EMPTY_STRING(query);
@@ -138,10 +140,27 @@ PHP_METHOD(Lynx_DBAL_Driver_Pqsql, execute) {
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL);
 	zephir_check_call_status();
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
-	ZEPHIR_RETURN_CALL_METHOD(_0, "exec", NULL, query);
-	zephir_check_call_status();
-	RETURN_MM();
+
+	/* try_start_1: */
+
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
+		ZEPHIR_RETURN_CALL_METHOD(_0, "exec", NULL, query);
+		zephir_check_call_status_or_jump(try_end_1);
+		RETURN_MM();
+
+	try_end_1:
+
+	if (EG(exception)) {
+		ZEPHIR_CPY_WRT(e, EG(exception));
+		if (zephir_is_instance_of(e, SL("Exception") TSRMLS_CC)) {
+			zend_clear_exception(TSRMLS_C);
+			ZEPHIR_CALL_METHOD(&_1, e, "getmessage",  NULL);
+			zephir_check_call_status();
+			zephir_var_dump(&_1 TSRMLS_CC);
+			zephir_exit_empty();
+			ZEPHIR_MM_RESTORE();
+		}
+	}
 
 }
 
@@ -172,15 +191,30 @@ PHP_METHOD(Lynx_DBAL_Driver_Pqsql, connect) {
 
 PHP_METHOD(Lynx_DBAL_Driver_Pqsql, lastInsertId) {
 
-	zval *_0;
 	int ZEPHIR_LAST_CALL_STATUS;
+	zval *seq_id_param = NULL, *_0;
+	zval *seq_id = NULL;
 
 	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &seq_id_param);
+
+	if (unlikely(Z_TYPE_P(seq_id_param) != IS_STRING && Z_TYPE_P(seq_id_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'seq_id' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (likely(Z_TYPE_P(seq_id_param) == IS_STRING)) {
+		zephir_get_strval(seq_id, seq_id_param);
+	} else {
+		ZEPHIR_INIT_VAR(seq_id);
+		ZVAL_EMPTY_STRING(seq_id);
+	}
+
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL);
 	zephir_check_call_status();
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
-	ZEPHIR_RETURN_CALL_METHOD(_0, "lastinsertid", NULL);
+	ZEPHIR_RETURN_CALL_METHOD(_0, "lastinsertid", NULL, seq_id);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -189,7 +223,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pqsql, lastInsertId) {
 PHP_METHOD(Lynx_DBAL_Driver_Pqsql, prepare) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *statement, *_0;
+	zval *statement, *e = NULL, *_0, *_1 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &statement);
@@ -198,10 +232,27 @@ PHP_METHOD(Lynx_DBAL_Driver_Pqsql, prepare) {
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL);
 	zephir_check_call_status();
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
-	ZEPHIR_RETURN_CALL_METHOD(_0, "prepare", NULL, statement);
-	zephir_check_call_status();
-	RETURN_MM();
+
+	/* try_start_1: */
+
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
+		ZEPHIR_RETURN_CALL_METHOD(_0, "prepare", NULL, statement);
+		zephir_check_call_status_or_jump(try_end_1);
+		RETURN_MM();
+
+	try_end_1:
+
+	if (EG(exception)) {
+		ZEPHIR_CPY_WRT(e, EG(exception));
+		if (zephir_is_instance_of(e, SL("Exception") TSRMLS_CC)) {
+			zend_clear_exception(TSRMLS_C);
+			ZEPHIR_CALL_METHOD(&_1, e, "getmessage",  NULL);
+			zephir_check_call_status();
+			zephir_var_dump(&_1 TSRMLS_CC);
+			zephir_exit_empty();
+			ZEPHIR_MM_RESTORE();
+		}
+	}
 
 }
 

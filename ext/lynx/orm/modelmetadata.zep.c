@@ -208,8 +208,8 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getColumn) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(key_param) == IS_STRING)) {
-		key = key_param;
+	if (likely(Z_TYPE_P(key_param) == IS_STRING)) {
+		zephir_get_strval(key, key_param);
 	} else {
 		ZEPHIR_INIT_VAR(key);
 		ZVAL_EMPTY_STRING(key);
@@ -240,8 +240,8 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getProperty) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(key_param) == IS_STRING)) {
-		key = key_param;
+	if (likely(Z_TYPE_P(key_param) == IS_STRING)) {
+		zephir_get_strval(key, key_param);
 	} else {
 		ZEPHIR_INIT_VAR(key);
 		ZVAL_EMPTY_STRING(key);

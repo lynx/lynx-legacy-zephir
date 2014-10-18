@@ -18,6 +18,7 @@
 #include "kernel/fcall.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/array.h"
+#include "kernel/operators.h"
 
 
 /**
@@ -210,8 +211,8 @@ PHP_METHOD(Lynx_ORM_EntityManager, getRepository) {
 		RETURN_MM_NULL();
 	}
 
-	if (unlikely(Z_TYPE_P(entityName_param) == IS_STRING)) {
-		entityName = entityName_param;
+	if (likely(Z_TYPE_P(entityName_param) == IS_STRING)) {
+		zephir_get_strval(entityName, entityName_param);
 	} else {
 		ZEPHIR_INIT_VAR(entityName);
 		ZVAL_EMPTY_STRING(entityName);

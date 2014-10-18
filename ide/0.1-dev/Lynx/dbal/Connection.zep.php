@@ -56,7 +56,7 @@ class Connection
      *
      * @param string $table 
      * @param string $column 
-     * @param string $value 
+     * @param mixed $value 
      * @param string $type 
      */
 	public function deleteByColumn($table, $column, $value, $type = null) {}
