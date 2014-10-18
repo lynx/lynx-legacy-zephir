@@ -1,2 +1,2 @@
-psql -c 'create database lynx_test;' -U postgres
-pg_dump -Fc lynx_test > ./tests/schemas/pqsql/lynx_test.sql -U postgres
+psql -U postgres -c 'create database lynx_test;'
+psql -U postgres -d lynx_test -f tests/schemas/pqsql/lynx_test.sql
