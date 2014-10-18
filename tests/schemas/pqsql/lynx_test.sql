@@ -122,7 +122,7 @@ INSERT INTO users VALUES (4, 'Елисей', 1);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_id_seq', 1, false);
+SELECT pg_catalog.setval('users_id_seq', 5, false);
 
 
 --
