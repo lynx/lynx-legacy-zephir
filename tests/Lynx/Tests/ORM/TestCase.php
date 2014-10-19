@@ -13,7 +13,7 @@ use Lynx\ORM,
     Lynx\Stdlib\Events\Manager as EventsManager;
 
 class TestCase
-	extends \PHPUnit_Framework_TestCase
+	extends \Lynx\Tests\TestCase
 {
 	/**
 	 * @var ORM\EntityManager

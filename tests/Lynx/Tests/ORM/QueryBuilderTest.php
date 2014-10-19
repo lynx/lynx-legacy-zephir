@@ -10,23 +10,6 @@ use Lynx\ORM;
 class QueryBuilderTest
 	extends TestCase
 {
-    /**
-     * @return string
-     */
-    public function getDriverName()
-    {
-        switch ($GLOBALS['db_type']) {
-            case 'mysql':
-            case 'pdo_mysql':
-                return 'Mysql';
-                break;
-            case 'pgsql':
-            case 'pdo_pgsql':
-                return 'Pgsql';
-                break;
-        }
-    }
-
     protected function assertEqualsSql($expected, $actual)
     {
         if ($this->getDriverName() == 'Pgsql') {

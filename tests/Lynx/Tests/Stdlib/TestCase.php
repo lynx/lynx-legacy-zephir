@@ -7,7 +7,7 @@
 namespace Lynx\Tests\Stdlib;
 
 class TestCase
-	extends \PHPUnit_Framework_TestCase
+	extends \Lynx\Tests\TestCase
 {
     public function getTestObjectElement($id = 1, $value = "test")
     {
