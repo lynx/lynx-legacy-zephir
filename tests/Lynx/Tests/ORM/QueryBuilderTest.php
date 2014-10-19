@@ -155,5 +155,8 @@ class QueryBuilderTest
         $result = $queryBuilder->getQuery()->fetchArray();
         $this->assertInternalType('array', $result);
         $this->assertSame(4, count($result));
+
+        $result = $queryBuilder->getQuery()->fetchAll();
+        $this->assertInstanceOf('Lynx\Stdlib\Collections\ArrayCollection', $result);
     }
 }
