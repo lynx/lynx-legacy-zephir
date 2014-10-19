@@ -100,6 +100,7 @@ class QueryBuilderTest
         $query = $queryBuilder->getQuery()
             ->bindValue('id', 1)
             ->bindValue('id_next', 1);
+
         $this->assertInternalType('array', $query->fetchArray());
 
         $queryBuilder = $this->_em->createQueryBuilder()
@@ -150,5 +151,9 @@ class QueryBuilderTest
         $queryBuilder = $this->_em->createQueryBuilder();
         $queryBuilder->select()->from('Model\User', 'u')->leftJoin('u.Group', 'g');
         $this->assertEqualsSql('SELECT * FROM `users` u LEFT JOIN `groups` `g` ON `u`.`group_id` = `g`.`id`', $queryBuilder->getSQL());
+
+        $result = $queryBuilder->getQuery()->fetchArray();
+        $this->assertInternalType('array', $result);
+        $this->assertSame(4, count($result));
     }
 }
