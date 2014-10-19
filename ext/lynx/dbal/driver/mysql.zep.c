@@ -170,6 +170,21 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, connect) {
 
 }
 
+PHP_METHOD(Lynx_DBAL_Driver_Mysql, getNewPlatform) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+
+	ZEPHIR_MM_GROW();
+
+	object_init_ex(return_value, lynx_dbal_platform_mysql_ce);
+	if (zephir_has_constructor(return_value TSRMLS_CC)) {
+		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL);
+		zephir_check_call_status();
+	}
+	RETURN_MM();
+
+}
+
 PHP_METHOD(Lynx_DBAL_Driver_Mysql, lastInsertId) {
 
 	zval *_0;

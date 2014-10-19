@@ -9,12 +9,23 @@ class Connection
      * 	
      */
     protected $driver;
+    /**
+     * Current used db platform (Mysql|Pgsql)
+     * 	
+     */
+    protected $platform;
 
     /**
      * Current used driver
      * 	
      */
 	public function getDriver() {}
+
+    /**
+     * Current used db platform (Mysql|Pgsql)
+     * 	
+     */
+	public function getPlatform() {}
 
     /**
      * Construct connection

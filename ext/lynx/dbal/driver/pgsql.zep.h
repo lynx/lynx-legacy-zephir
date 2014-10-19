@@ -8,6 +8,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pgsql, getEventsManager);
 PHP_METHOD(Lynx_DBAL_Driver_Pgsql, __construct);
 PHP_METHOD(Lynx_DBAL_Driver_Pgsql, isConnected);
 PHP_METHOD(Lynx_DBAL_Driver_Pgsql, execute);
+PHP_METHOD(Lynx_DBAL_Driver_Pgsql, getNewPlatform);
 PHP_METHOD(Lynx_DBAL_Driver_Pgsql, connect);
 PHP_METHOD(Lynx_DBAL_Driver_Pgsql, lastInsertId);
 PHP_METHOD(Lynx_DBAL_Driver_Pgsql, prepare);
@@ -41,6 +42,7 @@ ZEPHIR_INIT_FUNCS(lynx_dbal_driver_pgsql_method_entry) {
 	PHP_ME(Lynx_DBAL_Driver_Pgsql, __construct, arginfo_lynx_dbal_driver_pgsql___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Lynx_DBAL_Driver_Pgsql, isConnected, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_DBAL_Driver_Pgsql, execute, arginfo_lynx_dbal_driver_pgsql_execute, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_DBAL_Driver_Pgsql, getNewPlatform, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_DBAL_Driver_Pgsql, connect, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_DBAL_Driver_Pgsql, lastInsertId, arginfo_lynx_dbal_driver_pgsql_lastinsertid, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_DBAL_Driver_Pgsql, prepare, arginfo_lynx_dbal_driver_pgsql_prepare, ZEND_ACC_PUBLIC)

@@ -14,6 +14,8 @@
 #include "lynx/dbal/driver/pdo.zep.h"
 #include "lynx/dbal/driver/pgsql.zep.h"
 #include "lynx/dbal/events.zep.h"
+#include "lynx/dbal/platform/mysql.zep.h"
+#include "lynx/dbal/platform/pgsql.zep.h"
 #include "lynx/orm/configuration.zep.h"
 #include "lynx/orm/entitymanager.zep.h"
 #include "lynx/orm/entityrepository.zep.h"

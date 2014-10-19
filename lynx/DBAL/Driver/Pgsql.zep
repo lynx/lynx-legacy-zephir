@@ -45,6 +45,11 @@ class Pgsql
 
 	}
 
+	public function getNewPlatform()
+	{
+		return new \Lynx\DBAL\Platform\Pgsql();
+	}
+
 	public function connect()
 	{
 		if (this->isConnected()) {

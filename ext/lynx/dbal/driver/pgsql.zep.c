@@ -164,6 +164,21 @@ PHP_METHOD(Lynx_DBAL_Driver_Pgsql, execute) {
 
 }
 
+PHP_METHOD(Lynx_DBAL_Driver_Pgsql, getNewPlatform) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+
+	ZEPHIR_MM_GROW();
+
+	object_init_ex(return_value, lynx_dbal_platform_pgsql_ce);
+	if (zephir_has_constructor(return_value TSRMLS_CC)) {
+		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL);
+		zephir_check_call_status();
+	}
+	RETURN_MM();
+
+}
+
 PHP_METHOD(Lynx_DBAL_Driver_Pgsql, connect) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

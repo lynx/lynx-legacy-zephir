@@ -51,6 +51,9 @@ class Mysql
 	public function connect() {}
 
 
+	public function getNewPlatform() {}
+
+
 	public function lastInsertId() {}
 
     /**

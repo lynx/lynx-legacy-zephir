@@ -12,6 +12,8 @@ if test "$PHP_LYNX" = "yes"; then
 	lynx/dbal/driver/pdo.zep.c
 	lynx/dbal/driver/pgsql.zep.c
 	lynx/dbal/events.zep.c
+	lynx/dbal/platform/mysql.zep.c
+	lynx/dbal/platform/pgsql.zep.c
 	lynx/orm/configuration.zep.c
 	lynx/orm/entitymanager.zep.c
 	lynx/orm/entityrepository.zep.c

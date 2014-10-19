@@ -48,6 +48,9 @@ class Pgsql
 	public function execute($query) {}
 
 
+	public function getNewPlatform() {}
+
+
 	public function connect() {}
 
     /**

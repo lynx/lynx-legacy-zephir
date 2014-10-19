@@ -52,6 +52,11 @@ class Mysql
 		);
 	}
 
+	public function getNewPlatform()
+	{
+		return new \Lynx\DBAL\Platform\Mysql();
+	}
+
 	public function lastInsertId()
 	{
 		this->connect();

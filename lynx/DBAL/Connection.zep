@@ -14,6 +14,11 @@ class Connection
 	protected driver {get};
 
 	/**
+	 * Current used db platform (Mysql|Pgsql)
+	 */
+	protected platform {get};
+
+	/**
 	 * Construct connection
 	 */
 	public function __construct(var parameters, <EventsManager> eventsManager = null)
@@ -27,6 +32,11 @@ class Connection
 	     */
 		if (isset(parameters["driver"])) {
 			let this->driver = parameters["driver"];
+
+			/**
+			 * @todo Move to static
+			 */
+			let this->platform = this->driver->getNewPlatform();
 		} else {
 			throw new \Exception("Driver didn`t find in $parameters");
 		}

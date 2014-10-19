@@ -4,6 +4,7 @@ extern zend_class_entry *lynx_dbal_connection_ce;
 ZEPHIR_INIT_CLASS(Lynx_DBAL_Connection);
 
 PHP_METHOD(Lynx_DBAL_Connection, getDriver);
+PHP_METHOD(Lynx_DBAL_Connection, getPlatform);
 PHP_METHOD(Lynx_DBAL_Connection, __construct);
 PHP_METHOD(Lynx_DBAL_Connection, insert);
 PHP_METHOD(Lynx_DBAL_Connection, update);
@@ -48,6 +49,7 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(lynx_dbal_connection_method_entry) {
 	PHP_ME(Lynx_DBAL_Connection, getDriver, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_DBAL_Connection, getPlatform, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_DBAL_Connection, __construct, arginfo_lynx_dbal_connection___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Lynx_DBAL_Connection, insert, arginfo_lynx_dbal_connection_insert, ZEND_ACC_PUBLIC)
 	PHP_ME(Lynx_DBAL_Connection, update, arginfo_lynx_dbal_connection_update, ZEND_ACC_PUBLIC)
