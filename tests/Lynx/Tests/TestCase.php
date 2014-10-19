@@ -23,6 +23,9 @@ class TestCase
             case 'pdo_pgsql':
                 return 'Pgsql';
                 break;
+            default:
+                throw new \Exception('Unknown driver: ' . $GLOBALS['db_type']);
+                break;
         }
     }
 } 
