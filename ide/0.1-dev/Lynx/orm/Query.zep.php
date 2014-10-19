@@ -54,6 +54,7 @@ class Query
      * @param mixed $parameter 
      * @param mixed $value 
      * @param mixed $data_type 
+     * @return Query 
      */
 	public function bindValue($parameter, $value, $data_type = \PDO::PARAM_STR) {}
 
@@ -66,10 +67,13 @@ class Query
      * @param mixed $data_type 
      * @param mixed $lenght 
      * @param mixed $driver_options 
+     * @return Query 
      */
 	public function bindParam($parameter, $value, $data_type = \PDO::PARAM_STR, $lenght = null, $driver_options = null) {}
 
-
+    /**
+     * @return array|bool 
+     */
 	public function getResult() {}
 
     /**

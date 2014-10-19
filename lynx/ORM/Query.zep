@@ -33,7 +33,7 @@ class Query
 	/**
 	 * Binds a value to a parameter
 	 */
-	public function bindValue(var parameter, var value, var data_type = \PDO::PARAM_STR)
+	public function bindValue(var parameter, var value, var data_type = \PDO::PARAM_STR) -> <Query>
 	{
 		this->statement->bindValue(":".parameter, value, data_type);
 		return this;
@@ -42,13 +42,13 @@ class Query
 	/**
 	 * Binds a parameter to the specified variable name
 	 */
-	public function bindParam(var parameter, var value, var data_type = \PDO::PARAM_STR, var lenght = null, var driver_options = null)
+	public function bindParam(var parameter, var value, var data_type = \PDO::PARAM_STR, var lenght = null, var driver_options = null) -> <Query>
 	{
 		this->statement->bindParam(":".parameter, value, data_type, lenght, driver_options);
 		return this;
 	}
 
-	public function getResult()
+	public function getResult() -> array|bool
 	{
 		var result;
 
