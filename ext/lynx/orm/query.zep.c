@@ -169,9 +169,6 @@ PHP_METHOD(Lynx_ORM_Query, bindParam) {
 
 }
 
-/**
- * @return mixed
- */
 PHP_METHOD(Lynx_ORM_Query, getResult) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -211,9 +208,6 @@ PHP_METHOD(Lynx_ORM_Query, fetchArray) {
 
 }
 
-/**
- * @return array|boolean
- */
 PHP_METHOD(Lynx_ORM_Query, fetchAll) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -246,9 +240,6 @@ PHP_METHOD(Lynx_ORM_Query, fetchAll) {
 
 }
 
-/**
- * @return object|boolean
- */
 PHP_METHOD(Lynx_ORM_Query, fetchObject) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -301,8 +292,8 @@ PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&model, _2, "getobject",  NULL);
 	zephir_check_call_status();
-	zephir_array_fetch_long(&_3, result, 0, PH_NOISY | PH_READONLY, "lynx/ORM/Query.zep", 113 TSRMLS_CC);
-	zephir_is_iterable(_3, &_5, &_4, 0, 0, "lynx/ORM/Query.zep", 120);
+	zephir_array_fetch_long(&_3, result, 0, PH_NOISY | PH_READONLY, "lynx/ORM/Query.zep", 104 TSRMLS_CC);
+	zephir_is_iterable(_3, &_5, &_4, 0, 0, "lynx/ORM/Query.zep", 111);
 	for (
 	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_5, &_4)

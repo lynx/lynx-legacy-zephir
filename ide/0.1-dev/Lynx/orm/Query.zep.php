@@ -69,10 +69,7 @@ class Query
      */
 	public function bindParam($parameter, $value, $data_type = \PDO::PARAM_STR, $lenght = null, $driver_options = null) {}
 
-    /**
-     * @return mixed
-     * 	
-     */
+
 	public function getResult() {}
 
     /**
@@ -82,18 +79,12 @@ class Query
 	public function fetchArray($parameters = null) {}
 
     /**
-     * @return array|boolean
-     * 	
-     *
      * @param mixed $parameters 
      * @return object|bool 
      */
 	public function fetchAll($parameters = null) {}
 
     /**
-     * @return object|boolean
-     * 	
-     *
      * @param mixed $parameters 
      * @return object|bool 
      */

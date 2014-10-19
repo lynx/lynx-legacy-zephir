@@ -48,9 +48,6 @@ class Query
 		return this;
 	}
 
-	/**
-	 * @return mixed
-	 */
 	public function getResult()
 	{
 		var result;
@@ -70,9 +67,6 @@ class Query
 		return this->getResult();
 	}
 
-	/**
-	 * @return array|boolean
-	 */
 	public function fetchAll(var parameters = null) -> object|boolean
 	{
 		var result, model, property, key, value, collection;
@@ -90,9 +84,6 @@ class Query
 		return collection;
 	}
 
-	/**
-	 * @return object|boolean
-	 */
 	public function fetchObject(var parameters = null) -> object|boolean
 	{
 		return this->getResult();
