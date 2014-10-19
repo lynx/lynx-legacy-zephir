@@ -132,7 +132,6 @@ class QueryBuilderTest
         $query = $queryBuilder->getQuery();
         $this->assertInternalType('array', $query->fetchArray());
 
-        $this->markTestSkipped('pqsql');
         $queryBuilder->limit(1);
         $this->assertEqualsSql('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1', $queryBuilder->getSQL());
         $query = $queryBuilder->getQuery();
