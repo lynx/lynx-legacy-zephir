@@ -83,7 +83,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Дмитрий',1),(2,'Илья',0),(3,'Денис',0),(4,'Елисей',0),(5,'Test string',1),(6,'Test string',1),(7,'Test string',1),(8,'Test string',1),(9,'Test string',1),(10,'Test string',1),(11,'Test string',1),(12,'Test string',1),(13,'Test string',1),(14,'Test string',1),(15,'Test string',1),(16,'Test string',1),(17,'Test string',1),(18,'Test string',1),(19,'Test string',1),(20,'Test string',1),(21,'Test string',1),(22,'Test string',1),(23,'Test string',1),(24,'Test string',1),(25,'Test string',1),(26,'Test string',1),(27,'Test string',1),(28,'Test string',1),(29,'Test string',1),(30,'Test string',1),(31,'Test string',1),(32,'Test string',1),(33,'Test string',1),(34,'Test string',1),(35,'Test string',1),(36,'Test string',1),(37,'Test string',1),(38,'Test string',1),(39,'Test string',1),(40,'Test string',1),(41,'Test string',1),(42,'Test string',1),(43,'Test string',1),(44,'Test string',1),(45,'Test string',1),(46,'Test string',1),(47,'Test string',1),(48,'Test string',1),(49,'Test string',1),(50,'Test string',1),(51,'Test string',1),(52,'Test string',1),(53,'Test string',1),(54,'Test string',1),(55,'Test string',1),(56,'Test string',1),(57,'Test string',1),(58,'Test string',1),(59,'Test string',1),(60,'Test string',1),(61,'Test string',1),(62,'Test string',1);
+INSERT INTO `users` VALUES (1,'Дмитрий',1),(2,'Илья',0),(3,'Денис',0),(4,'Елисей',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
