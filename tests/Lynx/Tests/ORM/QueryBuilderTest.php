@@ -83,6 +83,17 @@ class QueryBuilderTest
             )
         ), $result);
 
+        $result = $query->fetchOne();
+
+        $this->assertInstanceOf('Model\User', $result);
+
+        $expectedEntity = new \Model\User();
+        $expectedEntity->id = 1;
+        $expectedEntity->name = 'Дмитрий';
+        $expectedEntity->group_id = 1;
+
+        $this->assertEquals($expectedEntity, $result);
+
         $queryBuilder = $this->_em->createQueryBuilder()->select()->from('Model\User', 'u')->where('u.id', ':id')->orWhere('u.id', ':id_next');
         $this->assertEqualsSql('SELECT * FROM `users` u WHERE (u.id = :id OR u.id = :id_next)', $queryBuilder->getSQL());
 
