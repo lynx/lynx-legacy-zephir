@@ -217,7 +217,7 @@ PHP_METHOD(Lynx_ORM_Query, fetchArray) {
 PHP_METHOD(Lynx_ORM_Query, fetchAll) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters = NULL;
+	zval *parameters = NULL, *result = NULL, *collection, *_0, *_1;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &parameters);
@@ -227,9 +227,22 @@ PHP_METHOD(Lynx_ORM_Query, fetchAll) {
 	}
 
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getresult", NULL);
+	ZEPHIR_CALL_METHOD(&result, this_ptr, "getresult",  NULL);
 	zephir_check_call_status();
-	RETURN_MM();
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("statement"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(NULL, _0, "execute", NULL);
+	zephir_check_call_status();
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("statement"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&result, _1, "fetchall",  NULL);
+	zephir_check_call_status();
+	if (zephir_fast_count_int(result TSRMLS_CC) == 0) {
+		RETURN_MM_BOOL(0);
+	}
+	ZEPHIR_INIT_VAR(collection);
+	object_init_ex(collection, lynx_stdlib_collections_arraycollection_ce);
+	ZEPHIR_CALL_METHOD(NULL, collection, "__construct", NULL);
+	zephir_check_call_status();
+	RETURN_CCTOR(collection);
 
 }
 
@@ -288,8 +301,8 @@ PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&model, _2, "getobject",  NULL);
 	zephir_check_call_status();
-	zephir_array_fetch_long(&_3, result, 0, PH_NOISY | PH_READONLY, "lynx/ORM/Query.zep", 101 TSRMLS_CC);
-	zephir_is_iterable(_3, &_5, &_4, 0, 0, "lynx/ORM/Query.zep", 108);
+	zephir_array_fetch_long(&_3, result, 0, PH_NOISY | PH_READONLY, "lynx/ORM/Query.zep", 113 TSRMLS_CC);
+	zephir_is_iterable(_3, &_5, &_4, 0, 0, "lynx/ORM/Query.zep", 120);
 	for (
 	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_5, &_4)

@@ -75,7 +75,19 @@ class Query
 	 */
 	public function fetchAll(var parameters = null)
 	{
-		return this->getResult();
+		var result, model, property, key, value, collection;
+		let result = this->getResult();
+
+		this->statement->execute();
+		let result = this->statement->fetchAll();
+
+		if (count(result) == 0) {
+			return false;
+		}
+
+		let collection = new \Lynx\Stdlib\Collections\ArrayCollection();
+
+		return collection;
 	}
 
 	/**
