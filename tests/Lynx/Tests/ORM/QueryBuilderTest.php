@@ -66,8 +66,22 @@ class QueryBuilderTest
 
         $queryBuilder = $this->_em->createQueryBuilder()->select()->from('Model\User', 'u')->where('u.id', ':id');
         $this->assertEqualsSql('SELECT * FROM `users` u WHERE u.id = :id', $queryBuilder->getSQL());
+
         $query = $queryBuilder->getQuery()->bindParam('id', 1);
-        $this->assertInternalType('array', $query->fetchArray());
+        $result = $query->fetchArray();
+
+        $this->assertInternalType('array', $result);
+
+        /**
+         * It's not a good way but I need it to assert hydration in Query
+         */
+        $this->assertEquals(array(
+            array(
+                'id' => 1,
+                'name' => 'Дмитрий',
+                'group_id' => 1
+            )
+        ), $result);
 
         $queryBuilder = $this->_em->createQueryBuilder()->select()->from('Model\User', 'u')->where('u.id', ':id')->orWhere('u.id', ':id_next');
         $this->assertEqualsSql('SELECT * FROM `users` u WHERE (u.id = :id OR u.id = :id_next)', $queryBuilder->getSQL());
