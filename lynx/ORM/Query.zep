@@ -65,7 +65,7 @@ class Query
 		return result;
 	}
 
-	public function fetchArray(var parameters = null)
+	public function fetchArray(var parameters = null) -> array|boolean
 	{
 		return this->getResult();
 	}
@@ -73,7 +73,7 @@ class Query
 	/**
 	 * @return array|boolean
 	 */
-	public function fetchAll(var parameters = null)
+	public function fetchAll(var parameters = null) -> object|boolean
 	{
 		var result, model, property, key, value, collection;
 		let result = this->getResult();
@@ -93,12 +93,12 @@ class Query
 	/**
 	 * @return object|boolean
 	 */
-	public function fetchObject(var parameters = null)
+	public function fetchObject(var parameters = null) -> object|boolean
 	{
 		return this->getResult();
 	}
 
-	public function fetchOne(var parameters = null)
+	public function fetchOne(var parameters = null) -> object|boolean
 	{
 		var result, model, property, key, value;
 		let result = this->getResult();

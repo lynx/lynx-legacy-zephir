@@ -77,6 +77,7 @@ class Query
 
     /**
      * @param mixed $parameters 
+     * @return array|bool 
      */
 	public function fetchArray($parameters = null) {}
 
@@ -85,6 +86,7 @@ class Query
      * 	
      *
      * @param mixed $parameters 
+     * @return object|bool 
      */
 	public function fetchAll($parameters = null) {}
 
@@ -93,11 +95,13 @@ class Query
      * 	
      *
      * @param mixed $parameters 
+     * @return object|bool 
      */
 	public function fetchObject($parameters = null) {}
 
     /**
      * @param mixed $parameters 
+     * @return object|bool 
      */
 	public function fetchOne($parameters = null) {}
 
