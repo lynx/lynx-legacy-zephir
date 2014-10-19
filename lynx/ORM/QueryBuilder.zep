@@ -200,8 +200,7 @@ class QueryBuilder
 
 	inline protected function wrap(string id)
     {
-        //return "`" . id . "`";
-        return id;
+		return this->em->getConnection()->getPlatform()->wrap(id);
     }
 
 	public function getSQL() -> string
