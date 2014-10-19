@@ -99,8 +99,10 @@ class Query
 
 		var insertValues = [];
 		for key, value in result[0] {
-			let property = this->identityMap->getRootModel()->getFieldNameByColumn(key);
-			let insertValues[property] = value;
+			let property = this->identityMap->getRootModel()->getColumn(key);
+			if (property) {
+				let insertValues[property->name] = value;
+			}
 		}
 
 		let model = \Lynx\Stdlib\Hydrator\Entity::hydrate(insertValues, model);
