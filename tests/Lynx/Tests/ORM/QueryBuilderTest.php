@@ -138,7 +138,7 @@ class QueryBuilderTest
         $this->assertInternalType('array', $query->fetchArray());
 
         $queryBuilder->offset(1);
-        $this->assertEqualsSql('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1,1', $queryBuilder->getSQL());
+        $this->assertEqualsSql('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1 OFFSET 1', $queryBuilder->getSQL());
         $query = $queryBuilder->getQuery();
         $this->assertInternalType('array', $query->fetchArray());
 
