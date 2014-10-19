@@ -57,18 +57,24 @@ class QueryBuilder
 
     /**
      * @param mixed $columns 
+     * @return QueryBuilder 
      */
 	public function select($columns = null) {}
 
-
+    /**
+     * @return QueryBuilder 
+     */
 	public function delete() {}
 
-
+    /**
+     * @return QueryBuilder 
+     */
 	public function update() {}
 
     /**
      * @param mixed $from 
      * @param mixed $alias 
+     * @return QueryBuilder 
      */
 	public function from($from, $alias) {}
 
@@ -83,24 +89,28 @@ class QueryBuilder
     /**
      * @param mixed $join 
      * @param mixed $alias 
+     * @return QueryBuilder 
      */
 	public function leftJoin($join, $alias) {}
 
     /**
      * @param mixed $join 
      * @param mixed $alias 
+     * @return QueryBuilder 
      */
 	public function rightJoin($join, $alias) {}
 
     /**
      * @param mixed $join 
      * @param mixed $alias 
+     * @return QueryBuilder 
      */
 	public function innerJoin($join, $alias) {}
 
     /**
      * @param mixed $join 
      * @param mixed $alias 
+     * @return QueryBuilder 
      */
 	public function join($join, $alias) {}
 
@@ -108,6 +118,7 @@ class QueryBuilder
      * @param mixed $column 
      * @param mixed $value 
      * @param mixed $comparison 
+     * @return QueryBuilder 
      */
 	public function Where($column, $value, $comparison = Where::EQUAL) {}
 
@@ -115,6 +126,7 @@ class QueryBuilder
      * @param mixed $column 
      * @param mixed $value 
      * @param mixed $comparison 
+     * @return QueryBuilder 
      */
 	public function orWhere($column, $value, $comparison = Where::EQUAL) {}
 
@@ -132,7 +144,7 @@ class QueryBuilder
      *
      * @param mixed $statement 
      * @param string $sort 
-     * @return Query 
+     * @return QueryBuilder 
      */
 	public function orderBy($statement, $sort = "DESC") {}
 
@@ -141,16 +153,19 @@ class QueryBuilder
      * Set limit to the query
      *
      * @param int $limit 
+     * @return QueryBuilder 
      */
 	public function limit($limit) {}
 
     /**
      * @param int $offset 
+     * @return QueryBuilder 
      */
 	public function offset($offset) {}
 
     /**
      * @param string $id 
+     * @return string 
      */
 	protected function wrap($id) {}
 

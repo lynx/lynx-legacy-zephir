@@ -42,7 +42,7 @@ class QueryBuilder
 		let this->em = em;
 	}
 
-	public function select(var columns = null)
+	public function select(var columns = null) -> <QueryBuilder>
 	{
 		let this->type = self::SELECT;
 
@@ -53,21 +53,21 @@ class QueryBuilder
 		return this;
 	}
 
-	public function delete()
+	public function delete() -> <QueryBuilder>
 	{
 		let this->type = self::DELETE;
 
 		return this;
 	}
 
-	public function update()
+	public function update() -> <QueryBuilder>
 	{
 		let this->type = self::UPDATE;
 
 		return this;
 	}
 
-	public function from(var from, var alias)
+	public function from(var from, var alias) -> <QueryBuilder>
 	{
 		let this->from = from;
 		let this->alias = alias;
@@ -91,7 +91,7 @@ class QueryBuilder
 		let this->joins[alias] = new Join(joinType, this->wrap(relationModel->getTableName()), this->wrap(alias), condition);
 	}
 
-	public function leftJoin(var join, var alias)
+	public function leftJoin(var join, var alias) -> <QueryBuilder>
 	{
 		var aliases;
 		let aliases = explode(".", join);
@@ -101,7 +101,7 @@ class QueryBuilder
 		return this;
 	}
 
-	public function rightJoin(var join, var alias)
+	public function rightJoin(var join, var alias) -> <QueryBuilder>
 	{
 		var aliases;
 		let aliases = explode(".", join);
@@ -111,7 +111,7 @@ class QueryBuilder
 		return this;
 	}
 
-	public function innerJoin(var join, var alias)
+	public function innerJoin(var join, var alias) -> <QueryBuilder>
 	{
 		var aliases;
 		let aliases = explode(".", join);
@@ -121,7 +121,7 @@ class QueryBuilder
 		return this;
 	}
 
-	public function join(var join, var alias)
+	public function join(var join, var alias) -> <QueryBuilder>
 	{
 		var aliases;
 		let aliases = explode(".", join);
@@ -131,14 +131,14 @@ class QueryBuilder
 		return this;
 	}
 
-	public function Where(var column, var value, var comparison = Where::EQUAL)
+	public function Where(var column, var value, var comparison = Where::EQUAL) -> <QueryBuilder>
 	{
 		let this->where[] = this->prepareWhereStatement(column, value, comparison);
 
 		return this;
 	}
 
-	public function orWhere(var column, var value, var comparison = Where::EQUAL)
+	public function orWhere(var column, var value, var comparison = Where::EQUAL) -> <QueryBuilder>
 	{
 		var index, statement;
 
@@ -170,7 +170,7 @@ class QueryBuilder
 	/**
 	 * Set order by to the query
 	 */
-	public function orderBy(var statement, string! sort = "DESC") -> <Query>
+	public function orderBy(var statement, string! sort = "DESC") -> <QueryBuilder>
 	{
 		let this->order = statement . " " . sort;
 
@@ -180,7 +180,7 @@ class QueryBuilder
     /**
      * Set limit to the query
      */
-	public function limit(int limit)
+	public function limit(int limit) -> <QueryBuilder>
 	{
 	    if (limit <= 0) {
 	        throw new \Exception("$limit must be >= 0");
@@ -191,14 +191,14 @@ class QueryBuilder
 		return this;
 	}
 
-	public function offset(int offset)
+	public function offset(int offset) -> <QueryBuilder>
 	{
 		let this->offset = offset;
 
 		return this;
 	}
 
-	inline protected function wrap(string id)
+	inline protected function wrap(string id) -> string
     {
 		return this->em->getConnection()->getPlatform()->wrap(id);
     }
