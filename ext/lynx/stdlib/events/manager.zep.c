@@ -70,7 +70,7 @@ ZEPHIR_INIT_CLASS(Lynx_Stdlib_Events_Manager) {
 PHP_METHOD(Lynx_Stdlib_Events_Manager, attach) {
 
 	int priority, ZEPHIR_LAST_CALL_STATUS;
-	zval *eventType_param = NULL, *handler, *priority_param = NULL, *priorityQueue, *events, *_0, *_1 = NULL;
+	zval *eventType_param = NULL, *handler, *priority_param = NULL, *priorityQueue = NULL, *events = NULL, *_0, *_1 = NULL;
 	zval *eventType = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -227,7 +227,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, getResponses) {
  */
 PHP_METHOD(Lynx_Stdlib_Events_Manager, dettachAll) {
 
-	zval *type_param = NULL, *events;
+	zval *type_param = NULL, *events = NULL;
 	zval *type = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -433,7 +433,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fire) {
 	zephir_fcall_cache_entry *_4 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool cancelable, _3;
-	zval *eventType_param = NULL, *source, *data = NULL, *cancelable_param = NULL, *events, *eventParts, *type, *eventName, *event, *status = NULL, *fireEvents = NULL, *_0, *_2;
+	zval *eventType_param = NULL, *source, *data = NULL, *cancelable_param = NULL, *events, *eventParts, *type, *eventName, *event = NULL, *status = NULL, *fireEvents = NULL, *_0, *_2;
 	zval *eventType = NULL, *_1;
 
 	ZEPHIR_MM_GROW();

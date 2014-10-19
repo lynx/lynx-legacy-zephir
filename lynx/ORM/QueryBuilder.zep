@@ -243,7 +243,7 @@ class QueryBuilder
 			let sql .= " LIMIT ".this->limit;
 
 			if (!is_null(this->offset)) {
-				let sql .= ",".this->offset;
+				let sql .= " OFFSET ".this->offset;
 			}
 		}
 

@@ -64,7 +64,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder_Expression_Join, __construct) {
 
 PHP_METHOD(Lynx_ORM_QueryBuilder_Expression_Join, __toString) {
 
-	zval *_0, *_1, *_2, *_3, *_4, *_5 = NULL, *_6;
+	zval *_0, *_1, *_2 = NULL, *_3, *_4, *_5 = NULL, *_6;
 
 	ZEPHIR_MM_GROW();
 

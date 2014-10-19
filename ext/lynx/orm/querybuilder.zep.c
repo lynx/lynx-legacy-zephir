@@ -621,7 +621,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 		if (!Z_TYPE_P(_15) == IS_NULL) {
 			_16 = zephir_fetch_nproperty_this(this_ptr, SL("offset"), PH_NOISY_CC);
 			ZEPHIR_INIT_VAR(_17);
-			ZEPHIR_CONCAT_SV(_17, ",", _16);
+			ZEPHIR_CONCAT_SV(_17, " OFFSET ", _16);
 			zephir_concat_self(&sql, _17 TSRMLS_CC);
 		}
 	}

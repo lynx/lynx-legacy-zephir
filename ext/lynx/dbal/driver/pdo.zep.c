@@ -36,7 +36,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pdo, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL, *_2;
-	zval *dsn_param = NULL, *username = NULL, *password = NULL, *options_param = NULL, *_0, *_1;
+	zval *dsn_param = NULL, *username = NULL, *password = NULL, *options_param = NULL, *_0 = NULL, *_1 = NULL;
 	zval *dsn = NULL;
 
 	ZEPHIR_MM_GROW();

@@ -119,7 +119,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, createQueryBuilder) {
 PHP_METHOD(Lynx_ORM_EntityRepository, find) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *id, *_0 = NULL, *_1, *_2 = NULL, *_3, *_4 = NULL, *_5 = NULL, *_6 = NULL;
+	zval *id, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &id);
@@ -164,7 +164,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, find) {
 PHP_METHOD(Lynx_ORM_EntityRepository, count) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *_0 = NULL, *_1, *_2 = NULL, *_3 = NULL;
+	zval *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL;
 
 	ZEPHIR_MM_GROW();
 
@@ -220,7 +220,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findAll) {
 PHP_METHOD(Lynx_ORM_EntityRepository, findBy) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *column_param = NULL, *value, *_0 = NULL, *_1, *_2 = NULL, *_4 = NULL, *_5 = NULL, *_6;
+	zval *column_param = NULL, *value, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_4 = NULL, *_5 = NULL, *_6;
 	zval *column = NULL, *_3;
 
 	ZEPHIR_MM_GROW();
@@ -275,7 +275,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findBy) {
 PHP_METHOD(Lynx_ORM_EntityRepository, findOneBy) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *column_param = NULL, *value, *_0 = NULL, *_1, *_2 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_7;
+	zval *column_param = NULL, *value, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_7;
 	zval *column = NULL, *_3;
 
 	ZEPHIR_MM_GROW();
