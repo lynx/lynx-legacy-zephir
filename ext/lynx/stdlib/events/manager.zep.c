@@ -106,13 +106,13 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, attach) {
 	ZEPHIR_OBS_VAR(events);
 	zephir_read_property_this(&events, this_ptr, SL("_events"), PH_NOISY_CC);
 	if (Z_TYPE_P(events) != IS_ARRAY) {
-		ZEPHIR_INIT_BNVAR(events);
+		ZEPHIR_INIT_NVAR(events);
 		array_init(events);
 	}
 	ZEPHIR_OBS_VAR(priorityQueue);
 	if (zephir_array_isset_fetch(&priorityQueue, events, eventType, 0 TSRMLS_CC)) {
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_enablePriorities"), PH_NOISY_CC);
-		ZEPHIR_INIT_BNVAR(priorityQueue);
+		ZEPHIR_INIT_NVAR(priorityQueue);
 		if (zephir_is_true(_0)) {
 			object_init_ex(priorityQueue, spl_ce_SplPriorityQueue);
 			if (zephir_has_constructor(priorityQueue TSRMLS_CC)) {
@@ -129,7 +129,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, attach) {
 			array_init(priorityQueue);
 		}
 	} else {
-		ZEPHIR_INIT_BNVAR(priorityQueue);
+		ZEPHIR_INIT_NVAR(priorityQueue);
 		array_init(priorityQueue);
 	}
 	if (Z_TYPE_P(priorityQueue) == IS_OBJECT) {
@@ -244,7 +244,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, dettachAll) {
 	ZEPHIR_OBS_VAR(events);
 	zephir_read_property_this(&events, this_ptr, SL("_events"), PH_NOISY_CC);
 	if (ZEPHIR_IS_STRING_IDENTICAL(type, "")) {
-		ZEPHIR_INIT_BNVAR(events);
+		ZEPHIR_INIT_NVAR(events);
 		ZVAL_NULL(events);
 	} else {
 		if (zephir_array_isset(events, type)) {
@@ -497,7 +497,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fire) {
 			_3 = Z_TYPE_P(fireEvents) == IS_ARRAY;
 		}
 		if (_3) {
-			ZEPHIR_INIT_BNVAR(event);
+			ZEPHIR_INIT_NVAR(event);
 			object_init_ex(event, lynx_stdlib_events_event_ce);
 			ZEPHIR_CALL_METHOD(NULL, event, "__construct", &_4, eventName, source, data, (cancelable ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
 			zephir_check_call_status();
@@ -513,7 +513,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fire) {
 		}
 		if (_3) {
 			if (Z_TYPE_P(event) == IS_NULL) {
-				ZEPHIR_INIT_BNVAR(event);
+				ZEPHIR_INIT_NVAR(event);
 				object_init_ex(event, lynx_stdlib_events_event_ce);
 				ZEPHIR_CALL_METHOD(NULL, event, "__construct", &_4, eventName, source, data, (cancelable ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
 				zephir_check_call_status();

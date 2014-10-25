@@ -74,10 +74,10 @@ PHP_METHOD(Lynx_ORM_QueryBuilder_Expression_Join, __toString) {
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("alias"), PH_NOISY_CC);
 	if (zephir_is_true(_3)) {
 		_4 = zephir_fetch_nproperty_this(this_ptr, SL("alias"), PH_NOISY_CC);
-		ZEPHIR_INIT_BNVAR(_2);
+		ZEPHIR_INIT_NVAR(_2);
 		ZEPHIR_CONCAT_SV(_2, " ", _4);
 	} else {
-		ZEPHIR_INIT_BNVAR(_2);
+		ZEPHIR_INIT_NVAR(_2);
 		ZVAL_STRING(_2, "", 1);
 	}
 	ZEPHIR_INIT_VAR(_5);
@@ -86,7 +86,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder_Expression_Join, __toString) {
 		ZEPHIR_OBS_NVAR(_5);
 		zephir_read_property_this(&_5, this_ptr, SL("condition"), PH_NOISY_CC);
 	} else {
-		ZEPHIR_INIT_BNVAR(_5);
+		ZEPHIR_INIT_NVAR(_5);
 		ZVAL_STRING(_5, "", 1);
 	}
 	ZEPHIR_CONCAT_VSVVSV(return_value, _0, " JOIN ", _1, _2, " ON ", _5);

@@ -4,20 +4,20 @@
 #ifndef PHP_LYNX_H
 #define PHP_LYNX_H 1
 
-#define ZEPHIR_RELEASE 1
-
 #include "kernel/globals.h"
 
 #define PHP_LYNX_NAME        "Lynx"
 #define PHP_LYNX_VERSION     "0.1-dev"
 #define PHP_LYNX_EXTNAME     "lynx"
 #define PHP_LYNX_AUTHOR      ""
-#define PHP_LYNX_ZEPVERSION  "0.5.4a"
+#define PHP_LYNX_ZEPVERSION  "0.5.6a"
 #define PHP_LYNX_DESCRIPTION ""
 
 
 
 ZEND_BEGIN_MODULE_GLOBALS(lynx)
+
+	int initialized;
 
 	/* Memory */
 	zephir_memory_entry *start_memory; /**< The first preallocated frame */

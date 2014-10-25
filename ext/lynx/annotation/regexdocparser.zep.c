@@ -179,7 +179,7 @@ PHP_METHOD(Lynx_Annotation_RegexDocParser, parseValue) {
 		ZEPHIR_SINIT_NVAR(_0);
 		ZVAL_LONG(&_0, ',');
 		zephir_fast_explode(vals, &_0, _6, LONG_MAX TSRMLS_CC);
-		ZEPHIR_INIT_BNVAR(val);
+		ZEPHIR_INIT_NVAR(val);
 		array_init(val);
 		zephir_is_iterable(vals, &_8, &_7, 0, 0, "lynx/Annotation/RegexDocParser.zep", 86);
 		for (
