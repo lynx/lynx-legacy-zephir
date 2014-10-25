@@ -10,13 +10,17 @@ use Lynx\ORM;
 class QueryBuilderTest
 	extends TestCase
 {
-    protected function assertEqualsSql($expected, $actual)
+    /**
+     * @param string $sql
+     * @return string
+     */
+    protected function replaceSqlQuotesForDriver($sql)
     {
         if ($this->getDriverName() == 'Pgsql') {
-            $expected = str_replace('`', '', $expected);
+            return str_replace('`', '', $sql);
         }
 
-        $this->assertEquals($expected, $actual);
+        return $sql;
     }
 
     public function testLimit()
@@ -65,7 +69,7 @@ class QueryBuilderTest
         $queryBuilder = $this->_em->createQueryBuilder();
 
         $queryBuilder = $this->_em->createQueryBuilder()->select()->from('Model\User', 'u')->where('u.id', ':id');
-        $this->assertEqualsSql('SELECT * FROM `users` u WHERE u.id = :id', $queryBuilder->getSQL());
+        $this->assertEquals($this->replaceSqlQuotesForDriver('SELECT * FROM `users` u WHERE u.id = :id'), $queryBuilder->getSQL());
 
         $query = $queryBuilder->getQuery()->bindParam('id', 1);
         $result = $query->fetchArray();
@@ -95,7 +99,7 @@ class QueryBuilderTest
         $this->assertEquals($expectedEntity, $result);
 
         $queryBuilder = $this->_em->createQueryBuilder()->select()->from('Model\User', 'u')->where('u.id', ':id')->orWhere('u.id', ':id_next');
-        $this->assertEqualsSql('SELECT * FROM `users` u WHERE (u.id = :id OR u.id = :id_next)', $queryBuilder->getSQL());
+        $this->assertEquals($this->replaceSqlQuotesForDriver('SELECT * FROM `users` u WHERE (u.id = :id OR u.id = :id_next)'), $queryBuilder->getSQL());
 
         $query = $queryBuilder->getQuery()
             ->bindValue('id', 1)
@@ -109,7 +113,7 @@ class QueryBuilderTest
             ->where('u.id', ':id')
             ->where('u.group_id', ':group_id');
 
-        $this->assertEqualsSql('SELECT * FROM `users` u WHERE u.id = :id AND u.group_id = :group_id', $queryBuilder->getSQL());
+        $this->assertEquals($this->replaceSqlQuotesForDriver('SELECT * FROM `users` u WHERE u.id = :id AND u.group_id = :group_id'), $queryBuilder->getSQL());
 
         $query = $queryBuilder->getQuery()
             ->bindValue('id', 1)
@@ -123,22 +127,22 @@ class QueryBuilderTest
         $queryBuilder = $this->_em->createQueryBuilder();
 
         $queryBuilder->select()->from('Model\User', 'u');
-        $this->assertEqualsSql('SELECT * FROM `users` u', $queryBuilder->getSQL());
+        $this->assertEquals($this->replaceSqlQuotesForDriver('SELECT * FROM `users` u'), $queryBuilder->getSQL());
         $query = $queryBuilder->getQuery();
         $this->assertInternalType('array', $query->fetchArray());
 
         $queryBuilder->select()->from('Model\User', 'u')->orderBy('u.id');
-        $this->assertEqualsSql('SELECT * FROM `users` u ORDER BY u.id DESC', $queryBuilder->getSQL());
+        $this->assertEquals($this->replaceSqlQuotesForDriver('SELECT * FROM `users` u ORDER BY u.id DESC'), $queryBuilder->getSQL());
         $query = $queryBuilder->getQuery();
         $this->assertInternalType('array', $query->fetchArray());
 
         $queryBuilder->limit(1);
-        $this->assertEqualsSql('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1', $queryBuilder->getSQL());
+        $this->assertEquals($this->replaceSqlQuotesForDriver('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1'), $queryBuilder->getSQL());
         $query = $queryBuilder->getQuery();
         $this->assertInternalType('array', $query->fetchArray());
 
         $queryBuilder->offset(1);
-        $this->assertEqualsSql('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1 OFFSET 1', $queryBuilder->getSQL());
+        $this->assertEquals($this->replaceSqlQuotesForDriver('SELECT * FROM `users` u ORDER BY u.id DESC LIMIT 1 OFFSET 1'), $queryBuilder->getSQL());
         $query = $queryBuilder->getQuery();
         $this->assertInternalType('array', $query->fetchArray());
 
@@ -149,7 +153,7 @@ class QueryBuilderTest
     {
         $queryBuilder = $this->_em->createQueryBuilder();
         $queryBuilder->select()->from('Model\User', 'u')->leftJoin('u.Group', 'g');
-        $this->assertEqualsSql('SELECT * FROM `users` u LEFT JOIN `groups` `g` ON `u`.`group_id` = `g`.`id`', $queryBuilder->getSQL());
+        $this->assertEquals($this->replaceSqlQuotesForDriver('SELECT * FROM `users` u LEFT JOIN `groups` `g` ON `u`.`group_id` = `g`.`id`'), $queryBuilder->getSQL());
 
         $result = $queryBuilder->getQuery()->fetchArray();
         $this->assertInternalType('array', $result);
