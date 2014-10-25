@@ -36,7 +36,7 @@ class UniqOfWorkTest
         $this->unitOfWork = $this->entityManager->getUnitOfWork();
     }
 
-    public function testInsertData()
+    public function testSimpleWorkflow()
     {
         $entity = new User();
         $entity->name = "Test string";
