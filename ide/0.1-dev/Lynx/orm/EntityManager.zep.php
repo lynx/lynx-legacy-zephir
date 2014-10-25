@@ -64,7 +64,7 @@ class EntityManager
 
     /**
      * @param string $entityName 
-     * @return EntityRepository n
+     * @return bool|EntityRepository 
      */
 	public function getRepository($entityName) {}
 
