@@ -6,22 +6,22 @@ Lynx ORM|DBAL
 
 <img align="right" height="180" src="http://dmtry.me/img/logos/lynx_bnw.svg">
 
-> Yet another ORM\DBAL written by Zephir language.
+> Yet another ORM\DBAL written in Zephir language.
 
-I like Doctrine2 but i dislike Phalcon 2 ORM* and create this project for incubate new ORM on Zephir Language for best performance.
+I like Doctrine2 but I dislike Phalcon 2 ORM* and I've created this project to incubate a new ORM in Zephir Language to achieve the best performance.
 
 ### Idea
 
 * Every day push >= 1 commit
 * Write ORM|DBAL and sublibs with max functions support
-* Performance tune (will start do it after beta release)
+* Performance tunning (will start doing it after beta release)
 
 ### Why it would be great?
 
-* Small but support all
-* Speed (because build on c with zephir)
+* Small but support everything
+* Speed (because it's built in C with Zephir)
 
-### On What ideas it would based
+### On What ideas it would be based
 
 * Annotation
 	* ReflectionClassParser
@@ -39,20 +39,20 @@ I like Doctrine2 but i dislike Phalcon 2 ORM* and create this project for incuba
 * Cache (Cache drivers)
 * StdLib
 	* Collections
-	* EventManager (ported from phalcon)
+	* EventManager (ported from Phalcon)
 	* Hydrators (will be soon)
 
 ### System Requirements
 
-To build you need the following requirements:
+To build it you need the following requirements:
 
 * g++ >= 4.4/clang++ >= 3.x/vc++ 9
 * gnu make 3.81 or later
 * autoconf 2.31 or later
 * automake 1.14 or later
-* php development headers and tools
+* PHP development headers and tools
 
-If you’re using Ubuntu, you can install the required packages this way:
+If you're using Ubuntu, you can install the required packages this way:
 
 ```
 sudo apt-get update
@@ -62,6 +62,7 @@ sudo apt-get install git gcc make re2c php5 php5-json php5-dev libpcre3-dev
 ### Installation
 
 You can build extension and install it like:
+
 ```
 git clone https://github.com/lynx/lynx.git
 git submodule update --init
@@ -78,7 +79,7 @@ sudo service php5-fpm restart
 
 ### Build Zephir code
 
-To build the zep Source to c extension:
+To build the zep Source to C extension:
 * [zephir](https://github.com/phalcon/zephir)
 
 License

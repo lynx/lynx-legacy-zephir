@@ -45,8 +45,8 @@ class Connection
 	}
 
 	/**
-	 * Insert row to the table with spicifed data and types
-	 * return the nubmer of affected rows
+	 * Insert a row in the table with the specified data and types
+	 * returns the number of affected rows
 	 */
 	public function insert(string! table, array! data, array! types = []) -> int
 	{
@@ -63,7 +63,7 @@ class Connection
 	}
 
 	/**
-	 * Update row(s) from table and return the number of updated rows
+	 * Update row(s) of table and returns the number of updated rows
 	 */
 	public function update(string! table, array! data, array! identifiers, array! types = []) -> int
 	{
@@ -82,8 +82,8 @@ class Connection
 	}
 
 	/**
-	 * Delete rows where $column = $key from $table
-	 * return the nubmer of affected rows
+	 * Delete rows where $column = $key in $table
+	 * return the number of affected rows
 	 */
 	public function deleteByColumn(string! table, string! column, var value, string! type = null)
 	{
@@ -94,8 +94,8 @@ class Connection
 	}
 
 	/**
-	 * Delete rows from tables where identifiers is spicifed
-	 * return the nubmer of affected rows
+	 * Delete rows from tables where identifiers are specified
+	 * return the number of affected rows
 	 */
 	public function delete(string! table, array! identifiers, array! types = []) -> int
 	{
