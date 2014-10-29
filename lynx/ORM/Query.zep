@@ -115,11 +115,11 @@ class Query
 
 	public function execute(var parameters, var hydrationMod = null)
 	{
-		
+
 	}
 
 	/**
-	 * Fetch statement and convert first column to type if it is specified
+	 * Fetch a statement and converts it to the first column to type if it is specified
 	 */
 	public function getScalarResult(var type = null)
 	{

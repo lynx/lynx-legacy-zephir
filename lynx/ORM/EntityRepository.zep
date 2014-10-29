@@ -35,7 +35,7 @@ class EntityRepository
     }
 
 	/**
-	 * Find entity by primary key
+	 * Find an entity by its primary key
 	 * @param $id
 	 * @return object|boolean
 	 */
@@ -61,7 +61,7 @@ class EntityRepository
     }
 
 	/**
-	 * Find all entities from repository
+	 * Find all entities from a repository
 	 */
     public function findAll()
     {
@@ -71,7 +71,7 @@ class EntityRepository
     }
 
 	/**
-	 * Find all entities from repository by column = :value
+	 * Find all entities from a repository by column = :value
 	 * @param string $column
 	 * @param $value
 	 * @return object|boolean
@@ -86,7 +86,7 @@ class EntityRepository
     }
 
 	/**
-	 * Find one entity from repository by column = :value
+	 * Find one entity from a repository by column = :value
 	 * @param string $column
 	 * @param $value
 	 * @return object|boolean
