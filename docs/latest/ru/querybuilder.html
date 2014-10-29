@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Установка и Настройка &mdash; Lynx develop documentation</title>
+    <title>QueryBuilder &mdash; Lynx develop documentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -29,8 +29,8 @@
     <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Lynx develop documentation" href="index.html" />
-    <link rel="next" title="Repository" href="repository.html" />
-    <link rel="prev" title="Welcome to Lynx’s documentation!" href="index.html" />
+    <link rel="next" title="Кеширование" href="caching.html" />
+    <link rel="prev" title="Repository" href="repository.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -67,15 +67,15 @@
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Установка и Настройка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Установка и Настройка</a></li>
 <li class="toctree-l1"><a class="reference internal" href="repository.html">Repository</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="repository.html#find-by-primary-key">Find by primary key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="repository.html#find-all">Find all</a></li>
 <li class="toctree-l2"><a class="reference internal" href="repository.html#count">Count</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="querybuilder.html">QueryBuilder</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="querybuilder.html#limit-and-offset">Limit and Offset</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">QueryBuilder</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#limit-and-offset">Limit and Offset</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="caching.html">Кеширование</a><ul>
@@ -98,7 +98,10 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Установка и Настройка</a></li>
+<li><a class="reference internal" href="#">QueryBuilder</a><ul>
+<li><a class="reference internal" href="#limit-and-offset">Limit and Offset</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -108,11 +111,11 @@
               
                 
   <li>
-    <a href="index.html" title="Previous Chapter: Welcome to Lynx’s documentation!"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Welcome to Lynx’...</span>
+    <a href="repository.html" title="Previous Chapter: Repository"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Repository</span>
     </a>
   </li>
   <li>
-    <a href="repository.html" title="Next Chapter: Repository"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Repository &raquo;</span>
+    <a href="caching.html" title="Next Chapter: Кеширование"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Кеширование &raquo;</span>
     </a>
   </li>
               
@@ -122,7 +125,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="_sources/install.txt"
+  <a href="_sources/querybuilder.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -146,18 +149,25 @@
   <div class="row">
     <div class="col-md-12">
       
-  <div class="section" id="id1">
-<h1>Установка и Настройка<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>It can be installed with <a class="reference external" href="http://www.getcomposer.org">Composer</a>.</p>
-<p>Define the following requirement in your <tt class="docutils literal"><span class="pre">composer.json</span></tt> file:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;require&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;lynx/lynx&quot;</span><span class="p">:</span> <span class="s">&quot;*&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+  <div class="section" id="querybuilder">
+<h1>QueryBuilder<a class="headerlink" href="#querybuilder" title="Permalink to this headline">¶</a></h1>
+<p>You can create new QueryBuilder:</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="x">$queryBuilder = $this-&gt;get(&#39;em&#39;)-&gt;createQueryBuilder();</span>
 </pre></div>
 </div>
-<p>Then call <tt class="docutils literal"><span class="pre">composer</span> <span class="pre">install</span></tt> from your command line.</p>
+<p>Or create QueryBuilder from Repository object:</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="x">$repository = $this-&gt;get(&#39;em&#39;)-&gt;getRepository(&#39;User&#39;);</span>
+<span class="x">$userQueryBuilder = $repository-&gt;createQueryBuilder();</span>
+</pre></div>
+</div>
+<div class="section" id="limit-and-offset">
+<h2>Limit and Offset<a class="headerlink" href="#limit-and-offset" title="Permalink to this headline">¶</a></h2>
+<p>You can specify limit or offset to the query by using:</p>
+<div class="highlight-php"><div class="highlight"><pre><span class="x">$queryBuilder-&gt;limit(100)</span>
+<span class="x">    -&gt;offset(50);</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
