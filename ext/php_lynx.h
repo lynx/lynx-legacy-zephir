@@ -4,13 +4,17 @@
 #ifndef PHP_LYNX_H
 #define PHP_LYNX_H 1
 
+#ifdef PHP_WIN32
+#define ZEPHIR_RELEASE 1
+#endif
+
 #include "kernel/globals.h"
 
 #define PHP_LYNX_NAME        "Lynx"
 #define PHP_LYNX_VERSION     "0.1-dev"
 #define PHP_LYNX_EXTNAME     "lynx"
 #define PHP_LYNX_AUTHOR      ""
-#define PHP_LYNX_ZEPVERSION  "0.5.6a"
+#define PHP_LYNX_ZEPVERSION  "0.5.9a"
 #define PHP_LYNX_DESCRIPTION ""
 
 
@@ -60,6 +64,8 @@ ZEND_EXTERN_MODULE_GLOBALS(lynx)
 #else
 	#define ZEPHIR_VGLOBAL &(lynx_globals)
 #endif
+
+#define ZEPHIR_API ZEND_API
 
 #define zephir_globals_def lynx_globals
 #define zend_zephir_globals_def zend_lynx_globals

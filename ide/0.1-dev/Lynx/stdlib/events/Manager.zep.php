@@ -17,13 +17,9 @@ class Manager implements \Lynx\Stdlib\Events\EventsManager
      * 
      * Attach a listener to the events manager
      * 
-     * @param string eventType
-     * @param object handler
-     * @param int priority
-     * 	
      *
      * @param string $eventType 
-     * @param mixed $handler 
+     * @param object $handler 
      * @param int $priority 
      */
 	public function attach($eventType, $handler, $priority = 100) {}
@@ -32,10 +28,8 @@ class Manager implements \Lynx\Stdlib\Events\EventsManager
      * 
      * Set if priorities are enabled in the EventsManager
      * 
-     * @param boolean enablePriorities
-     * 	
      *
-     * @param bool $enablePriorities 
+     * @param boolean $enablePriorities 
      */
 	public function enablePriorities($enablePriorities) {}
 
@@ -43,10 +37,8 @@ class Manager implements \Lynx\Stdlib\Events\EventsManager
      * 
      * Returns if priorities are enabled
      * 
-     * @return boolean
-     * 	
      *
-     * @return bool 
+     * @return boolean 
      */
 	public function arePrioritiesEnabled() {}
 
@@ -55,10 +47,8 @@ class Manager implements \Lynx\Stdlib\Events\EventsManager
      * Tells the event manager if it needs to collect all the responses returned by every
      * registered listener in a single fire
      * 
-     * @param boolean collect
-     * 	
      *
-     * @param bool $collect 
+     * @param boolean $collect 
      */
 	public function collectResponses($collect) {}
 
@@ -66,7 +56,6 @@ class Manager implements \Lynx\Stdlib\Events\EventsManager
      * 
      * Check if the events manager is collecting all all the responses returned by every
      * registered listener in a single fire
-     * 	
      *
      * @return bool 
      */
@@ -76,8 +65,8 @@ class Manager implements \Lynx\Stdlib\Events\EventsManager
      * 
      * Returns all the responses returned by every handler executed by the last 'fire' executed
      * 
-     * @return array
-     * 	
+     *
+     * @return array 
      */
 	public function getResponses() {}
 
@@ -85,8 +74,6 @@ class Manager implements \Lynx\Stdlib\Events\EventsManager
      * 
      * Removes all events from the EventsManager
      * 
-     * @param string type
-     * 	
      *
      * @param string $type 
      */
@@ -96,13 +83,10 @@ class Manager implements \Lynx\Stdlib\Events\EventsManager
      * 
      * Internal handler to call a queue of events
      * 
-     * @param \SplPriorityQueue|array queue
-     * @param Phalcon\Events\Event event
-     * @return mixed
-     * 	
      *
-     * @param mixed $queue 
-     * @param mixed $event 
+     * @param \SplPriorityQueue|array $queue 
+     * @param \Phalcon\Events\Event $event 
+     * @return mixed 
      */
 	public function fireQueue($queue, $event) {}
 
@@ -110,21 +94,16 @@ class Manager implements \Lynx\Stdlib\Events\EventsManager
      * 
      * Fires an event in the events manager causing that active listeners be notified about it
      * 
-     * 	 *<code>
+     * <code>
      * $eventsManager->fire('db', $connection);
-     * 	 *</code>
+     * </code>
      * 
-     * @param string eventType
-     * @param object source
-     * @param mixed  data
-     * @param boolean cancelable
-     * @return mixed
-     * 	
      *
      * @param string $eventType 
-     * @param mixed $source 
+     * @param object $source 
      * @param mixed $data 
-     * @param bool $cancelable 
+     * @param boolean $cancelable 
+     * @return mixed 
      */
 	public function fire($eventType, $source, $data = null, $cancelable = true) {}
 
@@ -132,12 +111,9 @@ class Manager implements \Lynx\Stdlib\Events\EventsManager
      * 
      * Check whether certain type of event has listeners
      * 
-     * @param string type
-     * @return boolean
-     * 	
      *
      * @param string $type 
-     * @return bool 
+     * @return boolean 
      */
 	public function hasListeners($type) {}
 
@@ -145,11 +121,9 @@ class Manager implements \Lynx\Stdlib\Events\EventsManager
      * 
      * Returns all the attached listeners of a certain type
      * 
-     * @param string type
-     * @return array
-     * 	
      *
      * @param string $type 
+     * @return array 
      */
 	public function getListeners($type) {}
 

@@ -61,7 +61,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pdo, __construct) {
 	}
 	if (!options_param) {
 	ZEPHIR_INIT_VAR(options);
-	ZVAL_NULL(options);
+	array_init(options);
 	} else {
 		zephir_get_arrval(options, options_param);
 	}

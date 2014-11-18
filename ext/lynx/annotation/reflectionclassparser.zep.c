@@ -36,7 +36,6 @@ ZEPHIR_INIT_CLASS(Lynx_Annotation_ReflectionClassParser) {
 PHP_METHOD(Lynx_Annotation_ReflectionClassParser, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_class_entry *_2;
 	zend_bool _0;
 	zval *parameter, *_1;
 
@@ -51,8 +50,7 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, __construct) {
 	}
 	if (_0) {
 		ZEPHIR_INIT_VAR(_1);
-		_2 = zend_fetch_class(SL("ReflectionClass"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
-		object_init_ex(_1, _2);
+		object_init_ex(_1, zephir_get_internal_ce(SS("reflectionclass") TSRMLS_CC));
 		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, parameter);
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("reflectionClass"), _1 TSRMLS_CC);
@@ -73,7 +71,7 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getClassAnnotations) {
 	ZEPHIR_MM_GROW();
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("reflectionClass"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&docComment, _0, "getdoccomment",  NULL);
+	ZEPHIR_CALL_METHOD(&docComment, _0, "getdoccomment", NULL);
 	zephir_check_call_status();
 	ZEPHIR_CALL_CE_STATIC(&result, lynx_annotation_regexdocparser_ce, "parseannotations", &_1, docComment);
 	zephir_check_call_status();
@@ -94,7 +92,7 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getPropertiesAnnotations) {
 	array_init(result);
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("reflectionClass"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&properties, _0, "getproperties",  NULL);
+	ZEPHIR_CALL_METHOD(&properties, _0, "getproperties", NULL);
 	zephir_check_call_status();
 	zephir_is_iterable(properties, &_2, &_1, 0, 0, "lynx/Annotation/ReflectionClassParser.zep", 38);
 	for (
@@ -102,11 +100,11 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getPropertiesAnnotations) {
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HVALUE(property, _3);
-		ZEPHIR_CALL_METHOD(&_6, property, "getdoccomment",  NULL);
+		ZEPHIR_CALL_METHOD(&_6, property, "getdoccomment", NULL);
 		zephir_check_call_status();
 		ZEPHIR_CALL_CE_STATIC(&_4, lynx_annotation_regexdocparser_ce, "parseannotations", &_5, _6);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_7, property, "getname",  NULL);
+		ZEPHIR_CALL_METHOD(&_7, property, "getname", NULL);
 		zephir_check_call_status();
 		zephir_array_update_zval(&result, _7, &_4, PH_COPY | PH_SEPARATE);
 	}

@@ -40,7 +40,6 @@ class Mysql
 
     /**
      * Execute query and return result
-     * 	
      *
      * @param string $query 
      * @return int 

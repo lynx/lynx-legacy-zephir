@@ -152,9 +152,9 @@ PHP_METHOD(Lynx_DBAL_Driver_Pgsql, execute) {
 
 	if (EG(exception)) {
 		ZEPHIR_CPY_WRT(e, EG(exception));
-		if (zephir_is_instance_of(e, SL("Exception") TSRMLS_CC)) {
+		if (zephir_instance_of_ev(e, zend_exception_get_default(TSRMLS_C) TSRMLS_CC)) {
 			zend_clear_exception(TSRMLS_C);
-			ZEPHIR_CALL_METHOD(&_1, e, "getmessage",  NULL);
+			ZEPHIR_CALL_METHOD(&_1, e, "getmessage", NULL);
 			zephir_check_call_status();
 			zephir_var_dump(&_1 TSRMLS_CC);
 			zephir_exit_empty();
@@ -186,7 +186,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pgsql, connect) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isconnected",  NULL);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isconnected", NULL);
 	zephir_check_call_status();
 	if (zephir_is_true(_0)) {
 		RETURN_MM_BOOL(0);
@@ -259,9 +259,9 @@ PHP_METHOD(Lynx_DBAL_Driver_Pgsql, prepare) {
 
 	if (EG(exception)) {
 		ZEPHIR_CPY_WRT(e, EG(exception));
-		if (zephir_is_instance_of(e, SL("Exception") TSRMLS_CC)) {
+		if (zephir_instance_of_ev(e, zend_exception_get_default(TSRMLS_C) TSRMLS_CC)) {
 			zend_clear_exception(TSRMLS_C);
-			ZEPHIR_CALL_METHOD(&_1, e, "getmessage",  NULL);
+			ZEPHIR_CALL_METHOD(&_1, e, "getmessage", NULL);
 			zephir_check_call_status();
 			zephir_var_dump(&_1 TSRMLS_CC);
 			zephir_exit_empty();

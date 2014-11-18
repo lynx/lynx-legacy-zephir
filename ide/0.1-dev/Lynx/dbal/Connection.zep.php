@@ -6,40 +6,34 @@ class Connection
 {
     /**
      * Current used driver
-     * 	
      */
     protected $driver;
     /**
      * Current used db platform (Mysql|Pgsql)
-     * 	
      */
     protected $platform;
 
     /**
      * Current used driver
-     * 	
      */
 	public function getDriver() {}
 
     /**
      * Current used db platform (Mysql|Pgsql)
-     * 	
      */
 	public function getPlatform() {}
 
     /**
      * Construct connection
-     * 	
      *
      * @param mixed $parameters 
      * @param mixed $eventsManager 
      */
-	public function __construct($parameters, $eventsManager = null) {}
+	public function __construct($parameters, EventsManager $eventsManager = null) {}
 
     /**
-     * Insert row to the table with spicifed data and types
-     * return the nubmer of affected rows
-     * 	
+     * Insert a row in the table with the specified data and types
+     * returns the number of affected rows
      *
      * @param string $table 
      * @param array $data 
@@ -49,8 +43,7 @@ class Connection
 	public function insert($table, $data, $types = array()) {}
 
     /**
-     * Update row(s) from table and return the number of updated rows
-     * 	
+     * Update row(s) of table and returns the number of updated rows
      *
      * @param string $table 
      * @param array $data 
@@ -61,9 +54,8 @@ class Connection
 	public function update($table, $data, $identifiers, $types = array()) {}
 
     /**
-     * Delete rows where $column = $key from $table
-     * return the nubmer of affected rows
-     * 	
+     * Delete rows where $column = $key in $table
+     * return the number of affected rows
      *
      * @param string $table 
      * @param string $column 
@@ -73,9 +65,8 @@ class Connection
 	public function deleteByColumn($table, $column, $value, $type = null) {}
 
     /**
-     * Delete rows from tables where identifiers is spicifed
-     * return the nubmer of affected rows
-     * 	
+     * Delete rows from tables where identifiers are specified
+     * return the number of affected rows
      *
      * @param string $table 
      * @param array $identifiers 
@@ -86,7 +77,6 @@ class Connection
 
     /**
      * Prepares a statement for execution and returns a statement
-     * 	
      *
      * @param mixed $statement 
      */

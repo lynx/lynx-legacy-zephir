@@ -47,13 +47,6 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, hydrate) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &data_param, &currentObject);
 
-	if (unlikely(Z_TYPE_P(data_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'data' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		data = data_param;
-
 	ZEPHIR_SEPARATE_PARAM(currentObject);
 
 
@@ -150,7 +143,7 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, extract) {
 	  ; zephir_hash_get_current_data_ex(_13, (void**) &_14, &_12) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_13, &_12)
 	) {
-		ZEPHIR_GET_HMKEY(key, _13, _12);
+		ZEPHIR_GET_HKEY(key, _13, _12);
 		ZEPHIR_GET_HVALUE(value, _14);
 		zephir_array_update_zval(&attributes, key, &value, PH_COPY | PH_SEPARATE);
 	}

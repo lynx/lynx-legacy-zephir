@@ -1,0 +1,20 @@
+ARG_ENABLE("lynx", "enable lynx", "no");
+
+if (PHP_LYNX != "no") {
+  EXTENSION("lynx", "lynx.c", null, "-I"+configure_module_dirname);
+  ADD_SOURCES(configure_module_dirname + "/kernel", "main.c memory.c exception.c hash.c debug.c backtrace.c object.c array.c string.c fcall.c require.c file.c operators.c concat.c variables.c filter.c iterator.c exit.c", "lynx");
+  ADD_SOURCES(configure_module_dirname + "/kernel/extended", "array.c", "lynx");
+  
+  ADD_SOURCES(configure_module_dirname + "/lynx/annotation", "reflectionclassparser.zep.c regexdocparser.zep.c", "lynx");
+	ADD_SOURCES(configure_module_dirname + "/lynx/dbal", "connection.zep.c events.zep.c", "lynx");
+	ADD_SOURCES(configure_module_dirname + "/lynx/dbal/driver", "connection.zep.c mysql.zep.c pdoconnection.zep.c pdo.zep.c pgsql.zep.c", "lynx");
+	ADD_SOURCES(configure_module_dirname + "/lynx/dbal/driver/pdo", "statement.zep.c", "lynx");
+	ADD_SOURCES(configure_module_dirname + "/lynx/dbal/platform", "mysql.zep.c pgsql.zep.c", "lynx");
+	ADD_SOURCES(configure_module_dirname + "/lynx/orm", "configuration.zep.c entitymanager.zep.c entityrepository.zep.c exception.zep.c modelmetadata.zep.c modelsmanager.zep.c query.zep.c querybuilder.zep.c queryidentitymap.zep.c sqlbuilder.zep.c unitofwork.zep.c", "lynx");
+	ADD_SOURCES(configure_module_dirname + "/lynx/orm/modelmetadata", "column.zep.c property.zep.c", "lynx");
+	ADD_SOURCES(configure_module_dirname + "/lynx/orm/querybuilder/expression", "join.zep.c where.zep.c", "lynx");
+	ADD_SOURCES(configure_module_dirname + "/lynx/stdlib/collections", "arraycollection.zep.c collection.zep.c", "lynx");
+	ADD_SOURCES(configure_module_dirname + "/lynx/stdlib/events", "event.zep.c eventsmanager.zep.c manager.zep.c", "lynx");
+	ADD_SOURCES(configure_module_dirname + "/lynx/stdlib/hydrator", "classmethods.zep.c classproperties.zep.c entity.zep.c hydrator.zep.c", "lynx");
+  ADD_FLAG("CFLAGS_LYNX", "/D ZEPHIR_RELEASE");
+}

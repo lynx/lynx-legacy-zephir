@@ -46,13 +46,6 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassMethods, hydrate) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &data_param, &currentObject);
 
-	if (unlikely(Z_TYPE_P(data_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'data' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		data = data_param;
-
 
 
 	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/Stdlib/Hydrator/ClassMethods.zep", 20);
@@ -126,7 +119,7 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassMethods, extract) {
 				ZEPHIR_CALL_FUNCTION(&_11, "lcfirst", &_12, attribute);
 				zephir_check_call_status();
 				ZEPHIR_CPY_WRT(attribute, _11);
-				ZEPHIR_CALL_METHOD(&_11, currentObject, "attributes",  NULL);
+				ZEPHIR_CALL_METHOD(&_11, currentObject, "attributes", NULL);
 				zephir_check_call_status();
 				zephir_array_update_zval(&attributes, attribute, &_11, PH_COPY | PH_SEPARATE);
 			}

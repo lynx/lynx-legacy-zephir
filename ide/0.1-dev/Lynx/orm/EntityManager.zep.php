@@ -20,7 +20,7 @@ class EntityManager
     protected $configuration;
 
     /**
-     * @var UnitOfWork
+     * @return UnitOfWork 
      */
 	public function getUnitOfWork() {}
 
@@ -41,7 +41,7 @@ class EntityManager
      * @param mixed $configuration 
      * @param mixed $eventManager 
      */
-	public function __construct($connection, $configuration, $eventManager) {}
+	public function __construct(Connection $connection, Configuration $configuration, EventsManager $eventManager) {}
 
     /**
      * @param mixed $entity 

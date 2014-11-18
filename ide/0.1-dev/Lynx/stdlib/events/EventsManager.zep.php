@@ -2,19 +2,16 @@
 
 namespace Lynx\Stdlib\Events;
 
-abstract interface EventsManager
+interface EventsManager
 {
 
     /**
      * 
      * Attach a listener to the events manager
      * 
-     * @param string eventType
-     * @param object handler
-     * 	
      *
-     * @param mixed $eventType 
-     * @param mixed $handler 
+     * @param string $eventType 
+     * @param object $handler 
      */
 	public function attach($eventType, $handler);
 
@@ -22,10 +19,8 @@ abstract interface EventsManager
      * 
      * Removes all events from the EventsManager
      * 
-     * @param string type
-     * 	
      *
-     * @param mixed $type 
+     * @param string $type 
      */
 	public function dettachAll($type = null);
 
@@ -33,15 +28,11 @@ abstract interface EventsManager
      * 
      * Fires a event in the events manager causing that the acive listeners will be notified about it
      * 
-     * @param string eventType
-     * @param object source
-     * @param mixed  data
-     * @return mixed
-     * 	
      *
-     * @param mixed $eventType 
-     * @param mixed $source 
+     * @param string $eventType 
+     * @param object $source 
      * @param mixed $data 
+     * @return mixed 
      */
 	public function fire($eventType, $source, $data = null);
 
@@ -49,11 +40,9 @@ abstract interface EventsManager
      * 
      * Returns all the attached listeners of a certain type
      * 
-     * @param string type
-     * @return array
-     * 	
      *
-     * @param mixed $type 
+     * @param string $type 
+     * @return array 
      */
 	public function getListeners($type);
 

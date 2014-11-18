@@ -60,7 +60,7 @@ PHP_METHOD(Lynx_ORM_SqlBuilder, __construct) {
 
 
 	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\\\ORM\\\\EntityManager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
@@ -172,7 +172,7 @@ PHP_METHOD(Lynx_ORM_SqlBuilder, getQuery) {
 	ZEPHIR_MM_GROW();
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getsql",  NULL);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getsql", NULL);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&query, _0, "createquery", NULL, _1);
 	zephir_check_call_status();

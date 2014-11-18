@@ -49,13 +49,6 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, __construct) {
 		ZEPHIR_INIT_VAR(elements);
 		array_init(elements);
 	} else {
-	if (unlikely(Z_TYPE_P(elements_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'elements' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		elements = elements_param;
-
 	}
 
 
@@ -89,7 +82,7 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, isEmpty) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "count",  NULL);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "count", NULL);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(!ZEPHIR_IS_LONG(_0, 0));
 
@@ -189,15 +182,13 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, last) {
 PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, getIterator) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *_1;
-	zend_class_entry *_0;
+	zval *_0;
 
 	ZEPHIR_MM_GROW();
 
-	_0 = zend_fetch_class(SL("ArrayIterator"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
-	object_init_ex(return_value, _0);
-	_1 = zephir_fetch_nproperty_this(this_ptr, SL("elements"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, _1);
+	object_init_ex(return_value, zephir_get_internal_ce(SS("arrayiterator") TSRMLS_CC));
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("elements"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, _0);
 	zephir_check_call_status();
 	RETURN_MM();
 

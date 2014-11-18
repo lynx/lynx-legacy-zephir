@@ -152,7 +152,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, connect) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isconnected",  NULL);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isconnected", NULL);
 	zephir_check_call_status();
 	if (zephir_is_true(_0)) {
 		RETURN_MM_BOOL(0);

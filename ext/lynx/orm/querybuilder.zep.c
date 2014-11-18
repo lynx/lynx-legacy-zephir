@@ -106,7 +106,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, __construct) {
 
 
 	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\\\ORM\\\\EntityManager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
 		return;
 	}
 	ZEPHIR_INIT_VAR(_0);
@@ -178,7 +178,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, from) {
 	zephir_update_property_this(this_ptr, SL("from"), from TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("alias"), alias TSRMLS_CC);
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_1, _0, "getmodelsmanager",  NULL);
+	ZEPHIR_CALL_METHOD(&_1, _0, "getmodelsmanager", NULL);
 	zephir_check_call_status();
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&_2, _1, "get", NULL, _3);
@@ -215,7 +215,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, prepareJoin) {
 	ZEPHIR_CALL_METHOD(&targetProperty, _0, "getproperty", NULL, modelName);
 	zephir_check_call_status();
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_2, _1, "getmodelsmanager",  NULL);
+	ZEPHIR_CALL_METHOD(&_2, _1, "getmodelsmanager", NULL);
 	zephir_check_call_status();
 	ZEPHIR_OBS_VAR(_3);
 	zephir_read_property(&_3, targetProperty, SL("targetEntity"), PH_NOISY_CC);
@@ -237,7 +237,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, prepareJoin) {
 	ZEPHIR_CONCAT_VSVSVSV(condition, _4, ".", _5, " = ", _7, ".", _8);
 	ZEPHIR_INIT_VAR(_10);
 	object_init_ex(_10, lynx_orm_querybuilder_expression_join_ce);
-	ZEPHIR_CALL_METHOD(&_12, relationModel, "gettablename",  NULL);
+	ZEPHIR_CALL_METHOD(&_12, relationModel, "gettablename", NULL);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_11, this_ptr, "wrap", NULL, _12);
 	zephir_check_call_status();
@@ -527,9 +527,9 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, wrap) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_1, _0, "getconnection",  NULL);
+	ZEPHIR_CALL_METHOD(&_1, _0, "getconnection", NULL);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_2, _1, "getplatform",  NULL);
+	ZEPHIR_CALL_METHOD(&_2, _1, "getplatform", NULL);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_METHOD(_2, "wrap", NULL, id);
 	zephir_check_call_status();
@@ -573,7 +573,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 	} while(0);
 
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("rootModel"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_4, _2, "gettablename",  NULL);
+	ZEPHIR_CALL_METHOD(&_4, _2, "gettablename", NULL);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_3, this_ptr, "wrap", NULL, _4);
 	zephir_check_call_status();
@@ -636,7 +636,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getQuery) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&sql, this_ptr, "getsql",  NULL);
+	ZEPHIR_CALL_METHOD(&sql, this_ptr, "getsql", NULL);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(identityMap);
 	object_init_ex(identityMap, lynx_orm_queryidentitymap_ce);

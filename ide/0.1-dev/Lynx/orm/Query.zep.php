@@ -8,7 +8,6 @@ class Query
     const FETCH_INT = 1;
     /**
      * Sql plain query
-     * 	
      */
     protected $query;
 
@@ -17,25 +16,21 @@ class Query
     protected $statement;
     /**
      * IdentityMap for SQL. need for hydrate data with many relations (joins)
-     * 	
      */
     protected $identityMap;
 
     /**
      * Sql plain query
-     * 	
      */
 	public function getQuery() {}
 
     /**
      * IdentityMap for SQL. need for hydrate data with many relations (joins)
-     * 	
      */
 	public function getIdentityMap() {}
 
     /**
      * IdentityMap for SQL. need for hydrate data with many relations (joins)
-     * 	
      *
      * @param mixed $identityMap 
      */
@@ -45,11 +40,10 @@ class Query
      * @param mixed $query 
      * @param mixed $em 
      */
-	public function __construct($query, $em) {}
+	public function __construct($query, EntityManager $em) {}
 
     /**
      * Binds a value to a parameter
-     * 	
      *
      * @param mixed $parameter 
      * @param mixed $value 
@@ -60,7 +54,6 @@ class Query
 
     /**
      * Binds a parameter to the specified variable name
-     * 	
      *
      * @param mixed $parameter 
      * @param mixed $value 
@@ -107,8 +100,7 @@ class Query
 	public function execute($parameters, $hydrationMod = null) {}
 
     /**
-     * Fetch statement and convert first column to type if it is specified
-     * 	
+     * Fetch a statement and converts it to the first column to type if it is specified
      *
      * @param mixed $type 
      */

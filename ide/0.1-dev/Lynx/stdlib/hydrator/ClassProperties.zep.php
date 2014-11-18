@@ -8,7 +8,6 @@ class ClassProperties implements \Lynx\Stdlib\Hydrator\Hydrator
     /**
      * 
      * {@inheritDoc}
-     * 	
      *
      * @param array $data 
      * @param mixed $currentObject 
@@ -18,7 +17,6 @@ class ClassProperties implements \Lynx\Stdlib\Hydrator\Hydrator
     /**
      * 
      * {@inheritDoc}
-     * 	
      *
      * @param object $currentObject 
      */

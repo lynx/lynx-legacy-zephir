@@ -10,8 +10,8 @@ class UnitOfWork
     const STATE_NEW = 2;
     /**
      * 
+     *
      * @var EntityManager
-     * 	
      */
     protected $em;
 
@@ -24,7 +24,7 @@ class UnitOfWork
     /**
      * @param mixed $em 
      */
-	public function __construct($em) {}
+	public function __construct(EntityManager $em) {}
 
     /**
      * @param object $entity 

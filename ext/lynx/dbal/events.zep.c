@@ -19,7 +19,7 @@
  */
 ZEPHIR_INIT_CLASS(Lynx_DBAL_Events) {
 
-	ZEPHIR_REGISTER_CLASS(Lynx\\DBAL, Events, lynx, dbal_events, NULL, 0);
+	ZEPHIR_REGISTER_CLASS(Lynx\\DBAL, Events, lynx, dbal_events, NULL, ZEND_ACC_FINAL_CLASS);
 
 	zend_declare_class_constant_string(lynx_dbal_events_ce, SL("AFTER_CONNECT"), "afterConnect" TSRMLS_CC);
 

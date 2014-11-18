@@ -53,7 +53,7 @@ class QueryBuilder
     /**
      * @param mixed $em 
      */
-	public function __construct($em) {}
+	public function __construct(EntityManager $em) {}
 
     /**
      * @param mixed $columns 
@@ -140,7 +140,6 @@ class QueryBuilder
     /**
      * 
      * Set order by to the query
-     * 	
      *
      * @param mixed $statement 
      * @param string $sort 

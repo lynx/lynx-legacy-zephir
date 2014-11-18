@@ -57,7 +57,7 @@ PHP_METHOD(Lynx_ORM_ModelsManager, __construct) {
 
 
 	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\\\ORM\\\\EntityManager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
 		return;
 	}
 	ZEPHIR_INIT_VAR(_0);
@@ -94,9 +94,9 @@ PHP_METHOD(Lynx_ORM_ModelsManager, get) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("cacheLoaded"), PH_NOISY_CC);
 	if (zephir_is_true(_0)) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_2, _1, "getconfiguration",  NULL);
+		ZEPHIR_CALL_METHOD(&_2, _1, "getconfiguration", NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&cacheDriver, _2, "getcachedriver",  NULL);
+		ZEPHIR_CALL_METHOD(&cacheDriver, _2, "getcachedriver", NULL);
 		zephir_check_call_status();
 		if (zephir_is_true(cacheDriver)) {
 		}

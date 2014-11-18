@@ -13,10 +13,9 @@ class Configuration
     /**
      * 
      * Set Cache Driver
-     * 	
      *
      * @param mixed $cacheDriver 
      */
-	public function setCacheDriver($cacheDriver) {}
+	public function setCacheDriver(\Cacher\Driver $cacheDriver) {}
 
 }

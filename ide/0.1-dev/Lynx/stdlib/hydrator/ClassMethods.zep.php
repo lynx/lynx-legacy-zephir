@@ -8,7 +8,6 @@ class ClassMethods
     /**
      * 
      * {@inheritDoc}
-     * 	
      *
      * @param array $data 
      * @param mixed $currentObject 
@@ -18,7 +17,6 @@ class ClassMethods
     /**
      * 
      * {@inheritDoc}
-     * 	
      *
      * @param object $currentObject 
      */

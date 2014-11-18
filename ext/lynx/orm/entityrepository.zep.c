@@ -61,11 +61,11 @@ PHP_METHOD(Lynx_ORM_EntityRepository, __construct) {
 
 
 	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\\\ORM\\\\EntityManager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
 		return;
 	}
 	if (!(zephir_instance_of_ev(modelWrapper, lynx_orm_modelmetadata_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'modelWrapper' must be an instance of 'Lynx\\\\ORM\\\\ModelMetaData'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'modelWrapper' must be an instance of 'Lynx\\ORM\\ModelMetaData'", "", 0);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
@@ -100,7 +100,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, createQueryBuilder) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_1, _0, "createquerybuilder",  NULL);
+	ZEPHIR_CALL_METHOD(&_1, _0, "createquerybuilder", NULL);
 	zephir_check_call_status();
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("modelWrapper"), PH_NOISY_CC);
 	ZEPHIR_OBS_VAR(_3);
@@ -112,7 +112,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, createQueryBuilder) {
 }
 
 /**
- * Find entity by primary key
+ * Find an entity by its primary key
  * @param $id
  * @return object|boolean
  */
@@ -143,7 +143,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, find) {
 	ZVAL_LONG(_1, 1);
 	ZEPHIR_CALL_METHOD(&_4, _2, "limit", NULL, _1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_5, _4, "getquery",  NULL);
+	ZEPHIR_CALL_METHOD(&_5, _4, "getquery", NULL);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "id", ZEPHIR_TEMP_PARAM_COPY);
@@ -178,7 +178,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, count) {
 	ZEPHIR_CALL_METHOD(&_2, _0, "select", NULL, _1);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_3, _2, "getquery",  NULL);
+	ZEPHIR_CALL_METHOD(&_3, _2, "getquery", NULL);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_LONG(_1, 1);
@@ -189,7 +189,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, count) {
 }
 
 /**
- * Find all entities from repository
+ * Find all entities from a repository
  */
 PHP_METHOD(Lynx_ORM_EntityRepository, findAll) {
 
@@ -203,7 +203,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findAll) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "createquerybuilder", NULL, _1);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_2, _0, "getquery",  NULL);
+	ZEPHIR_CALL_METHOD(&_2, _0, "getquery", NULL);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_METHOD(_2, "fetchall", NULL);
 	zephir_check_call_status();
@@ -212,7 +212,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findAll) {
 }
 
 /**
- * Find all entities from repository by column = :value
+ * Find all entities from a repository by column = :value
  * @param string $column
  * @param $value
  * @return object|boolean
@@ -251,7 +251,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findBy) {
 	ZEPHIR_CALL_METHOD(&_2, _0, "where", NULL, _3, _1);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_4, _2, "getquery",  NULL);
+	ZEPHIR_CALL_METHOD(&_4, _2, "getquery", NULL);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "column", ZEPHIR_TEMP_PARAM_COPY);
@@ -267,7 +267,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findBy) {
 }
 
 /**
- * Find one entity from repository by column = :value
+ * Find one entity from a repository by column = :value
  * @param string $column
  * @param $value
  * @return object|boolean
@@ -310,7 +310,7 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findOneBy) {
 	ZVAL_LONG(_1, 1);
 	ZEPHIR_CALL_METHOD(&_4, _2, "limit", NULL, _1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_5, _4, "getquery",  NULL);
+	ZEPHIR_CALL_METHOD(&_5, _4, "getquery", NULL);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "column", ZEPHIR_TEMP_PARAM_COPY);

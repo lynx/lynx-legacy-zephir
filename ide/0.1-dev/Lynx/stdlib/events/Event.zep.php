@@ -39,33 +39,23 @@ class Event
 
     /**
      * Phalcon\Events\Event constructor
-     * 	
-     * @param string type
-     * @param object source
-     * @param mixed data
-     * @param boolean cancelable
-     * 	
      *
      * @param string $type 
-     * @param mixed $source 
+     * @param object $source 
      * @param mixed $data 
-     * @param mixed $cancelable 
+     * @param boolean $cancelable 
      */
 	public function __construct($type, $source, $data = null, $cancelable = true) {}
 
     /**
      * Stops the event preventing propagation
-     * 	
      */
 	public function stop() {}
 
     /**
      * Check whether the event is currently stopped
-     * 	
-     * @return boolean
-     * 	
      *
-     * @return bool 
+     * @return boolean 
      */
 	public function isStopped() {}
 

@@ -25,7 +25,7 @@ class SqlBuilder
     /**
      * @param mixed $em 
      */
-	public function __construct($em) {}
+	public function __construct(EntityManager $em) {}
 
 
 	public function select() {}

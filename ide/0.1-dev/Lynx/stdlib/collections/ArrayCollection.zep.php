@@ -9,7 +9,6 @@ class ArrayCollection extends \Lynx\Stdlib\Collections\Collection
 
     /**
      * {@inheritDoc}
-     * 	
      *
      * @param array $elements 
      */
@@ -17,7 +16,6 @@ class ArrayCollection extends \Lynx\Stdlib\Collections\Collection
 
     /**
      * {@inheritDoc}
-     * 	
      *
      * @param mixed $element 
      */
@@ -25,7 +23,6 @@ class ArrayCollection extends \Lynx\Stdlib\Collections\Collection
 
     /**
      * Checks is collection empty?
-     * 	
      *
      * @return bool 
      */
@@ -33,15 +30,13 @@ class ArrayCollection extends \Lynx\Stdlib\Collections\Collection
 
     /**
      * {@inheritDoc}
-     * 	
      *
      * @param mixed $func 
      */
-	public function map($func) {}
+	public function map(\Closure $func) {}
 
     /**
      * {@inheritDoc}
-     * 	
      *
      * @param mixed $func 
      */
@@ -49,19 +44,16 @@ class ArrayCollection extends \Lynx\Stdlib\Collections\Collection
 
     /**
      * {@inheritDoc}
-     * 	
      */
 	public function first() {}
 
     /**
      * {@inheritDoc}
-     * 	
      */
 	public function last() {}
 
     /**
      * {@inheritDoc}
-     * 	
      *
      * @return ArrayIterator 
      */
@@ -69,7 +61,6 @@ class ArrayCollection extends \Lynx\Stdlib\Collections\Collection
 
     /**
      * {@inheritDoc}
-     * 	
      *
      * @return int 
      */

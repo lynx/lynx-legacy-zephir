@@ -2,13 +2,12 @@
 
 namespace Lynx\Stdlib\Hydrator;
 
-abstract interface Hydrator
+interface Hydrator
 {
 
     /**
      * 
      * Hydrate values to object
-     * 	
      *
      * @param array $data 
      * @param mixed $currentObject 
@@ -18,7 +17,6 @@ abstract interface Hydrator
     /**
      * 
      * Extract values from object
-     * 	
      *
      * @param object $currentObject 
      */

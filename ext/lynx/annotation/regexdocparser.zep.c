@@ -22,7 +22,7 @@
 
 ZEPHIR_INIT_CLASS(Lynx_Annotation_RegexDocParser) {
 
-	ZEPHIR_REGISTER_CLASS(Lynx\\Annotation, RegexDocParser, lynx, annotation_regexdocparser, lynx_annotation_regexdocparser_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS(Lynx\\Annotation, RegexDocParser, lynx, annotation_regexdocparser, lynx_annotation_regexdocparser_method_entry, ZEND_ACC_FINAL_CLASS);
 
 	return SUCCESS;
 
@@ -48,7 +48,7 @@ PHP_METHOD(Lynx_Annotation_RegexDocParser, parseAnnotations) {
 	ZEPHIR_INIT_VAR(params);
 	array_init(params);
 	ZEPHIR_INIT_VAR(rex);
-	ZVAL_STRING(rex, "/@(\\w+)(?:\\s*(?:\\(\\s*)?(.*?)(?:\\s*\\))?)??\\s*(?:\\n|\\*\\/)/", 1);
+	ZVAL_STRING(rex, "/@(\\w+)(?:\\s*(?:\\(\\s*)?(.*?)(?:\\s*\\))?)??\\s*(?:\n|\\*\\/)/", 1);
 	ZEPHIR_INIT_VAR(annotations);
 	array_init(annotations);
 	ZEPHIR_INIT_VAR(regex1);

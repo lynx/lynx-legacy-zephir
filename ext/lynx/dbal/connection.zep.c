@@ -89,7 +89,7 @@ PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 		_0 = !zephir_instance_of_ev(eventsManager, lynx_stdlib_events_manager_ce TSRMLS_CC);
 	}
 	if (_0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'eventsManager' must be an instance of 'Lynx\\\\Stdlib\\\\Events\\\\Manager'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'eventsManager' must be an instance of 'Lynx\\Stdlib\\Events\\Manager'", "", 0);
 		return;
 	}
 	if (Z_TYPE_P(eventsManager) == IS_NULL) {
@@ -104,7 +104,7 @@ PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 		zephir_array_fetch_string(&_1, parameters, SL("driver"), PH_NOISY | PH_READONLY, "lynx/DBAL/Connection.zep", 34 TSRMLS_CC);
 		zephir_update_property_this(this_ptr, SL("driver"), _1 TSRMLS_CC);
 		_2 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_3, _2, "getnewplatform",  NULL);
+		ZEPHIR_CALL_METHOD(&_3, _2, "getnewplatform", NULL);
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("platform"), _3 TSRMLS_CC);
 	} else {
@@ -119,8 +119,8 @@ PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 }
 
 /**
- * Insert row to the table with spicifed data and types
- * return the nubmer of affected rows
+ * Insert a row in the table with the specified data and types
+ * returns the number of affected rows
  */
 PHP_METHOD(Lynx_DBAL_Connection, insert) {
 
@@ -145,24 +145,10 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 		ZEPHIR_INIT_VAR(table);
 		ZVAL_EMPTY_STRING(table);
 	}
-	if (unlikely(Z_TYPE_P(data_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'data' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		data = data_param;
-
 	if (!types_param) {
 		ZEPHIR_INIT_VAR(types);
 		array_init(types);
 	} else {
-	if (unlikely(Z_TYPE_P(types_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'types' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		types = types_param;
-
 	}
 	ZEPHIR_INIT_VAR(set);
 	array_init(set);
@@ -173,7 +159,7 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HMKEY(columnName, _1, _0);
+		ZEPHIR_GET_HKEY(columnName, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		ZEPHIR_INIT_LNVAR(_3);
 		ZEPHIR_CONCAT_SVS(_3, ":", columnName, "");
@@ -197,7 +183,7 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 }
 
 /**
- * Update row(s) from table and return the number of updated rows
+ * Update row(s) of table and returns the number of updated rows
  */
 PHP_METHOD(Lynx_DBAL_Connection, update) {
 
@@ -223,31 +209,10 @@ PHP_METHOD(Lynx_DBAL_Connection, update) {
 		ZEPHIR_INIT_VAR(table);
 		ZVAL_EMPTY_STRING(table);
 	}
-	if (unlikely(Z_TYPE_P(data_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'data' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		data = data_param;
-
-	if (unlikely(Z_TYPE_P(identifiers_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'identifiers' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		identifiers = identifiers_param;
-
 	if (!types_param) {
 		ZEPHIR_INIT_VAR(types);
 		array_init(types);
 	} else {
-	if (unlikely(Z_TYPE_P(types_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'types' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		types = types_param;
-
 	}
 	ZEPHIR_INIT_VAR(set);
 	array_init(set);
@@ -258,7 +223,7 @@ PHP_METHOD(Lynx_DBAL_Connection, update) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HMKEY(columnName, _1, _0);
+		ZEPHIR_GET_HKEY(columnName, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		ZEPHIR_INIT_LNVAR(_3);
 		ZEPHIR_CONCAT_SVS(_3, "`", columnName, "` = ?");
@@ -289,8 +254,8 @@ PHP_METHOD(Lynx_DBAL_Connection, update) {
 }
 
 /**
- * Delete rows where $column = $key from $table
- * return the nubmer of affected rows
+ * Delete rows where $column = $key in $table
+ * return the number of affected rows
  */
 PHP_METHOD(Lynx_DBAL_Connection, deleteByColumn) {
 
@@ -351,8 +316,8 @@ PHP_METHOD(Lynx_DBAL_Connection, deleteByColumn) {
 }
 
 /**
- * Delete rows from tables where identifiers is spicifed
- * return the nubmer of affected rows
+ * Delete rows from tables where identifiers are specified
+ * return the number of affected rows
  */
 PHP_METHOD(Lynx_DBAL_Connection, delete) {
 
@@ -378,24 +343,10 @@ PHP_METHOD(Lynx_DBAL_Connection, delete) {
 		ZEPHIR_INIT_VAR(table);
 		ZVAL_EMPTY_STRING(table);
 	}
-	if (unlikely(Z_TYPE_P(identifiers_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'identifiers' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		identifiers = identifiers_param;
-
 	if (!types_param) {
 		ZEPHIR_INIT_VAR(types);
 		array_init(types);
 	} else {
-	if (unlikely(Z_TYPE_P(types_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'types' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		types = types_param;
-
 	}
 
 
@@ -407,7 +358,7 @@ PHP_METHOD(Lynx_DBAL_Connection, delete) {
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
-		ZEPHIR_GET_HMKEY(key, _2, _1);
+		ZEPHIR_GET_HKEY(key, _2, _1);
 		ZEPHIR_GET_HVALUE(value, _3);
 		if (!first) {
 			zephir_concat_self_str(&query, SL(" AND") TSRMLS_CC);
