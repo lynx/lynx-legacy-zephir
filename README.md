@@ -1,8 +1,10 @@
 Lynx ORM|DBAL
 =============
+
+[![Author](http://img.shields.io/badge/author-@ovr-blue.svg?style=flat-square)](https://twitter.com/ovrweb)
 [![Latest Stable Version](https://poser.pugx.org/lynx/lynx/v/stable.svg)](https://packagist.org/packages/lynx/lynx)
 [![Build Status](https://travis-ci.org/lynx/lynx.svg)](https://travis-ci.org/lynx/lynx)
-[![License](https://poser.pugx.org/lynx/lynx/license.svg)](https://packagist.org/packages/lynx/lynx)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 
 ## [Documentation](http://lynx.github.io/lynx/docs/latest/en/) [[ru](http://lynx.github.io/lynx/docs/latest/ru/)] :: [Vagrant](https://github.com/ovr/perfect-php-vagrant) :: [Benchmark](https://github.com/lynx/benchmark)
 
