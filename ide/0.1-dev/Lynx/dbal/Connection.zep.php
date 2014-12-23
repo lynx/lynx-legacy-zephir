@@ -29,7 +29,7 @@ class Connection
      * @param mixed $parameters 
      * @param mixed $eventsManager 
      */
-	public function __construct($parameters, EventsManager $eventsManager = null) {}
+	public function __construct($parameters, \Lynx\Stdlib\Events\Manager $eventsManager = null) {}
 
     /**
      * Insert a row in the table with the specified data and types

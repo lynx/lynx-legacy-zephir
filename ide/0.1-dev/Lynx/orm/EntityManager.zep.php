@@ -41,7 +41,7 @@ class EntityManager
      * @param mixed $configuration 
      * @param mixed $eventManager 
      */
-	public function __construct(Connection $connection, Configuration $configuration, EventsManager $eventManager) {}
+	public function __construct(\Lynx\DBAL\Connection $connection, Configuration $configuration, \Lynx\Stdlib\Events\Manager $eventManager) {}
 
     /**
      * @param mixed $entity 
