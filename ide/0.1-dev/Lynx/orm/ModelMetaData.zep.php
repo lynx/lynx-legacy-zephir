@@ -39,6 +39,14 @@ class ModelMetaData
 	public function getColumn($key) {}
 
     /**
+     * 
+     * Get <Column> by entity's field name
+     *
+     * @param mixed $field 
+     */
+	public function getColumnNameByFieldName($field) {}
+
+    /**
      * @param string $key 
      */
 	public function getProperty($key) {}

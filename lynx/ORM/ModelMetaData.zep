@@ -111,6 +111,24 @@ class ModelMetaData
 		return false;
 	}
 
+	/**
+	 * Get <Column> by entity's field name
+	 */
+	public function getColumnNameByFieldName(var field)
+	{
+		var properties, columnName, info;
+
+		let properties = this->getColumns();
+
+		for columnName, info in properties {
+			if (info->name == field) {
+				return columnName;
+			}
+		}
+
+		return false;
+	}
+
 	public function getProperty(string! key)
 	{
 		var properties;
