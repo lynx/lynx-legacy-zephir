@@ -261,12 +261,12 @@ PHP_METHOD(Lynx_ORM_Query, fetchObject) {
 
 PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_10 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_9 = NULL;
 	HashTable *_5;
 	HashPosition _4;
 	zend_bool _0;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters = NULL, *result = NULL, *model = NULL, *property = NULL, *key = NULL, *value = NULL, *_1, *_2 = NULL, *insertValues, *_3, **_6, *_7, *_8 = NULL, *_9 = NULL;
+	zval *parameters = NULL, *result = NULL, *model = NULL, *columnName = NULL, *key = NULL, *value = NULL, *_1, *_2 = NULL, *insertValues, *_3, **_6, *_7, *_8 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &parameters);
@@ -303,15 +303,13 @@ PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 		_7 = zephir_fetch_nproperty_this(this_ptr, SL("identityMap"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(&_8, _7, "getrootmodel", NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&property, _8, "getcolumn", NULL, key);
+		ZEPHIR_CALL_METHOD(&columnName, _8, "getcolumnnamebyfieldname", NULL, key);
 		zephir_check_call_status();
-		if (zephir_is_true(property)) {
-			ZEPHIR_OBS_NVAR(_9);
-			zephir_read_property(&_9, property, SL("name"), PH_NOISY_CC);
-			zephir_array_update_zval(&insertValues, _9, &value, PH_COPY | PH_SEPARATE);
+		if (zephir_is_true(columnName)) {
+			zephir_array_update_zval(&insertValues, columnName, &value, PH_COPY | PH_SEPARATE);
 		}
 	}
-	ZEPHIR_CALL_CE_STATIC(&_8, lynx_stdlib_hydrator_entity_ce, "hydrate", &_10, insertValues, model);
+	ZEPHIR_CALL_CE_STATIC(&_8, lynx_stdlib_hydrator_entity_ce, "hydrate", &_9, insertValues, model);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(model, _8);
 	RETURN_CCTOR(model);

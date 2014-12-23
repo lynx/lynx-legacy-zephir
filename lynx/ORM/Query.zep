@@ -91,7 +91,7 @@ class Query
 
 	public function fetchOne(var parameters = null) -> object|boolean
 	{
-		var result, model, property, key, value;
+		var result, model, columnName, key, value;
 		let result = this->getResult();
 
 		if (!result || count(result) == 0) {
@@ -102,9 +102,9 @@ class Query
 
 		var insertValues = [];
 		for key, value in result[0] {
-			let property = this->identityMap->getRootModel()->getColumn(key);
-			if (property) {
-				let insertValues[property->name] = value;
+			let columnName = this->identityMap->getRootModel()->getColumnNameByFieldName(key);
+			if (columnName) {
+				let insertValues[columnName] = value;
 			}
 		}
 
