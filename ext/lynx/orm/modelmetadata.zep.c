@@ -81,7 +81,7 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, __construct) {
 	  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_3, &_2)
 	) {
-		ZEPHIR_GET_HKEY(key, _3, _2);
+		ZEPHIR_GET_HMKEY(key, _3, _2);
 		ZEPHIR_GET_HVALUE(value, _4);
 		if (zephir_array_isset_string(value, SS("joincolumn"))) {
 			ZEPHIR_INIT_NVAR(column);
@@ -300,7 +300,7 @@ PHP_METHOD(Lynx_ORM_ModelMetaData, getFieldNameByColumn) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HKEY(columnName, _1, _0);
+		ZEPHIR_GET_HMKEY(columnName, _1, _0);
 		ZEPHIR_GET_HVALUE(info, _2);
 		ZEPHIR_OBS_NVAR(_3);
 		zephir_read_property(&_3, info, SL("name"), PH_NOISY_CC);

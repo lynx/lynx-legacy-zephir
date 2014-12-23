@@ -46,6 +46,8 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassMethods, hydrate) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &data_param, &currentObject);
 
+	data = data_param;
+
 
 
 	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/Stdlib/Hydrator/ClassMethods.zep", 20);

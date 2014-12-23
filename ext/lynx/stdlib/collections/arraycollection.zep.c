@@ -49,6 +49,8 @@ PHP_METHOD(Lynx_Stdlib_Collections_ArrayCollection, __construct) {
 		ZEPHIR_INIT_VAR(elements);
 		array_init(elements);
 	} else {
+	elements = elements_param;
+
 	}
 
 

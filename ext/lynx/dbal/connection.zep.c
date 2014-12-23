@@ -145,10 +145,14 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 		ZEPHIR_INIT_VAR(table);
 		ZVAL_EMPTY_STRING(table);
 	}
+	data = data_param;
+
 	if (!types_param) {
 		ZEPHIR_INIT_VAR(types);
 		array_init(types);
 	} else {
+	types = types_param;
+
 	}
 	ZEPHIR_INIT_VAR(set);
 	array_init(set);
@@ -159,7 +163,7 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HKEY(columnName, _1, _0);
+		ZEPHIR_GET_HMKEY(columnName, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		ZEPHIR_INIT_LNVAR(_3);
 		ZEPHIR_CONCAT_SVS(_3, ":", columnName, "");
@@ -209,10 +213,16 @@ PHP_METHOD(Lynx_DBAL_Connection, update) {
 		ZEPHIR_INIT_VAR(table);
 		ZVAL_EMPTY_STRING(table);
 	}
+	data = data_param;
+
+	identifiers = identifiers_param;
+
 	if (!types_param) {
 		ZEPHIR_INIT_VAR(types);
 		array_init(types);
 	} else {
+	types = types_param;
+
 	}
 	ZEPHIR_INIT_VAR(set);
 	array_init(set);
@@ -223,7 +233,7 @@ PHP_METHOD(Lynx_DBAL_Connection, update) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HKEY(columnName, _1, _0);
+		ZEPHIR_GET_HMKEY(columnName, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		ZEPHIR_INIT_LNVAR(_3);
 		ZEPHIR_CONCAT_SVS(_3, "`", columnName, "` = ?");
@@ -343,10 +353,14 @@ PHP_METHOD(Lynx_DBAL_Connection, delete) {
 		ZEPHIR_INIT_VAR(table);
 		ZVAL_EMPTY_STRING(table);
 	}
+	identifiers = identifiers_param;
+
 	if (!types_param) {
 		ZEPHIR_INIT_VAR(types);
 		array_init(types);
 	} else {
+	types = types_param;
+
 	}
 
 
@@ -358,7 +372,7 @@ PHP_METHOD(Lynx_DBAL_Connection, delete) {
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
-		ZEPHIR_GET_HKEY(key, _2, _1);
+		ZEPHIR_GET_HMKEY(key, _2, _1);
 		ZEPHIR_GET_HVALUE(value, _3);
 		if (!first) {
 			zephir_concat_self_str(&query, SL(" AND") TSRMLS_CC);
