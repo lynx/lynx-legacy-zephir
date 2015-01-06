@@ -45,6 +45,8 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_Query) {
 
 	zend_declare_class_constant_long(lynx_orm_query_ce, SL("FETCH_INT"), 1 TSRMLS_CC);
 
+	zend_declare_class_constant_long(lynx_orm_query_ce, SL("FETCH_FLOAT"), 1 TSRMLS_CC);
+
 	return SUCCESS;
 
 }
@@ -292,8 +294,8 @@ PHP_METHOD(Lynx_ORM_Query, fetchOne) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&model, _2, "getobject", NULL);
 	zephir_check_call_status();
-	zephir_array_fetch_long(&_3, result, 0, PH_NOISY | PH_READONLY, "lynx/ORM/Query.zep", 104 TSRMLS_CC);
-	zephir_is_iterable(_3, &_5, &_4, 0, 0, "lynx/ORM/Query.zep", 111);
+	zephir_array_fetch_long(&_3, result, 0, PH_NOISY | PH_READONLY, "lynx/ORM/Query.zep", 106 TSRMLS_CC);
+	zephir_is_iterable(_3, &_5, &_4, 0, 0, "lynx/ORM/Query.zep", 113);
 	for (
 	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_5, &_4)
@@ -355,6 +357,9 @@ PHP_METHOD(Lynx_ORM_Query, getScalarResult) {
 	do {
 		if (ZEPHIR_IS_LONG(type, 1)) {
 			RETURN_MM_LONG(zephir_get_intval(result));
+		}
+		if (ZEPHIR_IS_LONG(type, 1)) {
+			RETURN_MM_DOUBLE(zephir_get_doubleval(result));
 		}
 		RETURN_CCTOR(result);
 		break;

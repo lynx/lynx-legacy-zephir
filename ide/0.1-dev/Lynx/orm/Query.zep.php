@@ -6,6 +6,8 @@ class Query
 {
 
     const FETCH_INT = 1;
+
+    const FETCH_FLOAT = 1;
     /**
      * Sql plain query
      */

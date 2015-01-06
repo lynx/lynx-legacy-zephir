@@ -22,6 +22,8 @@ class Query
 
 	const FETCH_INT = 1;
 
+	const FETCH_FLOAT = 1;
+
 	public function __construct(var query, <EntityManager> em)
 	{
 		let this->query = query;
@@ -131,6 +133,8 @@ class Query
 		switch(type) {
 			case self::FETCH_INT:
 				return (int) result;
+			case self::FETCH_FLOAT:
+				return (float) result;
 			default:
 				return result;
 				break;
