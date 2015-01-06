@@ -60,7 +60,7 @@ class EntityManager
         this->connection->rollback();
     }
 
-	public function getRepository(string! entityName) -> <EntityRepository>|boolean
+	public function getRepository(string! entityName) -> <EntityRepository>
 	{
 		var modelInfo;
 
