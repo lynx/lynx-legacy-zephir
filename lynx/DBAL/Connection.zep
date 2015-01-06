@@ -56,7 +56,7 @@ class Connection
 			let set[] = ":" . columnName . "";
 		}
 
-		let query = "INSERT INTO " . table . " (" . implode(",", array_keys(data)) . ")  VALUES (" . implode(",", set) . ")";
+		let query = "INSERT INTO " . this->platform->wrap(table) . " (" . implode(",", array_keys(data)) . ")  VALUES (" . implode(",", set) . ")";
 
 		let stmt = this->driver->prepare(query);
 		return stmt->execute(data);
@@ -75,7 +75,7 @@ class Connection
 			let set[] = "`" . columnName . "` = ?";
 		}
 
-		let query =  "UPDATE " . table . " SET " . implode(", ", set) . " WHERE " . implode(" = ? AND ", array_keys(identifiers));
+		let query =  "UPDATE " . this->platform->wrap(table) . " SET " . implode(", ", set) . " WHERE " . implode(" = ? AND ", array_keys(identifiers));
 		let stmt = this->driver->prepare(query);
 
 		return stmt->execute(array_merge(array_values(data), array_values(identifiers)));
@@ -90,7 +90,7 @@ class Connection
 		/**
 		 * @todo implement work with type
 		 */
-		return this->driver->execute("DELETE FROM " . table . " WHERE " . column . " = " . value);
+		return this->driver->execute("DELETE FROM " . this->platform->wrap(table) . " WHERE " . column . " = " . value);
 	}
 
 	/**
@@ -102,7 +102,7 @@ class Connection
 		var query, key, value;
 		boolean first = true;
 
-		let query = "DELETE FROM " . table . " WHERE ";
+		let query = "DELETE FROM " . this->platform->wrap(table) . " WHERE ";
 
 		for key, value in identifiers {
 			if (!first) {
