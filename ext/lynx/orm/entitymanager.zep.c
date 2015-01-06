@@ -196,7 +196,7 @@ PHP_METHOD(Lynx_ORM_EntityManager, rollback) {
 PHP_METHOD(Lynx_ORM_EntityManager, getRepository) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *entityName_param = NULL, *modelInfo = NULL, *_0, *_1, *_2, *_3, *_4;
+	zval *entityName_param = NULL, *repository, *_0, *_1, *_2, *_3 = NULL, *_4, *_5;
 	zval *entityName = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -215,23 +215,22 @@ PHP_METHOD(Lynx_ORM_EntityManager, getRepository) {
 	}
 
 
+	ZEPHIR_OBS_VAR(repository);
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("repositories"), PH_NOISY_CC);
-	if (zephir_array_isset(_0, entityName)) {
-		_1 = zephir_fetch_nproperty_this(this_ptr, SL("repositories"), PH_NOISY_CC);
-		zephir_array_fetch(&_2, _1, entityName, PH_NOISY | PH_READONLY, "lynx/ORM/EntityManager.zep", 68 TSRMLS_CC);
-		RETURN_CTOR(_2);
+	if (zephir_array_isset_fetch(&repository, _0, entityName, 0 TSRMLS_CC)) {
+		RETURN_CCTOR(repository);
 	}
-	_1 = zephir_fetch_nproperty_this(this_ptr, SL("modelsManager"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&modelInfo, _1, "get", NULL, entityName);
+	ZEPHIR_INIT_VAR(_1);
+	object_init_ex(_1, lynx_orm_entityrepository_ce);
+	_2 = zephir_fetch_nproperty_this(this_ptr, SL("modelsManager"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&_3, _2, "get", NULL, entityName);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(_3);
-	object_init_ex(_3, lynx_orm_entityrepository_ce);
-	ZEPHIR_CALL_METHOD(NULL, _3, "__construct", NULL, this_ptr, modelInfo);
+	ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, this_ptr, _3);
 	zephir_check_call_status();
-	zephir_update_property_array(this_ptr, SL("repositories"), entityName, _3 TSRMLS_CC);
+	zephir_update_property_array(this_ptr, SL("repositories"), entityName, _1 TSRMLS_CC);
 	_4 = zephir_fetch_nproperty_this(this_ptr, SL("repositories"), PH_NOISY_CC);
-	zephir_array_fetch(&_2, _4, entityName, PH_NOISY | PH_READONLY, "lynx/ORM/EntityManager.zep", 73 TSRMLS_CC);
-	RETURN_CTOR(_2);
+	zephir_array_fetch(&_5, _4, entityName, PH_NOISY | PH_READONLY, "lynx/ORM/EntityManager.zep", 72 TSRMLS_CC);
+	RETURN_CTOR(_5);
 
 }
 

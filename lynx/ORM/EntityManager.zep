@@ -62,14 +62,13 @@ class EntityManager
 
 	public function getRepository(string! entityName) -> <EntityRepository>
 	{
-		var modelInfo;
+		var repository;
 
-		if (isset(this->repositories[entityName])) {
-			return this->repositories[entityName];
+		if fetch repository, this->repositories[entityName] {
+			return repository;
 		}
 
-       	let modelInfo = this->modelsManager->get(entityName);
-       	let this->repositories[entityName] = new EntityRepository(this, modelInfo);
+       	let this->repositories[entityName] = new EntityRepository(this, this->modelsManager->get(entityName));
        	return this->repositories[entityName];
 	}
 
