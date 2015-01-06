@@ -20,7 +20,7 @@ ZEPHIR_INIT_CLASS(Lynx_ORM_ModelMetaData_Column) {
 
 	zend_declare_property_bool(lynx_orm_modelmetadata_column_ce, SL("id"), 0, ZEND_ACC_PUBLIC TSRMLS_CC);
 
-	zend_declare_property_bool(lynx_orm_modelmetadata_column_ce, SL("generatedvalue"), 0, ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_bool(lynx_orm_modelmetadata_column_ce, SL("generatedValue"), 0, ZEND_ACC_PUBLIC TSRMLS_CC);
 
 	zend_declare_property_null(lynx_orm_modelmetadata_column_ce, SL("name"), ZEND_ACC_PUBLIC TSRMLS_CC);
 

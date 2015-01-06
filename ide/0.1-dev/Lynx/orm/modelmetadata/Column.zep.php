@@ -7,7 +7,7 @@ class Column
 
     protected $id = false;
 
-    protected $generatedvalue = false;
+    protected $generatedValue = false;
 
     protected $name;
 
