@@ -36,7 +36,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_orm_query_bindparam, 0, 0, 2)
 	ZEND_ARG_INFO(0, parameter)
 	ZEND_ARG_INFO(0, value)
 	ZEND_ARG_INFO(0, data_type)
-	ZEND_ARG_INFO(0, lenght)
+	ZEND_ARG_INFO(0, length)
 	ZEND_ARG_INFO(0, driver_options)
 ZEND_END_ARG_INFO()
 

@@ -42,9 +42,9 @@ class Query
 	/**
 	 * Binds a parameter to the specified variable name
 	 */
-	public function bindParam(var parameter, var value, var data_type = \PDO::PARAM_STR, var lenght = null, var driver_options = null) -> <Query>
+	public function bindParam(var parameter, var value, var data_type = \PDO::PARAM_STR, var length = null, var driver_options = null) -> <Query>
 	{
-		this->statement->bindParam(":".parameter, value, data_type, lenght, driver_options);
+		this->statement->bindParam(":".parameter, value, data_type, length, driver_options);
 		return this;
 	}
 
