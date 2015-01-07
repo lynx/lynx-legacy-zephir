@@ -16,9 +16,8 @@ I like Doctrine2 but I dislike Phalcon 2 ORM* and I've created this project to i
 
 ### Idea
 
-* Every day push >= 1 commit
 * Write ORM|DBAL and sublibs with max functions support
-* Performance tunning (will start doing it after beta release)
+* Performance tuning (will start doing it after beta release)
 
 ### Why it would be great?
 
@@ -87,4 +86,5 @@ To build the zep Source to C extension:
 
 License
 -------
+
 This project is open-sourced software licensed under the MIT License. See the LICENSE file for more information.
