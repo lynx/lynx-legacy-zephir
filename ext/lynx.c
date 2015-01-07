@@ -90,13 +90,13 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_Annotation_ReflectionClassParser);
 	ZEPHIR_INIT(Lynx_Annotation_RegexDocParser);
 	ZEPHIR_INIT(Lynx_DBAL_Connection);
-	ZEPHIR_INIT(Lynx_DBAL_Driver_Mysql);
+	ZEPHIR_INIT(Lynx_DBAL_Driver_MySQL);
 	ZEPHIR_INIT(Lynx_DBAL_Driver_PDOConnection);
 	ZEPHIR_INIT(Lynx_DBAL_Driver_Pdo);
 	ZEPHIR_INIT(Lynx_DBAL_Driver_Pdo_Statement);
-	ZEPHIR_INIT(Lynx_DBAL_Driver_Pgsql);
+	ZEPHIR_INIT(Lynx_DBAL_Driver_PgSQL);
 	ZEPHIR_INIT(Lynx_DBAL_Events);
-	ZEPHIR_INIT(Lynx_DBAL_Platform_Mysql);
+	ZEPHIR_INIT(Lynx_DBAL_Platform_MySQL);
 	ZEPHIR_INIT(Lynx_DBAL_Platform_Pgsql);
 	ZEPHIR_INIT(Lynx_ORM_Configuration);
 	ZEPHIR_INIT(Lynx_ORM_EntityManager);

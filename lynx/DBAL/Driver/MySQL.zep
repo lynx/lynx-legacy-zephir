@@ -1,7 +1,7 @@
 
 namespace Lynx\DBAL\Driver;
 
-class Pgsql
+class MySQL
 {
 	protected eventsManager {set, get};
 
@@ -33,21 +33,9 @@ class Pgsql
 	 */
 	public function execute(string! query) -> int
 	{
-	    var e;
 		this->connect();
 
-        try {
-		    return this->connection->exec(query);
-        } catch \Exception, e {
-            var_dump(e->getMessage());
-            die();
-        }
-
-	}
-
-	public function getNewPlatform()
-	{
-		return new \Lynx\DBAL\Platform\Pgsql();
+		return this->connection->exec(query);
 	}
 
 	public function connect()
@@ -64,23 +52,22 @@ class Pgsql
 		);
 	}
 
-	public function lastInsertId(string! seq_id)
+	public function getNewPlatform()
+	{
+		return new \Lynx\DBAL\Platform\MySQL();
+	}
+
+	public function lastInsertId()
 	{
 		this->connect();
 
-		return this->connection->lastInsertId(seq_id);
+		return this->connection->lastInsertId();
 	}
 
 	public function prepare(var statement)
 	{
-	    var e;
 		this->connect();
 
-        try {
-		    return this->connection->prepare(statement);
-        } catch \Exception, e {
-            var_dump(e->getMessage());
-            die();
-        }
+		return this->connection->prepare(statement);
 	}
 }

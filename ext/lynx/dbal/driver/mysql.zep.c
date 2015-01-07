@@ -20,9 +20,9 @@
 #include "kernel/fcall.h"
 
 
-ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Mysql) {
+ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_MySQL) {
 
-	ZEPHIR_REGISTER_CLASS(Lynx\\DBAL\\Driver, Mysql, lynx, dbal_driver_mysql, lynx_dbal_driver_mysql_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS(Lynx\\DBAL\\Driver, MySQL, lynx, dbal_driver_mysql, lynx_dbal_driver_mysql_method_entry, 0);
 
 	zend_declare_property_null(lynx_dbal_driver_mysql_ce, SL("eventsManager"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
@@ -40,7 +40,7 @@ ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Mysql) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, setEventsManager) {
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, setEventsManager) {
 
 	zval *eventsManager;
 
@@ -52,14 +52,14 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, setEventsManager) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, getEventsManager) {
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, getEventsManager) {
 
 
 	RETURN_MEMBER(this_ptr, "eventsManager");
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, __construct) {
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, __construct) {
 
 	zval *driverOptions = NULL;
 	zval *dsn_param = NULL, *username = NULL, *password = NULL, *driverOptions_param = NULL;
@@ -101,7 +101,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, __construct) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, isConnected) {
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, isConnected) {
 
 	zval *_0;
 
@@ -114,7 +114,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, isConnected) {
 /**
  * Execute query and return result
  */
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, execute) {
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, execute) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *query_param = NULL, *_0;
@@ -145,7 +145,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, execute) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, connect) {
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, connect) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL, *_1, *_2, *_3, *_4, *_5;
@@ -170,7 +170,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, connect) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, getNewPlatform) {
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, getNewPlatform) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 
@@ -185,7 +185,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, getNewPlatform) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, lastInsertId) {
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, lastInsertId) {
 
 	zval *_0;
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -201,7 +201,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Mysql, lastInsertId) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, prepare) {
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, prepare) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *statement, *_0;

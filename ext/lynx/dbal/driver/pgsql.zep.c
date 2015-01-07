@@ -22,9 +22,9 @@
 #include "kernel/exit.h"
 
 
-ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Pgsql) {
+ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_PgSQL) {
 
-	ZEPHIR_REGISTER_CLASS(Lynx\\DBAL\\Driver, Pgsql, lynx, dbal_driver_pgsql, lynx_dbal_driver_pgsql_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS(Lynx\\DBAL\\Driver, PgSQL, lynx, dbal_driver_pgsql, lynx_dbal_driver_pgsql_method_entry, 0);
 
 	zend_declare_property_null(lynx_dbal_driver_pgsql_ce, SL("eventsManager"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
@@ -42,7 +42,7 @@ ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Pgsql) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Pgsql, setEventsManager) {
+PHP_METHOD(Lynx_DBAL_Driver_PgSQL, setEventsManager) {
 
 	zval *eventsManager;
 
@@ -54,14 +54,14 @@ PHP_METHOD(Lynx_DBAL_Driver_Pgsql, setEventsManager) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Pgsql, getEventsManager) {
+PHP_METHOD(Lynx_DBAL_Driver_PgSQL, getEventsManager) {
 
 
 	RETURN_MEMBER(this_ptr, "eventsManager");
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Pgsql, __construct) {
+PHP_METHOD(Lynx_DBAL_Driver_PgSQL, __construct) {
 
 	zval *driverOptions = NULL;
 	zval *dsn_param = NULL, *username = NULL, *password = NULL, *driverOptions_param = NULL;
@@ -103,7 +103,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pgsql, __construct) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Pgsql, isConnected) {
+PHP_METHOD(Lynx_DBAL_Driver_PgSQL, isConnected) {
 
 	zval *_0;
 
@@ -116,7 +116,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pgsql, isConnected) {
 /**
  * Execute query and return result
  */
-PHP_METHOD(Lynx_DBAL_Driver_Pgsql, execute) {
+PHP_METHOD(Lynx_DBAL_Driver_PgSQL, execute) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *query_param = NULL, *e = NULL, *_0, *_1 = NULL;
@@ -164,7 +164,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pgsql, execute) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Pgsql, getNewPlatform) {
+PHP_METHOD(Lynx_DBAL_Driver_PgSQL, getNewPlatform) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 
@@ -179,7 +179,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pgsql, getNewPlatform) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Pgsql, connect) {
+PHP_METHOD(Lynx_DBAL_Driver_PgSQL, connect) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL, *_1, *_2, *_3, *_4, *_5;
@@ -204,7 +204,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pgsql, connect) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Pgsql, lastInsertId) {
+PHP_METHOD(Lynx_DBAL_Driver_PgSQL, lastInsertId) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *seq_id_param = NULL, *_0;
@@ -235,7 +235,7 @@ PHP_METHOD(Lynx_DBAL_Driver_Pgsql, lastInsertId) {
 
 }
 
-PHP_METHOD(Lynx_DBAL_Driver_Pgsql, prepare) {
+PHP_METHOD(Lynx_DBAL_Driver_PgSQL, prepare) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *statement, *e = NULL, *_0, *_1 = NULL;

@@ -1,17 +1,17 @@
 
 extern zend_class_entry *lynx_dbal_driver_mysql_ce;
 
-ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Mysql);
+ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_MySQL);
 
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, setEventsManager);
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, getEventsManager);
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, __construct);
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, isConnected);
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, execute);
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, connect);
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, getNewPlatform);
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, lastInsertId);
-PHP_METHOD(Lynx_DBAL_Driver_Mysql, prepare);
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, setEventsManager);
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, getEventsManager);
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, __construct);
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, isConnected);
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, execute);
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, connect);
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, getNewPlatform);
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, lastInsertId);
+PHP_METHOD(Lynx_DBAL_Driver_MySQL, prepare);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_driver_mysql_seteventsmanager, 0, 0, 1)
 	ZEND_ARG_INFO(0, eventsManager)
@@ -33,14 +33,14 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lynx_dbal_driver_mysql_prepare, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(lynx_dbal_driver_mysql_method_entry) {
-	PHP_ME(Lynx_DBAL_Driver_Mysql, setEventsManager, arginfo_lynx_dbal_driver_mysql_seteventsmanager, ZEND_ACC_PUBLIC)
-	PHP_ME(Lynx_DBAL_Driver_Mysql, getEventsManager, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Lynx_DBAL_Driver_Mysql, __construct, arginfo_lynx_dbal_driver_mysql___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-	PHP_ME(Lynx_DBAL_Driver_Mysql, isConnected, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Lynx_DBAL_Driver_Mysql, execute, arginfo_lynx_dbal_driver_mysql_execute, ZEND_ACC_PUBLIC)
-	PHP_ME(Lynx_DBAL_Driver_Mysql, connect, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Lynx_DBAL_Driver_Mysql, getNewPlatform, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Lynx_DBAL_Driver_Mysql, lastInsertId, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Lynx_DBAL_Driver_Mysql, prepare, arginfo_lynx_dbal_driver_mysql_prepare, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_DBAL_Driver_MySQL, setEventsManager, arginfo_lynx_dbal_driver_mysql_seteventsmanager, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_DBAL_Driver_MySQL, getEventsManager, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_DBAL_Driver_MySQL, __construct, arginfo_lynx_dbal_driver_mysql___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+	PHP_ME(Lynx_DBAL_Driver_MySQL, isConnected, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_DBAL_Driver_MySQL, execute, arginfo_lynx_dbal_driver_mysql_execute, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_DBAL_Driver_MySQL, connect, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_DBAL_Driver_MySQL, getNewPlatform, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_DBAL_Driver_MySQL, lastInsertId, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Lynx_DBAL_Driver_MySQL, prepare, arginfo_lynx_dbal_driver_mysql_prepare, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };

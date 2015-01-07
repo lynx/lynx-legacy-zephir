@@ -37,7 +37,7 @@ ZEPHIR_INIT_CLASS(Lynx_DBAL_Connection) {
 	zend_declare_property_null(lynx_dbal_connection_ce, SL("driver"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	/**
-	 * Current used db platform (Mysql|Pgsql)
+	 * Current used db platform (MySQL|PgSQL)
 	 */
 	zend_declare_property_null(lynx_dbal_connection_ce, SL("platform"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
@@ -56,7 +56,7 @@ PHP_METHOD(Lynx_DBAL_Connection, getDriver) {
 }
 
 /**
- * Current used db platform (Mysql|Pgsql)
+ * Current used db platform (MySQL|PgSQL)
  */
 PHP_METHOD(Lynx_DBAL_Connection, getPlatform) {
 

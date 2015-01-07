@@ -14,7 +14,7 @@ class Connection
 	protected driver {get};
 
 	/**
-	 * Current used db platform (Mysql|Pgsql)
+	 * Current used db platform (MySQL|PgSQL)
 	 */
 	protected platform {get};
 

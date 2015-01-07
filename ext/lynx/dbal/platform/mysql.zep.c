@@ -16,15 +16,15 @@
 #include "kernel/memory.h"
 
 
-ZEPHIR_INIT_CLASS(Lynx_DBAL_Platform_Mysql) {
+ZEPHIR_INIT_CLASS(Lynx_DBAL_Platform_MySQL) {
 
-	ZEPHIR_REGISTER_CLASS(Lynx\\DBAL\\Platform, Mysql, lynx, dbal_platform_mysql, lynx_dbal_platform_mysql_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS(Lynx\\DBAL\\Platform, MySQL, lynx, dbal_platform_mysql, lynx_dbal_platform_mysql_method_entry, 0);
 
 	return SUCCESS;
 
 }
 
-PHP_METHOD(Lynx_DBAL_Platform_Mysql, wrap) {
+PHP_METHOD(Lynx_DBAL_Platform_MySQL, wrap) {
 
 	zval *id;
 

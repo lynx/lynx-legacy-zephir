@@ -1,7 +1,7 @@
 
 namespace Lynx\DBAL\Platform;
 
-class Mysql
+class MySQL
 {
     inline public function wrap(id)
     {

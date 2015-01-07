@@ -9,7 +9,7 @@ class Connection
      */
     protected $driver;
     /**
-     * Current used db platform (Mysql|Pgsql)
+     * Current used db platform (MySQL|PgSQL)
      */
     protected $platform;
 
@@ -19,7 +19,7 @@ class Connection
 	public function getDriver() {}
 
     /**
-     * Current used db platform (Mysql|Pgsql)
+     * Current used db platform (MySQL|PgSQL)
      */
 	public function getPlatform() {}
 
