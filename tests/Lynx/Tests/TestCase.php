@@ -11,17 +11,18 @@ class TestCase
 {
     /**
      * @return string
+     * @throws \Exception
      */
     public function getDriverName()
     {
         switch ($GLOBALS['db_type']) {
             case 'mysql':
             case 'pdo_mysql':
-                return 'Mysql';
+                return 'MySQL';
                 break;
             case 'pgsql':
             case 'pdo_pgsql':
-                return 'Pgsql';
+                return 'PgSQL';
                 break;
             default:
                 throw new \Exception('Unknown driver: ' . $GLOBALS['db_type']);
