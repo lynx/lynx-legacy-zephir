@@ -16,7 +16,7 @@ class QueryBuilderTest
      */
     protected function replaceSqlQuotesForDriver($sql)
     {
-        if ($this->getDriverName() == 'Pgsql') {
+        if ($this->getDriverName() == 'PgSQL') {
             return str_replace('`', '', $sql);
         }
 
