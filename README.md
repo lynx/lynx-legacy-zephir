@@ -40,7 +40,6 @@ I like Doctrine2 but I dislike Phalcon 2 ORM* and I've created this project to i
     * UnitOfWork
     * QueryBuilder
 * DBAL (Database abstraction layer)
-* Cache (Cache drivers)
 * StdLib
 	* Collections
 	* EventManager (ported from Phalcon)
