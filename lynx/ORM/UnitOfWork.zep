@@ -74,7 +74,7 @@ class UnitOfWork
 		 */
 
 		for model in this->insertEntities {
-			var lastInsertId, extractValues, insertValues, property, value, key;
+			var lastInsertId, extractValues, insertValues, property, value, key, types;
 
 			let modelInfo = this->em->getModelsManager()->get(get_class(model));
 			let primaryField = modelInfo->getPrimaryFieldName();
@@ -94,7 +94,9 @@ class UnitOfWork
 				let insertValues[property->name] = this->convertToScalar(value, property->type);
 			}
 
-			let result = this->em->getConnection()->insert(modelInfo->getTablename(), insertValues);
+			let types = [];
+
+			let result = this->em->getConnection()->insert(modelInfo->getTablename(), insertValues, types);
 			if (result) {
 			    /**
 			     * @todo fetch seq id

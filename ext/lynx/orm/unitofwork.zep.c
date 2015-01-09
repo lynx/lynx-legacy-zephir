@@ -175,7 +175,7 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_2, *_9, *_25, *_29;
 	HashPosition _1, _8, _24, _28;
-	zval *entity = NULL, *model = NULL, *modelInfo = NULL, *result = NULL, *primaryField = NULL, *_0, **_3, *lastInsertId = NULL, *extractValues = NULL, *insertValues = NULL, *property = NULL, *value = NULL, *key = NULL, *_4, *_5 = NULL, *_6 = NULL, **_10, *_12 = NULL, *_13 = NULL, *_15 = NULL, *_16, *_17 = NULL, *_18, *_19 = NULL, *_20 = NULL, *_21 = NULL, *_22 = NULL, *_23 = NULL, **_26, *data = NULL, *identifiers = NULL, **_30, *_31, *_32;
+	zval *entity = NULL, *model = NULL, *modelInfo = NULL, *result = NULL, *primaryField = NULL, *_0, **_3, *lastInsertId = NULL, *extractValues = NULL, *insertValues = NULL, *property = NULL, *value = NULL, *key = NULL, *types = NULL, *_4, *_5 = NULL, *_6 = NULL, **_10, *_12 = NULL, *_13 = NULL, *_15 = NULL, *_16, *_17 = NULL, *_18, *_19 = NULL, *_20 = NULL, *_21 = NULL, *_22 = NULL, *_23 = NULL, **_26, *data = NULL, *identifiers = NULL, **_30, *_31, *_32;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &entity);
@@ -186,7 +186,7 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("insertEntities"), PH_NOISY_CC);
-	zephir_is_iterable(_0, &_2, &_1, 0, 0, "lynx/ORM/UnitOfWork.zep", 109);
+	zephir_is_iterable(_0, &_2, &_1, 0, 0, "lynx/ORM/UnitOfWork.zep", 111);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
@@ -228,12 +228,14 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 			zephir_read_property(&_15, property, SL("name"), PH_NOISY_CC);
 			zephir_array_update_zval(&insertValues, _15, &_12, PH_COPY | PH_SEPARATE);
 		}
+		ZEPHIR_INIT_NVAR(types);
+		array_init(types);
 		_16 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(&_12, _16, "getconnection", NULL);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&_17, modelInfo, "gettablename", NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&result, _12, "insert", NULL, _17, insertValues);
+		ZEPHIR_CALL_METHOD(&result, _12, "insert", NULL, _17, insertValues, types);
 		zephir_check_call_status();
 		if (zephir_is_true(result)) {
 			_18 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
@@ -255,7 +257,7 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 		}
 	}
 	_4 = zephir_fetch_nproperty_this(this_ptr, SL("updateEntities"), PH_NOISY_CC);
-	zephir_is_iterable(_4, &_25, &_24, 0, 0, "lynx/ORM/UnitOfWork.zep", 128);
+	zephir_is_iterable(_4, &_25, &_24, 0, 0, "lynx/ORM/UnitOfWork.zep", 130);
 	for (
 	  ; zephir_hash_get_current_data_ex(_25, (void**) &_26, &_24) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_25, &_24)
@@ -276,10 +278,10 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 			ZEPHIR_INIT_NVAR(identifiers);
 			array_init_size(identifiers, 2);
 			ZEPHIR_OBS_NVAR(_13);
-			zephir_array_fetch(&_13, data, primaryField, PH_NOISY, "lynx/ORM/UnitOfWork.zep", 120 TSRMLS_CC);
+			zephir_array_fetch(&_13, data, primaryField, PH_NOISY, "lynx/ORM/UnitOfWork.zep", 122 TSRMLS_CC);
 			zephir_array_update_zval(&identifiers, primaryField, &_13, PH_COPY);
 		} else {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Entity`s PrimaryField is not set.", "lynx/ORM/UnitOfWork.zep", 122);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Entity`s PrimaryField is not set.", "lynx/ORM/UnitOfWork.zep", 124);
 			return;
 		}
 		_18 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
@@ -291,7 +293,7 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 		zephir_check_call_status();
 	}
 	_4 = zephir_fetch_nproperty_this(this_ptr, SL("deleteEntities"), PH_NOISY_CC);
-	zephir_is_iterable(_4, &_29, &_28, 0, 0, "lynx/ORM/UnitOfWork.zep", 140);
+	zephir_is_iterable(_4, &_29, &_28, 0, 0, "lynx/ORM/UnitOfWork.zep", 142);
 	for (
 	  ; zephir_hash_get_current_data_ex(_29, (void**) &_30, &_28) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_29, &_28)
