@@ -84,7 +84,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Дмитрий',1),(2,'Илья',0),(3,'Денис',0),(4,'Елисей',0);
+INSERT INTO `users` VALUES (1,'2015-01-09','Дмитрий',1),(2,'2015-01-09','Илья',0),(3,'2015-01-09','Денис',0),(4,'2015-01-09','Елисей',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
