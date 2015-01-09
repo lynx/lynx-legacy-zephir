@@ -342,7 +342,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, join) {
 
 }
 
-PHP_METHOD(Lynx_ORM_QueryBuilder, Where) {
+PHP_METHOD(Lynx_ORM_QueryBuilder, where) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *column, *value, *comparison = NULL, *_0 = NULL;

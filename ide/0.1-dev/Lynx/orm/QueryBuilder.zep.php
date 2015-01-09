@@ -120,7 +120,7 @@ class QueryBuilder
      * @param mixed $comparison 
      * @return QueryBuilder 
      */
-	public function Where($column, $value, $comparison = Where::EQUAL) {}
+	public function where($column, $value, $comparison = Where::EQUAL) {}
 
     /**
      * @param mixed $column 

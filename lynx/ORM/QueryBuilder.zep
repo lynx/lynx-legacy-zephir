@@ -131,7 +131,7 @@ class QueryBuilder
 		return this;
 	}
 
-	public function Where(var column, var value, var comparison = Where::EQUAL) -> <QueryBuilder>
+	public function where(var column, var value, var comparison = Where::EQUAL) -> <QueryBuilder>
 	{
 		let this->where[] = this->prepareWhereStatement(column, value, comparison);
 
