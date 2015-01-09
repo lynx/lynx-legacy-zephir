@@ -71,6 +71,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date_created` DATE NOT NULL,
   `name` varchar(50) NOT NULL,
   `group_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)

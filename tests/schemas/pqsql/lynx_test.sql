@@ -59,6 +59,7 @@ ALTER TABLE public.products OWNER TO postgres;
 
 CREATE TABLE users (
     id integer NOT NULL,
+    date_created DATE NOT NULL,
     name character varying(2044) NOT NULL,
     group_id integer NOT NULL
 );
