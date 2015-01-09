@@ -5,6 +5,8 @@ namespace Lynx\DBAL\Driver;
 class Pdo extends \\PDO
 {
 
+    const PARAM_EXPRESSION = 10;
+
     /**
      * @param string $dsn 
      * @param mixed $username 

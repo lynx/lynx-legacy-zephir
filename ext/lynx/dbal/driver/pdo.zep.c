@@ -28,6 +28,8 @@ ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Pdo) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Lynx\\DBAL\\Driver, Pdo, lynx, dbal_driver_pdo, php_pdo_get_dbh_ce(), lynx_dbal_driver_pdo_method_entry, 0);
 
+	zend_declare_class_constant_long(lynx_dbal_driver_pdo_ce, SL("PARAM_EXPRESSION"), 10 TSRMLS_CC);
+
 	return SUCCESS;
 
 }
