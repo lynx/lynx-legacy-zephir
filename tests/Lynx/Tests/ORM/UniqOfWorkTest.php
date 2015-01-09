@@ -5,6 +5,7 @@
 
 namespace Lynx\Tests\ORM;
 
+use Lynx\DBAL\RawValue;
 use Lynx\ORM;
 use Lynx\DBAL;
 use Lynx\Stdlib\Events\Manager;
@@ -41,6 +42,7 @@ class UniqOfWorkTest
         $entity = new User();
         $entity->name = "Test string";
         $entity->group_id = 1;
+        $entity->dateCreated = new RawValue('NOW()');
 
         $count = $this->entityManager->getRepository('Model\User')->count();
 
