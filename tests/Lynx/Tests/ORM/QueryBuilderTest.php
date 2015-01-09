@@ -97,7 +97,6 @@ class QueryBuilderTest
         $expectedEntity->name = 'Дмитрий';
         $expectedEntity->group_id = 1;
         $expectedEntity->dateCreated = '2015-01-09';
-
         $this->assertEquals($expectedEntity, $result);
 
         $queryBuilder = $this->_em->createQueryBuilder()->select()->from('Model\User', 'u')->where('u.id', ':id')->orWhere('u.id', ':id_next');

@@ -44,6 +44,13 @@ class UnitOfWork
 	protected function convertToScalar(var value, var columnType = null)
 	{
 		switch(columnType) {
+			case "date":
+				if value instanceof \Lynx\DBAL\RawValue {
+					return value->getValue();
+				}
+
+				return value;
+				break;
 			case "datetime":
 				if value instanceof \DateTime {
 					return value->format("Y-m-d H:i:s");
