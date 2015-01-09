@@ -6,7 +6,7 @@ if (PHP_LYNX != "no") {
   ADD_SOURCES(configure_module_dirname + "/kernel/extended", "array.c", "lynx");
   
   ADD_SOURCES(configure_module_dirname + "/lynx/annotation", "reflectionclassparser.zep.c regexdocparser.zep.c", "lynx");
-	ADD_SOURCES(configure_module_dirname + "/lynx/dbal", "connection.zep.c events.zep.c", "lynx");
+	ADD_SOURCES(configure_module_dirname + "/lynx/dbal", "connection.zep.c events.zep.c rawvalue.zep.c", "lynx");
 	ADD_SOURCES(configure_module_dirname + "/lynx/dbal/driver", "connection.zep.c mysql.zep.c pdoconnection.zep.c pdo.zep.c pgsql.zep.c", "lynx");
 	ADD_SOURCES(configure_module_dirname + "/lynx/dbal/driver/pdo", "statement.zep.c", "lynx");
 	ADD_SOURCES(configure_module_dirname + "/lynx/dbal/platform", "mysql.zep.c pgsql.zep.c", "lynx");

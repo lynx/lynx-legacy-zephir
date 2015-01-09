@@ -41,6 +41,7 @@ zend_class_entry *lynx_dbal_driver_pgsql_ce;
 zend_class_entry *lynx_dbal_events_ce;
 zend_class_entry *lynx_dbal_platform_mysql_ce;
 zend_class_entry *lynx_dbal_platform_pgsql_ce;
+zend_class_entry *lynx_dbal_rawvalue_ce;
 zend_class_entry *lynx_orm_configuration_ce;
 zend_class_entry *lynx_orm_entitymanager_ce;
 zend_class_entry *lynx_orm_entityrepository_ce;
@@ -98,6 +99,7 @@ static PHP_MINIT_FUNCTION(lynx)
 	ZEPHIR_INIT(Lynx_DBAL_Events);
 	ZEPHIR_INIT(Lynx_DBAL_Platform_MySQL);
 	ZEPHIR_INIT(Lynx_DBAL_Platform_Pgsql);
+	ZEPHIR_INIT(Lynx_DBAL_RawValue);
 	ZEPHIR_INIT(Lynx_ORM_Configuration);
 	ZEPHIR_INIT(Lynx_ORM_EntityManager);
 	ZEPHIR_INIT(Lynx_ORM_EntityRepository);
