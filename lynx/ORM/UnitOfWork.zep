@@ -91,7 +91,7 @@ class UnitOfWork
 					continue;
 				}
 
-				if value instanceof \Lynx\DBAL\RawValue {
+				if is_object(value) && value instanceof \Lynx\DBAL\RawValue {
 					let types[property->name] = \Lynx\DBAL\Driver\Pdo::PARAM_EXPRESSION;
 				}
 

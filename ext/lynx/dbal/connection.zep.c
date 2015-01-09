@@ -18,10 +18,10 @@
 #include "kernel/fcall.h"
 #include "kernel/array.h"
 #include "kernel/hash.h"
+#include "kernel/operators.h"
 #include "kernel/concat.h"
 #include "kernel/string.h"
 #include "ext/spl/spl_exceptions.h"
-#include "kernel/operators.h"
 
 
 /**
@@ -128,7 +128,7 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 	HashTable *_1;
 	HashPosition _0;
 	zval *data = NULL, *types = NULL;
-	zval *table_param = NULL, *data_param = NULL, *types_param = NULL, *query, *stmt = NULL, *value = NULL, *set, *columnName = NULL, **_2, *_3 = NULL, *_4, *_5 = NULL, *_6, *_7, *_8, *_9;
+	zval *table_param = NULL, *data_param = NULL, *types_param = NULL, *query, *stmt = NULL, *value = NULL, *set, *columnName = NULL, *fields, **_2, *_3, *_4 = NULL, *_5, *_6 = NULL, *_7, *_8, *_9;
 	zval *table = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -158,28 +158,40 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
 	array_init(set);
 
 
-	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/DBAL/Connection.zep", 59);
+	ZEPHIR_INIT_VAR(fields);
+	zephir_array_keys(fields, data TSRMLS_CC);
+	zephir_is_iterable(data, &_1, &_0, 1, 0, "lynx/DBAL/Connection.zep", 70);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HMKEY(columnName, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
-		ZEPHIR_INIT_LNVAR(_3);
-		ZEPHIR_CONCAT_SVS(_3, ":", columnName, "");
-		zephir_array_append(&set, _3, PH_SEPARATE, "lynx/DBAL/Connection.zep", 56);
+		if (zephir_array_isset(types, columnName)) {
+			zephir_array_fetch(&_3, types, columnName, PH_NOISY | PH_READONLY, "lynx/DBAL/Connection.zep", 59 TSRMLS_CC);
+			if (ZEPHIR_IS_LONG(_3, 10)) {
+				zephir_array_append(&set, value, PH_SEPARATE, "lynx/DBAL/Connection.zep", 60);
+				zephir_array_unset(&data, columnName, PH_SEPARATE);
+			} else {
+				ZEPHIR_INIT_LNVAR(_4);
+				ZEPHIR_CONCAT_SVS(_4, ":", columnName, "");
+				zephir_array_append(&set, _4, PH_SEPARATE, "lynx/DBAL/Connection.zep", 63);
+			}
+		} else {
+			ZEPHIR_INIT_LNVAR(_4);
+			ZEPHIR_CONCAT_SVS(_4, ":", columnName, "");
+			zephir_array_append(&set, _4, PH_SEPARATE, "lynx/DBAL/Connection.zep", 66);
+		}
 	}
-	_4 = zephir_fetch_nproperty_this(this_ptr, SL("platform"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_5, _4, "wrap", NULL, table);
+	_5 = zephir_fetch_nproperty_this(this_ptr, SL("platform"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&_6, _5, "wrap", NULL, table);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(_6);
 	ZEPHIR_INIT_VAR(_7);
-	zephir_array_keys(_7, data TSRMLS_CC);
-	zephir_fast_join_str(_6, SL(","), _7 TSRMLS_CC);
+	zephir_fast_join_str(_7, SL(","), fields TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_8);
 	zephir_fast_join_str(_8, SL(","), set TSRMLS_CC);
 	ZEPHIR_INIT_VAR(query);
-	ZEPHIR_CONCAT_SVSVSVS(query, "INSERT INTO ", _5, " (", _6, ")  VALUES (", _8, ")");
+	ZEPHIR_CONCAT_SVSVSVS(query, "INSERT INTO ", _6, " (", _7, ")  VALUES (", _8, ")");
 	_9 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&stmt, _9, "prepare", NULL, query);
 	zephir_check_call_status();
@@ -231,7 +243,7 @@ PHP_METHOD(Lynx_DBAL_Connection, update) {
 	array_init(set);
 
 
-	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/DBAL/Connection.zep", 78);
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/DBAL/Connection.zep", 88);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -240,7 +252,7 @@ PHP_METHOD(Lynx_DBAL_Connection, update) {
 		ZEPHIR_GET_HVALUE(value, _2);
 		ZEPHIR_INIT_LNVAR(_3);
 		ZEPHIR_CONCAT_SVS(_3, "`", columnName, "` = ?");
-		zephir_array_append(&set, _3, PH_SEPARATE, "lynx/DBAL/Connection.zep", 75);
+		zephir_array_append(&set, _3, PH_SEPARATE, "lynx/DBAL/Connection.zep", 85);
 	}
 	_4 = zephir_fetch_nproperty_this(this_ptr, SL("platform"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&_5, _4, "wrap", NULL, table);
@@ -378,7 +390,7 @@ PHP_METHOD(Lynx_DBAL_Connection, delete) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(query);
 	ZEPHIR_CONCAT_SVS(query, "DELETE FROM ", _1, " WHERE ");
-	zephir_is_iterable(identifiers, &_3, &_2, 0, 0, "lynx/DBAL/Connection.zep", 120);
+	zephir_is_iterable(identifiers, &_3, &_2, 0, 0, "lynx/DBAL/Connection.zep", 130);
 	for (
 	  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_3, &_2)

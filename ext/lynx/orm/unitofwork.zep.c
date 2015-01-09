@@ -171,11 +171,12 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, convertToScalar) {
 
 PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 
-	zephir_fcall_cache_entry *_7 = NULL, *_11 = NULL, *_15 = NULL, *_27 = NULL;
+	zend_bool _12;
+	zephir_fcall_cache_entry *_7 = NULL, *_11 = NULL, *_16 = NULL, *_28 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	HashTable *_2, *_9, *_25, *_29;
-	HashPosition _1, _8, _24, _28;
-	zval *entity = NULL, *model = NULL, *modelInfo = NULL, *result = NULL, *primaryField = NULL, *_0, **_3, *lastInsertId = NULL, *extractValues = NULL, *insertValues = NULL, *property = NULL, *value = NULL, *key = NULL, *types, *_4, *_5 = NULL, *_6 = NULL, **_10, *_12 = NULL, *_13 = NULL, *_14 = NULL, *_16 = NULL, *_17, *_18 = NULL, *_19, *_20 = NULL, *_21 = NULL, *_22 = NULL, *_23 = NULL, **_26, *data = NULL, *identifiers = NULL, **_30, *_31, *_32;
+	HashTable *_2, *_9, *_26, *_30;
+	HashPosition _1, _8, _25, _29;
+	zval *entity = NULL, *model = NULL, *modelInfo = NULL, *result = NULL, *primaryField = NULL, *_0, **_3, *lastInsertId = NULL, *extractValues = NULL, *insertValues = NULL, *property = NULL, *value = NULL, *key = NULL, *types, *_4, *_5 = NULL, *_6 = NULL, **_10, *_13 = NULL, *_14 = NULL, *_15 = NULL, *_17 = NULL, *_18, *_19 = NULL, *_20, *_21 = NULL, *_22 = NULL, *_23 = NULL, *_24 = NULL, **_27, *data = NULL, *identifiers = NULL, **_31, *_32, *_33;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &entity);
@@ -222,92 +223,96 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 			if (!zephir_is_true(property)) {
 				continue;
 			}
-			if (zephir_instance_of_ev(value, lynx_dbal_rawvalue_ce TSRMLS_CC)) {
-				ZEPHIR_OBS_NVAR(_12);
-				zephir_read_property(&_12, property, SL("name"), PH_NOISY_CC);
-				ZEPHIR_INIT_NVAR(_13);
-				ZVAL_LONG(_13, 10);
-				zephir_array_update_zval(&types, _12, &_13, PH_COPY | PH_SEPARATE);
+			_12 = Z_TYPE_P(value) == IS_OBJECT;
+			if (_12) {
+				_12 = zephir_instance_of_ev(value, lynx_dbal_rawvalue_ce TSRMLS_CC);
 			}
-			ZEPHIR_OBS_NVAR(_12);
-			zephir_read_property(&_12, property, SL("type"), PH_NOISY_CC);
-			ZEPHIR_CALL_METHOD(&_14, this_ptr, "converttoscalar", &_15, value, _12);
+			if (_12) {
+				ZEPHIR_OBS_NVAR(_13);
+				zephir_read_property(&_13, property, SL("name"), PH_NOISY_CC);
+				ZEPHIR_INIT_NVAR(_14);
+				ZVAL_LONG(_14, 10);
+				zephir_array_update_zval(&types, _13, &_14, PH_COPY | PH_SEPARATE);
+			}
+			ZEPHIR_OBS_NVAR(_13);
+			zephir_read_property(&_13, property, SL("type"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(&_15, this_ptr, "converttoscalar", &_16, value, _13);
 			zephir_check_call_status();
-			ZEPHIR_OBS_NVAR(_16);
-			zephir_read_property(&_16, property, SL("name"), PH_NOISY_CC);
-			zephir_array_update_zval(&insertValues, _16, &_14, PH_COPY | PH_SEPARATE);
+			ZEPHIR_OBS_NVAR(_17);
+			zephir_read_property(&_17, property, SL("name"), PH_NOISY_CC);
+			zephir_array_update_zval(&insertValues, _17, &_15, PH_COPY | PH_SEPARATE);
 		}
-		_17 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_14, _17, "getconnection", NULL);
+		_18 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_15, _18, "getconnection", NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_18, modelInfo, "gettablename", NULL);
+		ZEPHIR_CALL_METHOD(&_19, modelInfo, "gettablename", NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&result, _14, "insert", NULL, _18, insertValues, types);
+		ZEPHIR_CALL_METHOD(&result, _15, "insert", NULL, _19, insertValues, types);
 		zephir_check_call_status();
 		if (zephir_is_true(result)) {
-			_19 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-			ZEPHIR_CALL_METHOD(&_20, _19, "getconnection", NULL);
+			_20 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(&_21, _20, "getconnection", NULL);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_21, _20, "getdriver", NULL);
+			ZEPHIR_CALL_METHOD(&_22, _21, "getdriver", NULL);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_22, modelInfo, "gettablename", NULL);
+			ZEPHIR_CALL_METHOD(&_23, modelInfo, "gettablename", NULL);
 			zephir_check_call_status();
-			ZEPHIR_INIT_LNVAR(_23);
-			ZEPHIR_CONCAT_VS(_23, _22, "_id_seq");
-			ZEPHIR_CALL_METHOD(&lastInsertId, _21, "lastinsertid", NULL, _23);
+			ZEPHIR_INIT_LNVAR(_24);
+			ZEPHIR_CONCAT_VS(_24, _23, "_id_seq");
+			ZEPHIR_CALL_METHOD(&lastInsertId, _22, "lastinsertid", NULL, _24);
 			zephir_check_call_status();
 			if (zephir_is_true(primaryField)) {
-				ZEPHIR_INIT_NVAR(_13);
-				ZVAL_LONG(_13, zephir_get_intval(lastInsertId));
-				zephir_update_property_zval(model, Z_STRVAL_P(primaryField), Z_STRLEN_P(primaryField), _13 TSRMLS_CC);
+				ZEPHIR_INIT_NVAR(_14);
+				ZVAL_LONG(_14, zephir_get_intval(lastInsertId));
+				zephir_update_property_zval(model, Z_STRVAL_P(primaryField), Z_STRLEN_P(primaryField), _14 TSRMLS_CC);
 			}
 		}
 	}
 	_4 = zephir_fetch_nproperty_this(this_ptr, SL("updateEntities"), PH_NOISY_CC);
-	zephir_is_iterable(_4, &_25, &_24, 0, 0, "lynx/ORM/UnitOfWork.zep", 132);
+	zephir_is_iterable(_4, &_26, &_25, 0, 0, "lynx/ORM/UnitOfWork.zep", 132);
 	for (
-	  ; zephir_hash_get_current_data_ex(_25, (void**) &_26, &_24) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_25, &_24)
+	  ; zephir_hash_get_current_data_ex(_26, (void**) &_27, &_25) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_26, &_25)
 	) {
-		ZEPHIR_GET_HVALUE(model, _26);
-		_17 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_5, _17, "getmodelsmanager", NULL);
+		ZEPHIR_GET_HVALUE(model, _27);
+		_18 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_5, _18, "getmodelsmanager", NULL);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(_6);
 		zephir_get_class(_6, model, 0 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&modelInfo, _5, "get", NULL, _6);
 		zephir_check_call_status();
-		ZEPHIR_CALL_CE_STATIC(&data, lynx_stdlib_hydrator_classproperties_ce, "extract", &_27, model);
+		ZEPHIR_CALL_CE_STATIC(&data, lynx_stdlib_hydrator_classproperties_ce, "extract", &_28, model);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&primaryField, modelInfo, "getprimaryfieldname", NULL);
 		zephir_check_call_status();
 		if (zephir_is_true(primaryField)) {
 			ZEPHIR_INIT_NVAR(identifiers);
 			array_init_size(identifiers, 2);
-			ZEPHIR_OBS_NVAR(_12);
-			zephir_array_fetch(&_12, data, primaryField, PH_NOISY, "lynx/ORM/UnitOfWork.zep", 124 TSRMLS_CC);
-			zephir_array_update_zval(&identifiers, primaryField, &_12, PH_COPY);
+			ZEPHIR_OBS_NVAR(_13);
+			zephir_array_fetch(&_13, data, primaryField, PH_NOISY, "lynx/ORM/UnitOfWork.zep", 124 TSRMLS_CC);
+			zephir_array_update_zval(&identifiers, primaryField, &_13, PH_COPY);
 		} else {
 			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Entity`s PrimaryField is not set.", "lynx/ORM/UnitOfWork.zep", 126);
 			return;
 		}
-		_19 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_14, _19, "getconnection", NULL);
+		_20 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_15, _20, "getconnection", NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_18, modelInfo, "gettablename", NULL);
+		ZEPHIR_CALL_METHOD(&_19, modelInfo, "gettablename", NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, _14, "update", NULL, _18, data, identifiers);
+		ZEPHIR_CALL_METHOD(NULL, _15, "update", NULL, _19, data, identifiers);
 		zephir_check_call_status();
 	}
 	_4 = zephir_fetch_nproperty_this(this_ptr, SL("deleteEntities"), PH_NOISY_CC);
-	zephir_is_iterable(_4, &_29, &_28, 0, 0, "lynx/ORM/UnitOfWork.zep", 144);
+	zephir_is_iterable(_4, &_30, &_29, 0, 0, "lynx/ORM/UnitOfWork.zep", 144);
 	for (
-	  ; zephir_hash_get_current_data_ex(_29, (void**) &_30, &_28) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_29, &_28)
+	  ; zephir_hash_get_current_data_ex(_30, (void**) &_31, &_29) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_30, &_29)
 	) {
-		ZEPHIR_GET_HVALUE(model, _30);
-		_17 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_5, _17, "getmodelsmanager", NULL);
+		ZEPHIR_GET_HVALUE(model, _31);
+		_18 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_5, _18, "getmodelsmanager", NULL);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(_6);
 		zephir_get_class(_6, model, 0 TSRMLS_CC);
@@ -316,36 +321,36 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 		ZEPHIR_CALL_METHOD(&primaryField, modelInfo, "getprimaryfieldname", NULL);
 		zephir_check_call_status();
 		if (zephir_is_true(primaryField)) {
-			_31 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-			ZEPHIR_CALL_METHOD(&_18, _31, "getconnection", NULL);
+			_32 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(&_19, _32, "getconnection", NULL);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_20, modelInfo, "gettablename", NULL);
+			ZEPHIR_CALL_METHOD(&_21, modelInfo, "gettablename", NULL);
 			zephir_check_call_status();
-			ZEPHIR_OBS_NVAR(_12);
-			zephir_read_property_zval(&_12, model, primaryField, PH_NOISY_CC);
-			ZEPHIR_CALL_METHOD(NULL, _18, "deletebycolumn", NULL, _20, primaryField, _12);
+			ZEPHIR_OBS_NVAR(_13);
+			zephir_read_property_zval(&_13, model, primaryField, PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(NULL, _19, "deletebycolumn", NULL, _21, primaryField, _13);
 			zephir_check_call_status();
 		} else {
-			_19 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
-			ZEPHIR_CALL_METHOD(&_14, _19, "getconnection", NULL);
+			_20 = zephir_fetch_nproperty_this(this_ptr, SL("em"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(&_15, _20, "getconnection", NULL);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_20, modelInfo, "gettablename", NULL);
+			ZEPHIR_CALL_METHOD(&_21, modelInfo, "gettablename", NULL);
 			zephir_check_call_status();
-			ZEPHIR_CALL_CE_STATIC(&_21, lynx_stdlib_hydrator_entity_ce, "extract", &_7, model);
+			ZEPHIR_CALL_CE_STATIC(&_22, lynx_stdlib_hydrator_entity_ce, "extract", &_7, model);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, _14, "delete", NULL, _20, _21);
+			ZEPHIR_CALL_METHOD(NULL, _15, "delete", NULL, _21, _22);
 			zephir_check_call_status();
 		}
 	}
 	ZEPHIR_INIT_NVAR(_6);
 	array_init(_6);
 	zephir_update_property_this(this_ptr, SL("insertEntities"), _6 TSRMLS_CC);
-	ZEPHIR_INIT_NVAR(_13);
-	array_init(_13);
-	zephir_update_property_this(this_ptr, SL("updateEntities"), _13 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_32);
-	array_init(_32);
-	zephir_update_property_this(this_ptr, SL("deleteEntities"), _32 TSRMLS_CC);
+	ZEPHIR_INIT_NVAR(_14);
+	array_init(_14);
+	zephir_update_property_this(this_ptr, SL("updateEntities"), _14 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_33);
+	array_init(_33);
+	zephir_update_property_this(this_ptr, SL("deleteEntities"), _33 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }

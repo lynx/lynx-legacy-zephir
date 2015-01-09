@@ -50,14 +50,24 @@ class Connection
 	 */
 	public function insert(string! table, array! data, array! types = []) -> int
 	{
-		var query, stmt, value, set = [], columnName;
+		var query, stmt, value, set = [], columnName, fields;
+
+		let fields = array_keys(data);
 
 		for columnName, value in data {
-			let set[] = ":" . columnName . "";
+			if (isset(types[columnName])) {
+				if (types[columnName] == \Lynx\DBAL\Driver\Pdo::PARAM_EXPRESSION) {
+					let set[] = value;
+					unset data[columnName];
+				} else {
+					let set[] = ":" . columnName . "";
+				}
+			} else {
+				let set[] = ":" . columnName . "";
+			}
 		}
 
-		let query = "INSERT INTO " . this->platform->wrap(table) . " (" . implode(",", array_keys(data)) . ")  VALUES (" . implode(",", set) . ")";
-
+		let query = "INSERT INTO " . this->platform->wrap(table) . " (" . implode(",", fields) . ")  VALUES (" . implode(",", set) . ")";
 		let stmt = this->driver->prepare(query);
 		return stmt->execute(data);
 	}
