@@ -48,6 +48,8 @@ class EntityRepository
 
     /**
      * Find all entities from a repository
+     *
+     * @return ArrayCollection 
      */
 	public function findAll() {}
 

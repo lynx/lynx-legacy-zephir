@@ -5,6 +5,7 @@
 namespace Lynx\ORM;
 
 use Lynx\ORM;
+use Lynx\Stdlib\Collections\ArrayCollection;
 
 class EntityRepository
 {
@@ -63,7 +64,7 @@ class EntityRepository
 	/**
 	 * Find all entities from a repository
 	 */
-    public function findAll()
+    public function findAll() -> <ArrayCollection>
     {
 		return this->createQueryBuilder("findall_")
 			->getQuery()
