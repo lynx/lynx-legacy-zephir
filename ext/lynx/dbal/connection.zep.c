@@ -206,12 +206,12 @@ PHP_METHOD(Lynx_DBAL_Connection, insert) {
  */
 PHP_METHOD(Lynx_DBAL_Connection, update) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_12 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_10 = NULL, *_12 = NULL, *_15 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_1;
 	HashPosition _0;
 	zval *data = NULL, *identifiers = NULL, *types = NULL;
-	zval *table_param = NULL, *data_param = NULL, *identifiers_param = NULL, *types_param = NULL, *set, *stmt = NULL, *columnName = NULL, *value = NULL, **_2, *_3 = NULL, *_4, *_5 = NULL, *_6, *_7, *_8, *_9, *_10, *_11 = NULL, *_13 = NULL;
+	zval *table_param = NULL, *data_param = NULL, *identifiers_param = NULL, *types_param = NULL, *set, *stmt = NULL, *columnName = NULL, *value = NULL, **_2, *_3, *_4 = NULL, *_5 = NULL, *_6, *cnt, *_7, *_8 = NULL, *_9 = NULL, *_11 = NULL, *_13, *_14;
 	zval *table = NULL, *query = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -250,32 +250,55 @@ PHP_METHOD(Lynx_DBAL_Connection, update) {
 	) {
 		ZEPHIR_GET_HMKEY(columnName, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
-		ZEPHIR_INIT_LNVAR(_3);
-		ZEPHIR_CONCAT_SVS(_3, "`", columnName, "` = ?");
-		zephir_array_append(&set, _3, PH_SEPARATE, "lynx/DBAL/Connection.zep", 85);
+		_3 = zephir_fetch_nproperty_this(this_ptr, SL("platform"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_4, _3, "wrap", NULL, columnName);
+		zephir_check_call_status();
+		ZEPHIR_INIT_LNVAR(_5);
+		ZEPHIR_CONCAT_VS(_5, _4, " = ?");
+		zephir_array_append(&set, _5, PH_SEPARATE, "lynx/DBAL/Connection.zep", 85);
 	}
-	_4 = zephir_fetch_nproperty_this(this_ptr, SL("platform"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_5, _4, "wrap", NULL, table);
+	_3 = zephir_fetch_nproperty_this(this_ptr, SL("platform"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&_4, _3, "wrap", NULL, table);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_6);
 	zephir_fast_join_str(_6, SL(", "), set TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_7);
-	ZEPHIR_INIT_VAR(_8);
-	zephir_array_keys(_8, identifiers TSRMLS_CC);
-	zephir_fast_join_str(_7, SL(" = ? AND "), _8 TSRMLS_CC);
-	ZEPHIR_INIT_LNVAR(_3);
-	ZEPHIR_CONCAT_SVSVSV(_3, "UPDATE ", _5, " SET ", _6, " WHERE ", _7);
-	zephir_get_strval(query, _3);
-	_9 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&stmt, _9, "prepare", NULL, query);
+	ZEPHIR_INIT_LNVAR(_5);
+	ZEPHIR_CONCAT_SVSV(_5, "UPDATE ", _4, " SET ", _6);
+	zephir_get_strval(query, _5);
+	ZEPHIR_INIT_VAR(cnt);
+	ZVAL_LONG(cnt, zephir_fast_count_int(identifiers TSRMLS_CC));
+	if (ZEPHIR_GT_LONG(cnt, 0)) {
+		zephir_concat_self_str(&query, " WHERE ", sizeof(" WHERE ")-1 TSRMLS_CC);
+		if (ZEPHIR_IS_LONG(cnt, 1)) {
+			_7 = zephir_fetch_nproperty_this(this_ptr, SL("platform"), PH_NOISY_CC);
+			Z_SET_ISREF_P(identifiers);
+			ZEPHIR_CALL_FUNCTION(&_9, "key", &_10, identifiers);
+			Z_UNSET_ISREF_P(identifiers);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&_8, _7, "wrap", NULL, _9);
+			zephir_check_call_status();
+			Z_SET_ISREF_P(identifiers);
+			ZEPHIR_CALL_FUNCTION(&_11, "current", &_12, identifiers);
+			Z_UNSET_ISREF_P(identifiers);
+			zephir_check_call_status();
+			ZEPHIR_INIT_VAR(_13);
+			ZEPHIR_CONCAT_VSV(_13, _8, " = ", _11);
+			zephir_concat_self(&query, _13 TSRMLS_CC);
+		} else {
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "It's not implemented", "lynx/DBAL/Connection.zep", 99);
+			return;
+		}
+	}
+	_3 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&stmt, _3, "prepare", NULL, query);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(_10);
-	ZEPHIR_CALL_FUNCTION(&_11, "array_values", &_12, data);
+	ZEPHIR_INIT_VAR(_14);
+	ZEPHIR_CALL_FUNCTION(&_4, "array_values", &_15, data);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_13, "array_values", &_12, identifiers);
+	ZEPHIR_CALL_FUNCTION(&_8, "array_values", &_15, identifiers);
 	zephir_check_call_status();
-	zephir_fast_array_merge(_10, &(_11), &(_13) TSRMLS_CC);
-	ZEPHIR_RETURN_CALL_METHOD(stmt, "execute", NULL, _10);
+	zephir_fast_array_merge(_14, &(_4), &(_8) TSRMLS_CC);
+	ZEPHIR_RETURN_CALL_METHOD(stmt, "execute", NULL, _14);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -390,7 +413,7 @@ PHP_METHOD(Lynx_DBAL_Connection, delete) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(query);
 	ZEPHIR_CONCAT_SVS(query, "DELETE FROM ", _1, " WHERE ");
-	zephir_is_iterable(identifiers, &_3, &_2, 0, 0, "lynx/DBAL/Connection.zep", 130);
+	zephir_is_iterable(identifiers, &_3, &_2, 0, 0, "lynx/DBAL/Connection.zep", 144);
 	for (
 	  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_3, &_2)

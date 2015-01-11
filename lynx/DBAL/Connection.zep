@@ -85,7 +85,21 @@ class Connection
 			let set[] = this->platform->wrap(columnName) . " = ?";
 		}
 
-		let query =  "UPDATE " . this->platform->wrap(table) . " SET " . implode(", ", set) . " WHERE " . implode(" = ? AND ", array_keys(identifiers));
+		let query =  "UPDATE " . this->platform->wrap(table) . " SET " . implode(", ", set);
+
+		var cnt;
+		let cnt = count(identifiers);
+
+		if (cnt > 0) {
+			let query .= " WHERE ";
+
+			if (cnt == 1) {
+				let query .= this->platform->wrap(key(identifiers)) . " = " . current(identifiers);
+			} else {
+				throw new \Exception("It's not implemented");
+			}
+		}
+
 		let stmt = this->driver->prepare(query);
 
 		return stmt->execute(array_merge(array_values(data), array_values(identifiers)));
