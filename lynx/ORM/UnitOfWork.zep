@@ -111,11 +111,9 @@ class UnitOfWork
 		}
 
 		for model in this->updateEntities {
-			var data, identifiers;
+			var extractValues, identifiers, updateValues = [];
 
 			let modelInfo = this->em->getModelsManager()->get(get_class(model));
-
-			let data = \Lynx\Stdlib\Hydrator\ClassProperties::extract(model);
 
 			let primaryField = modelInfo->getPrimaryFieldName();
 			if (primaryField) {
@@ -126,7 +124,21 @@ class UnitOfWork
 				throw new \Exception("Entity`s PrimaryField is not set.");
 			}
 
-			this->em->getConnection()->update(modelInfo->getTablename(), data, identifiers);
+			let extractValues = \Lynx\Stdlib\Hydrator\ClassProperties::extract(model);
+			for key, value in extractValues {
+				if (key == primaryField) {
+					continue;
+				}
+
+				let property = modelInfo->getColumn(key);
+				if (!property) {
+					continue;
+				}
+				
+				let extractValues[property->name] = this->convertToScalar(value, property->type);
+			}
+
+			this->em->getConnection()->update(modelInfo->getTablename(), extractValues, identifiers);
 		}
 
 		for model in this->deleteEntities {
