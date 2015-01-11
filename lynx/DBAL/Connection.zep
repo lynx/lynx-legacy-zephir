@@ -94,7 +94,7 @@ class Connection
 			let query .= " WHERE ";
 
 			if (cnt == 1) {
-				let query .= this->platform->wrap(key(identifiers)) . " = " . current(identifiers);
+				let query .= this->platform->wrap(key(identifiers)) . " = ?";
 			} else {
 				throw new \Exception("It's not implemented");
 			}
