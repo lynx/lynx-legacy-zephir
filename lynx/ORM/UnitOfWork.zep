@@ -45,14 +45,14 @@ class UnitOfWork
 	{
 		switch(columnType) {
 			case "date":
-				if value instanceof \Lynx\DBAL\RawValue {
+				if is_object(value) && value instanceof \Lynx\DBAL\RawValue {
 					return value->getValue();
 				}
 
 				return value;
 				break;
 			case "datetime":
-				if value instanceof \DateTime {
+				if is_object(value) && value instanceof \DateTime {
 					return value->format("Y-m-d H:i:s");
 				}
 

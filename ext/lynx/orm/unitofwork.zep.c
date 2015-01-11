@@ -126,7 +126,8 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, delete) {
 PHP_METHOD(Lynx_ORM_UnitOfWork, convertToScalar) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *value, *columnType = NULL, *_0;
+	zend_bool _0;
+	zval *value, *columnType = NULL, *_1;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &value, &columnType);
@@ -138,7 +139,11 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, convertToScalar) {
 
 	do {
 		if (ZEPHIR_IS_STRING(columnType, "date")) {
-			if (zephir_instance_of_ev(value, lynx_dbal_rawvalue_ce TSRMLS_CC)) {
+			_0 = Z_TYPE_P(value) == IS_OBJECT;
+			if (_0) {
+				_0 = zephir_instance_of_ev(value, lynx_dbal_rawvalue_ce TSRMLS_CC);
+			}
+			if (_0) {
 				ZEPHIR_RETURN_CALL_METHOD(value, "getvalue", NULL);
 				zephir_check_call_status();
 				RETURN_MM();
@@ -148,11 +153,15 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, convertToScalar) {
 			break;
 		}
 		if (ZEPHIR_IS_STRING(columnType, "datetime")) {
-			if (zephir_instance_of_ev(value, zephir_get_internal_ce(SS("datetime") TSRMLS_CC) TSRMLS_CC)) {
-				ZEPHIR_INIT_VAR(_0);
-				ZVAL_STRING(_0, "Y-m-d H:i:s", ZEPHIR_TEMP_PARAM_COPY);
-				ZEPHIR_RETURN_CALL_METHOD(value, "format", NULL, _0);
-				zephir_check_temp_parameter(_0);
+			_0 = Z_TYPE_P(value) == IS_OBJECT;
+			if (_0) {
+				_0 = zephir_instance_of_ev(value, zephir_get_internal_ce(SS("datetime") TSRMLS_CC) TSRMLS_CC);
+			}
+			if (_0) {
+				ZEPHIR_INIT_VAR(_1);
+				ZVAL_STRING(_1, "Y-m-d H:i:s", ZEPHIR_TEMP_PARAM_COPY);
+				ZEPHIR_RETURN_CALL_METHOD(value, "format", NULL, _1);
+				zephir_check_temp_parameter(_1);
 				zephir_check_call_status();
 				RETURN_MM();
 			}
