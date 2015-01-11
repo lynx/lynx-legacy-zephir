@@ -81,7 +81,7 @@ class Connection
 
    		var set = [], stmt, columnName;
 
-		for columnName in data {
+		for columnName in data->keys() {
 			let set[] = this->platform->wrap(columnName) . " = ?";
 		}
 
