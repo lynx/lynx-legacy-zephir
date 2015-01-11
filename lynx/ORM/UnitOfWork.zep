@@ -66,7 +66,7 @@ class UnitOfWork
 
     public function commit(var entity = null)
     {
-    	var model, modelInfo, result, primaryField;
+    	var model, modelInfo, result, primaryField, extractValues;
 
 		/**
 		 * Remove try catch from hear because bug in Zephir :(
@@ -74,7 +74,7 @@ class UnitOfWork
 		 */
 
 		for model in this->insertEntities {
-			var lastInsertId, extractValues, insertValues, property, value, key, types = [];
+			var lastInsertId, insertValues, property, value, key, types = [];
 
 			let modelInfo = this->em->getModelsManager()->get(get_class(model));
 			let primaryField = modelInfo->getPrimaryFieldName();
@@ -111,20 +111,21 @@ class UnitOfWork
 		}
 
 		for model in this->updateEntities {
-			var extractValues, identifiers, updateValues = [];
+			var identifiers, updateValues = [];
 
 			let modelInfo = this->em->getModelsManager()->get(get_class(model));
+
+			let extractValues = \Lynx\Stdlib\Hydrator\ClassProperties::extract(model);
 
 			let primaryField = modelInfo->getPrimaryFieldName();
 			if (primaryField) {
 				let identifiers = [
-					primaryField : data[primaryField]
+					primaryField : extractValues[primaryField]
 				];
 			} else {
 				throw new \Exception("Entity`s PrimaryField is not set.");
 			}
 
-			let extractValues = \Lynx\Stdlib\Hydrator\ClassProperties::extract(model);
 			for key, value in extractValues {
 				if (key == primaryField) {
 					continue;
@@ -134,11 +135,11 @@ class UnitOfWork
 				if (!property) {
 					continue;
 				}
-				
-				let extractValues[property->name] = this->convertToScalar(value, property->type);
+
+				let updateValues[property->name] = this->convertToScalar(value, property->type);
 			}
 
-			this->em->getConnection()->update(modelInfo->getTablename(), extractValues, identifiers);
+			this->em->getConnection()->update(modelInfo->getTablename(), updateValues, identifiers);
 		}
 
 		for model in this->deleteEntities {
