@@ -71,7 +71,7 @@ class Query
 
 	public function fetchAll(var parameters = null) -> object|boolean
 	{
-		var result, model, property, key, value, collection;
+		var result, collection;
 		let result = this->getResult();
 
 		this->statement->execute();

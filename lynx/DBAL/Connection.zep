@@ -79,9 +79,9 @@ class Connection
 	{
 		string query;
 
-   		var set = [], stmt, columnName, value;
+   		var set = [], stmt, columnName;
 
-		for columnName, value in data {
+		for columnName in data {
 			let set[] = this->platform->wrap(columnName) . " = ?";
 		}
 
