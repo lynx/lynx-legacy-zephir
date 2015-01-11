@@ -213,9 +213,6 @@ PHP_METHOD(Lynx_ORM_EntityRepository, findAll) {
 
 /**
  * Find all entities from a repository by column = :value
- * @param string $column
- * @param $value
- * @return object|boolean
  */
 PHP_METHOD(Lynx_ORM_EntityRepository, findBy) {
 

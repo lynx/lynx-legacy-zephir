@@ -73,11 +73,8 @@ class EntityRepository
 
 	/**
 	 * Find all entities from a repository by column = :value
-	 * @param string $column
-	 * @param $value
-	 * @return object|boolean
 	 */
-    public function findBy(string! column, var value)
+    public function findBy(string! column, var value) -> <ArrayCollection>
     {
 		return this->createQueryBuilder("find_")
 			->where("find_." .column, ":column")

@@ -58,9 +58,7 @@ class EntityRepository
      *
      * @param string $column 
      * @param mixed $value 
-     * @param string $$column 
-     * @param $value  
-     * @return object|boolean 
+     * @return ArrayCollection 
      */
 	public function findBy($column, $value) {}
 
