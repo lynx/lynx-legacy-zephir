@@ -37,6 +37,11 @@ class UniqOfWorkTest
         $this->unitOfWork = $this->entityManager->getUnitOfWork();
     }
 
+    /**
+     * 1 Insert
+     * 2 Update
+     * 3 Delete
+     */
     public function testSimpleWorkflow()
     {
         $entity = new User();
@@ -52,6 +57,14 @@ class UniqOfWorkTest
         $this->assertInternalType('int', $entity->id);
         $newCount = $this->entityManager->getRepository('Model\User')->count();
         $count = $count+1;
+        $this->assertSame($count, $newCount);
+
+        $entity->group_id = 2;
+        $this->unitOfWork->update($entity);
+        $this->unitOfWork->commit();
+
+        $this->assertInternalType('int', $entity->id);
+        $newCount = $this->entityManager->getRepository('Model\User')->count();
         $this->assertSame($count, $newCount);
 
         $this->unitOfWork->delete($entity);
