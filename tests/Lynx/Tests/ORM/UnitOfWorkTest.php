@@ -12,7 +12,7 @@ use Lynx\Stdlib\Events\Manager;
 use Lynx\Tests\Utils;
 use Model\User;
 
-class UniqOfWorkTest
+class UnitOfWorkTest
 	extends TestCase
 {
     /**
