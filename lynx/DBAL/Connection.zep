@@ -82,7 +82,7 @@ class Connection
    		var set = [], stmt, columnName, value;
 
 		for columnName, value in data {
-			let set[] = "`" . columnName . "` = ?";
+			let set[] = this->platform->wrap(columnName) . " = ?";
 		}
 
 		let query =  "UPDATE " . this->platform->wrap(table) . " SET " . implode(", ", set) . " WHERE " . implode(" = ? AND ", array_keys(identifiers));
