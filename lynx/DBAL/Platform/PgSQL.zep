@@ -1,3 +1,6 @@
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 
 namespace Lynx\DBAL\Platform;
 

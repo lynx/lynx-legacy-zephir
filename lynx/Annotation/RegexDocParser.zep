@@ -1,3 +1,6 @@
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 
 namespace Lynx\Annotation;
 
@@ -27,64 +30,64 @@ final class RegexDocParser
         var annotations = [];
 
         for anno in matches {
-			let annoName = strtolower(anno[1]);
+            let annoName = strtolower(anno[1]);
 
-			let val = true;
-			if (isset(anno[2])) {
-			    var regex1 = "/(\w+)\s*=\s*(\[[^\]]*\]|\"[^\"]*\"|[^,)]*)\s*(?:,|$)/";
-				let hasParams = preg_match_all(regex1, anno[2], params, PREG_SET_ORDER);
+            let val = true;
+            if (isset(anno[2])) {
+                var regex1 = "/(\w+)\s*=\s*(\[[^\]]*\]|\"[^\"]*\"|[^,)]*)\s*(?:,|$)/";
+                let hasParams = preg_match_all(regex1, anno[2], params, PREG_SET_ORDER);
 
-				if (hasParams) {
-					let val = [];
-					for param in params {
-					    let val[param[1]] = self::parseValue(param[2]);
-					    //let val[param[1]] = param[2];
-					}
-				} else {
-					let val = trim(anno[2]);
-					if (val == "") {
-						let val = true;
-					} else {
-						let val = self::parseValue(val);
-						//let val = val;
-					}
-				}
-			}
+                if (hasParams) {
+                    let val = [];
+                    for param in params {
+                        let val[param[1]] = self::parseValue(param[2]);
+                        //let val[param[1]] = param[2];
+                    }
+                } else {
+                    let val = trim(anno[2]);
+                    if (val == "") {
+                        let val = true;
+                    } else {
+                        let val = self::parseValue(val);
+                        //let val = val;
+                    }
+                }
+            }
 
-			if (isset(annotations[annoName])) {
-				if (!is_array(annotations[annoName])) {
-					let annotations[annoName] = [annotations[annoName]];
-				}
-				let annotations[annoName][] = val;
-			} else {
-				let annotations[annoName] = val;
-			}
-		}
+            if (isset(annotations[annoName])) {
+                if (!is_array(annotations[annoName])) {
+                    let annotations[annoName] = [annotations[annoName]];
+                }
+                let annotations[annoName][] = val;
+            } else {
+                let annotations[annoName] = val;
+            }
+        }
 
-		return annotations;
+        return annotations;
     }
 
 
     /**
      * @return mixed
      */
-	private static function parseValue(var value)
-	{
-	    var val, vals, v;
+    private static function parseValue(var value)
+    {
+        var val, vals, v;
 
-		let val = trim(value);
+        let val = trim(value);
 
-		if (substr(val, 0, 1) == "[" && substr(val, -1) == "]") {
-			// Array values
-			let vals = explode(',', substr(val, 1, -1));
-			let val = [];
+        if (substr(val, 0, 1) == "[" && substr(val, -1) == "]") {
+            // Array values
+            let vals = explode(',', substr(val, 1, -1));
+            let val = [];
 
-			for v in vals {
-			    let val[] = self::parseValue(v);
-			}
+            for v in vals {
+                let val[] = self::parseValue(v);
+            }
 
-			return val;
-		} else {
+            return val;
+        } else {
             if (substr(val, 0, 1) == "{" && substr(val, -1) == "}") {
                 // If is json object that start with { } decode them
                 return json_decode(val);
@@ -117,6 +120,6 @@ final class RegexDocParser
         }
 
         // Nothing special, just return as a string
-		return val;
-	}
+        return val;
+    }
 }

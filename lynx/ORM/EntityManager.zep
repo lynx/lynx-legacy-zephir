@@ -14,40 +14,40 @@ class EntityManager
      */
     protected unitOfWork {get};
 
-	protected connection {get};
+    protected connection {get};
 
-	protected modelsManager {get};
+    protected modelsManager {get};
 
-	protected eventManager {get};
+    protected eventManager {get};
 
-	protected repositories;
+    protected repositories;
 
-	protected configuration {get};
+    protected configuration {get};
 
-	public function __construct(<Connection> connection, <Configuration> configuration, <EventsManager> eventManager)
-	{
-		let this->eventManager = eventManager;
-		let this->connection = connection;
-		let this->configuration = configuration;
+    public function __construct(<Connection> connection, <Configuration> configuration, <EventsManager> eventManager)
+    {
+        let this->eventManager = eventManager;
+        let this->connection = connection;
+        let this->configuration = configuration;
 
-		let this->unitOfWork = new UnitOfWork(this);
-		let this->modelsManager = new ModelsManager(this);
-	}
+        let this->unitOfWork = new UnitOfWork(this);
+        let this->modelsManager = new ModelsManager(this);
+    }
 
-	public function flush(var entity)
-	{
+    public function flush(var entity)
+    {
 
-	}
+    }
 
-	public function remove(object! entity)
-	{
+    public function remove(object! entity)
+    {
 
-	}
+    }
 
-	public function beginTransaction()
-	{
-		this->connection->beginTransaction();
-	}
+    public function beginTransaction()
+    {
+        this->connection->beginTransaction();
+    }
 
     public function commit()
     {
@@ -60,25 +60,25 @@ class EntityManager
         this->connection->rollback();
     }
 
-	public function getRepository(string! entityName) -> <EntityRepository>
-	{
-		var repository;
+    public function getRepository(string! entityName) -> <EntityRepository>
+    {
+        var repository;
 
-		if fetch repository, this->repositories[entityName] {
-			return repository;
-		}
+        if fetch repository, this->repositories[entityName] {
+            return repository;
+        }
 
-       	let this->repositories[entityName] = new EntityRepository(this, this->modelsManager->get(entityName));
-       	return this->repositories[entityName];
-	}
+        let this->repositories[entityName] = new EntityRepository(this, this->modelsManager->get(entityName));
+        return this->repositories[entityName];
+    }
 
-	public function createQueryBuilder() -> <QueryBuilder>
-	{
-	    return new QueryBuilder(this);
-	}
+    public function createQueryBuilder() -> <QueryBuilder>
+    {
+        return new QueryBuilder(this);
+    }
 
-	public function createQuery(var sql) -> <Query>
-	{
-		return new Query(sql, this);
-	}
+    public function createQuery(var sql) -> <Query>
+    {
+        return new Query(sql, this);
+    }
 }

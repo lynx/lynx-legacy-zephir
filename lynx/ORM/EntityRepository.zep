@@ -32,70 +32,70 @@ class EntityRepository
     public function createQueryBuilder(string! alias) -> <QueryBuilder>
     {
         return this->em->createQueryBuilder()
-        	->from(this->modelWrapper->classname, alias);
+            ->from(this->modelWrapper->classname, alias);
     }
 
-	/**
-	 * Find an entity by its primary key
-	 * @param $id
-	 * @return object|boolean
-	 */
+    /**
+     * Find an entity by its primary key
+     * @param $id
+     * @return object|boolean
+     */
     public function find(var id)
     {
-		return this->createQueryBuilder("find_")
-			->where("find_.id", ":id")
-			->limit(1)
-			->getQuery()
-			->bindValue("id", id, \PDO::PARAM_INT)
-			->fetchOne();
+        return this->createQueryBuilder("find_")
+            ->where("find_.id", ":id")
+            ->limit(1)
+            ->getQuery()
+            ->bindValue("id", id, \PDO::PARAM_INT)
+            ->fetchOne();
     }
 
-	/**
-	 * Count all rows
-	 */
+    /**
+     * Count all rows
+     */
     public function count() -> int
     {
-    	return this->createQueryBuilder("count_")
-    		->select("COUNT(*)")
-    		->getQuery()
-    		->getScalarResult(ORM\Query::FETCH_INT);
+        return this->createQueryBuilder("count_")
+            ->select("COUNT(*)")
+            ->getQuery()
+            ->getScalarResult(ORM\Query::FETCH_INT);
     }
 
-	/**
-	 * Find all entities from a repository
-	 */
+    /**
+     * Find all entities from a repository
+     */
     public function findAll() -> <ArrayCollection>
     {
-		return this->createQueryBuilder("findall_")
-			->getQuery()
-			->fetchAll();
+        return this->createQueryBuilder("findall_")
+            ->getQuery()
+            ->fetchAll();
     }
 
-	/**
-	 * Find all entities from a repository by column = :value
-	 */
+    /**
+     * Find all entities from a repository by column = :value
+     */
     public function findBy(string! column, var value) -> <ArrayCollection>
     {
-		return this->createQueryBuilder("find_")
-			->where("find_." .column, ":column")
-			->getQuery()
-			->bindValue("column", value, \PDO::PARAM_INT)
-			->fetchAll();
+        return this->createQueryBuilder("find_")
+            ->where("find_." .column, ":column")
+            ->getQuery()
+            ->bindValue("column", value, \PDO::PARAM_INT)
+            ->fetchAll();
     }
 
-	/**
-	 * Find one entity from a repository by column = :value
-	 * @param string $column
-	 * @param $value
-	 * @return object|boolean
-	 */
+    /**
+     * Find one entity from a repository by column = :value
+     * @param string $column
+     * @param $value
+     * @return object|boolean
+     */
     public function findOneBy(string! column, var value)
     {
-		return this->createQueryBuilder("find_")
-			->where("find_." .column, ":column")
-			->limit(1)
-			->getQuery()
-			->bindValue("column", value, \PDO::PARAM_INT)
-			->fetchOne();
+        return this->createQueryBuilder("find_")
+            ->where("find_." .column, ":column")
+            ->limit(1)
+            ->getQuery()
+            ->bindValue("column", value, \PDO::PARAM_INT)
+            ->fetchOne();
     }
 }

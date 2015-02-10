@@ -1,13 +1,16 @@
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 
 namespace Lynx\DBAL\Driver;
 
 interface Connection
 {
-	public function commit();
+    public function commit();
 
-	public function rollBack();
+    public function rollBack();
 
-	public function beginTransaction();
+    public function beginTransaction();
 
-	public function setEventsManager(eventsManager);
+    public function setEventsManager(eventsManager);
 }
