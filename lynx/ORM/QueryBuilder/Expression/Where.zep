@@ -13,7 +13,7 @@ class Where
     const GREATER       = ">";
     const LESS          = "<";
 
-    const IN     = "IN";
+    const $IN    = "IN";
     const NOT_IN = "NOT IN";
 
     const IS_NULL     = "IS NULL";
