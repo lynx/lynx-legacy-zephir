@@ -4,12 +4,11 @@
 
 namespace Lynx\ORM;
 
-
 class QueryIdentityMap
 {
-	protected rootModel {get, set};
+    protected rootModel {get, set};
 
-	protected rootAlias {get, set};
+    protected rootAlias {get, set};
 
-	protected aliases {get, set};
+    protected aliases {get, set};
 }

@@ -1,13 +1,16 @@
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 
 namespace Lynx\ORM\ModelMetaData;
 
 class Property
 {
-	public type = "string";
+    public type = "string";
 
-	public targetEntity;
+    public targetEntity;
 
-	public name;
+    public name;
 
-	public referencedColumnName;
-} 
+    public referencedColumnName;
+}

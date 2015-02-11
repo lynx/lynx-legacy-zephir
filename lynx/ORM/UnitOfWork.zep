@@ -6,13 +6,13 @@ namespace Lynx\ORM;
 
 class UnitOfWork
 {
-	const STATE_MANAGED = 1;
+    const STATE_MANAGED = 1;
 
-	const STATE_NEW = 2;
+    const STATE_NEW = 2;
 
-	/**
-	 * @var EntityManager
-	 */
+    /**
+     * @var EntityManager
+     */
     protected em;
 
     protected insertEntities = [];
@@ -28,134 +28,133 @@ class UnitOfWork
 
     public function insert(object! entity)
     {
-		let this->insertEntities[] = entity;
+        let this->insertEntities[] = entity;
     }
 
     public function update(object! entity)
     {
-    	let this->updateEntities[] = entity;
+        let this->updateEntities[] = entity;
     }
 
     public function delete(object! entity)
     {
-		let this->deleteEntities[] = entity;
+        let this->deleteEntities[] = entity;
     }
 
-	protected function convertToScalar(var value, var columnType = null)
-	{
-		switch(columnType) {
-			case "date":
-				if is_object(value) && value instanceof \Lynx\DBAL\RawValue {
-					return value->getValue();
-				}
+    protected function convertToScalar(var value, var columnType = null)
+    {
+        switch(columnType) {
+            case "date":
+                if is_object(value) && value instanceof \Lynx\DBAL\RawValue {
+                    return value->getValue();
+                }
 
-				return value;
-				break;
-			case "datetime":
-				if is_object(value) && value instanceof \DateTime {
-					return value->format("Y-m-d H:i:s");
-				}
+                return value;
+                break;
+            case "datetime":
+                if is_object(value) && value instanceof \DateTime {
+                    return value->format("Y-m-d H:i:s");
+                }
 
-				return value;
-				break;
-			default:
-				return value;
-				break;
-		}
-	}
+                return value;
+                break;
+            default:
+                return value;
+                break;
+        }
+    }
 
     public function commit(var entity = null)
     {
-    	var model, modelInfo, result, primaryField, extractValues;
+        var model, modelInfo, result, primaryField, extractValues;
 
-		/**
-		 * Remove try catch from hear because bug in Zephir :(
-		 * @link https://github.com/lynx/lynx/issues/2
-		 */
+        /**
+         * Remove try catch from hear because bug in Zephir :(
+         * @link https://github.com/lynx/lynx/issues/2
+         */
 
-		for model in this->insertEntities {
-			var lastInsertId, insertValues, property, value, key, types = [];
+        for model in this->insertEntities {
+            var lastInsertId, insertValues, property, value, key, types = [];
 
-			let modelInfo = this->em->getModelsManager()->get(get_class(model));
-			let primaryField = modelInfo->getPrimaryFieldName();
-			let extractValues = \Lynx\Stdlib\Hydrator\Entity::extract(model, modelInfo);
+            let modelInfo = this->em->getModelsManager()->get(get_class(model));
+            let primaryField = modelInfo->getPrimaryFieldName();
+            let extractValues = \Lynx\Stdlib\Hydrator\Entity::extract(model, modelInfo);
 
-			let insertValues = [];
-			for key, value in extractValues {
-				if (key == primaryField) {
-					continue;
-				}
+            let insertValues = [];
+            for key, value in extractValues {
+                if (key == primaryField) {
+                    continue;
+                }
 
-				let property = modelInfo->getColumn(key);
-				if (!property) {
-					continue;
-				}
+                let property = modelInfo->getColumn(key);
+                if (!property) {
+                    continue;
+                }
 
-				if is_object(value) && value instanceof \Lynx\DBAL\RawValue {
-					let types[property->name] = \Lynx\DBAL\Driver\Pdo::PARAM_EXPRESSION;
-				}
+                if is_object(value) && value instanceof \Lynx\DBAL\RawValue {
+                    let types[property->name] = \Lynx\DBAL\Driver\Pdo::PARAM_EXPRESSION;
+                }
 
-				let insertValues[property->name] = this->convertToScalar(value, property->type);
-			}
+                let insertValues[property->name] = this->convertToScalar(value, property->type);
+            }
 
-			let result = this->em->getConnection()->insert(modelInfo->getTablename(), insertValues, types);
-			if (result) {
-			    /**
-			     * @todo fetch seq id
-			     */
-				let lastInsertId = this->em->getConnection()->getDriver()->lastInsertId(modelInfo->getTablename() . "_id_seq");
-				if (primaryField) {
-					let model->{primaryField} = (int) lastInsertId;
-				}
-			}
-		}
+            let result = this->em->getConnection()->insert(modelInfo->getTablename(), insertValues, types);
+            if (result) {
+                /**
+                 * @todo fetch seq id
+                 */
+                let lastInsertId = this->em->getConnection()->getDriver()->lastInsertId(modelInfo->getTablename() . "_id_seq");
+                if (primaryField) {
+                    let model->{primaryField} = (int) lastInsertId;
+                }
+            }
+        }
 
-		for model in this->updateEntities {
-			var identifiers, updateValues = [];
+        for model in this->updateEntities {
+            var identifiers, updateValues = [];
 
-			let modelInfo = this->em->getModelsManager()->get(get_class(model));
+            let modelInfo = this->em->getModelsManager()->get(get_class(model));
 
-			let extractValues = \Lynx\Stdlib\Hydrator\ClassProperties::extract(model);
+            let extractValues = \Lynx\Stdlib\Hydrator\ClassProperties::extract(model);
 
-			let primaryField = modelInfo->getPrimaryFieldName();
-			if (primaryField) {
-				let identifiers = [
-					primaryField : extractValues[primaryField]
-				];
-			} else {
-				throw new \Exception("Entity`s PrimaryField is not set.");
-			}
+            let primaryField = modelInfo->getPrimaryFieldName();
+            if (primaryField) {
+                let identifiers = [
+                    primaryField : extractValues[primaryField]
+                ];
+            } else {
+                throw new \Exception("Entity`s PrimaryField is not set.");
+            }
 
-			for key, value in extractValues {
-				if (key == primaryField) {
-					continue;
-				}
+            for key, value in extractValues {
+                if (key == primaryField) {
+                    continue;
+                }
 
-				let property = modelInfo->getColumn(key);
-				if (!property) {
-					continue;
-				}
+                let property = modelInfo->getColumn(key);
+                if (!property) {
+                    continue;
+                }
 
-				let updateValues[property->name] = this->convertToScalar(value, property->type);
-			}
+                let updateValues[property->name] = this->convertToScalar(value, property->type);
+            }
 
-			this->em->getConnection()->update(modelInfo->getTablename(), updateValues, identifiers);
-		}
+            this->em->getConnection()->update(modelInfo->getTablename(), updateValues, identifiers);
+        }
 
-		for model in this->deleteEntities {
-			let modelInfo = this->em->getModelsManager()->get(get_class(model));
+        for model in this->deleteEntities {
+            let modelInfo = this->em->getModelsManager()->get(get_class(model));
             let primaryField = modelInfo->getPrimaryFieldName();
 
             if (primaryField) {
                 this->em->getConnection()->deleteByColumn(modelInfo->getTablename(), primaryField, model->{primaryField});
             } else {
-			    this->em->getConnection()->delete(modelInfo->getTablename(), \Lynx\Stdlib\Hydrator\Entity::extract(model));
+                this->em->getConnection()->delete(modelInfo->getTablename(), \Lynx\Stdlib\Hydrator\Entity::extract(model));
             }
-		}
+        }
 
-
-		let this->insertEntities = [];
-		let this->updateEntities = [];
-		let this->deleteEntities = [];
+        let this->insertEntities = [];
+        let this->updateEntities = [];
+        let this->deleteEntities = [];
     }
 }
