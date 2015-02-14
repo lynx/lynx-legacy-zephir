@@ -12,7 +12,7 @@ Lynx ORM|DBAL
 
 > Yet another ORM\DBAL written in Zephir language.
 
-I like Doctrine2 but I dislike Phalcon 2 ORM* and I've created this project to incubate a new ORM in Zephir Language to achieve the best performance.
+I like Doctrine 2 but I dislike Phalcon 2 ORM* and I've created this project to incubate a new ORM in Zephir Language to achieve the best performance.
 
 ### Idea
 
