@@ -18,6 +18,9 @@
 #include "kernel/concat.h"
 
 
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 ZEPHIR_INIT_CLASS(Lynx_ORM_QueryBuilder_Expression_Where) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\ORM\\QueryBuilder\\Expression, Where, lynx, orm_querybuilder_expression_where, lynx_orm_querybuilder_expression_where_method_entry, 0);

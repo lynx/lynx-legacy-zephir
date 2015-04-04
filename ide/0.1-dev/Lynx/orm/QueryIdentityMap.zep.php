@@ -7,9 +7,12 @@ class QueryIdentityMap
 
     protected $rootModel;
 
+
     protected $rootAlias;
 
+
     protected $aliases;
+
 
 
 	public function getRootModel() {}

@@ -7,17 +7,24 @@ class SqlBuilder
 
     const SELECT = 1;
 
+
     const UPDATE = 2;
+
 
     const DELETE = 3;
 
-    protected $type;
 
-    protected $limit;
+    protected $type = self::SELECT;
 
-    protected $offset;
+
+    protected $limit = null;
+
+
+    protected $offset = null;
+
 
     protected $em;
+
 
 
 	public function getLimit() {}

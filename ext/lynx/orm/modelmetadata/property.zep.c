@@ -14,6 +14,9 @@
 #include "kernel/main.h"
 
 
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 ZEPHIR_INIT_CLASS(Lynx_ORM_ModelMetaData_Property) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\ORM\\ModelMetaData, Property, lynx, orm_modelmetadata_property, NULL, 0);

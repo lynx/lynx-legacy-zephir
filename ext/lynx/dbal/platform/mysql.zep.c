@@ -16,6 +16,9 @@
 #include "kernel/memory.h"
 
 
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 ZEPHIR_INIT_CLASS(Lynx_DBAL_Platform_MySQL) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\DBAL\\Platform, MySQL, lynx, dbal_platform_mysql, lynx_dbal_platform_mysql_method_entry, 0);

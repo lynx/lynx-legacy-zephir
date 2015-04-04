@@ -9,15 +9,21 @@ class EntityManager
      */
     protected $unitOfWork;
 
+
     protected $connection;
+
 
     protected $modelsManager;
 
+
     protected $eventManager;
+
 
     protected $repositories;
 
+
     protected $configuration;
+
 
     /**
      * @return UnitOfWork 

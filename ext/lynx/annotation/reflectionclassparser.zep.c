@@ -20,6 +20,9 @@
 #include "kernel/array.h"
 
 
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 ZEPHIR_INIT_CLASS(Lynx_Annotation_ReflectionClassParser) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\Annotation, ReflectionClassParser, lynx, annotation_reflectionclassparser, lynx_annotation_reflectionclassparser_method_entry, 0);
@@ -55,7 +58,7 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, __construct) {
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("reflectionClass"), _1 TSRMLS_CC);
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "$parameter must be class name (string) or object instance (object)", "lynx/Annotation/ReflectionClassParser.zep", 16);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "$parameter must be class name (string) or object instance (object)", "lynx/Annotation/ReflectionClassParser.zep", 19);
 		return;
 	}
 	ZEPHIR_MM_RESTORE();
@@ -94,7 +97,7 @@ PHP_METHOD(Lynx_Annotation_ReflectionClassParser, getPropertiesAnnotations) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("reflectionClass"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&properties, _0, "getproperties", NULL);
 	zephir_check_call_status();
-	zephir_is_iterable(properties, &_2, &_1, 0, 0, "lynx/Annotation/ReflectionClassParser.zep", 38);
+	zephir_is_iterable(properties, &_2, &_1, 0, 0, "lynx/Annotation/ReflectionClassParser.zep", 41);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)

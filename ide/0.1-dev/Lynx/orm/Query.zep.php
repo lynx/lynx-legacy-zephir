@@ -7,19 +7,25 @@ class Query
 
     const FETCH_INT = 1;
 
+
     const FETCH_FLOAT = 1;
+
     /**
      * Sql plain query
      */
     protected $query;
 
+
     protected $em;
 
+
     protected $statement;
+
     /**
      * IdentityMap for SQL. need for hydrate data with many relations (joins)
      */
     protected $identityMap;
+
 
     /**
      * Sql plain query

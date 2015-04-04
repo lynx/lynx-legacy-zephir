@@ -8,10 +8,12 @@ class Connection
      * Current used driver
      */
     protected $driver;
+
     /**
      * Current used db platform (MySQL|PgSQL)
      */
     protected $platform;
+
 
     /**
      * Current used driver

@@ -7,33 +7,48 @@ class QueryBuilder
 
     const SELECT = 1;
 
+
     const UPDATE = 2;
+
 
     const DELETE = 3;
 
+
     protected $alias = "default";
+
 
     protected $from;
 
+
     protected $parts;
+
 
     protected $columns = "*";
 
+
     protected $where = array();
 
-    protected $type;
 
-    protected $limit;
+    protected $type = self::SELECT;
 
-    protected $offset;
 
-    protected $order;
+    protected $limit = null;
+
+
+    protected $offset = null;
+
+
+    protected $order = null;
+
 
     protected $joins = array();
 
+
     protected $rootModel;
 
+
     protected $em;
+
 
 
 	public function getType() {}

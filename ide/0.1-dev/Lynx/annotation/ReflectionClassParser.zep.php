@@ -9,6 +9,7 @@ class ReflectionClassParser
      */
     protected $reflectionClass;
 
+
     /**
      * @param mixed $parameter 
      */

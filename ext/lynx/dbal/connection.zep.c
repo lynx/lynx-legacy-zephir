@@ -13,10 +13,10 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/exception.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
+#include "kernel/exception.h"
 #include "kernel/hash.h"
 #include "kernel/operators.h"
 #include "kernel/concat.h"
@@ -71,8 +71,7 @@ PHP_METHOD(Lynx_DBAL_Connection, getPlatform) {
 PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_bool _0;
-	zval *parameters, *eventsManager = NULL, *_1, *_2, *_3 = NULL;
+	zval *parameters, *eventsManager = NULL, *_0, *_1, *_2 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &parameters, &eventsManager);
@@ -84,14 +83,6 @@ PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 	}
 
 
-	_0 = Z_TYPE_P(eventsManager) != IS_NULL;
-	if (_0) {
-		_0 = !zephir_instance_of_ev(eventsManager, lynx_stdlib_events_manager_ce TSRMLS_CC);
-	}
-	if (_0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'eventsManager' must be an instance of 'Lynx\\Stdlib\\Events\\Manager'", "", 0);
-		return;
-	}
 	if (Z_TYPE_P(eventsManager) == IS_NULL) {
 		ZEPHIR_INIT_NVAR(eventsManager);
 		object_init_ex(eventsManager, lynx_stdlib_events_manager_ce);
@@ -101,18 +92,18 @@ PHP_METHOD(Lynx_DBAL_Connection, __construct) {
 		}
 	}
 	if (zephir_array_isset_string(parameters, SS("driver"))) {
-		zephir_array_fetch_string(&_1, parameters, SL("driver"), PH_NOISY | PH_READONLY, "lynx/DBAL/Connection.zep", 34 TSRMLS_CC);
-		zephir_update_property_this(this_ptr, SL("driver"), _1 TSRMLS_CC);
-		_2 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_3, _2, "getnewplatform", NULL);
+		zephir_array_fetch_string(&_0, parameters, SL("driver"), PH_NOISY | PH_READONLY, "lynx/DBAL/Connection.zep", 34 TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("driver"), _0 TSRMLS_CC);
+		_1 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_2, _1, "getnewplatform", NULL);
 		zephir_check_call_status();
-		zephir_update_property_this(this_ptr, SL("platform"), _3 TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("platform"), _2 TSRMLS_CC);
 	} else {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Driver didn`t find in $parameters", "lynx/DBAL/Connection.zep", 41);
 		return;
 	}
-	_2 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(NULL, _2, "seteventsmanager", NULL, eventsManager);
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("driver"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(NULL, _1, "seteventsmanager", NULL, eventsManager);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

@@ -15,7 +15,7 @@
 
 
 /**
- * @author: Patsura Dmitry <zaets28rus@gmail.com>
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
  */
 ZEPHIR_INIT_CLASS(Lynx_Stdlib_Collections_Collection) {
 

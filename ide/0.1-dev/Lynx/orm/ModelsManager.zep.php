@@ -7,7 +7,9 @@ class ModelsManager
 
     const CACHE_LOAD_PER_GET = 0;
 
+
     const CACHE_LOAD_PER_GET_ALL = 1;
+
     /**
      * 
      *
@@ -15,11 +17,15 @@ class ModelsManager
      */
     protected $em;
 
+
     private $cachedModels = array();
+
 
     protected $cacheLoaded = false;
 
+
     protected $cacheLoadType;
+
 
     /**
      * @param mixed $em 

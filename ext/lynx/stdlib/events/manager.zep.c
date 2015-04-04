@@ -26,22 +26,8 @@
 #include "kernel/concat.h"
 
 
-/*
- +------------------------------------------------------------------------+
- | Phalcon Framework                                                      |
- +------------------------------------------------------------------------+
- | Copyright (c) 2011-2014 Phalcon Team (http://www.phalconphp.com)       |
- +------------------------------------------------------------------------+
- | This source file is subject to the New BSD License that is bundled     |
- | with this package in the file docs/LICENSE.txt.                        |
- |                                                                        |
- | If you did not receive a copy of the license and are unable to         |
- | obtain it through the world-wide-web, please send an email             |
- | to license@phalconphp.com so we can send you a copy immediately.       |
- +------------------------------------------------------------------------+
- | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
- |          Eduar Carvajal <eduar@phalconphp.com>                         |
- +------------------------------------------------------------------------+
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
  */
 ZEPHIR_INIT_CLASS(Lynx_Stdlib_Events_Manager) {
 
@@ -100,7 +86,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, attach) {
 
 
 	if (Z_TYPE_P(handler) != IS_OBJECT) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Event handler must be an Object", "lynx/Stdlib/Events/Manager.zep", 43);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Event handler must be an Object", "lynx/Stdlib/Events/Manager.zep", 29);
 		return;
 	}
 	ZEPHIR_OBS_VAR(events);
@@ -138,7 +124,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, attach) {
 		ZEPHIR_CALL_METHOD(NULL, priorityQueue, "insert", NULL, handler, _1);
 		zephir_check_call_status();
 	} else {
-		zephir_array_append(&priorityQueue, handler, PH_SEPARATE, "lynx/Stdlib/Events/Manager.zep", 90);
+		zephir_array_append(&priorityQueue, handler, PH_SEPARATE, "lynx/Stdlib/Events/Manager.zep", 76);
 		zephir_array_update_zval(&events, eventType, &priorityQueue, PH_COPY | PH_SEPARATE);
 		zephir_update_property_this(this_ptr, SL("_events"), events TSRMLS_CC);
 	}
@@ -282,11 +268,11 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fireQueue) {
 		_0 = Z_TYPE_P(queue) != IS_OBJECT;
 	}
 	if (_0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "The queue is not valid", "lynx/Stdlib/Events/Manager.zep", 179);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "The queue is not valid", "lynx/Stdlib/Events/Manager.zep", 165);
 		return;
 	}
 	if (Z_TYPE_P(event) != IS_OBJECT) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "The event is not valid", "lynx/Stdlib/Events/Manager.zep", 183);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "The event is not valid", "lynx/Stdlib/Events/Manager.zep", 169);
 		return;
 	}
 	ZEPHIR_INIT_VAR(status);
@@ -296,7 +282,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fireQueue) {
 	ZEPHIR_CALL_METHOD(&eventName, event, "gettype", NULL);
 	zephir_check_call_status();
 	if (Z_TYPE_P(eventName) != IS_STRING) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "The event type not valid", "lynx/Stdlib/Events/Manager.zep", 193);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "The event type not valid", "lynx/Stdlib/Events/Manager.zep", 179);
 		return;
 	}
 	ZEPHIR_CALL_METHOD(&source, event, "getsource", NULL);
@@ -348,7 +334,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fireQueue) {
 					}
 				} else {
 					if ((zephir_method_exists(handler, eventName TSRMLS_CC)  == SUCCESS)) {
-						ZEPHIR_CALL_METHOD(&status, handler, Z_STRVAL_P(eventName), NULL, event, source, data);
+						ZEPHIR_CALL_METHOD_ZVAL(&status, handler, eventName, NULL, event, source, data);
 						zephir_check_call_status();
 						if (collect) {
 							zephir_update_property_array_append(this_ptr, SL("_responses"), status TSRMLS_CC);
@@ -365,7 +351,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fireQueue) {
 			}
 		}
 	} else {
-		zephir_is_iterable(queue, &_6, &_5, 0, 0, "lynx/Stdlib/Events/Manager.zep", 387);
+		zephir_is_iterable(queue, &_6, &_5, 0, 0, "lynx/Stdlib/Events/Manager.zep", 373);
 		for (
 		  ; zephir_hash_get_current_data_ex(_6, (void**) &_7, &_5) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_6, &_5)
@@ -395,7 +381,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fireQueue) {
 					}
 				} else {
 					if ((zephir_method_exists(handler, eventName TSRMLS_CC)  == SUCCESS)) {
-						ZEPHIR_CALL_METHOD(&status, handler, Z_STRVAL_P(eventName), NULL, event, source, data);
+						ZEPHIR_CALL_METHOD_ZVAL(&status, handler, eventName, NULL, event, source, data);
 						zephir_check_call_status();
 						if (collect) {
 							zephir_update_property_array_append(this_ptr, SL("_responses"), status TSRMLS_CC);
@@ -420,7 +406,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fireQueue) {
  * Fires an event in the events manager causing that active listeners be notified about it
  *
  *<code>
- *	$eventsManager->fire('db', $connection);
+ *  $eventsManager->fire('db', $connection);
  *</code>
  *
  * @param string eventType
@@ -466,23 +452,23 @@ PHP_METHOD(Lynx_Stdlib_Events_Manager, fire) {
 	if (Z_TYPE_P(events) != IS_ARRAY) {
 		RETURN_MM_NULL();
 	}
-	if (!(zephir_memnstr_str(eventType, SL(":"), "lynx/Stdlib/Events/Manager.zep", 417))) {
+	if (!(zephir_memnstr_str(eventType, SL(":"), "lynx/Stdlib/Events/Manager.zep", 403))) {
 		ZEPHIR_INIT_VAR(_0);
 		object_init_ex(_0, zend_exception_get_default(TSRMLS_C));
 		ZEPHIR_INIT_VAR(_1);
 		ZEPHIR_CONCAT_SV(_1, "Invalid event type ", eventType);
 		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, _1);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_0, "lynx/Stdlib/Events/Manager.zep", 418 TSRMLS_CC);
+		zephir_throw_exception_debug(_0, "lynx/Stdlib/Events/Manager.zep", 404 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
 	ZEPHIR_INIT_VAR(eventParts);
 	zephir_fast_explode_str(eventParts, SL(":"), eventType, LONG_MAX TSRMLS_CC);
 	ZEPHIR_OBS_VAR(type);
-	zephir_array_fetch_long(&type, eventParts, 0, PH_NOISY, "lynx/Stdlib/Events/Manager.zep", 422 TSRMLS_CC);
+	zephir_array_fetch_long(&type, eventParts, 0, PH_NOISY, "lynx/Stdlib/Events/Manager.zep", 408 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(eventName);
-	zephir_array_fetch_long(&eventName, eventParts, 1, PH_NOISY, "lynx/Stdlib/Events/Manager.zep", 423 TSRMLS_CC);
+	zephir_array_fetch_long(&eventName, eventParts, 1, PH_NOISY, "lynx/Stdlib/Events/Manager.zep", 409 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(status);
 	ZVAL_NULL(status);
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("_collect"), PH_NOISY_CC);

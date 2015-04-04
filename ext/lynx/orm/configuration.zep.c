@@ -13,10 +13,12 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/exception.h"
 #include "kernel/memory.h"
 
 
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 ZEPHIR_INIT_CLASS(Lynx_ORM_Configuration) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\ORM, Configuration, lynx, orm_configuration, lynx_orm_configuration_method_entry, 0);
@@ -45,10 +47,6 @@ PHP_METHOD(Lynx_ORM_Configuration, setCacheDriver) {
 
 
 
-	if (!(zephir_is_instance_of(cacheDriver, SL("Cacher\\Driver") TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'cacheDriver' must be an instance of 'Cacher\\Driver'", "", 0);
-		return;
-	}
 	zephir_update_property_this(this_ptr, SL("cacheDriver"), cacheDriver TSRMLS_CC);
 
 }

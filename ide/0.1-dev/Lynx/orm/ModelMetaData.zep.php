@@ -7,11 +7,15 @@ class ModelMetaData
 
     protected $classname;
 
+
     protected $tablename;
+
 
     protected $properties;
 
+
     protected $columns;
+
 
 
 	public function getClassname() {}

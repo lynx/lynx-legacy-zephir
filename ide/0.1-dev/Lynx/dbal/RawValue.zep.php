@@ -8,6 +8,7 @@ class RawValue
     protected $value;
 
 
+
 	public function getValue() {}
 
     /**

@@ -18,6 +18,9 @@
 #include "kernel/concat.h"
 
 
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 ZEPHIR_INIT_CLASS(Lynx_ORM_QueryBuilder_Expression_Join) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\ORM\\QueryBuilder\\Expression, Join, lynx, orm_querybuilder_expression_join, lynx_orm_querybuilder_expression_join_method_entry, 0);

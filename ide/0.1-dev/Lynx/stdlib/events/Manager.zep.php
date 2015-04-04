@@ -5,13 +5,17 @@ namespace Lynx\Stdlib\Events;
 class Manager implements \Lynx\Stdlib\Events\EventsManager
 {
 
-    protected $_events;
+    protected $_events = null;
+
 
     protected $_collect = false;
 
+
     protected $_enablePriorities = false;
 
+
     protected $_responses;
+
 
     /**
      * 

@@ -7,6 +7,7 @@ class ArrayCollection extends \Lynx\Stdlib\Collections\Collection
 
     protected $elements;
 
+
     /**
      * {@inheritDoc}
      *

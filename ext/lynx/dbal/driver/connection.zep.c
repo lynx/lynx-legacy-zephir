@@ -12,6 +12,9 @@
 #include "kernel/main.h"
 
 
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_Connection) {
 
 	ZEPHIR_REGISTER_INTERFACE(Lynx\\DBAL\\Driver, Connection, lynx, dbal_driver_connection, lynx_dbal_driver_connection_method_entry);

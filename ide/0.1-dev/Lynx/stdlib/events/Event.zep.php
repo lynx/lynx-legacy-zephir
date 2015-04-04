@@ -7,13 +7,18 @@ class Event
 
     protected $_type;
 
+
     protected $_source;
+
 
     protected $_data;
 
+
     protected $_stopped = false;
 
+
     protected $_cancelable = true;
+
 
     /**
      * @param mixed $type 
@@ -38,8 +43,6 @@ class Event
 	public function getCancelable() {}
 
     /**
-     * Phalcon\Events\Event constructor
-     *
      * @param string $type 
      * @param object $source 
      * @param mixed $data 

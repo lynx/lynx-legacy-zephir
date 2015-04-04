@@ -20,6 +20,9 @@
 #include "kernel/fcall.h"
 
 
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 ZEPHIR_INIT_CLASS(Lynx_DBAL_Driver_MySQL) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\DBAL\\Driver, MySQL, lynx, dbal_driver_mysql, lynx_dbal_driver_mysql_method_entry, 0);
@@ -107,7 +110,7 @@ PHP_METHOD(Lynx_DBAL_Driver_MySQL, isConnected) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("connection"), PH_NOISY_CC);
-	RETURN_BOOL(!Z_TYPE_P(_0) == IS_NULL);
+	RETURN_BOOL(!(Z_TYPE_P(_0) == IS_NULL));
 
 }
 

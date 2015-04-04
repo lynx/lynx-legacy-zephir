@@ -7,15 +7,21 @@ class MySQL
 
     protected $eventsManager;
 
+
     protected $dsn;
+
 
     protected $username;
 
+
     protected $password;
+
 
     protected $driverOptions;
 
+
     protected $connection;
+
 
     /**
      * @param mixed $eventsManager 

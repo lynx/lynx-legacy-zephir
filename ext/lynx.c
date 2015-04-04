@@ -209,12 +209,18 @@ static PHP_GSHUTDOWN_FUNCTION(lynx)
 
 }
 
+
+zend_function_entry php_lynx_functions[] = {
+ZEND_FE_END
+
+};
+
 zend_module_entry lynx_module_entry = {
 	STANDARD_MODULE_HEADER_EX,
 	NULL,
 	NULL,
 	PHP_LYNX_EXTNAME,
-	NULL,
+	php_lynx_functions,
 	PHP_MINIT(lynx),
 #ifndef ZEPHIR_RELEASE
 	PHP_MSHUTDOWN(lynx),

@@ -8,10 +8,12 @@ class EntityRepository
      * @var EntityManager
      */
     protected $em;
+
     /**
      * @var ModelMetaData
      */
     protected $modelWrapper;
+
 
     /**
      * @return EntityManager 

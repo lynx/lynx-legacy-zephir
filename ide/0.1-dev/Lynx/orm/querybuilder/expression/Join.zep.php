@@ -7,17 +7,24 @@ class Join
 
     const RIGHT_JOIN = "RIGHT";
 
+
     const INNER_JOIN = "INNER";
+
 
     const LEFT_JOIN = "LEFT";
 
+
     private $type;
+
 
     private $join;
 
+
     private $alias;
 
+
     private $condition;
+
 
     /**
      * @param string $type 

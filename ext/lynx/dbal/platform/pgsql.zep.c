@@ -15,6 +15,9 @@
 #include "kernel/memory.h"
 
 
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 ZEPHIR_INIT_CLASS(Lynx_DBAL_Platform_Pgsql) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\DBAL\\Platform, Pgsql, lynx, dbal_platform_pgsql, lynx_dbal_platform_pgsql_method_entry, 0);

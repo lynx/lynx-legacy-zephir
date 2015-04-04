@@ -13,10 +13,10 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/exception.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
 #include "kernel/operators.h"
 #include "kernel/concat.h"
 
@@ -60,14 +60,6 @@ PHP_METHOD(Lynx_ORM_EntityRepository, __construct) {
 
 
 
-	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
-		return;
-	}
-	if (!(zephir_instance_of_ev(modelWrapper, lynx_orm_modelmetadata_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'modelWrapper' must be an instance of 'Lynx\\ORM\\ModelMetaData'", "", 0);
-		return;
-	}
 	zephir_update_property_this(this_ptr, SL("em"), em TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("modelWrapper"), modelWrapper TSRMLS_CC);
 

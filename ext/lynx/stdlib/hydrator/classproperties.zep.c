@@ -21,6 +21,9 @@
 #include "kernel/exception.h"
 
 
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 ZEPHIR_INIT_CLASS(Lynx_Stdlib_Hydrator_ClassProperties) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\Stdlib\\Hydrator, ClassProperties, lynx, stdlib_hydrator_classproperties, lynx_stdlib_hydrator_classproperties_method_entry, 0);
@@ -50,7 +53,7 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_ClassProperties, hydrate) {
 	ZEPHIR_SEPARATE_PARAM(currentObject);
 
 
-	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/Stdlib/Hydrator/ClassProperties.zep", 18);
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/Stdlib/Hydrator/ClassProperties.zep", 22);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)

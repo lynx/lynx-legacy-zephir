@@ -12,10 +12,10 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/object.h"
-#include "kernel/exception.h"
 #include "kernel/memory.h"
+#include "kernel/object.h"
 #include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
 #include "kernel/operators.h"
 #include "kernel/fcall.h"
 #include "kernel/hash.h"
@@ -54,10 +54,6 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, __construct) {
 
 
 
-	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
-		return;
-	}
 	ZEPHIR_INIT_VAR(_0);
 	array_init(_0);
 	zephir_update_property_this(this_ptr, SL("deleteEntities"), _0 TSRMLS_CC);
@@ -275,7 +271,7 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 			if (zephir_is_true(primaryField)) {
 				ZEPHIR_INIT_NVAR(_14);
 				ZVAL_LONG(_14, zephir_get_intval(lastInsertId));
-				zephir_update_property_zval(model, Z_STRVAL_P(primaryField), Z_STRLEN_P(primaryField), _14 TSRMLS_CC);
+				zephir_update_property_zval_zval(model, primaryField, _14 TSRMLS_CC);
 			}
 		}
 	}
@@ -339,7 +335,7 @@ PHP_METHOD(Lynx_ORM_UnitOfWork, commit) {
 		zephir_check_call_status();
 	}
 	_4 = zephir_fetch_nproperty_this(this_ptr, SL("deleteEntities"), PH_NOISY_CC);
-	zephir_is_iterable(_4, &_34, &_33, 0, 0, "lynx/ORM/UnitOfWork.zep", 157);
+	zephir_is_iterable(_4, &_34, &_33, 0, 0, "lynx/ORM/UnitOfWork.zep", 156);
 	for (
 	  ; zephir_hash_get_current_data_ex(_34, (void**) &_35, &_33) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_34, &_33)

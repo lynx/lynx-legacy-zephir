@@ -12,6 +12,9 @@
 #include "kernel/main.h"
 
 
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 ZEPHIR_INIT_CLASS(Lynx_Stdlib_Hydrator_Hydrator) {
 
 	ZEPHIR_REGISTER_INTERFACE(Lynx\\Stdlib\\Hydrator, Hydrator, lynx, stdlib_hydrator_hydrator, lynx_stdlib_hydrator_hydrator_method_entry);

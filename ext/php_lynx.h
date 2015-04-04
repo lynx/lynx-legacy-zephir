@@ -14,7 +14,7 @@
 #define PHP_LYNX_VERSION     "0.1-dev"
 #define PHP_LYNX_EXTNAME     "lynx"
 #define PHP_LYNX_AUTHOR      ""
-#define PHP_LYNX_ZEPVERSION  "0.5.9a"
+#define PHP_LYNX_ZEPVERSION  "0.6.1a"
 #define PHP_LYNX_DESCRIPTION ""
 
 

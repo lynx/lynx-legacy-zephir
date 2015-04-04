@@ -19,26 +19,10 @@
 #include "kernel/exception.h"
 
 
-/*
- +------------------------------------------------------------------------+
- | Phalcon Framework                                                      |
- +------------------------------------------------------------------------+
- | Copyright (c) 2011-2014 Phalcon Team (http://www.phalconphp.com)       |
- +------------------------------------------------------------------------+
- | This source file is subject to the New BSD License that is bundled     |
- | with this package in the file docs/LICENSE.txt.                        |
- |                                                                        |
- | If you did not receive a copy of the license and are unable to         |
- | obtain it through the world-wide-web, please send an email             |
- | to license@phalconphp.com so we can send you a copy immediately.       |
- +------------------------------------------------------------------------+
- | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
- |          Eduar Carvajal <eduar@phalconphp.com>                         |
- +------------------------------------------------------------------------+
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
  */
 /**
- * Phalcon\Events\Event
- *
  * This class offers contextual information of a fired event in the EventsManager
  */
 ZEPHIR_INIT_CLASS(Lynx_Stdlib_Events_Event) {
@@ -112,8 +96,6 @@ PHP_METHOD(Lynx_Stdlib_Events_Event, getCancelable) {
 }
 
 /**
- * Phalcon\Events\Event constructor
- *
  * @param string type
  * @param object source
  * @param mixed data
@@ -170,7 +152,7 @@ PHP_METHOD(Lynx_Stdlib_Events_Event, stop) {
 	if (zephir_is_true(_0)) {
 		zephir_update_property_this(this_ptr, SL("_stopped"), (1) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "Trying to cancel a non-cancelable event", "lynx/Stdlib/Events/Event.zep", 70);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "Trying to cancel a non-cancelable event", "lynx/Stdlib/Events/Event.zep", 51);
 		return;
 	}
 

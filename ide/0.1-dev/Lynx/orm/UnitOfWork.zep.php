@@ -7,7 +7,9 @@ class UnitOfWork
 
     const STATE_MANAGED = 1;
 
+
     const STATE_NEW = 2;
+
     /**
      * 
      *
@@ -15,11 +17,15 @@ class UnitOfWork
      */
     protected $em;
 
+
     protected $insertEntities = array();
+
 
     protected $updateEntities = array();
 
+
     protected $deleteEntities = array();
+
 
     /**
      * @param mixed $em 

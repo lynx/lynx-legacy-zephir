@@ -2,8 +2,8 @@ ARG_ENABLE("lynx", "enable lynx", "no");
 
 if (PHP_LYNX != "no") {
   EXTENSION("lynx", "lynx.c", null, "-I"+configure_module_dirname);
-  ADD_SOURCES(configure_module_dirname + "/kernel", "main.c memory.c exception.c hash.c debug.c backtrace.c object.c array.c string.c fcall.c require.c file.c operators.c concat.c variables.c filter.c iterator.c exit.c", "lynx");
-  ADD_SOURCES(configure_module_dirname + "/kernel/extended", "array.c", "lynx");
+  ADD_SOURCES(configure_module_dirname + "/kernel", "main.c memory.c exception.c hash.c debug.c backtrace.c object.c array.c string.c fcall.c require.c file.c operators.c concat.c variables.c filter.c iterator.c exit.c time.c", "lynx");
+  ADD_SOURCES(configure_module_dirname + "/kernel/extended", "array.c fcall.c", "lynx");
   
   ADD_SOURCES(configure_module_dirname + "/lynx/annotation", "reflectionclassparser.zep.c regexdocparser.zep.c", "lynx");
 	ADD_SOURCES(configure_module_dirname + "/lynx/dbal", "connection.zep.c events.zep.c rawvalue.zep.c", "lynx");

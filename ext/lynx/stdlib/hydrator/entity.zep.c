@@ -15,14 +15,18 @@
 #include "kernel/hash.h"
 #include "kernel/concat.h"
 #include "kernel/memory.h"
-#include "kernel/fcall.h"
+#include "kernel/string.h"
 #include "kernel/object.h"
 #include "kernel/array.h"
+#include "kernel/fcall.h"
 #include "kernel/operators.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 
 
+/**
+ * @author Patsura Dmitry <zaets28rus@gmail.com>
+ */
 ZEPHIR_INIT_CLASS(Lynx_Stdlib_Hydrator_Entity) {
 
 	ZEPHIR_REGISTER_CLASS(Lynx\\Stdlib\\Hydrator, Entity, lynx, stdlib_hydrator_entity, lynx_stdlib_hydrator_entity_method_entry, 0);
@@ -38,11 +42,11 @@ ZEPHIR_INIT_CLASS(Lynx_Stdlib_Hydrator_Entity) {
 PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, hydrate) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL, *_6 = NULL, *_8 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_5 = NULL, *_7 = NULL;
 	HashTable *_1;
 	HashPosition _0;
-	zval *data_param = NULL, *currentObject, *property = NULL, *value = NULL, *method = NULL, **_2, *_3 = NULL, *_7 = NULL;
-	zval *data = NULL, *_5 = NULL;
+	zval *data_param = NULL, *currentObject, *property = NULL, *value = NULL, *method = NULL, **_2, *_3 = NULL, *_6 = NULL;
+	zval *data = NULL, *_4 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &data_param, &currentObject);
@@ -52,27 +56,27 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, hydrate) {
 	ZEPHIR_SEPARATE_PARAM(currentObject);
 
 
-	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/Stdlib/Hydrator/Entity.zep", 24);
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "lynx/Stdlib/Hydrator/Entity.zep", 28);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HMKEY(property, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
-		ZEPHIR_CALL_FUNCTION(&_3, "ucfirst", &_4, property);
-		zephir_check_call_status();
+		ZEPHIR_INIT_NVAR(_3);
+		zephir_ucfirst(_3, property);
 		ZEPHIR_INIT_NVAR(method);
 		ZEPHIR_CONCAT_SV(method, "set", _3);
 		if ((zephir_method_exists(currentObject, method TSRMLS_CC)  == SUCCESS)) {
-			ZEPHIR_INIT_NVAR(_5);
-			array_init_size(_5, 2);
-			zephir_array_fast_append(_5, value);
-			ZEPHIR_CALL_FUNCTION(NULL, "call_user_func", &_6, method, currentObject, _5);
+			ZEPHIR_INIT_NVAR(_4);
+			array_init_size(_4, 2);
+			zephir_array_fast_append(_4, value);
+			ZEPHIR_CALL_FUNCTION(NULL, "call_user_func", &_5, method, currentObject, _4);
 			zephir_check_call_status();
 		} else {
-			ZEPHIR_CALL_FUNCTION(&_7, "property_exists", &_8, currentObject, property);
+			ZEPHIR_CALL_FUNCTION(&_6, "property_exists", &_7, currentObject, property);
 			zephir_check_call_status();
-			if (zephir_is_true(_7)) {
+			if (zephir_is_true(_6)) {
 				zephir_update_property_zval_zval(currentObject, property, value TSRMLS_CC);
 			}
 		}
@@ -87,11 +91,11 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, hydrate) {
  */
 PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, extract) {
 
-	HashTable *_3, *_13;
-	HashPosition _2, _12;
+	HashTable *_3, *_12;
+	HashPosition _2, _11;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_1 = NULL, *_7 = NULL, *_9 = NULL, *_11 = NULL;
-	zval *currentObject, *modelInfo = NULL, *methods = NULL, *method = NULL, *attribute = NULL, *attributes, *properties = NULL, *key = NULL, *value = NULL, **_4, *_5 = NULL, *_6 = NULL, _8 = zval_used_for_init, *_10 = NULL, **_14;
+	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_1 = NULL, *_7 = NULL, *_10 = NULL;
+	zval *currentObject, *modelInfo = NULL, *methods = NULL, *method = NULL, *attribute = NULL, *attributes, *properties = NULL, *key = NULL, *value = NULL, **_4, *_5 = NULL, *_6 = NULL, _8 = zval_used_for_init, *_9 = NULL, **_13;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &currentObject, &modelInfo);
@@ -112,7 +116,7 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, extract) {
 	array_init(attributes);
 	ZEPHIR_CALL_FUNCTION(&properties, "get_object_vars", &_1, currentObject);
 	zephir_check_call_status();
-	zephir_is_iterable(methods, &_3, &_2, 0, 0, "lynx/Stdlib/Hydrator/Entity.zep", 52);
+	zephir_is_iterable(methods, &_3, &_2, 0, 0, "lynx/Stdlib/Hydrator/Entity.zep", 56);
 	for (
 	  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_3, &_2)
@@ -126,27 +130,27 @@ PHP_METHOD(Lynx_Stdlib_Hydrator_Entity, extract) {
 		if (zephir_is_true(_6)) {
 			ZEPHIR_SINIT_NVAR(_8);
 			ZVAL_LONG(&_8, 3);
-			ZEPHIR_CALL_FUNCTION(&attribute, "substr", &_9, method, &_8);
+			ZEPHIR_INIT_NVAR(attribute);
+			zephir_substr(attribute, method, 3 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
+			ZEPHIR_CALL_FUNCTION(&_9, "lcfirst", &_10, attribute);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(&_10, "lcfirst", &_11, attribute);
-			zephir_check_call_status();
-			ZEPHIR_CPY_WRT(attribute, _10);
-			if (!zephir_array_isset(properties, attribute)) {
-				ZEPHIR_CALL_METHOD(&_10, currentObject, Z_STRVAL_P(method),  NULL);
+			ZEPHIR_CPY_WRT(attribute, _9);
+			if (!(zephir_array_isset(properties, attribute))) {
+				ZEPHIR_CALL_METHOD_ZVAL(&_9, currentObject, method,  NULL);
 				zephir_check_call_status();
-				zephir_array_update_zval(&attributes, attribute, &_10, PH_COPY | PH_SEPARATE);
+				zephir_array_update_zval(&attributes, attribute, &_9, PH_COPY | PH_SEPARATE);
 			} else {
 				zephir_array_unset(&properties, attribute, PH_SEPARATE);
 			}
 		}
 	}
-	zephir_is_iterable(properties, &_13, &_12, 0, 0, "lynx/Stdlib/Hydrator/Entity.zep", 56);
+	zephir_is_iterable(properties, &_12, &_11, 0, 0, "lynx/Stdlib/Hydrator/Entity.zep", 60);
 	for (
-	  ; zephir_hash_get_current_data_ex(_13, (void**) &_14, &_12) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_13, &_12)
+	  ; zephir_hash_get_current_data_ex(_12, (void**) &_13, &_11) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_12, &_11)
 	) {
-		ZEPHIR_GET_HMKEY(key, _13, _12);
-		ZEPHIR_GET_HVALUE(value, _14);
+		ZEPHIR_GET_HMKEY(key, _12, _11);
+		ZEPHIR_GET_HVALUE(value, _13);
 		zephir_array_update_zval(&attributes, key, &value, PH_COPY | PH_SEPARATE);
 	}
 	RETURN_CCTOR(attributes);

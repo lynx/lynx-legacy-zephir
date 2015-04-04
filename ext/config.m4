@@ -9,7 +9,7 @@ if test "$PHP_LYNX" = "yes"; then
 	fi
 
 	AC_DEFINE(HAVE_LYNX, 1, [Whether you have Lynx])
-	lynx_sources="lynx.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/exit.c lynx/annotation/reflectionclassparser.zep.c
+	lynx_sources="lynx.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c lynx/annotation/reflectionclassparser.zep.c
 	lynx/annotation/regexdocparser.zep.c
 	lynx/dbal/connection.zep.c
 	lynx/dbal/driver/connection.zep.c

@@ -13,9 +13,9 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/exception.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/exception.h"
 #include "kernel/concat.h"
 #include "kernel/string.h"
 #include "kernel/array.h"
@@ -105,10 +105,6 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, __construct) {
 
 
 
-	if (!(zephir_instance_of_ev(em, lynx_orm_entitymanager_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'em' must be an instance of 'Lynx\\ORM\\EntityManager'", "", 0);
-		return;
-	}
 	ZEPHIR_INIT_VAR(_0);
 	array_init(_0);
 	zephir_update_property_this(this_ptr, SL("joins"), _0 TSRMLS_CC);
@@ -134,7 +130,7 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, select) {
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(_0, 1);
 	zephir_update_property_this(this_ptr, SL("type"), _0 TSRMLS_CC);
-	if (!Z_TYPE_P(columns) == IS_NULL) {
+	if (!(Z_TYPE_P(columns) == IS_NULL)) {
 		zephir_update_property_this(this_ptr, SL("columns"), columns TSRMLS_CC);
 	}
 	RETURN_THISW();
@@ -612,13 +608,13 @@ PHP_METHOD(Lynx_ORM_QueryBuilder, getSQL) {
 		zephir_concat_self(&sql, _14 TSRMLS_CC);
 	}
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("limit"), PH_NOISY_CC);
-	if (!Z_TYPE_P(_2) == IS_NULL) {
+	if (!(Z_TYPE_P(_2) == IS_NULL)) {
 		_8 = zephir_fetch_nproperty_this(this_ptr, SL("limit"), PH_NOISY_CC);
 		ZEPHIR_INIT_LNVAR(_14);
 		ZEPHIR_CONCAT_SV(_14, " LIMIT ", _8);
 		zephir_concat_self(&sql, _14 TSRMLS_CC);
 		_15 = zephir_fetch_nproperty_this(this_ptr, SL("offset"), PH_NOISY_CC);
-		if (!Z_TYPE_P(_15) == IS_NULL) {
+		if (!(Z_TYPE_P(_15) == IS_NULL)) {
 			_16 = zephir_fetch_nproperty_this(this_ptr, SL("offset"), PH_NOISY_CC);
 			ZEPHIR_INIT_VAR(_17);
 			ZEPHIR_CONCAT_SV(_17, " OFFSET ", _16);
