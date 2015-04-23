@@ -23,7 +23,7 @@ class Connection
      */
     public function __construct(var parameters, <EventsManager> eventsManager = null)
     {
-        if (is_null(eventsManager)) {
+        if (null === eventsManager) {
             let eventsManager = new EventsManager();
         }
 
@@ -38,7 +38,7 @@ class Connection
              */
             let this->platform = this->driver->getNewPlatform();
         } else {
-            throw new \Exception("Driver didn`t find in $parameters");
+            throw new \Exception("Driver not found in $parameters");
         }
 
         this->driver->setEventsManager(eventsManager);
