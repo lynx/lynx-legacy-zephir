@@ -44,6 +44,6 @@
     "name": "Lynx",
     "description": "",
     "author": "",
-    "version": "0.1-dev",
-    "verbose": false
+    "version": "0.1.1",
+    "verbose": true
 }
